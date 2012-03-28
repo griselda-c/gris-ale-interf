@@ -2,9 +2,9 @@ package ruleta;
 
 abstract class Apuesta {
 	
-	private Jugador jugador;
-	private int fichas;
-	private int jugada;
+	protected Jugador jugador;
+	protected int fichas;
+	protected int jugada;
 	
 	public Jugador getJugador() {
 		return jugador;
@@ -35,6 +35,6 @@ abstract class Apuesta {
 		this.fichas = fichas;		
 	}
 	
-	abstract boolean ganaParaNumero();
+	abstract boolean ganaParaNumero(int numero);
 
 }
