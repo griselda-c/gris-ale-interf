@@ -10,8 +10,7 @@ public class TestColumna {
 		public void ganaParaNumeroTest() {
 			Jugador jugador = new Jugador(40);
 			Columna columna = null;
-			try { columna = new Columna(jugador, 30, 3);}
-			catch (Exception e) {e.printStackTrace();}
+			columna = new Columna(jugador, 30, 3);
 			Assert.assertTrue(columna.ganaParaNumero(6));
 			Assert.assertTrue(columna.ganaParaNumero(3));
 			Assert.assertTrue(columna.ganaParaNumero(9));
