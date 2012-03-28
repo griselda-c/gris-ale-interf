@@ -13,7 +13,7 @@ public class Columna extends Apuesta{
 	
 	int fichasGanadas() {
 		// TODO Auto-generated method stub
-		return 3 * this.fichas;
+		return (3 * this.fichas) + 1;
 	}
 
 }
