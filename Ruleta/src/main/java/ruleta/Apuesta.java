@@ -30,9 +30,10 @@ abstract class Apuesta {
 		this.jugada = jugada;
 	}
 
-	public Apuesta(Jugador unJugador, int fichas){
+	public Apuesta(Jugador unJugador, int fichas, int numero){
 		this.jugador = unJugador;
-		this.fichas = fichas;		
+		this.fichas = fichas;
+		this.jugada = numero;
 	}
 	
 	abstract boolean ganaParaNumero(int numero);
