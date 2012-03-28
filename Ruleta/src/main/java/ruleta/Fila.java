@@ -3,7 +3,7 @@ package ruleta;
 public class Fila extends Apuesta{	
 	
 	
-	public Fila(Jugador unJugador, int fichas, int numero) {
+	public Fila(Jugador unJugador, int fichas, int numero) throws Exception {
 		super(unJugador, fichas, numero);
 		// TODO Auto-generated constructor stub
 	}
@@ -12,11 +12,11 @@ public class Fila extends Apuesta{
 	{
 		int filaSalio = calcularFila(numero);
 		
-		return filaSalio == this.jugada;// numero equivale a una fila 
+		return filaSalio ==  this.calcularFila(this.jugada);// numero equivale a una fila 
 		
 	}
 	
-	public int calcularFila(int numero)
+	private int calcularFila(int numero)
 	{
 		int fila;
 		if(numero % 3 == 0)
