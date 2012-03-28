@@ -3,7 +3,7 @@ package ruleta;
 public class ParImpar extends Apuesta {
 
 	
-	public ParImpar(Jugador unJugador, int fichas, int numero) throws Exception {
+	public ParImpar(Jugador unJugador, int fichas, int numero){
 		super(unJugador, fichas, numero);
 	}
 

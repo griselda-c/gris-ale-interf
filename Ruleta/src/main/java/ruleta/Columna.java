@@ -2,7 +2,7 @@ package ruleta;
 
 public class Columna extends Apuesta{
 
-	public Columna(Jugador unJugador, int fichas, int numero) throws Exception {
+	public Columna(Jugador unJugador, int fichas, int numero){
 		super(unJugador, fichas, numero);
 	}
 
@@ -13,7 +13,7 @@ public class Columna extends Apuesta{
 	
 	int fichasGanadas() {
 		// TODO Auto-generated method stub
-		return (3 * this.fichas) + 1;
+		return 3 * this.fichas;
 	}
 
 }
