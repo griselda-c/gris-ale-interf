@@ -8,7 +8,7 @@ public class TestColumna {
 
 		@Test
 		public void ganaParaNumeroTest() {
-			Jugador jugador = new Jugador();
+			Jugador jugador = new Jugador(40);
 			Columna columna = null;
 			try { columna = new Columna(jugador, 30, 3);}
 			catch (Exception e) {e.printStackTrace();}
