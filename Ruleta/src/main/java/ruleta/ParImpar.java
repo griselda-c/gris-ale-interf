@@ -3,9 +3,12 @@ package ruleta;
 public class ParImpar extends Apuesta {
 
 	
+	public ParImpar(Jugador unJugador, int fichas, int numero) {
+		super(unJugador, fichas, numero);
+	}
+
 	boolean ganaParaNumero(int numero) {
-		// TODO Auto-generated method stub
-		return false;
+		return (((this.jugada - numero) % 2) == 0) ;
 	}
 
 }
