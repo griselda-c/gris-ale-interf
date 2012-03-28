@@ -10,4 +10,10 @@ public class Columna extends Apuesta{
 		return ((this.jugada % 3) == (numero % 3));
 	}
 
+	
+	int fichasGanadas() {
+		// TODO Auto-generated method stub
+		return 3 * this.fichas;
+	}
+
 }
