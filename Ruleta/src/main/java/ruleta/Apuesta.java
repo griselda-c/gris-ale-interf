@@ -30,7 +30,12 @@ abstract class Apuesta {
 		this.jugada = jugada;
 	}
 
-	public Apuesta(Jugador unJugador, int fichas, int numero){
+	public Apuesta(Jugador unJugador, int fichas, int numero) throws Exception{
+		
+		if(jugada > 36 | jugada < 0){
+			throw new Exception("Dijito de apuesta fuera de rango de ruleta");
+		}
+		
 		this.jugador = unJugador;
 		this.fichas = fichas;
 		this.jugada = numero;
