@@ -11,4 +11,10 @@ public class ParImpar extends Apuesta {
 		return ( ( (this.jugada - numero) % 2 ) == 0);
 	}
 
+	
+	int fichasGanadas() {
+		
+		return 2 * this.fichas;
+	}
+
 }
