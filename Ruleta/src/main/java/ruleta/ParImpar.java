@@ -8,7 +8,7 @@ public class ParImpar extends Apuesta {
 	}
 
 	boolean ganaParaNumero(int numero) {
-		return (((this.jugada - numero) % 2) == 0) ;
+		return ( ( (this.jugada - numero) % 2 ) == 0);
 	}
 
 }
