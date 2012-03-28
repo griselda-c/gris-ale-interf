@@ -2,7 +2,9 @@ package ruleta;
 
 public class Pleno extends Apuesta{
 	
-	public Pleno(Jugador unJugador, int fichas, int numero) {
+	
+
+	public Pleno(Jugador unJugador, int fichas, int numero) throws Exception {
 		super(unJugador, fichas, numero);
 		// TODO Auto-generated constructor stub
 	}
