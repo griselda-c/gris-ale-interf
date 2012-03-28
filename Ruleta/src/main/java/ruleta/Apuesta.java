@@ -42,5 +42,8 @@ abstract class Apuesta {
 	}
 	
 	abstract boolean ganaParaNumero(int numero);
+	abstract int fichasGanadas();
+	
+	
 
 }
