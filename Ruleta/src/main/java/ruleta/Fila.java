@@ -3,7 +3,7 @@ package ruleta;
 public class Fila extends Apuesta{	
 	
 	
-	public Fila(Jugador unJugador, int fichas, int numero) throws Exception {
+	public Fila(Jugador unJugador, int fichas, int numero) {
 		super(unJugador, fichas, numero);
 		// TODO Auto-generated constructor stub
 	}
