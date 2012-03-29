@@ -3,9 +3,7 @@ package ruleta;
 public class ParImpar extends Apuesta {
 
 	
-
 	public ParImpar(Jugador unJugador, int fichas, int numero){
-
 		super(unJugador, fichas, numero);
 	}
 
@@ -14,8 +12,7 @@ public class ParImpar extends Apuesta {
 	}
 
 	
-	int fichasGanadas() {
-		
+	int fichasGanadas() {		
 		return (2 * this.fichas) + 1;
 	}
 
