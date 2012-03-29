@@ -2,7 +2,9 @@ package ruleta;
 
 public class Columna extends Apuesta{
 
+
 	public Columna(Jugador unJugador, int fichas, int numero){
+
 		super(unJugador, fichas, numero);
 	}
 
