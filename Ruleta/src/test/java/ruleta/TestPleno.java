@@ -8,7 +8,7 @@ public class TestPleno {
 	
 	@Test
 	
-	public void testGanaParaNumero() throws Exception
+	public void testGanaParaNumero()
 	{
 		Jugador j= new Jugador(1000);
 		Pleno p = new Pleno(j , 2 , 18);
