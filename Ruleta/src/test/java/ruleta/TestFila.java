@@ -7,7 +7,7 @@ import junit.framework.Assert;
 public class TestFila {
 	
 	@Test	
-	public void testGanaConNumero() throws Exception{
+	public void testGanaConNumero(){
 		
 		Jugador j= new Jugador(1000);
 		Fila f = new Fila(j , 2 , 18);
