@@ -4,7 +4,7 @@ public class Pleno extends Apuesta{
 	
 	
 
-	public Pleno(Jugador unJugador, int fichas, int numero) throws Exception {
+	public Pleno(Jugador unJugador, int fichas, int numero) {
 		super(unJugador, fichas, numero);
 		// TODO Auto-generated constructor stub
 	}
