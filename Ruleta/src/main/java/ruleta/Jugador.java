@@ -4,6 +4,7 @@ public class Jugador {
 	
 	private int fichas;
 	private int dinero;
+	private Mesa mesa;
 
 	public int getFichas() {
 		return fichas;
@@ -27,6 +28,14 @@ public class Jugador {
 
 	public void setDinero(int dinero) {
 		this.dinero = dinero;
+	}
+
+	public int unirAMesa(Mesa mesa) {
+		this.mesa = mesa;
+		int fichasTemp = dinero*80/100;
+		this.fichas += fichasTemp;
+		this.dinero -= fichasTemp;		
+		return fichasTemp;
 	}
 	
 	
