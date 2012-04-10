@@ -1,7 +1,5 @@
 package ruleta;
 
-
-
 import org.uqbar.arena.actions.MessageSend;
 import org.uqbar.arena.layout.VerticalLayout;
 import org.uqbar.arena.widgets.Button;
@@ -11,17 +9,14 @@ import org.uqbar.arena.widgets.TextBox;
 import org.uqbar.arena.windows.MainWindow;
 
 
-public class MesaWindow extends MainWindow<Mesa>{
-	
-	/**
-	 * 
-	 */
+public class JugadorWindow extends MainWindow<Jugador>{
+
+	public JugadorWindow(Jugador model) {
+		super(model);
+	}
+
 	private static final long serialVersionUID = 1L;
 
-	public MesaWindow(){
-		super(new Mesa(10));
-	}
-	
 	public void createContents(Panel mainPanel) {
 		this.setTitle("Ruleta el Ocho");
 		
@@ -29,7 +24,7 @@ public class MesaWindow extends MainWindow<Mesa>{
 		
 
 		Label subtitulo = new Label(mainPanel);
-		subtitulo.setText("Bienvenido a la mesa, ingrese sus datos para unirse:");
+		subtitulo.setText("Bienvenido a la mesa, haga sus apuestas:");
 		
 		Label nombreLabel = new Label(mainPanel);
 		nombreLabel.setText("Nombre:");
@@ -47,24 +42,6 @@ public class MesaWindow extends MainWindow<Mesa>{
 		unirse.setCaption("Unirse");
 		unirse.onClick(new MessageSend(this.getModel(), Mesa.UNIRJUGADOR));
 		
-		/*Button nuevaVista = new Button(mainPanel);
-		nuevaVista.setCaption("levantarVista");
-		nuevaVista.onClick(new ActionListener() {
-			
-			public void execute() {
-				
-			}
-		});*/
-		
-		
-		
-
-		
-	}
-
-	public static void main(String[] args)  {
-		new MesaWindow().startApplication();
 	}
 
 }
-
