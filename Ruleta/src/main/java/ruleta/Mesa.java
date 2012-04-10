@@ -10,9 +10,16 @@ public class Mesa extends ObservableObject{
 	int banca;
 	int numeroGanador = 0;
 	
+	String nombreJugadorEntrante;
+	int dineroJugadorEntrante;
+	
 	public static final String BANCA = "banca";
 	public static final String NUMEROGANADOR = "numeroGanador";
 	public static final String GIRARRULETA = "girarRuleta";
+
+	public static final String NOMBREJUGADOR = "nombreJugadorEntrante";
+	public static final String DINEROJUGADOR = "dineroJugadorEntrante";
+	public static final String UNIRJUGADOR = "unirJugadorActual";
 	
 	Ruleta ruleta = new Ruleta();
 	private List<Jugador> jugadores = new LinkedList<Jugador>();
@@ -22,10 +29,13 @@ public class Mesa extends ObservableObject{
 		this.banca = banca;
 	}
 	
-	public Jugador unirJugador(Jugador unJugador) {
+	public void unirJugadorActual() {
+		this.unirJugador(new Jugador(this.dineroJugadorEntrante, this.nombreJugadorEntrante));
+	}
+	
+	public void unirJugador(Jugador unJugador) {
 		this.banca += unJugador.unirAMesa(this);
 		this.jugadores.add(unJugador);
-		return unJugador;
 	}
 
 	private void restarBanca(int dinero) {
@@ -46,7 +56,6 @@ public class Mesa extends ObservableObject{
 	}
 	public void girarRuleta(){
 		this.setNumeroGanador(this.ruleta.getNumeroGanador());
-		System.out.println(numeroGanador);
 	}
 	
 	
@@ -78,6 +87,24 @@ public class Mesa extends ObservableObject{
 	public void setNumeroGanador(int numeroGanador) {
 		this.setProperty(NUMEROGANADOR, numeroGanador);
 	}
+
+	public String getNombreJugadorEntrante() {
+		return nombreJugadorEntrante;
+	}
+
+	public void setNombreJugadorEntrante(String nombreJugadorEntranteT) {
+		this.setProperty(NOMBREJUGADOR, nombreJugadorEntranteT);
+	}
+
+	public int getDineroJugadorEntrante() {
+		return dineroJugadorEntrante;
+	}
+
+	public void setDineroJugadorEntrante(int dineroJugadorEntranteT) {
+		this.setProperty(DINEROJUGADOR, dineroJugadorEntranteT);
+	}
+	
+	
 
 	
 }

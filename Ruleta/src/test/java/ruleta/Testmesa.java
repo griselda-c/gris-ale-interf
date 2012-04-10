@@ -21,14 +21,12 @@ public class Testmesa {
 	
 	@Test
 	public void agregarJugadorTest(){
-		jugador1 = new Jugador(10);
-		jugador2 = new Jugador(33);
-		Jugador jugador1Prima = ruleta.unirJugador(jugador1);
-		Assert.assertEquals(jugador1Prima, jugador1);
+		jugador1 = new Jugador(10, "carlos");
+		jugador2 = new Jugador(33, "carlos");
+		ruleta.unirJugador(jugador1);
 		Assert.assertTrue(jugador1.getDinero() == 2);
 		Assert.assertTrue(jugador1.getFichas() == 8);
-		Jugador jugador2Prima = ruleta.unirJugador(jugador2);
-		Assert.assertEquals(jugador2Prima, jugador2);
+		ruleta.unirJugador(jugador2);
 		Assert.assertTrue(jugador2.getDinero() == 7);
 		Assert.assertTrue(jugador2.getFichas() == 26);		
 		
@@ -36,8 +34,8 @@ public class Testmesa {
 
 	@Test
 	public void pagarApuesta(){
-		jugador1 = new Jugador(10);
-		jugador2 = new Jugador(33);
+		jugador1 = new Jugador(10, "carlos");
+		jugador2 = new Jugador(33, "carlos");
 		
 	}
 	

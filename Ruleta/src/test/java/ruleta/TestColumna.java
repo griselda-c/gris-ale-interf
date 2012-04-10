@@ -8,7 +8,7 @@ public class TestColumna {
 
 		@Test
 		public void ganaParaNumeroTest() {
-			Jugador jugador = new Jugador(40);
+			Jugador jugador = new Jugador(40, "carlos");
 			Columna columna = null;
 			columna = new Columna(jugador, 30, 3);
 			Assert.assertTrue(columna.ganaParaNumero(6));
