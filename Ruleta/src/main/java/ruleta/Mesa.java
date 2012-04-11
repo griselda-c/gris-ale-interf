@@ -31,6 +31,8 @@ public class Mesa extends ObservableObject{
 	
 	public void unirJugadorActual() {
 		this.unirJugador(new Jugador(this.dineroJugadorEntrante, this.nombreJugadorEntrante));
+		this.setDineroJugadorEntrante(0); // limpia la pantalla
+		this.setNombreJugadorEntrante("");//limpia la pantalla
 	}
 	
 	public void unirJugador(Jugador unJugador) {

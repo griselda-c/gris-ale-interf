@@ -12,6 +12,14 @@ public class Jugador extends ObservableObject{
 
 	public static final String NOMBRE = "nombre";
 	public static final String DINERO = "dinero";
+	public Mesa getMesa() {
+		return mesa;
+	}
+
+	public void setMesa(Mesa mesa) {
+		this.mesa = mesa;
+	}
+
 	public static final String FICHAS = "fichas";
 	public static final String MONTOAPUESTA = "monoApuestaActual";
 
