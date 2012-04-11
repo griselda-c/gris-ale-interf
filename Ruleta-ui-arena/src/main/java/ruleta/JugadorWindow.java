@@ -1,5 +1,6 @@
 package ruleta;
 
+import org.apache.log4j.chainsaw.Main;
 import org.uqbar.arena.actions.MessageSend;
 import org.uqbar.arena.layout.VerticalLayout;
 import org.uqbar.arena.widgets.Button;
@@ -9,9 +10,9 @@ import org.uqbar.arena.widgets.TextBox;
 import org.uqbar.arena.windows.MainWindow;
 
 
-public class JugadorWindow extends MainWindow<Jugador>{
+public class JugadorWindow extends MainWindow<Mesa>{// se bindea con la clase mesa
 
-	public JugadorWindow(Jugador model) {
+	public JugadorWindow(Mesa model) {
 		super(model);
 	}
 
@@ -42,6 +43,10 @@ public class JugadorWindow extends MainWindow<Jugador>{
 		unirse.setCaption("Unirse");
 		unirse.onClick(new MessageSend(this.getModel(), Mesa.UNIRJUGADOR));
 		
+	}
+	
+	public static void main(String[] args)  {
+		new JugadorWindow(new Mesa(30)).startApplication();
 	}
 
 }
