@@ -27,7 +27,7 @@ public class Testmesa {
 		Assert.assertTrue(jugador1.getDinero() == 2);
 		Assert.assertTrue(jugador1.getFichas() == 8);
 		ruleta.unirJugador(jugador2);
-		Assert.assertTrue(jugador2.getDinero() == 7);
+		Assert.assertEquals(7, jugador2.getDinero());
 		Assert.assertTrue(jugador2.getFichas() == 26);		
 		
 	}
@@ -36,6 +36,13 @@ public class Testmesa {
 	public void pagarApuesta(){
 		jugador1 = new Jugador(10, "carlos");
 		jugador2 = new Jugador(33, "carlos");
+		
+		Apuesta apuestaJugada = new ParImpar(jugador1, 5, 1);
+		ruleta.registrarJugada(apuestaJugada);
+		ruleta.setNumeroGanador(1);
+		ruleta.pagarApuestas();
+		System.out.println(jugador1.getFichas());
+		Assert.assertEquals(jugador1.getFichas(), 6);
 		
 	}
 	
