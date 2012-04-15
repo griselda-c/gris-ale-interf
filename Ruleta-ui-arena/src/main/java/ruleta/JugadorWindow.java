@@ -42,6 +42,8 @@ public class JugadorWindow extends MainWindow<Mesa>{// se bindea con la clase me
 		Button unirse = new Button(mainPanel);
 		unirse.setCaption("Unirse");
 		unirse.onClick(new MessageSend(this.getModel(), Mesa.UNIRJUGADOR));
+		//agrue para probar
+		unirse.onClick(new MessageSend(this, "MesaWindow"));
 		
 	}
 	
