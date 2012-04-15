@@ -8,6 +8,13 @@ public class Pleno extends Apuesta{
 		super(unJugador, fichas, numero);
 		// TODO Auto-generated constructor stub
 	}
+	
+	public Pleno(int fichas, int numero)
+	{
+		super();
+		this.setFichas(fichas);
+		this.setJugada(numero);
+	}
 
 	public boolean ganaParaNumero(int numero)
 	{

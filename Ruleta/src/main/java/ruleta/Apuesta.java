@@ -1,10 +1,17 @@
 package ruleta;
 
-abstract class Apuesta {
+// quito todos los metodos observableObject
+abstract class Apuesta{
 	
 	protected Jugador jugador;
 	protected int fichas;
 	protected int jugada;
+	
+	//variables
+	
+	public static final String JUGADOR = "jugador";
+	public static final String FICHAS = "fichas";
+	public static final String JUGADA = "jugada";
 	
 	public Jugador getJugador() {
 		return jugador;
@@ -25,7 +32,7 @@ abstract class Apuesta {
 	public int getJugada() {
 		return jugada;
 	}
-
+   
 	public void setJugada(int jugada) {
 		this.jugada = jugada;
 	}
@@ -45,6 +52,10 @@ abstract class Apuesta {
 		this.jugada = numero;
 	}
 	
+	public Apuesta() {
+		// TODO Auto-generated constructor stub
+	}
+
 	abstract boolean ganaParaNumero(int numero);
 	abstract int fichasGanadas();
 	

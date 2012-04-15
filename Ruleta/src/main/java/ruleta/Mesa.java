@@ -2,8 +2,8 @@ package ruleta;
 
 import java.util.LinkedList;
 import java.util.List;
-
 import org.uqbar.commons.model.ObservableObject;
+
 
 public class Mesa extends ObservableObject{
 	
@@ -31,8 +31,9 @@ public class Mesa extends ObservableObject{
 	
 	public void unirJugadorActual() {
 		this.unirJugador(new Jugador(this.dineroJugadorEntrante, this.nombreJugadorEntrante));
+		/*
 		this.setDineroJugadorEntrante(0); // limpia la pantalla
-		this.setNombreJugadorEntrante("");//limpia la pantalla
+		this.setNombreJugadorEntrante("");//limpia la pantalla*/
 	}
 	
 	public void unirJugador(Jugador unJugador) {
@@ -48,13 +49,13 @@ public class Mesa extends ObservableObject{
 			this.banca -= dinero;			
 		}
 	}
-	
-	public Apuesta registrarJugada(Apuesta apuesta){
+	// convertir en void
+	public void registrarJugada(Apuesta apuesta){
 		int cantidadApostada = apuesta.getFichas();
 		apuesta.getJugador().restarFichas(cantidadApostada);
 		this.apuestas.add(apuesta);
 		this.banca += cantidadApostada;
-		return apuesta;
+		//return apuesta;
 	}
 	public void girarRuleta(){
 		this.setNumeroGanador(this.ruleta.getNumeroGanador());
@@ -107,6 +108,5 @@ public class Mesa extends ObservableObject{
 	}
 	
 	
-
 	
 }

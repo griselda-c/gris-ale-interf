@@ -2,7 +2,10 @@ package ruleta;
 
 import org.uqbar.commons.model.ObservableObject;
 
-public class Jugador extends ObservableObject{
+
+// quito todos los metodos de observable object
+// no afecto a mesaWindow
+public class Jugador {
 	
 	int fichas;
 	int dinero;
@@ -12,6 +15,11 @@ public class Jugador extends ObservableObject{
 
 	public static final String NOMBRE = "nombre";
 	public static final String DINERO = "dinero";
+	//cambie de lugar
+	public static final String FICHAS = "fichas";
+	public static final String MONTOAPUESTA = "monoApuestaActual";
+	
+	
 	public Mesa getMesa() {
 		return mesa;
 	}
@@ -19,9 +27,6 @@ public class Jugador extends ObservableObject{
 	public void setMesa(Mesa mesa) {
 		this.mesa = mesa;
 	}
-
-	public static final String FICHAS = "fichas";
-	public static final String MONTOAPUESTA = "monoApuestaActual";
 
 
 	public Jugador(int dineroT, String nombreT){
@@ -34,11 +39,11 @@ public class Jugador extends ObservableObject{
 	}
 
 	public void setNombre(String nombre) {
-		this.setProperty(NOMBRE, nombre);
+		this.nombre = nombre;
 	}
 	
 	public void setFichas(int fichasT) {
-		this.setProperty(FICHAS, fichasT);
+		this.fichas = fichasT;
 	}
 
 	public int getFichas() {
@@ -58,7 +63,7 @@ public class Jugador extends ObservableObject{
 	}
 
 	public void setDinero(int dineroT) {
-		this.setProperty(DINERO, dineroT);
+		this.dinero = dineroT;
 	}
 
 	public int unirAMesa(Mesa mesa) {
@@ -68,6 +73,7 @@ public class Jugador extends ObservableObject{
 		this.dinero -= fichasTemp;		
 		return fichasTemp;
 	}
+
 	
 	
 	
