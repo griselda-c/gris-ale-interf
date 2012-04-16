@@ -45,7 +45,7 @@ public class MesaWindow extends MainWindow<Mesa>{
 
 		Button unirse = new Button(mainPanel);
 		unirse.setCaption("Unirse");
-		unirse.onClick(new MessageSend(this.getModel(), Mesa.UNIRJUGADOR));
+		unirse.onClick(new MessageSend(this.getModel(),Mesa.UNIRJUGADOR));
 		
 		/*Button nuevaVista = new Button(mainPanel);
 		nuevaVista.setCaption("levantarVista");
@@ -59,6 +59,14 @@ public class MesaWindow extends MainWindow<Mesa>{
 		
 		
 
+		
+	}
+	
+	
+	public void unirse(){
+	   this.getModel().unirJugadorActual();
+       new ElegirApuestaW().open();	   
+		
 		
 	}
 

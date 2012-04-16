@@ -28,8 +28,13 @@ public class ElegirApuestaW extends MainWindow<MesaApuesta>{
 		Label subtitulo = new Label(mainPanel);
 		subtitulo.setText("        Bienvenido a apuesta          ");
 		
+		Label jugador = new Label(mainPanel);
+		jugador.bindValueToProperty(MesaApuesta.NOMBREJUGADOR);
+		
 		Label elegirLabel = new Label(mainPanel);
 		elegirLabel.setText("Que apuesta desea hacer");
+		
+		
 		
 		
 		Button pleno = new Button(mainPanel);
