@@ -1,6 +1,5 @@
 package ruleta;
 
-import org.apache.log4j.chainsaw.Main;
 import org.uqbar.arena.actions.MessageSend;
 import org.uqbar.arena.layout.VerticalLayout;
 import org.uqbar.arena.widgets.Button;
@@ -10,10 +9,11 @@ import org.uqbar.arena.widgets.TextBox;
 import org.uqbar.arena.windows.MainWindow;
 
 
-public class JugadorWindow extends MainWindow<Mesa>{// se bindea con la clase mesa
+public class JugadorWindow extends MainWindow<Jugador>{// se bindea con la clase mesa
 
-	public JugadorWindow(Mesa model) {
+	public JugadorWindow(Jugador model) {
 		super(model);
+		System.out.println("se pide crear jugador en jugadorWindow");
 	}
 
 	private static final long serialVersionUID = 1L;
@@ -23,32 +23,14 @@ public class JugadorWindow extends MainWindow<Mesa>{// se bindea con la clase me
 		
 		mainPanel.setLayout(new VerticalLayout());
 		
-
 		Label subtitulo = new Label(mainPanel);
 		subtitulo.setText("Bienvenido a la mesa, haga sus apuestas:");
 		
-		Label nombreLabel = new Label(mainPanel);
-		nombreLabel.setText("Nombre:");
 		
-		TextBox nombreJugador = new TextBox(mainPanel);
-		nombreJugador.bindValueToProperty(Mesa.NOMBREJUGADOR);
-		
-		Label dineroLabel = new Label(mainPanel);
-		dineroLabel.setText("Dinero:");
-		
-		TextBox dineroJugador = new TextBox(mainPanel);
-		dineroJugador.bindValueToProperty(Mesa.DINEROJUGADOR);
+	}
 
-		Button unirse = new Button(mainPanel);
-		unirse.setCaption("Unirse");
-		unirse.onClick(new MessageSend(this.getModel(), Mesa.UNIRJUGADOR));
-		//agrue para probar
-		unirse.onClick(new MessageSend(this, "MesaWindow"));
-		
-	}
-	
-	public static void main(String[] args)  {
-		new JugadorWindow(new Mesa(30)).startApplication();
-	}
+	/*public static void main(String[] args)  {
+		new MesaWindow().startApplication();
+	}*/
 
 }

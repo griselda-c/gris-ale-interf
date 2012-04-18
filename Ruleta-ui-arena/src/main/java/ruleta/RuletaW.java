@@ -9,6 +9,8 @@ import org.uqbar.arena.widgets.Panel;
 import org.uqbar.arena.widgets.TextBox;
 import org.uqbar.arena.windows.MainWindow;
 
+import ruleta.Mesa;
+
 public class RuletaW extends MainWindow<Mesa> {
 	
 	public RuletaW(){
@@ -43,7 +45,7 @@ public class RuletaW extends MainWindow<Mesa> {
         
 		Button pagar = new Button(mainPanel);
 		pagar.setCaption("Pagar Apuestas");
-		ruleta.onClick(new MessageSend(this.getModel(),Mesa.PAGARAPUESTA));
+		ruleta.onClick(new MessageSend(this.getModel(),Mesa.GIRARRULETA));
 		
 		
 		}// fin del createContents

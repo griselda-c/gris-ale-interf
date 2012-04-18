@@ -12,11 +12,13 @@ public class Mesa extends ObservableObject{
 	
 	String nombreJugadorEntrante;
 	int dineroJugadorEntrante;
+	Jugador jugadorActual;
 	
 	public static final String BANCA = "banca";
 	public static final String NUMEROGANADOR = "numeroGanador";
 	public static final String GIRARRULETA = "girarRuleta";
 
+	public static final String JUGADORACTUAL = "jugadorActual";
 	public static final String NOMBREJUGADOR = "nombreJugadorEntrante";
 	public static final String DINEROJUGADOR = "dineroJugadorEntrante";
 	public static final String UNIRJUGADOR = "unirJugadorActual";
@@ -31,7 +33,6 @@ public class Mesa extends ObservableObject{
 	
 	public void unirJugadorActual() {
 		this.unirJugador(new Jugador(this.dineroJugadorEntrante, this.nombreJugadorEntrante));
-		/*
 		this.setDineroJugadorEntrante(0); // limpia la pantalla
 		this.setNombreJugadorEntrante("");//limpia la pantalla*/
 	}
@@ -39,6 +40,8 @@ public class Mesa extends ObservableObject{
 	public void unirJugador(Jugador unJugador) {
 		this.banca += unJugador.unirAMesa(this);
 		this.jugadores.add(unJugador);
+		this.setJugadorActual(unJugador);
+		System.out.println("juagdor" + jugadorActual.getNombre());
 	}
 
 	private void restarBanca(int dinero) {
@@ -106,7 +109,12 @@ public class Mesa extends ObservableObject{
 	public void setDineroJugadorEntrante(int dineroJugadorEntranteT) {
 		this.setProperty(DINEROJUGADOR, dineroJugadorEntranteT);
 	}
-	
+	public Jugador getJugadorActual() {
+		return jugadorActual;
+	}
+	public void setJugadorActual(Jugador jugadorActual) {
+		this.setProperty(JUGADORACTUAL, jugadorActual);
+	}
 	
 	
 }

@@ -8,6 +8,8 @@ import org.uqbar.arena.widgets.Panel;
 import org.uqbar.arena.widgets.TextBox;
 import org.uqbar.arena.windows.MainWindow;
 
+import ruleta.MesaApuesta;
+
 
 public class PlenoWindow extends MainWindow<MesaApuesta>{
 

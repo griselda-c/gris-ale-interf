@@ -8,6 +8,8 @@ import org.uqbar.arena.widgets.Panel;
 import org.uqbar.arena.windows.MainWindow;
 import org.uqbar.commons.model.ObservableObject;
 
+import ruleta.MesaApuesta;
+
 public class ElegirApuestaW extends MainWindow<MesaApuesta>{
 
 	public ElegirApuestaW() {

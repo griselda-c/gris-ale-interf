@@ -5,7 +5,7 @@ import org.uqbar.commons.model.ObservableObject;
 
 // quito todos los metodos de observable object
 // no afecto a mesaWindow
-public class Jugador {
+public class Jugador extends ObservableObject{
 	
 	int fichas;
 	int dinero;
@@ -73,9 +73,5 @@ public class Jugador {
 		this.dinero -= fichasTemp;		
 		return fichasTemp;
 	}
-
-	
-	
-	
 
 }
