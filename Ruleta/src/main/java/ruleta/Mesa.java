@@ -115,6 +115,20 @@ public class Mesa extends ObservableObject{
 	public void setJugadorActual(Jugador jugadorActual) {
 		this.setProperty(JUGADORACTUAL, jugadorActual);
 	}
+
+	public void retirarJugador(Jugador jugador) {
+		this.cambiarFichas(jugador);
+		this.jugadores.remove(jugador);
+	}
+
+	private void cambiarFichas(Jugador jugador) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void anularJugadorActual() {
+		this.setJugadorActual(null);
+	}
 	
 	
 }

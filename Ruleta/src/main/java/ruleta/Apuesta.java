@@ -1,7 +1,9 @@
 package ruleta;
 
+import org.uqbar.commons.model.ObservableObject;
+
 // quito todos los metodos observableObject
-abstract class Apuesta{
+abstract class Apuesta extends ObservableObject{
 	
 	protected Jugador jugador;
 	protected int fichas;
@@ -18,7 +20,7 @@ abstract class Apuesta{
 	}
 
 	public void setJugador(Jugador jugador) {
-		this.jugador = jugador;
+		this.setProperty(JUGADOR, jugador);
 	}
 
 	public int getFichas() {
@@ -26,7 +28,7 @@ abstract class Apuesta{
 	}
 
 	public void setFichas(int fichas) {
-		this.fichas = fichas;
+		this.setProperty(FICHAS, fichas);
 	}
 
 	public int getJugada() {
@@ -34,7 +36,7 @@ abstract class Apuesta{
 	}
    
 	public void setJugada(int jugada) {
-		this.jugada = jugada;
+		this.setProperty(JUGADA, jugada);
 	}
 
 
@@ -52,8 +54,8 @@ abstract class Apuesta{
 		this.jugada = numero;
 	}
 	
-	public Apuesta() {
-		// TODO Auto-generated constructor stub
+	public Apuesta(Jugador j) {
+		this.jugador = j;
 	}
 
 	abstract boolean ganaParaNumero(int numero);

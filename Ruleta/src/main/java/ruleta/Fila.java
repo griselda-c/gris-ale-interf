@@ -8,6 +8,10 @@ public class Fila extends Apuesta{
 		// TODO Auto-generated constructor stub
 	}
 
+	public Fila(Jugador j) {
+		super(j);
+	}
+
 	public boolean ganaParaNumero(int numero)
 	{
 		int filaSalio = calcularFila(numero);

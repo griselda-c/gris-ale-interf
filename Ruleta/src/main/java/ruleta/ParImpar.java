@@ -7,6 +7,10 @@ public class ParImpar extends Apuesta {
 		super(unJugador, fichas, numero);
 	}
 
+	public ParImpar(Jugador j) {
+		super(j);
+	}
+
 	boolean ganaParaNumero(int numero) {
 		return ( ( (this.jugada - numero) % 2 ) == 0);
 	}

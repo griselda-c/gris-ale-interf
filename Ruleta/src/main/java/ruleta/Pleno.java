@@ -9,11 +9,8 @@ public class Pleno extends Apuesta{
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Pleno(int fichas, int numero)
-	{
-		super();
-		this.setFichas(fichas);
-		this.setJugada(numero);
+	public Pleno(Jugador j) {
+		super(j);
 	}
 
 	public boolean ganaParaNumero(int numero)

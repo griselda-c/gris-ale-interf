@@ -8,6 +8,10 @@ public class Columna extends Apuesta{
 		super(unJugador, fichas, numero);
 	}
 
+	public Columna(Jugador j) {
+		super(j);
+	}
+
 	boolean ganaParaNumero(int numero) {
 		return ((this.jugada % 3) == (numero % 3));
 	}

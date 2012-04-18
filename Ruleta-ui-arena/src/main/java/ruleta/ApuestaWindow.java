@@ -1,76 +1,55 @@
 package ruleta;
 
-import org.uqbar.arena.actions.MessageSend;
 import org.uqbar.arena.layout.ColumnLayout;
 import org.uqbar.arena.layout.VerticalLayout;
-import org.uqbar.arena.widgets.Button;
 import org.uqbar.arena.widgets.Label;
 import org.uqbar.arena.widgets.Panel;
 import org.uqbar.arena.widgets.TextBox;
 import org.uqbar.arena.windows.Dialog;
-import org.uqbar.arena.windows.MainWindow;
 import org.uqbar.arena.windows.WindowOwner;
 
+public class ApuestaWindow extends Dialog<Jugador> {	
 
-import ruleta.MesaApuesta;
+	public ApuestaWindow(WindowOwner owner, Jugador model) {
+		super(owner, model);
+	}
 
-public class ApuestaWindow Dialog<Jugador> {
-	
-	public ApuestaWindow(WindowOwner owner) {
-		super(owner, new Socio()); //
-	}
-	
-	@Override
-	protected void executeTask() {
-		getHome().create(getModel());
-	}
-	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+
 
 	@Override
-	public void createContents(Panel mainPanel) {
+	protected void executeTask() {		
+		this.getModel().confirmar();
 		
-		this.setTitle("Ruleta del ocho "); //concatenar el string de la apuesta
+	}
+
+	@Override
+	protected void addActions(Panel arg0) {
+		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	protected void createFormPanel(Panel mainPanel) {			
 		mainPanel.setLayout(new VerticalLayout());
 		
-		Label subtitulo = new Label(mainPanel);
-		subtitulo.setText("¿Qué apuesta creamos?");
-		
 		Panel filaApuestas = new Panel(mainPanel);
-		filaApuestas.setLayout(new ColumnLayout(4));
+		filaApuestas.setLayout(new ColumnLayout(2));
+		
+		Label subtitulo = new Label(filaApuestas);
+		subtitulo.setText("Cantidad de fichas");
+		
+		TextBox fichas = new TextBox(mainPanel);
+		fichas.bindValueToProperty("apuestaActual.fichas");
+		
+		
+		
+	}
 
-		/*
-		
-		Label fichasLabel = new Label(mainPanel);
-		fichasLabel.setText("ingrese fichas");
-		
-		TextBox ficha = new TextBox(mainPanel);
-		ficha.bindValueToProperty(MesaApuesta.FICHASJUGADA);
-		
-		Label numeroLabel = new Label(mainPanel);
-		numeroLabel.setText("ingrese numero: ");
-		
-		TextBox numeroJ = new TextBox(mainPanel);
-		numeroJ.bindValueToProperty(MesaApuesta.NUMERO);*/
-
-		
-				
-		
-		
-	}
-	
-	public void apostar(){
-		//para implementar subclases
-	}
-	
-	public String titulo(){
-	  //para implementar en subclases
-		return "";
-	}
-	
-	public static void main(String[] args)  {
-		new ApuestaWindow().startApplication();
-	}
 	
 	
 	

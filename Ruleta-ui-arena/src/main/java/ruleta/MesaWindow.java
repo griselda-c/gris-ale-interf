@@ -9,26 +9,26 @@ import org.uqbar.arena.widgets.Button;
 import org.uqbar.arena.widgets.Label;
 import org.uqbar.arena.widgets.Panel;
 import org.uqbar.arena.widgets.TextBox;
-import org.uqbar.arena.windows.MainWindow;
-import org.uqbar.commons.model.SearchByExample;
-
-import com.uqbar.commons.ReflectionUtils;
+import org.uqbar.arena.windows.Window;
+import org.uqbar.arena.windows.WindowOwner;
 
 
 
-public class MesaWindow extends MainWindow<Mesa>{
+public class MesaWindow extends Window<Mesa>{
 	
+	public MesaWindow(WindowOwner owner, Mesa model) {
+		super(owner, model);
+	}
+
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public MesaWindow(){
-		super(new Mesa(10));
-	}
-	
+
 	public void createContents(Panel mainPanel) {
-		this.setTitle("Ruleta el Ocho");
+		//this.setTitle("Ruleta el Ocho");
 		
 		mainPanel.setLayout(new VerticalLayout());
 
@@ -62,16 +62,26 @@ public class MesaWindow extends MainWindow<Mesa>{
 	
 	
 	public void unirJugador() {
-		System.out.println("se invoca a unir jugador");
 		this.getModel().unirJugadorActual();
-		System.out.println("se unio jugador?");
-		new JugadorWindow(this.getModel().getJugadorActual()).open();
+		Jugador jugador = this.getModel().getJugadorActual();
+		this.getModel().anularJugadorActual();
+		new JugadorWindow(this, jugador).open();
+	}
+	
+	public void retirarJugador(Jugador jugador){
+		this.getModel().retirarJugador(jugador);
+		this.mostrarConfirmacion(jugador);
 	}
 
 
-	public static void main(String[] args)  {
-		new MesaWindow().startApplication();
+	private void mostrarConfirmacion(Jugador jugador) {
+		// TODO Auto-generated method stub
+		
 	}
+
+
+
+
 
 }
 

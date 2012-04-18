@@ -11,13 +11,13 @@ public class Jugador extends ObservableObject{
 	int dinero;
 	private Mesa mesa;
 	String nombre;
-	int monoApuestaActual;
+	int montoApuestaActual;
 
 	public static final String NOMBRE = "nombre";
 	public static final String DINERO = "dinero";
 	//cambie de lugar
 	public static final String FICHAS = "fichas";
-	public static final String MONTOAPUESTA = "monoApuestaActual";
+	public static final String MONTOAPUESTA = "montoApuestaActual";
 	
 	
 	public Mesa getMesa() {
@@ -73,5 +73,7 @@ public class Jugador extends ObservableObject{
 		this.dinero -= fichasTemp;		
 		return fichasTemp;
 	}
+
+	
 
 }
