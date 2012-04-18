@@ -1,6 +1,7 @@
 package ruleta;
 
 import org.uqbar.arena.actions.MessageSend;
+import org.uqbar.arena.layout.ColumnLayout;
 import org.uqbar.arena.layout.VerticalLayout;
 import org.uqbar.arena.widgets.Button;
 import org.uqbar.arena.widgets.Label;
@@ -26,6 +27,33 @@ public class ElegirApuestaW extends MainWindow<MesaApuesta>{
 		
 		mainPanel.setLayout(new VerticalLayout());
 		
+		Label subtitulo = new Label(mainPanel);
+		subtitulo.setText("¿Qué apuesta creamos?");
+		
+		Panel filaApuestas = new Panel(mainPanel);
+		filaApuestas.setLayout(new ColumnLayout(4));
+		
+		Button plena = new Button(filaApuestas);
+		plena.setCaption("Plena");
+		plena.onClick(new MessageSend(this.getModel(), Jugador."APOSTARPLENA"));
+		
+		Button paridad = new Button(filaApuestas);
+		paridad.setCaption("Paridad");
+		paridad.onClick(new MessageSend(this.getModel(), Jugador."APOSTARPLENA"));
+		
+		Button columna = new Button(filaApuestas);
+		columna.setCaption("Columna");
+		columna.onClick(new MessageSend(this.getModel(), Jugador."APOSTARPLENA"));
+		
+		Button fila = new Button(filaApuestas);
+		fila.setCaption("Fila");
+		fila.onClick(new MessageSend(this.getModel(), Jugador."APOSTARPLENA"));
+		
+		
+		/*this.setTitle("Ruleta del ocho");
+		
+		mainPanel.setLayout(new VerticalLayout());
+		
 
 		Label subtitulo = new Label(mainPanel);
 		subtitulo.setText("        Bienvenido a apuesta          ");
@@ -34,10 +62,7 @@ public class ElegirApuestaW extends MainWindow<MesaApuesta>{
 		jugador.bindValueToProperty(MesaApuesta.NOMBREJUGADOR);
 		
 		Label elegirLabel = new Label(mainPanel);
-		elegirLabel.setText("Que apuesta desea hacer");
-		
-		
-		
+		elegirLabel.setText("Que apuesta desea hacer");	
 		
 		Button pleno = new Button(mainPanel);
 		pleno.setCaption("Pleno");
@@ -53,7 +78,7 @@ public class ElegirApuestaW extends MainWindow<MesaApuesta>{
 		
 		Button columna = new Button(mainPanel);
 		columna.setCaption("Columna");
-		columna.onClick(new MessageSend(this, "columna"));
+		columna.onClick(new MessageSend(this, "columna"));*/
 		}
 	
 	public void pleno(){

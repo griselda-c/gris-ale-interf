@@ -7,27 +7,29 @@ import org.uqbar.arena.widgets.Button;
 import org.uqbar.arena.widgets.Label;
 import org.uqbar.arena.widgets.Panel;
 import org.uqbar.arena.widgets.TextBox;
+import org.uqbar.arena.windows.Dialog;
 import org.uqbar.arena.windows.MainWindow;
+import org.uqbar.arena.windows.WindowOwner;
+
 
 import ruleta.MesaApuesta;
 
-public class ApuestaWindow extends MainWindow<MesaApuesta> {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-
-	public ApuestaWindow() {
-		super(new MesaApuesta(10));
-		// TODO Auto-generated constructor stub
+public class ApuestaWindow Dialog<Jugador> {
+	
+	public ApuestaWindow(WindowOwner owner) {
+		super(owner, new Socio()); //
+	}
+	
+	@Override
+	protected void executeTask() {
+		getHome().create(getModel());
 	}
 	
 
 	@Override
 	public void createContents(Panel mainPanel) {
 		
-		this.setTitle("Ruleta del ocho");
+		this.setTitle("Ruleta del ocho "); //concatenar el string de la apuesta
 		
 		mainPanel.setLayout(new VerticalLayout());
 		
@@ -51,21 +53,7 @@ public class ApuestaWindow extends MainWindow<MesaApuesta> {
 		TextBox numeroJ = new TextBox(mainPanel);
 		numeroJ.bindValueToProperty(MesaApuesta.NUMERO);*/
 
-		Button plena = new Button(filaApuestas);
-		plena.setCaption("Plena");
-		plena.onClick(new MessageSend(this.getModel(), Jugador."APOSTARPLENA"));
 		
-		Button paridad = new Button(filaApuestas);
-		paridad.setCaption("Paridad");
-		paridad.onClick(new MessageSend(this.getModel(), Jugador."APOSTARPLENA"));
-		
-		Button columna = new Button(filaApuestas);
-		columna.setCaption("Columna");
-		columna.onClick(new MessageSend(this.getModel(), Jugador."APOSTARPLENA"));
-		
-		Button fila = new Button(filaApuestas);
-		fila.setCaption("Fila");
-		fila.onClick(new MessageSend(this.getModel(), Jugador."APOSTARPLENA"));
 				
 		
 		
