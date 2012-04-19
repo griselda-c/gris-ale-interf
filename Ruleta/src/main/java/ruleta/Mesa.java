@@ -38,7 +38,7 @@ public class Mesa extends ObservableObject{
 	}
 	
 	public void unirJugador(Jugador unJugador) {
-		this.banca += unJugador.unirAMesa(this);
+		this.setBanca(this.getBanca() + unJugador.unirAMesa(this));
 		this.jugadores.add(unJugador);
 		this.setJugadorActual(unJugador);
 		System.out.println("juagdor" + jugadorActual.getNombre());
@@ -57,7 +57,7 @@ public class Mesa extends ObservableObject{
 		int cantidadApostada = apuesta.getFichas();
 		apuesta.getJugador().restarFichas(cantidadApostada);
 		this.apuestas.add(apuesta);
-		this.banca += cantidadApostada;
+		this.setBanca(this.getBanca() + cantidadApostada);
 		//return apuesta;
 	}
 	public void girarRuleta(){
@@ -83,7 +83,7 @@ public class Mesa extends ObservableObject{
 	}
 
 	public void setBanca(int banca) {
-		this.banca = banca;
+		this.setProperty(BANCA,banca );
 	}
 
 	public int getNumeroGanador() {

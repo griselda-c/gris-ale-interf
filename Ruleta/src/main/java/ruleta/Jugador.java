@@ -74,6 +74,16 @@ public class Jugador extends ObservableObject{
 		return fichasTemp;
 	}
 
+	public Apuesta nuevaApuestaPleno() {
+		return new Pleno(this);
+	}
+
+	public void apostar(Apuesta apuesta) {
+		
+		this.getMesa().registrarJugada(apuesta);
+		
+	}
+
 	
 
 }

@@ -1,5 +1,8 @@
 package ruleta;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import org.uqbar.commons.model.ObservableObject;
 
 // quito todos los metodos observableObject
@@ -60,6 +63,22 @@ abstract class Apuesta extends ObservableObject{
 
 	abstract boolean ganaParaNumero(int numero);
 	abstract int fichasGanadas();
+
+	public void confirmar() {
+		
+		this.jugador.apostar(this);
+		
+	}
+
+	public  List<String> getOptions(){
+		List<String> lista = new LinkedList<String>();
+		for(int i = 0; i<=36; i++)
+		{
+			lista.add(String.valueOf(i));
+		}
+		return lista;
+		
+	}
 	
 	
 
