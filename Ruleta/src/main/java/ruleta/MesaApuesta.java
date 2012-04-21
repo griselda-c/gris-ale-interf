@@ -8,11 +8,12 @@ public class MesaApuesta extends Mesa{
 	}
 	
 	//unir Jugada
-	public static final String JUGADORACTUAL = "jugadorActual";
-	 int fichasJugada;
-	 int numero = 0;
+	int fichasJugada;
+	int numero = 0;
 	Jugador jugadorActual;
 	Apuesta apuestaActual;
+
+	public static final String JUGADORACTUAL = "jugadorActual";
 	public static final String FICHASJUGADA = "fichasJugada";
 	public static final String NUMERO = "numero";
 	public static final String APOSTARPLENO = "apostarPleno";
@@ -71,7 +72,7 @@ public class MesaApuesta extends Mesa{
 		
 	}
 	
-public void apostarColumna(){
+	public void apostarColumna(){
 		
 		//pequeña trampa
 		Jugador jugadorActual = new Jugador(1000,"Mario");

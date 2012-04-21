@@ -1,5 +1,8 @@
 package ruleta;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import org.uqbar.commons.model.ObservableObject;
 
 
@@ -12,6 +15,7 @@ public class Jugador extends ObservableObject{
 	private Mesa mesa;
 	String nombre;
 	int montoApuestaActual;
+	private List<Apuesta> apuestas = new LinkedList<Apuesta>();
 
 	public static final String NOMBRE = "nombre";
 	public static final String DINERO = "dinero";
@@ -32,6 +36,11 @@ public class Jugador extends ObservableObject{
 	public Jugador(int dineroT, String nombreT){
 		this.setDinero(dineroT);
 		this.setNombre(nombreT);
+		
+		/*para comentar*/
+		this.apuestas.add(new Pleno(this, 10, 3));
+		this.apuestas.add(new ParImpar(this, 15, 10));
+		this.apuestas.add(new Fila(this, 100, 4));
 	}
 
 	public String getNombre() {
@@ -81,7 +90,13 @@ public class Jugador extends ObservableObject{
 	public void apostar(Apuesta apuesta) {
 		
 		this.getMesa().registrarJugada(apuesta);
+		this.apuestas.add(apuesta);
 		
+	}
+
+	public Class<Jugador> getEntityType() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	

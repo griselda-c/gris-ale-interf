@@ -7,28 +7,35 @@ import org.uqbar.commons.model.ObservableObject;
 
 public class Mesa extends ObservableObject{
 	
-	int banca;
-	int numeroGanador = 0;
-	
-	String nombreJugadorEntrante;
-	int dineroJugadorEntrante;
-	Jugador jugadorActual;
-	
 	public static final String BANCA = "banca";
 	public static final String NUMEROGANADOR = "numeroGanador";
 	public static final String GIRARRULETA = "girarRuleta";
 
-	public static final String JUGADORACTUAL = "jugadorActual";
+	public static final String SELECTED = "jugadorActual";
+	public static final String JUGADORES = "jugadores";
+	
 	public static final String NOMBREJUGADOR = "nombreJugadorEntrante";
 	public static final String DINEROJUGADOR = "dineroJugadorEntrante";
 	public static final String UNIRJUGADOR = "unirJugadorActual";
+	public static final String APUESTAS = "apuestas";
 	
-	Ruleta ruleta = new Ruleta();
-	private List<Jugador> jugadores = new LinkedList<Jugador>();
-	private List<Apuesta> apuestas = new LinkedList<Apuesta>();
+	int banca;
+	int numeroGanador = 0;
+
+	int dineroJugadorEntrante;
+	String nombreJugadorEntrante;
+	Jugador jugadorActual;	
+	
+	public Ruleta ruleta = new Ruleta();
+	
+	public List<Jugador> jugadores = new LinkedList<Jugador>();
+
+	public List<Apuesta> apuestas = new LinkedList<Apuesta>();
 
 	public Mesa(int banca){
 		this.banca = banca;
+		this.jugadores.add(new Jugador(100, "Jose"));
+		this.jugadores.add(new Jugador(200, "Pepe"));
 	}
 	
 	public void unirJugadorActual() {
@@ -77,6 +84,23 @@ public class Mesa extends ObservableObject{
 		
 		
 	}
+	
+
+	public void retirarJugador(Jugador jugador) {
+		this.cambiarFichas(jugador);
+		this.jugadores.remove(jugador);
+	}
+
+	private void cambiarFichas(Jugador jugador) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	public void anularJugadorActual() {
+		this.setJugadorActual(null);
+	}
+	
+	//getters y setters
 
 	public int getBanca() {
 		return banca;
@@ -109,26 +133,30 @@ public class Mesa extends ObservableObject{
 	public void setDineroJugadorEntrante(int dineroJugadorEntranteT) {
 		this.setProperty(DINEROJUGADOR, dineroJugadorEntranteT);
 	}
+	
 	public Jugador getJugadorActual() {
 		return jugadorActual;
 	}
+	
 	public void setJugadorActual(Jugador jugadorActual) {
-		this.setProperty(JUGADORACTUAL, jugadorActual);
-	}
-
-	public void retirarJugador(Jugador jugador) {
-		this.cambiarFichas(jugador);
-		this.jugadores.remove(jugador);
-	}
-
-	private void cambiarFichas(Jugador jugador) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void anularJugadorActual() {
-		this.setJugadorActual(null);
+		this.setProperty(SELECTED, jugadorActual);
+		System.out.println("Se setea a " + jugadorActual.getNombre());
 	}
 	
+	public List<Jugador> getJugadores() {
+		return jugadores;
+	}
+	
+	public void setJugadores(List<Jugador> jugadores) {
+		this.setProperty(JUGADORES, jugadores);
+	}
+	
+	public List<Apuesta> getApuestas() {
+		return apuestas;
+	}
+	
+	public void setApuestas(List<Apuesta> apuestas) {
+		this.setProperty(APUESTAS, apuestas);
+	}
 	
 }
