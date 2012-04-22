@@ -89,6 +89,10 @@ public class MesaWindow extends Window<Mesa>{
 		nombreColumn.bindContentsToProperty(Jugador.NOMBRE);
 		// table.add(column);
 
+		Column<Jugador> fichasColumn = new Column<Jugador>(table);
+		fichasColumn.setTitle("Fichas");
+		fichasColumn.setPreferredSize(100);
+		fichasColumn.bindContentsToProperty(Jugador.FICHAS);
 		/*Column<Jugador> ingresoColumn = new Column<Jugador>(table);
 		ingresoColumn.setTitle("Fecha de ingreso");
 		ingresoColumn.setPreferredSize(100);

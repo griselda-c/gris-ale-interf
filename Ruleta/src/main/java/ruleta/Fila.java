@@ -1,46 +1,79 @@
 package ruleta;
 
-public class Fila extends Apuesta{	
+import java.util.LinkedList;
+import java.util.List;
+
+public class Fila extends Apuesta{   	  
 	
 	
-	public Fila(Jugador unJugador, int fichas, int numero) {
-		super(unJugador, fichas, numero);
-		// TODO Auto-generated constructor stub
-	}
+
 
 	public Fila(Jugador j) {
 		super(j);
+		this.jugadaSeleccionada = JUGADA.V1;
+	}		
+	
+	public int fichasGanadas(){		
+		return 12 * this.fichas;		
 	}
 
-	public boolean ganaParaNumero(int numero)
-	{
-		int filaSalio = calcularFila(numero);
-		
-		return filaSalio ==  this.calcularFila(this.jugada);// numero equivale a una fila 
-		
+	@Override
+	boolean ganaParaNumero(int numero) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 	
-	private int calcularFila(int numero)
-	{
-		int fila;
-		if(numero % 3 == 0)
-		{
-			fila = (numero / 3) - 1;
-		}
-		else
-		{
-			fila = numero / 3 ;
-		}
-		
-		return fila;
+	//Re-escritura de superclase
+	
+	public static final String JUGADOR = "jugador";
+	public static final String FICHAS = "fichas";
+	public static final String JUGADASELECCIONADA = "jugadaSeleccionada";
+	public static final String TIPO = "tipoApuesta";
+	
+	public Jugador jugador;
+	public int fichas;
+	public JUGADA jugadaSeleccionada;
+	public String tipoApuesta = "Fila";
+	
+	public  List<JUGADA> getOpciones(){		
+		List<JUGADA> lista = new LinkedList<JUGADA>();
+		lista.add(JUGADA.V1);lista.add(JUGADA.V2);
+		lista.add(JUGADA.V3);lista.add(JUGADA.V4);lista.add(JUGADA.V5);
+		lista.add(JUGADA.V6);lista.add(JUGADA.V7);lista.add(JUGADA.V8);
+		lista.add(JUGADA.V9);lista.add(JUGADA.V10);lista.add(JUGADA.V11);
+		lista.add(JUGADA.V12);
+		return lista;		
 	}
 	
-	
-	public int fichasGanadas(){
-		
-		return 12 * this.fichas;
-		
+	public Jugador getJugador() {
+		return jugador;
 	}
-	
 
+	public void setJugador(Jugador jugador) {
+		this.setProperty(JUGADOR, jugador);
+	}
+
+	public int getFichas() {
+		return fichas;
+	}
+
+	public void setFichas(int fichas) {
+		this.setProperty(FICHAS, fichas);
+	}
+
+	public JUGADA getJugadaSeleccionada() {
+		return jugadaSeleccionada;
+	}
+
+	public void setJugadaSeleccionada(JUGADA jugadaSeleccionada) {
+		this.setProperty(JUGADASELECCIONADA, jugadaSeleccionada);
+	}
+	
+	public String getTipoApuesta() {
+		return tipoApuesta;
+	}
+
+	public void setTipoApuesta(String tipoApuesta) {
+		this.tipoApuesta = tipoApuesta;
+	}
 }

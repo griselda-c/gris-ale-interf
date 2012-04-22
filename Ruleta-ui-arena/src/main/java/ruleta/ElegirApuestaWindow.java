@@ -40,30 +40,42 @@ public class ElegirApuestaWindow extends Window<Jugador> {
 
 		Button paridad = new Button(filaApuestas);
 		paridad.setCaption("Paridad");
-		// paridad.onClick(new MessageSend(this.getModel(),
-		// Jugador."APOSTARPARIDAD"));
+		paridad.onClick(new MessageSend(this, "apostarParImpar"));
 
 		Button columna = new Button(filaApuestas);
 		columna.setCaption("Columna");
-		// columna.onClick(new MessageSend(this.getModel(),
-		// Jugador."APOSTARCOLUMNA"));
+		columna.onClick(new MessageSend(this, "apostarColumna"));
 
 		Button fila = new Button(filaApuestas);
 		fila.setCaption("Fila");
-		// fila.onClick(new MessageSend(this.getModel(),
-		// Jugador."APOSTARFILA"));
+		fila.onClick(new MessageSend(this, "apostarFila"));
 
 	}
 
 	public void apostarPleno() {
-		final Jugador jugador = this.getModel();
-		final Apuesta apuesta = jugador.nuevaApuestaPleno();
-		
+		Apuesta apuesta = this.getModel().nuevaApuestaPleno();
+		this.apostarGeneral(apuesta);
+	}
+	public void apostarParImpar() {
+		Apuesta apuesta = this.getModel().nuevaApuestaParImpar();
+		this.apostarGeneral(apuesta);
+	}
+	public void apostarColumna() {
+		Apuesta apuesta = this.getModel().nuevaApuestaColumna();
+		this.apostarGeneral(apuesta);
+	}
+	public void apostarFila() {
+		Apuesta apuesta = this.getModel().nuevaApuestaFila();
+		this.apostarGeneral(apuesta);
+	}
+	
+	//generaliza todos los tipos de apuesta
+	public void apostarGeneral(Apuesta apuesta){	
+		final Apuesta apuestaL = apuesta;
 		ApuestaWindow apuestaWindow = new ApuestaWindow(this, apuesta);
 		apuestaWindow.onAccept(new Action() {
 			public void execute() {
-				apuesta.confirmar();
-				
+				apuestaL.confirmar();				
 			}
 		});
 		apuestaWindow.open();

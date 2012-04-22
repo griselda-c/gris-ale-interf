@@ -11,9 +11,12 @@ public class Jugador extends ObservableObject{
 	int dinero;
 	private Mesa mesa;
 	String nombre;
-	int montoApuestaActual;
 	public List<Apuesta> apuestas = new LinkedList<Apuesta>();
+	public Apuesta selected;
 
+
+	public static final String SELECTED = "selected";
+	public static final String APUESTAS = "apuestas";
 	public static final String NOMBRE = "nombre";
 	public static final String DINERO = "dinero";
 	public static final String FICHAS = "fichas";
@@ -23,17 +26,15 @@ public class Jugador extends ObservableObject{
 		return mesa;
 	}
 
-	public void setMesa(Mesa mesa) {
-		this.mesa = mesa;
-	}
+
 
 	public Jugador(int dineroT, String nombreT){
 		this.setDinero(dineroT);
 		this.setNombre(nombreT);		
 		/*para comentar*/
-		this.apuestas.add(new Pleno(this, 10, 3));
-		this.apuestas.add(new ParImpar(this, 15, 10));
-		this.apuestas.add(new Fila(this, 100, 4));
+		this.apuestas.add(new Pleno(this));
+		this.apuestas.add(new ParImpar(this));
+		this.apuestas.add(new Fila(this));
 	}
 
 	public void sumarFichas(int cantidad) {
@@ -54,6 +55,15 @@ public class Jugador extends ObservableObject{
 
 	public Apuesta nuevaApuestaPleno() {
 		return new Pleno(this);
+	}
+	public Apuesta nuevaApuestaParImpar() {
+		return new ParImpar(this);
+	}
+	public Apuesta nuevaApuestaFila() {
+		return new Fila(this);
+	}
+	public Apuesta nuevaApuestaColumna() {
+		return new Columna(this);
 	}
 
 	public void apostar(Apuesta apuesta) {		
@@ -80,12 +90,16 @@ public class Jugador extends ObservableObject{
 	
 	//get & set
 	
+	public void setMesa(Mesa mesa) {
+		this.mesa = mesa;
+	}
+	
 	public int getDinero() {
 		return dinero;
 	}
 
 	public void setDinero(int dineroT) {
-		this.dinero = dineroT;
+		this.setProperty(DINERO, dineroT);
 	}
 	
 	public String getNombre() {
@@ -93,15 +107,31 @@ public class Jugador extends ObservableObject{
 	}
 
 	public void setNombre(String nombre) {
-		this.nombre = nombre;
+		this.setProperty(NOMBRE, nombre);
 	}
 	
 	public void setFichas(int fichasT) {
-		this.fichas = fichasT;
+		this.setProperty(FICHAS, fichasT);
 	}
 
 	public int getFichas() {
 		return fichas;
 	}
+
+	public List<Apuesta> getApuestas() {
+		return apuestas;
+	}
+
+	public void setApuestas(List<Apuesta> apuestas) {
+		this.setProperty(APUESTAS, apuestas);
+	}
+
+	public Apuesta getSelected() {
+		return selected;
+	}
+
+	public void setSelected(Apuesta selected) {
+		this.setProperty(SELECTED, selected);
+	}	
 
 }

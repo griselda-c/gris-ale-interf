@@ -62,7 +62,7 @@ public class ApuestaWindow extends Dialog<Apuesta> {
 		
 		Selector numero = new Selector(filaApuestas);
 		numero.setContents(this.getModel().getOpciones(), "nombre");
-		numero.bindValueToProperty(Apuesta.OPCIONSELECCIONADA);
+		numero.bindValueToProperty(Apuesta.JUGADASELECCIONADA);
 				
 	}
 

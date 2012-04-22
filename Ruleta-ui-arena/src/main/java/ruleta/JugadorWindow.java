@@ -7,6 +7,8 @@ import org.uqbar.arena.widgets.Button;
 import org.uqbar.arena.widgets.Label;
 import org.uqbar.arena.widgets.Panel;
 import org.uqbar.arena.widgets.TextBox;
+import org.uqbar.arena.widgets.tables.Column;
+import org.uqbar.arena.widgets.tables.Table;
 import org.uqbar.arena.windows.MainWindow;
 import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.Window;
@@ -36,6 +38,19 @@ public class JugadorWindow extends Window<Jugador>{// se bindea con la clase mes
 		
 		Label sGrid = new Label(grid);
 		sGrid.setText("Mesa CIU");
+		
+		//empieza la tablaaa
+		
+		Table<Apuesta> table = new Table<Apuesta>(grid, Apuesta.class);
+
+		table.bindContentsToProperty(this.getModel().APUESTAS);
+		table.bindSelection(this.getModel().SELECTED);
+
+		this.describeResultsGrid(table);
+		
+		
+		
+		
 		
 		Panel datosOpciones = new Panel(columnas);
 		datosOpciones.setLayout(new ColumnLayout(1));
@@ -70,6 +85,19 @@ public class JugadorWindow extends Window<Jugador>{// se bindea con la clase mes
 				
 	}
 	
+	private void describeResultsGrid(Table<Apuesta> table) {
+		Column<Apuesta> tipoColumn = new Column<Apuesta>(table);
+		tipoColumn.setTitle("Tipo");
+		tipoColumn.setPreferredSize(100);
+		tipoColumn.bindContentsToProperty(Apuesta.TIPO);
+
+		Column<Apuesta> fichasColumn = new Column<Apuesta>(table);
+		fichasColumn.setTitle("Fichas");
+		fichasColumn.setPreferredSize(100);
+		fichasColumn.bindContentsToProperty(Apuesta.FICHAS);
+		
+	}
+
 	public void retirarse(){
 		((MesaWindow)this.getOwner()).retirarJugador(this.getModel());
 		this.close();

@@ -66,7 +66,7 @@ public class MesaApuesta extends Mesa{
 		
 		//pequeña trampa
 		Jugador jugadorActual = new Jugador(1000,"Mario");
-	    Pleno apuesta =  new Pleno(jugadorActual,this.fichasJugada, this.numero);
+	    Pleno apuesta =  new Pleno(jugadorActual);
 		this.registrarJugada(apuesta);
 		this.setApuestaActual(apuesta);
 		
@@ -76,7 +76,7 @@ public class MesaApuesta extends Mesa{
 		
 		//pequeña trampa
 		Jugador jugadorActual = new Jugador(1000,"Mario");
-	    Columna apuesta =  new Columna(jugadorActual,this.fichasJugada, this.numero);
+	    Columna apuesta =  new Columna(jugadorActual);
 		this.registrarJugada(apuesta);
 		this.setApuestaActual(apuesta);
 		
@@ -86,7 +86,7 @@ public void apostarFila(){
 	
 	//pequeña trampa
 	Jugador jugadorActual = new Jugador(1000,"Mario");
-    Fila apuesta =  new Fila(jugadorActual,this.fichasJugada, this.numero);
+    Fila apuesta =  new Fila(jugadorActual);
 	this.registrarJugada(apuesta);
 	this.setApuestaActual(apuesta);
 	
@@ -96,7 +96,7 @@ public void apostarParImpar(){
 	
 	//pequeña trampa
 	Jugador jugadorActual = new Jugador(1000,"Mario");
-    ParImpar apuesta =  new ParImpar(jugadorActual,this.fichasJugada, this.numero);
+    ParImpar apuesta =  new ParImpar(jugadorActual);
 	this.registrarJugada(apuesta);
 	this.setApuestaActual(apuesta);
 	

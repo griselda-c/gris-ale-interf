@@ -6,39 +6,21 @@ import java.util.List;
 import org.uqbar.commons.model.ObservableObject;
 
 // quito todos los metodos observableObject
-abstract class Apuesta extends ObservableObject{
+abstract class Apuesta extends ObservableObject{	
 	
-	
-	
-	public static final String OPCIONSELECCIONADA = "opcionSeleccionada";
 	public static final String JUGADOR = "jugador";
 	public static final String FICHAS = "fichas";
-	public static final String JUGADA = "jugada";
+	public static final String JUGADASELECCIONADA = "jugadaSeleccionada";
+	public static final String TIPO = "tipoApuesta";
 	
 	public Jugador jugador;
 	public int fichas;
-	public int jugada;
-	public VALOR opcionSeleccionada;
-
-
-
-	public Apuesta(Jugador unJugador, int fichas, int numero){
-		
-		if(jugada > 36 | jugada < 0){
-			throw new RuntimeException("Digito de apuesta fuera de rango de ruleta");
-		}
-		
-		this.jugador = unJugador;
-		this.fichas = fichas;
-		this.jugada = numero;
-		
-	}
+	public JUGADA jugadaSeleccionada;
+	public String tipoApuesta = "Apuesta";
 	
 	public Apuesta(Jugador j) {
 		this.jugador = j;
 		this.fichas = 0;
-		this.jugada = 0;
-		this.opcionSeleccionada = VALOR.V0;
 	}
 
 	abstract boolean ganaParaNumero(int numero);
@@ -48,21 +30,21 @@ abstract class Apuesta extends ObservableObject{
 		this.jugador.apostar(this);		
 	}
 
-	public  List<VALOR> getOpciones(){		
-		List<VALOR> lista = new LinkedList<VALOR>();
-		lista.add(VALOR.V0);lista.add(VALOR.V1);lista.add(VALOR.V2);
-		lista.add(VALOR.V3);lista.add(VALOR.V4);lista.add(VALOR.V5);
-		lista.add(VALOR.V6);lista.add(VALOR.V7);lista.add(VALOR.V8);
-		lista.add(VALOR.V9);lista.add(VALOR.V10);lista.add(VALOR.V11);
-		lista.add(VALOR.V12);lista.add(VALOR.V13);lista.add(VALOR.V14);
-		lista.add(VALOR.V15);lista.add(VALOR.V16);lista.add(VALOR.V17);
-		lista.add(VALOR.V18);lista.add(VALOR.V19);lista.add(VALOR.V20);
-		lista.add(VALOR.V21);lista.add(VALOR.V22);lista.add(VALOR.V23);
-		lista.add(VALOR.V24);lista.add(VALOR.V25);lista.add(VALOR.V26);
-		lista.add(VALOR.V27);lista.add(VALOR.V28);lista.add(VALOR.V29);
-		lista.add(VALOR.V30);lista.add(VALOR.V31);lista.add(VALOR.V32);
-		lista.add(VALOR.V33);lista.add(VALOR.V34);lista.add(VALOR.V35);
-		lista.add(VALOR.V36);
+	public  List<JUGADA> getOpciones(){		
+		List<JUGADA> lista = new LinkedList<JUGADA>();
+		lista.add(JUGADA.V0);lista.add(JUGADA.V1);lista.add(JUGADA.V2);
+		lista.add(JUGADA.V3);lista.add(JUGADA.V4);lista.add(JUGADA.V5);
+		lista.add(JUGADA.V6);lista.add(JUGADA.V7);lista.add(JUGADA.V8);
+		lista.add(JUGADA.V9);lista.add(JUGADA.V10);lista.add(JUGADA.V11);
+		lista.add(JUGADA.V12);lista.add(JUGADA.V13);lista.add(JUGADA.V14);
+		lista.add(JUGADA.V15);lista.add(JUGADA.V16);lista.add(JUGADA.V17);
+		lista.add(JUGADA.V18);lista.add(JUGADA.V19);lista.add(JUGADA.V20);
+		lista.add(JUGADA.V21);lista.add(JUGADA.V22);lista.add(JUGADA.V23);
+		lista.add(JUGADA.V24);lista.add(JUGADA.V25);lista.add(JUGADA.V26);
+		lista.add(JUGADA.V27);lista.add(JUGADA.V28);lista.add(JUGADA.V29);
+		lista.add(JUGADA.V30);lista.add(JUGADA.V31);lista.add(JUGADA.V32);
+		lista.add(JUGADA.V33);lista.add(JUGADA.V34);lista.add(JUGADA.V35);
+		lista.add(JUGADA.V36);
 		return lista;		
 	}
 	
@@ -80,24 +62,25 @@ abstract class Apuesta extends ObservableObject{
 
 	public void setFichas(int fichas) {
 		this.setProperty(FICHAS, fichas);
-		System.out.println("se setea fichas en " + this.fichas);
 	}
 
-	public int getJugada() {
-		return jugada;
-	}
-   
-	public void setJugada(int jugada) {
-		this.setProperty(JUGADA, jugada);
-	}
-	
-	public VALOR getOpcionSeleccionada() {
-		return opcionSeleccionada;
+	public JUGADA getJugadaSeleccionada() {
+		return jugadaSeleccionada;
 	}
 
-	public void setOpcionSeleccionada(VALOR opcionSeleccionada) {
-		this.setProperty(OPCIONSELECCIONADA, opcionSeleccionada);
+	public void setJugadaSeleccionada(JUGADA jugadaSeleccionada) {
+		this.setProperty(JUGADASELECCIONADA, jugadaSeleccionada);
+	}
+
+	public String getTipoApuesta() {
+		return tipoApuesta;
+	}
+
+	public void setTipoApuesta(String tipoApuesta) {
+		this.tipoApuesta = tipoApuesta;
 	}
 	
+
+
 
 }
