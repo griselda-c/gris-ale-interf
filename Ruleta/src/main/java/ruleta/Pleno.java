@@ -9,7 +9,6 @@ public class Pleno extends Apuesta{
 
 	public Pleno(Jugador j) {
 		super(j);
-		this.jugador=j;
 		this.jugadaSeleccionada = JUGADA.V0;
 	}
 

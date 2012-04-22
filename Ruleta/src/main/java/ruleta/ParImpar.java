@@ -8,7 +8,6 @@ public class ParImpar extends Apuesta {
 
 	public ParImpar(Jugador j) {
 		super(j);
-		this.jugador = j;
 		this.jugadaSeleccionada = JUGADA.PAR;
 	}
 
