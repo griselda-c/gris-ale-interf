@@ -16,11 +16,25 @@ public class Fila extends Apuesta{
 	public int fichasGanadas(){		
 		return 12 * this.fichas;		
 	}
+	
+	public int convertirEnFila(int numero){
+		
+		int resultado;
+		if((numero%3)==0){
+			
+			resultado = numero/3;
+		}
+		else{
+			
+			resultado = (numero/3)+1;
+		}
+		return resultado;
+	}
 
 	@Override
 	boolean ganaParaNumero(int numero) {
-		// TODO Auto-generated method stub
-		return false;
+		
+		 return this.jugadaSeleccionada.getValor() == this.convertirEnFila(numero);
 	}
 	
 	//Re-escritura de superclase
@@ -76,4 +90,16 @@ public class Fila extends Apuesta{
 	public void setTipoApuesta(String tipoApuesta) {
 		this.tipoApuesta = tipoApuesta;
 	}
+	/*
+	public static void main(String[] args) {
+		Jugador j = new Jugador(200, "jorge");
+		Fila c = new Fila(j);
+		c.setFichas(3);
+		c.setJugadaSeleccionada(JUGADA.V5);
+		c.ganaParaNumero(13);
+		System.out.println(c.ganaParaNumero(21));
+		
+		
+	}
+	*/
 }
