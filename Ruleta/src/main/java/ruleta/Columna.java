@@ -9,6 +9,7 @@ public class Columna extends Apuesta{
 
 	public Columna(Jugador j) {
 		super(j);
+		this.jugador = j;
 		this.jugadaSeleccionada = JUGADA.V1;
 	}
 
