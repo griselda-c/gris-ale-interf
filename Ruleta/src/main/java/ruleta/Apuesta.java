@@ -84,3 +84,5 @@ abstract class Apuesta extends ObservableObject{
 
 
 }
+
+

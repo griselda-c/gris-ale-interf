@@ -4,11 +4,13 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.uqbar.commons.model.ObservableObject;
+import org.uqbar.commons.model.UserException;
 
 public class Jugador extends ObservableObject{
 	
-	int fichas;
+	private int fichas;
 	int dinero;
+	int fichasMas;
 	private Mesa mesa;
 	String nombre;
 	public List<Apuesta> apuestas = new LinkedList<Apuesta>();
@@ -21,6 +23,7 @@ public class Jugador extends ObservableObject{
 	public static final String DINERO = "dinero";
 	public static final String FICHAS = "fichas";
 	public static final String MONTOAPUESTA = "montoApuestaActual";
+	public static final String FICHASMAS = "fichasMas";
 	
 	public Mesa getMesa() {
 		return mesa;
@@ -39,6 +42,24 @@ public class Jugador extends ObservableObject{
 
 	public void sumarFichas(int cantidad) {
 		this.setFichas(this.getFichas() + cantidad);
+	}
+	
+	public void sumarFichas(){
+		/* la cantidad de fichas que se suma
+		   no puede ser mayor a la cantidad de dinero
+		   del jugador
+		*/
+		
+		if(this.fichasMas > this.getDinero())
+		{
+			throw new UserException("no tiene dinero suficiente para esa cantidad");
+		}
+		
+		else{
+		
+		this.sumarFichas(fichasMas);
+		this.dinero = (this.dinero - fichasMas) ;
+		}
 	}
 
 	public void restarFichas(int cantidad) {
@@ -110,8 +131,8 @@ public class Jugador extends ObservableObject{
 		this.setProperty(NOMBRE, nombre);
 	}
 	
-	public void setFichas(int fichasT) {
-		this.setProperty(FICHAS, fichasT);
+	public void setFichas(int fichas) {
+		this.setProperty(FICHAS, fichas);
 	}
 
 	public int getFichas() {
@@ -133,5 +154,14 @@ public class Jugador extends ObservableObject{
 	public void setSelected(Apuesta selected) {
 		this.setProperty(SELECTED, selected);
 	}	
+	
+	public int getFichasMas(){
+		return this.fichasMas;
+	}
+	
+	public void setFichasMas(int cantidad){
+       this.setProperty(FICHASMAS, cantidad);
+		
+	}
 
 }
