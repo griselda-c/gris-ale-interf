@@ -114,7 +114,7 @@ public class MesaWindow extends Window<Mesa>{
 		this.getModel().unirJugadorActual();
 		Jugador jugador = this.getModel().getJugadorActual();
 		//this.getModel().anularJugadorActual();
-		//le seteo la mesa al jugador
+		
 		jugador.setMesa(this.getModel());
 		new JugadorWindow(this, jugador).open();
 	}
@@ -127,6 +127,8 @@ public class MesaWindow extends Window<Mesa>{
 
 	private void mostrarConfirmacion(Jugador jugador) {
 		// TODO Auto-generated method stub
+	
+		new RetirarseWindow(this,jugador).open();
 		
 	}
 

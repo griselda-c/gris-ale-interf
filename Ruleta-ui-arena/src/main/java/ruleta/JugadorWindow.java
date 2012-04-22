@@ -81,7 +81,7 @@ public class JugadorWindow extends Window<Jugador>{// se bindea con la clase mes
 		
 		Button cambiar = new Button(datosOpciones);
 		cambiar.setCaption("Cambiar fichas");
-		cambiar.onClick(new MessageSend(this, "retirarse"));
+		cambiar.onClick(new MessageSend(this, "cambioDeFichas"));
 				
 	}
 	
@@ -105,6 +105,12 @@ public class JugadorWindow extends Window<Jugador>{// se bindea con la clase mes
 	
 	public void apostar(){
 		new ElegirApuestaWindow(this, this.getModel()).open();
+	}
+	
+	public void cambioDeFichas(){
+	
+		new CambioFichasWindow(this, this.getModel()).open();
+		
 	}
 	
 }

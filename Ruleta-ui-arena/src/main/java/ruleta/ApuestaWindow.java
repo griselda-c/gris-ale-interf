@@ -31,6 +31,7 @@ public class ApuestaWindow extends Dialog<Apuesta> {
 	protected void executeTask() {		
 		this.getModel().confirmar();
 		System.out.println("se confirma apuesta con fichas " + this.getModel().getFichas());
+		System.out.println("se confirma apuesta con jugada " + this.getModel().getJugadaSeleccionada());
 	}
 	
 	@Override
