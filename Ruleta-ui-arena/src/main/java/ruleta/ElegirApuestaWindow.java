@@ -10,9 +10,9 @@ import org.uqbar.arena.windows.Window;
 import org.uqbar.arena.windows.WindowOwner;
 import org.uqbar.lacar.ui.model.Action;
 
-public class ElegirApuestaW extends Window<Jugador> {
+public class ElegirApuestaWindow extends Window<Jugador> {
 
-	public ElegirApuestaW(WindowOwner owner, Jugador model) {
+	public ElegirApuestaWindow(WindowOwner owner, Jugador model) {
 		super(owner, model);
 	}
 

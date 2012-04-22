@@ -109,7 +109,7 @@ public class MesaWindow extends Window<Mesa>{
 	public void unirJugador() {
 		this.getModel().unirJugadorActual();
 		Jugador jugador = this.getModel().getJugadorActual();
-		this.getModel().anularJugadorActual();
+		//this.getModel().anularJugadorActual();
 		new JugadorWindow(this, jugador).open();
 	}
 	

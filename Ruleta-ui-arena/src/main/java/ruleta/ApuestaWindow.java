@@ -1,5 +1,13 @@
 package ruleta;
 
+/*import java.lang.reflect.InvocationTargetException;
+import java.text.SimpleDateFormat;
+import org.apache.commons.beanutils.PropertyUtils;
+import org.uqbar.lacar.ui.model.Adapter;
+import org.uqbar.lacar.ui.model.ControlBuilder;
+import org.uqbar.lacar.ui.model.bindings.Binding;
+import com.uqbar.commons.collections.Transformer;*/
+
 import org.uqbar.arena.actions.MessageSend;
 import org.uqbar.arena.layout.ColumnLayout;
 import org.uqbar.arena.layout.VerticalLayout;
@@ -11,24 +19,18 @@ import org.uqbar.arena.widgets.TextBox;
 import org.uqbar.arena.windows.Dialog;
 import org.uqbar.arena.windows.WindowOwner;
 
+
+
 public class ApuestaWindow extends Dialog<Apuesta> {	
 
-	// conoce una apuesta y no un jugador
 	public ApuestaWindow(WindowOwner owner, Apuesta model) {
 		super(owner, model);
 	}
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-
-
-
 	@Override
 	protected void executeTask() {		
 		this.getModel().confirmar();
-		
+		System.out.println("se confirma apuesta con fichas " + this.getModel().getFichas());
 	}
 	
 	@Override
@@ -57,13 +59,15 @@ public class ApuestaWindow extends Dialog<Apuesta> {
 		TextBox fichas = new TextBox(filaApuestas);
 		fichas.bindValueToProperty(Apuesta.FICHAS);
 		
+		
 		Selector numero = new Selector(filaApuestas);
-		numero.setContents(this.getModel().getOptions(), "esta es una descripcion");
-		
-		
+		numero.setContents(this.getModel().getOpciones(), "nombre");
+		numero.bindValueToProperty(Apuesta.OPCIONSELECCIONADA);
+				
 	}
 
-	
+
+	private static final long serialVersionUID = 1L;
 	
 	
 	

@@ -76,7 +76,7 @@ public class JugadorWindow extends Window<Jugador>{// se bindea con la clase mes
 	}
 	
 	public void apostar(){
-		new ElegirApuestaW(this, this.getModel()).open();
+		new ElegirApuestaWindow(this, this.getModel()).open();
 	}
 	
 }

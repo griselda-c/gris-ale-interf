@@ -47,6 +47,7 @@ public class Mesa extends ObservableObject{
 	public void unirJugador(Jugador unJugador) {
 		this.setBanca(this.getBanca() + unJugador.unirAMesa(this));
 		this.jugadores.add(unJugador);
+		this.setJugadores(this.jugadores);
 		this.setJugadorActual(unJugador);
 		System.out.println("juagdor" + jugadorActual.getNombre());
 	}
