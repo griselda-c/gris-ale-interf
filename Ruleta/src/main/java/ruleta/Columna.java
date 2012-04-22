@@ -13,7 +13,9 @@ public class Columna extends Apuesta{
 	}
 
 	boolean ganaParaNumero(int numero) {
-		return ((this.jugadaSeleccionada.getValor() % 3) == (numero % 3));
+		//return ((this.jugadaSeleccionada.getValor() % 3) == (numero % 3));
+		return this.jugadaSeleccionada.getValor() == (numero%3);
+		
 	}
 	
 	int fichasGanadas() {
@@ -69,4 +71,15 @@ public class Columna extends Apuesta{
 	public void setTipoApuesta(String tipoApuesta) {
 		this.tipoApuesta = tipoApuesta;
 	}
+	/*
+	public static void main(String[] args) {
+		Jugador j = new Jugador(200, "jorge");
+		Columna c = new Columna(j);
+		c.setFichas(3);
+		c.setJugadaSeleccionada(JUGADA.V2);
+		c.ganaParaNumero(5);
+		System.out.println(c.ganaParaNumero(7));
+		
+	}
+	*/
 }
