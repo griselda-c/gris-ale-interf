@@ -10,6 +10,7 @@ public class Fila extends Apuesta{
 
 	public Fila(Jugador j) {
 		super(j);
+		this.jugador = j;
 		this.jugadaSeleccionada = JUGADA.V1;
 	}		
 	
