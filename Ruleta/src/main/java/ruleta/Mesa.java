@@ -74,16 +74,18 @@ public class Mesa extends ObservableObject{
 	
 	
 	public void pagarApuestas(){
-		this.girarRuleta();
+		//this.girarRuleta();
 		for(Apuesta a:apuestas){
 			if(a.ganaParaNumero(numeroGanador)){
+				System.out.println("jugada" + a.getJugadaSeleccionada() +"salio" +numeroGanador);
 				int cantidadGanada = a.fichasGanadas();
 				a.getJugador().sumarFichas(cantidadGanada);
 				this.restarBanca(cantidadGanada);
 			}
 		}
-		
-		
+		//borra todas las apuestas en realidad quiero
+		//borrar las apuestas de un jugador
+		this.apuestas.removeAll(apuestas);
 	}
 	
 
