@@ -24,7 +24,7 @@ public class Mesa extends ObservableObject{
 
 	int dineroJugadorEntrante;
 	String nombreJugadorEntrante;
-	Jugador jugadorActual;
+	Jugador jugadorActual;	
 	
 	public Ruleta ruleta = new Ruleta();
 	
@@ -78,11 +78,13 @@ public class Mesa extends ObservableObject{
 		for(Apuesta a:apuestas){
 			if(a.ganaParaNumero(numeroGanador)){
 				int cantidadGanada = a.fichasGanadas();
-				a.getJugador().sumarFichas(cantidadGanada);
+				Jugador j = a.getJugador();
+				j.sumarFichas(cantidadGanada);
 				this.restarBanca(cantidadGanada);
 			}
-		}
-		
+			
+			a.getJugador().borrarApuestas(a);
+		}//fin del for
 		
 	}
 	
@@ -90,6 +92,7 @@ public class Mesa extends ObservableObject{
 	public void retirarJugador(Jugador jugador) {
 		this.cambiarFichas(jugador);
 		this.jugadores.remove(jugador);
+		this.firePropertyChange(JUGADORES, null, this.SELECTED);
 	}
 
 	private void cambiarFichas(Jugador jugador) {
@@ -141,7 +144,7 @@ public class Mesa extends ObservableObject{
 	
 	public void setJugadorActual(Jugador jugadorActual) {
 		this.setProperty(SELECTED, jugadorActual);
-		System.out.println("Se setea a " + jugadorActual.getNombre());
+		System.out.println("Se setea a " + jugadorActual.getNombre());  
 	}
 	
 	public List<Jugador> getJugadores() {
