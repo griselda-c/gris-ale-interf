@@ -1,24 +1,28 @@
 package ruleta;
 
 import org.uqbar.arena.actions.MessageSend;
-import org.uqbar.arena.layout.ColumnLayout;
 import org.uqbar.arena.layout.VerticalLayout;
 import org.uqbar.arena.widgets.Button;
 import org.uqbar.arena.widgets.Label;
 import org.uqbar.arena.widgets.Panel;
-import org.uqbar.arena.widgets.TextBox;
-import org.uqbar.arena.windows.MainWindow;
+import org.uqbar.arena.windows.Dialog;
+import org.uqbar.arena.windows.Window;
+import org.uqbar.arena.windows.WindowOwner;
 
-import ruleta.Mesa;
+public class RuletaW extends Window<Mesa> {
 
-public class RuletaW extends MainWindow<Mesa> {
-	
-	public RuletaW(){
-		super(new Mesa(10));
-		
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public RuletaW(WindowOwner owner, Mesa model) {
+		super(owner, model);
+		// TODO Auto-generated constructor stub
 	}
-	
-	
+
+
 
 
 	@Override
@@ -34,27 +38,25 @@ public class RuletaW extends MainWindow<Mesa> {
 		Label subtitulo = new Label(mainPanel);
 		subtitulo.setText("El numero ganador es :");
 		
-		
+		this.getModel().girarRuleta();
 		Label estatico = new Label(mainPanel);
 		estatico.bindValueToProperty(Mesa.NUMEROGANADOR);
 		
-		Button ruleta = new Button(mainPanel);
-		ruleta.setCaption("Girar Ruleta");
-		ruleta.onClick(new MessageSend(this.getModel(),Mesa.GIRARRULETA));
-		
-        
+	
 		Button pagar = new Button(mainPanel);
 		pagar.setCaption("Pagar Apuestas");
-		ruleta.onClick(new MessageSend(this.getModel(),Mesa.GIRARRULETA));
+		pagar.onClick(new MessageSend(this,"pagar"));
 		
 		
 		}// fin del createContents
 	
 	
-	
-	public static void main(String[] args) {
+public void pagar(){
 		
-		new RuletaW().startApplication();
+		this.getModel().pagarApuestas();
+		this.close();
+		
 	}
+
 
 }

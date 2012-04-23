@@ -82,6 +82,10 @@ public class JugadorWindow extends Window<Jugador>{// se bindea con la clase mes
 		Button cambiar = new Button(datosOpciones);
 		cambiar.setCaption("Cambiar fichas");
 		cambiar.onClick(new MessageSend(this, "cambioDeFichas"));
+		
+		Button ruleta = new Button(grid);
+		ruleta.setCaption("No va mas");
+		ruleta.onClick(new MessageSend(this,"noVaMas"));
 				
 	}
 	
@@ -110,6 +114,15 @@ public class JugadorWindow extends Window<Jugador>{// se bindea con la clase mes
 	public void cambioDeFichas(){
 	
 		new CambioFichasWindow(this, this.getModel()).open();
+		
+	}
+	
+	public void noVaMas(){
+		
+		Mesa mesa = this.getModel().getMesa();
+		new RuletaW(this,mesa).open();
+		
+		//this.close();
 		
 	}
 	
