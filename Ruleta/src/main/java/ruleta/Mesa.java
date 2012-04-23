@@ -11,8 +11,8 @@ public class Mesa extends ObservableObject{
 	public static final String NUMEROGANADOR = "numeroGanador";
 	public static final String GIRARRULETA = "girarRuleta";
 
-	public static final String SELECTED = "jugadorActual";
-	public static final String JUGADORES = "jugadores";
+	public final String SELECTED = "jugadorActual";
+	public final String JUGADORES = "jugadores";
 	
 	public static final String NOMBREJUGADOR = "nombreJugadorEntrante";
 	public static final String DINEROJUGADOR = "dineroJugadorEntrante";
@@ -24,16 +24,22 @@ public class Mesa extends ObservableObject{
 
 	int dineroJugadorEntrante;
 	String nombreJugadorEntrante;
-	Jugador jugadorActual;	
+	Jugador jugadorActual;
 	
 	public Ruleta ruleta = new Ruleta();
 	
 	public List<Jugador> jugadores = new LinkedList<Jugador>();
 
 	public List<Apuesta> apuestas = new LinkedList<Apuesta>();
+	
+	public Mesa(){
+		super();
+	}
 
 	public Mesa(int banca){
 		this.banca = banca;
+		
+		//comentar
 		this.jugadores.add(new Jugador(100, "Jose"));
 		this.jugadores.add(new Jugador(200, "Pepe"));
 	}
@@ -44,10 +50,14 @@ public class Mesa extends ObservableObject{
 		this.setNombreJugadorEntrante("");//limpia la pantalla*/
 	}
 	
+	
+	
 	public void unirJugador(Jugador unJugador) {
 		this.setBanca(this.getBanca() + unJugador.unirAMesa(this));
 		this.jugadores.add(unJugador);
-		this.firePropertyChange(JUGADORES, null, jugadores);
+		System.out.println("se agrega jugador");
+		this.firePropertyChange(JUGADORES, null, this.jugadores);
+		System.out.println("se actualisza la tabla");
 		this.setJugadorActual(unJugador);
 		System.out.println("juagdor" + jugadorActual.getNombre());
 	}
@@ -89,10 +99,12 @@ public class Mesa extends ObservableObject{
 	}
 	
 
-	public void retirarJugador(Jugador jugador) {
-		this.cambiarFichas(jugador);
-		this.jugadores.remove(jugador);
-		this.firePropertyChange(JUGADORES, null, this.SELECTED);
+	public void retirarJugador() {
+		Jugador j = this.getJugadorActual();
+		this.cambiarFichas(j);
+		this.jugadores.remove(j);
+		this.firePropertyChange(JUGADORES, null, jugadores);
+		
 	}
 
 	private void cambiarFichas(Jugador jugador) {
@@ -144,7 +156,7 @@ public class Mesa extends ObservableObject{
 	
 	public void setJugadorActual(Jugador jugadorActual) {
 		this.setProperty(SELECTED, jugadorActual);
-		System.out.println("Se setea a " + jugadorActual.getNombre());  
+		System.out.println("Se setea a " + jugadorActual.getNombre());
 	}
 	
 	public List<Jugador> getJugadores() {

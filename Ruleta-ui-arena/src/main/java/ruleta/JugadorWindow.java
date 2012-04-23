@@ -6,16 +6,13 @@ import org.uqbar.arena.layout.VerticalLayout;
 import org.uqbar.arena.widgets.Button;
 import org.uqbar.arena.widgets.Label;
 import org.uqbar.arena.widgets.Panel;
-import org.uqbar.arena.widgets.TextBox;
 import org.uqbar.arena.widgets.tables.Column;
 import org.uqbar.arena.widgets.tables.Table;
-import org.uqbar.arena.windows.MainWindow;
-import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.Window;
 import org.uqbar.arena.windows.WindowOwner;
 
 
-public class JugadorWindow extends Window<Jugador>{// se bindea con la clase mesa
+public class JugadorWindow extends Window<Jugador>{
 
 	public JugadorWindow(WindowOwner owner, Jugador model) {
 		super(owner, model);
@@ -38,19 +35,12 @@ public class JugadorWindow extends Window<Jugador>{// se bindea con la clase mes
 		
 		Label sGrid = new Label(grid);
 		sGrid.setText("Mesa CIU");
-		
-		//empieza la tablaaa
-		
+				
 		Table<Apuesta> table = new Table<Apuesta>(grid, Apuesta.class);
-
 		table.bindContentsToProperty(this.getModel().APUESTAS);
 		table.bindSelection(this.getModel().SELECTED);
 
 		this.describeResultsGrid(table);
-		
-		
-		
-		
 		
 		Panel datosOpciones = new Panel(columnas);
 		datosOpciones.setLayout(new ColumnLayout(1));
@@ -68,8 +58,7 @@ public class JugadorWindow extends Window<Jugador>{// se bindea con la clase mes
 		dineroJugador.bindValueToProperty(Jugador.FICHAS);
 		
 		Label ask = new Label(datosOpciones);
-		ask.setText("¿Qué desea hacer?");
-		
+		ask.setText("¿Qué desea hacer?");		
 
 		Button retirarse = new Button(datosOpciones);
 		retirarse.setCaption("Retirarse");
@@ -85,8 +74,7 @@ public class JugadorWindow extends Window<Jugador>{// se bindea con la clase mes
 		
 		Button ruleta = new Button(grid);
 		ruleta.setCaption("No va mas");
-		ruleta.onClick(new MessageSend(this,"noVaMas"));
-				
+		ruleta.onClick(new MessageSend(this,"noVaMas"));				
 	}
 	
 	private void describeResultsGrid(Table<Apuesta> table) {
@@ -103,7 +91,7 @@ public class JugadorWindow extends Window<Jugador>{// se bindea con la clase mes
 	}
 
 	public void retirarse(){
-		((MesaWindow)this.getOwner()).retirarJugador(this.getModel());
+		//((MesaWindow)this.getOwner()).retirarJugador(this.getModel());
 		this.close();
 	}
 	

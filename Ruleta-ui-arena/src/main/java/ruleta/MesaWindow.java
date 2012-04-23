@@ -2,8 +2,6 @@ package ruleta;
 
 
 
-import java.text.SimpleDateFormat;
-
 import org.uqbar.arena.actions.MessageSend;
 import org.uqbar.arena.layout.ColumnLayout;
 import org.uqbar.arena.layout.VerticalLayout;
@@ -16,8 +14,7 @@ import org.uqbar.arena.widgets.tables.Table;
 import org.uqbar.arena.windows.Window;
 import org.uqbar.arena.windows.WindowOwner;
 
-
-import com.uqbar.commons.collections.Transformer;
+import com.uqbar.commons.collections.Closure;
 
 
 
@@ -35,31 +32,42 @@ public class MesaWindow extends Window<Mesa>{
 
 
 	public void createContents(Panel mainPanel) {
-		//this.setTitle("Ruleta el Ocho");
-		
+		this.setTitle("Ruleta el Ocho");		
 		mainPanel.setLayout(new VerticalLayout());
-
-
-		Label subtitulo = new Label(mainPanel);
-		subtitulo.setText("Bienvenido a la mesa, ingrese sus datos para unirse:");
-
-		//panel horizantal x2
-		
+				
 		Panel mainFrame = new Panel(mainPanel);
 		mainFrame.setLayout(new ColumnLayout(2));
 		
-		Table<Jugador> table = new Table<Jugador>(mainFrame, Jugador.class);
-
+		Panel estadoMesa = new Panel(mainFrame);
+		estadoMesa.setLayout(new VerticalLayout());
+		
+		Table<Jugador> table = new Table<Jugador>(estadoMesa, Jugador.class);
 		table.bindContentsToProperty(this.getModel().JUGADORES);
 		table.bindSelection(this.getModel().SELECTED);
-
 		this.describeResultsGrid(table);
 		
+		Panel actionFrame = new Panel(estadoMesa);
+		actionFrame.setLayout(new ColumnLayout(2));
 		
+		Button retirar = new Button(actionFrame);
+		retirar.setCaption("Retirar");
+		retirar.onClick(new MessageSend(this, "retirarJugador"));
+		
+		Button apostar = new Button(actionFrame);
+		apostar.setCaption("Apostar");
+		apostar.onClick(new MessageSend(this, "apostar"));
+		
+		Panel nuevoJugador = new Panel(mainFrame);
+		nuevoJugador.setLayout(new ColumnLayout(1));
 
-		Panel nombreDinero = new Panel(mainFrame);
-		nombreDinero.setLayout(new ColumnLayout(2));
-
+		Label subtituloA = new Label(nuevoJugador);
+		subtituloA.setText("Bienvenido a la mesa, ");
+		Label subtituloB = new Label(nuevoJugador);
+		subtituloB.setText("ingrese sus datos para unirse:");
+		
+		Panel nombreDinero = new Panel(nuevoJugador);
+		nombreDinero.setLayout(new ColumnLayout(2));		
+		
 		Label nombreLabel = new Label(nombreDinero);
 		nombreLabel.setText("Nombre:");
 
@@ -69,16 +77,14 @@ public class MesaWindow extends Window<Mesa>{
 		Label dineroLabel = new Label(nombreDinero);
 		dineroLabel.setText("Dinero:");
 
-		TextBox dineroJugador = new TextBox(nombreDinero);
-		dineroJugador.bindValueToProperty(Mesa.DINEROJUGADOR);
-		
+		Panel fixDinero = new Panel(nombreDinero);
+		fixDinero.setLayout(new VerticalLayout());
+		TextBox dineroJugador = new TextBox(fixDinero);
+		dineroJugador.bindValueToProperty(Mesa.DINEROJUGADOR);		
 
-		Button unirse = new Button(mainPanel);
+		Button unirse = new Button(nuevoJugador);
 		unirse.setCaption("Unirse");
-		unirse.onClick(new MessageSend(this, "unirJugador"));
-		
-		
-	
+		unirse.onClick(new MessageSend(this, "unirJugador"));	
 	}
 	
 	
@@ -93,6 +99,7 @@ public class MesaWindow extends Window<Mesa>{
 		fichasColumn.setTitle("Fichas");
 		fichasColumn.setPreferredSize(100);
 		fichasColumn.bindContentsToProperty(Jugador.FICHAS);
+		
 		/*Column<Jugador> ingresoColumn = new Column<Jugador>(table);
 		ingresoColumn.setTitle("Fecha de ingreso");
 		ingresoColumn.setPreferredSize(100);
@@ -112,24 +119,25 @@ public class MesaWindow extends Window<Mesa>{
 
 	public void unirJugador() {
 		this.getModel().unirJugadorActual();
-		Jugador jugador = this.getModel().getJugadorActual();
-		//this.getModel().anularJugadorActual();
-		
+		Jugador jugador = this.getModel().getJugadorActual();		
 		jugador.setMesa(this.getModel());
-		new JugadorWindow(this, jugador).open();
+		//new JugadorWindow(this, jugador).open();
 	}
 	
-	public void retirarJugador(Jugador jugador){
-		this.getModel().retirarJugador(jugador);
+	public void retirarJugador(){
+		Jugador jugador = this.getModel().getJugadorActual();
+		this.getModel().retirarJugador();
 		this.mostrarConfirmacion(jugador);
+	}
+	
+	public void apostar(){
+		Jugador jugador = this.getModel().getJugadorActual();
+		new JugadorWindow(this, jugador).open();
 	}
 
 
 	private void mostrarConfirmacion(Jugador jugador) {
-		// TODO Auto-generated method stub
-	
-		new RetirarseWindow(this,jugador).open();
-		
+		new RetirarseWindow(this,jugador).open();		
 	}
 
 

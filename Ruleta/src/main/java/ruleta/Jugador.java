@@ -17,8 +17,8 @@ public class Jugador extends ObservableObject{
 	public Apuesta selected;
 
 
-	public static final String SELECTED = "selected";
-	public static final String APUESTAS = "apuestas";
+	public final String SELECTED = "selected";
+	public final String APUESTAS = "apuestas";
 	public static final String NOMBRE = "nombre";
 	public static final String DINERO = "dinero";
 	public static final String FICHAS = "fichas";
@@ -35,6 +35,7 @@ public class Jugador extends ObservableObject{
 		this.setDinero(dineroT);
 		this.setNombre(nombreT);		
 		/*para comentar*/
+		this.mesa = new Mesa();
 		this.apuestas.add(new Pleno(this));
 		this.apuestas.add(new ParImpar(this));
 		this.apuestas.add(new Fila(this));
@@ -90,7 +91,7 @@ public class Jugador extends ObservableObject{
 	public void apostar(Apuesta apuesta) {		
 		this.getMesa().registrarJugada(apuesta);
 		this.apuestas.add(apuesta);	
-		this.firePropertyChange(APUESTAS, null, this.selected);
+		this.firePropertyChange(APUESTAS, null, this.apuestas);
 	}	
 	
 	public void borrarApuestas(Apuesta apuesta){
