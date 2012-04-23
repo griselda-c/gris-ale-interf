@@ -3,6 +3,8 @@ package ruleta;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.uqbar.commons.model.UserException;
+
 public class Columna extends Apuesta{
 
 
@@ -54,7 +56,12 @@ public class Columna extends Apuesta{
 	}
 
 	public void setFichas(int fichas) {
-		this.setProperty(FICHAS, fichas);
+		if(fichas > this.getJugador().getFichas())
+		{
+			throw new UserException("cantidad de fichas no valido");
+		}
+		else{
+		this.setProperty(FICHAS, fichas);}
 	}
 
 	public JUGADA getJugadaSeleccionada() {

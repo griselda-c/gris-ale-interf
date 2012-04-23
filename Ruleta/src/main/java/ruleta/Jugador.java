@@ -93,6 +93,10 @@ public class Jugador extends ObservableObject{
 		this.firePropertyChange(APUESTAS, null, this.selected);
 	}	
 	
+	public void borrarApuestas(Apuesta apuesta){
+	this.apuestas.remove(apuesta);
+	this.firePropertyChange(APUESTAS, null, this.apuestas);
+	}
 	
 	
 	

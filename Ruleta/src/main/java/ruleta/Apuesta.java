@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.uqbar.commons.model.ObservableObject;
+import org.uqbar.commons.model.UserException;
 
 // quito todos los metodos observableObject
 abstract class Apuesta extends ObservableObject{	
@@ -61,7 +62,12 @@ abstract class Apuesta extends ObservableObject{
 	}
 
 	public void setFichas(int fichas) {
-		this.setProperty(FICHAS, fichas);
+		if(fichas > this.getJugador().getFichas())
+		{
+			throw new UserException("cantidad de fichas no valido");
+		}
+		else{
+		this.setProperty(FICHAS, fichas);}
 	}
 
 	public JUGADA getJugadaSeleccionada() {
