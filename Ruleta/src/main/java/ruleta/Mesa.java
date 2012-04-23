@@ -24,7 +24,7 @@ public class Mesa extends ObservableObject{
 
 	int dineroJugadorEntrante;
 	String nombreJugadorEntrante;
-	Jugador jugadorActual;	
+	Jugador jugadorActual;
 	
 	public Ruleta ruleta = new Ruleta();
 	
@@ -47,11 +47,9 @@ public class Mesa extends ObservableObject{
 	public void unirJugador(Jugador unJugador) {
 		this.setBanca(this.getBanca() + unJugador.unirAMesa(this));
 		this.jugadores.add(unJugador);
-		this.setJugadores(this.jugadores);
+		this.firePropertyChange(JUGADORES, null, jugadores);
 		this.setJugadorActual(unJugador);
-		this.firePropertyChange(JUGADORES, null, this.SELECTED);
 		System.out.println("juagdor" + jugadorActual.getNombre());
-		
 	}
 
 	private void restarBanca(int dinero) {
@@ -76,18 +74,15 @@ public class Mesa extends ObservableObject{
 	
 	
 	public void pagarApuestas(){
-		//this.girarRuleta();
+		this.girarRuleta();
 		for(Apuesta a:apuestas){
 			if(a.ganaParaNumero(numeroGanador)){
-				System.out.println("jugada" + a.getJugadaSeleccionada() +"salio" +numeroGanador);
 				int cantidadGanada = a.fichasGanadas();
 				a.getJugador().sumarFichas(cantidadGanada);
 				this.restarBanca(cantidadGanada);
 			}
 		}
-		//borra todas las apuestas en realidad quiero
-		//borrar las apuestas de un jugador
-		this.apuestas.removeAll(apuestas);
+		
 		
 	}
 	
@@ -95,7 +90,6 @@ public class Mesa extends ObservableObject{
 	public void retirarJugador(Jugador jugador) {
 		this.cambiarFichas(jugador);
 		this.jugadores.remove(jugador);
-		this.firePropertyChange(JUGADORES, null, this.SELECTED);
 	}
 
 	private void cambiarFichas(Jugador jugador) {
@@ -148,7 +142,6 @@ public class Mesa extends ObservableObject{
 	public void setJugadorActual(Jugador jugadorActual) {
 		this.setProperty(SELECTED, jugadorActual);
 		System.out.println("Se setea a " + jugadorActual.getNombre());
-	  
 	}
 	
 	public List<Jugador> getJugadores() {
