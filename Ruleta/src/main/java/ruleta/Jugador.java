@@ -89,7 +89,8 @@ public class Jugador extends ObservableObject{
 
 	public void apostar(Apuesta apuesta) {		
 		this.getMesa().registrarJugada(apuesta);
-		this.apuestas.add(apuesta);		
+		this.apuestas.add(apuesta);	
+		this.firePropertyChange(APUESTAS, null, this.selected);
 	}	
 	
 	
