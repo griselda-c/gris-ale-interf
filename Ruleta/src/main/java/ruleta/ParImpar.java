@@ -3,7 +3,6 @@ package ruleta;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.uqbar.commons.model.UserException;
 
 public class ParImpar extends Apuesta {
 
@@ -48,7 +47,7 @@ public class ParImpar extends Apuesta {
 	}
 
 	public void setJugador(Jugador jugador) {
-		this.setProperty(JUGADOR, jugador);
+		this.setFieldValue(JUGADOR, jugador);
 	}
 
 	public int getFichas() {
@@ -57,7 +56,7 @@ public class ParImpar extends Apuesta {
 
 	public void setFichas(int fichas) {
 		
-		this.setProperty(FICHAS, fichas);}
+		this.setFieldValue(FICHAS, fichas);}
 	
 
 	public JUGADA getJugadaSeleccionada() {
@@ -65,7 +64,7 @@ public class ParImpar extends Apuesta {
 	}
 
 	public void setJugadaSeleccionada(JUGADA jugadaSeleccionada) {
-		this.setProperty(JUGADASELECCIONADA, jugadaSeleccionada);
+		this.setFieldValue(JUGADASELECCIONADA, jugadaSeleccionada);
 	}
 
 	public String getTipoApuesta() {

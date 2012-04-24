@@ -4,7 +4,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.uqbar.commons.model.ObservableObject;
-import org.uqbar.commons.model.UserException;
 
 // quito todos los metodos observableObject
 abstract class Apuesta extends ObservableObject{	
@@ -55,7 +54,7 @@ abstract class Apuesta extends ObservableObject{
 	}
 
 	public void setJugador(Jugador jugador) {
-		this.setProperty(JUGADOR, jugador);
+		this.setFieldValue(JUGADOR, jugador);
 	}
 
 	public int getFichas() {
@@ -64,7 +63,7 @@ abstract class Apuesta extends ObservableObject{
 
 	public void setFichas(int fichas) {
 		
-		this.setProperty(FICHAS, fichas);
+		this.setFieldValue(FICHAS, fichas);
 	}
 
 	public JUGADA getJugadaSeleccionada() {
@@ -72,7 +71,7 @@ abstract class Apuesta extends ObservableObject{
 	}
 
 	public void setJugadaSeleccionada(JUGADA jugadaSeleccionada) {
-		this.setProperty(JUGADASELECCIONADA, jugadaSeleccionada);
+		this.setFieldValue(JUGADASELECCIONADA, jugadaSeleccionada);
 	}
 
 	public String getTipoApuesta() {

@@ -2,8 +2,8 @@ package ruleta;
 
 import java.util.LinkedList;
 import java.util.List;
+
 import org.uqbar.commons.model.ObservableObject;
-import org.uqbar.commons.model.UserException;
 
 
 public class Mesa extends ObservableObject{
@@ -125,7 +125,7 @@ public class Mesa extends ObservableObject{
 	}
 
 	public void setBanca(int banca) {
-		this.setProperty(BANCA,banca );
+		this.setFieldValue(BANCA,banca );
 	}
 
 	public int getNumeroGanador() {
@@ -133,7 +133,7 @@ public class Mesa extends ObservableObject{
 	}
 
 	public void setNumeroGanador(int numeroGanador) {
-		this.setProperty(NUMEROGANADOR, numeroGanador);
+		this.setFieldValue(NUMEROGANADOR, numeroGanador);
 	}
 
 	public String getNombreJugadorEntrante() {
@@ -141,7 +141,7 @@ public class Mesa extends ObservableObject{
 	}
 
 	public void setNombreJugadorEntrante(String nombreJugadorEntranteT) {
-		this.setProperty(NOMBREJUGADOR, nombreJugadorEntranteT);
+		this.setFieldValue(NOMBREJUGADOR, nombreJugadorEntranteT);
 	}
 
 	public int getDineroJugadorEntrante() {
@@ -149,7 +149,7 @@ public class Mesa extends ObservableObject{
 	}
 
 	public void setDineroJugadorEntrante(int dineroJugadorEntranteT) {
-		this.setProperty(DINEROJUGADOR, dineroJugadorEntranteT);
+		this.setFieldValue(DINEROJUGADOR, dineroJugadorEntranteT);
 	}
 	
 	public Jugador getJugadorActual() {
@@ -159,7 +159,7 @@ public class Mesa extends ObservableObject{
 	}
 	
 	public void setJugadorActual(Jugador jugadorActual) {
-		this.setProperty(SELECTED, jugadorActual);
+		this.setFieldValue(SELECTED, jugadorActual);
 		//System.out.println("Se setea a " + jugadorActual.getNombre());
 	}
 	
@@ -168,7 +168,7 @@ public class Mesa extends ObservableObject{
 	}
 	
 	public void setJugadores(List<Jugador> jugadores) {
-		this.setProperty(JUGADORES, jugadores);
+		this.setFieldValue(JUGADORES, jugadores);
 	}
 	
 	public List<Apuesta> getApuestas() {
@@ -176,7 +176,7 @@ public class Mesa extends ObservableObject{
 	}
 	
 	public void setApuestas(List<Apuesta> apuestas) {
-		this.setProperty(APUESTAS, apuestas);
+		this.setFieldValue(APUESTAS, apuestas);
 	}
 	
 }

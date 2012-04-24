@@ -132,7 +132,7 @@ public class Jugador extends ObservableObject{
 	}
 
 	public void setDinero(int dineroT) {
-		this.setProperty(DINERO, dineroT);
+		this.setFieldValue(DINERO, dineroT);
 	}
 	
 	public String getNombre() {
@@ -140,11 +140,11 @@ public class Jugador extends ObservableObject{
 	}
 
 	public void setNombre(String nombre) {
-		this.setProperty(NOMBRE, nombre);
+		this.setFieldValue(NOMBRE, nombre);
 	}
 	
 	public void setFichas(int fichas) {
-		this.setProperty(FICHAS, fichas);
+		this.setFieldValue(FICHAS, fichas);
 	}
 
 	public int getFichas() {
@@ -156,7 +156,7 @@ public class Jugador extends ObservableObject{
 	}
 
 	public void setApuestas(List<Apuesta> apuestas) {
-		this.setProperty(APUESTAS, apuestas);
+		this.setFieldValue(APUESTAS, apuestas);
 	}
 
 	public Apuesta getSelected() {
@@ -164,7 +164,7 @@ public class Jugador extends ObservableObject{
 	}
 
 	public void setSelected(Apuesta selected) {
-		this.setProperty(SELECTED, selected);
+		this.setFieldValue(SELECTED, selected);
 	}	
 	
 	public int getFichasMas(){
@@ -172,7 +172,7 @@ public class Jugador extends ObservableObject{
 	}
 	
 	public void setFichasMas(int cantidad){
-       this.setProperty(FICHASMAS, cantidad);
+       this.setFieldValue(FICHASMAS, cantidad);
 		
 	}
 

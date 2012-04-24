@@ -14,8 +14,6 @@ import org.uqbar.arena.widgets.tables.Table;
 import org.uqbar.arena.windows.Window;
 import org.uqbar.arena.windows.WindowOwner;
 
-import com.uqbar.commons.collections.Closure;
-
 
 
 public class MesaWindow extends Window<Mesa>{
@@ -91,13 +89,13 @@ public class MesaWindow extends Window<Mesa>{
 	protected void describeResultsGrid(Table<Jugador> table) {
 		Column<Jugador> nombreColumn = new Column<Jugador>(table);
 		nombreColumn.setTitle("Nombre");
-		nombreColumn.setPreferredSize(100);
+		nombreColumn.setFixedSize(100);
 		nombreColumn.bindContentsToProperty(Jugador.NOMBRE);
 		// table.add(column);
 
 		Column<Jugador> fichasColumn = new Column<Jugador>(table);
 		fichasColumn.setTitle("Fichas");
-		fichasColumn.setPreferredSize(100);
+		fichasColumn.setFixedSize(100);
 		fichasColumn.bindContentsToProperty(Jugador.FICHAS);
 		
 		/*Column<Jugador> ingresoColumn = new Column<Jugador>(table);

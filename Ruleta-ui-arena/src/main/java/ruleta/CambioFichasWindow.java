@@ -7,14 +7,14 @@ import org.uqbar.arena.widgets.Label;
 import org.uqbar.arena.widgets.Panel;
 import org.uqbar.arena.widgets.TextBox;
 import org.uqbar.arena.windows.Dialog;
-import org.uqbar.arena.windows.Window;
 import org.uqbar.arena.windows.WindowOwner;
 
 public class CambioFichasWindow extends Dialog<Jugador> {
 
+	private static final long serialVersionUID = 1L;
+
 	public CambioFichasWindow(WindowOwner owner, Jugador model) {
 		super(owner, model);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

@@ -80,12 +80,12 @@ public class JugadorWindow extends Window<Jugador>{
 	private void describeResultsGrid(Table<Apuesta> table) {
 		Column<Apuesta> tipoColumn = new Column<Apuesta>(table);
 		tipoColumn.setTitle("Tipo");
-		tipoColumn.setPreferredSize(100);
+		tipoColumn.setFixedSize(100);
 		tipoColumn.bindContentsToProperty(Apuesta.TIPO);
 
 		Column<Apuesta> fichasColumn = new Column<Apuesta>(table);
 		fichasColumn.setTitle("Fichas");
-		fichasColumn.setPreferredSize(100);
+		fichasColumn.setFixedSize(100);
 		fichasColumn.bindContentsToProperty(Apuesta.FICHAS);
 		
 	}
