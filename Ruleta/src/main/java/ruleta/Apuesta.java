@@ -28,7 +28,8 @@ abstract class Apuesta extends ObservableObject{
 	abstract int fichasGanadas();
 
 	public void confirmar() {		
-		this.jugador.apostar(this);		
+		this.jugador.apostar(this);	
+		System.out.println("cantidad de apuestas" +this.jugador.apuestas.size());
 	}
 
 	public  List<JUGADA> getOpciones(){		

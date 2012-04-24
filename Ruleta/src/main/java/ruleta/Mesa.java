@@ -3,6 +3,7 @@ package ruleta;
 import java.util.LinkedList;
 import java.util.List;
 import org.uqbar.commons.model.ObservableObject;
+import org.uqbar.commons.model.UserException;
 
 
 public class Mesa extends ObservableObject{
@@ -103,6 +104,8 @@ public class Mesa extends ObservableObject{
 		this.cambiarFichas(j);
 		this.jugadores.remove(j);
 		this.firePropertyChange(JUGADORES, null, jugadores);
+		//
+		this.anularJugadorActual();
 		
 	}
 
@@ -150,12 +153,14 @@ public class Mesa extends ObservableObject{
 	}
 	
 	public Jugador getJugadorActual() {
+		
 		return jugadorActual;
+		
 	}
 	
 	public void setJugadorActual(Jugador jugadorActual) {
 		this.setProperty(SELECTED, jugadorActual);
-		System.out.println("Se setea a " + jugadorActual.getNombre());
+		//System.out.println("Se setea a " + jugadorActual.getNombre());
 	}
 	
 	public List<Jugador> getJugadores() {

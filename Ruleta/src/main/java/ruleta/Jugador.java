@@ -30,7 +30,6 @@ public class Jugador extends ObservableObject{
 	}
 
 
-
 	public Jugador(int dineroT, String nombreT){
 		this.setDinero(dineroT);
 		this.setNombre(nombreT);		
