@@ -43,7 +43,7 @@ public class MesaWindow extends Window<Mesa>{
 		
 		Table<Jugador> table = new Table<Jugador>(estadoMesa, Jugador.class);
 		table.bindContentsToProperty(this.getModel().JUGADORES);
-		table.bindSelection(this.getModel().SELECTED);
+		//table.bindSelection(this.getModel().SELECTED);
 		this.describeResultsGrid(table);
 		
 		Panel actionFrame = new Panel(estadoMesa);
@@ -137,7 +137,8 @@ public class MesaWindow extends Window<Mesa>{
 
 
 	private void mostrarConfirmacion(Jugador jugador) {
-		new RetirarseWindow(this,jugador).open();		
+		new RetirarseWindow(this,jugador).open();	
+		
 	}
 
 
@@ -145,3 +146,4 @@ public class MesaWindow extends Window<Mesa>{
 
 
 }
+
