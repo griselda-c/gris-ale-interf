@@ -75,13 +75,10 @@ public class Fila extends Apuesta{
 	}
 
 	public void setFichas(int fichas) {
-		if(fichas > this.getJugador().getFichas())
-		{
-			throw new UserException("cantidad de fichas no valido");
+		
+		this.setProperty(FICHAS, fichas);
 		}
-		else{
-		this.setProperty(FICHAS, fichas);}
-	}
+	
 
 	public JUGADA getJugadaSeleccionada() {
 		return jugadaSeleccionada;

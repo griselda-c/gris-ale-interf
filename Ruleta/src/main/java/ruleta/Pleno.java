@@ -68,12 +68,8 @@ public class Pleno extends Apuesta{
 	}
 
 	public void setFichas(int fichas) {
-		if(fichas > this.getJugador().getFichas())
-		{
-			throw new UserException("cantidad de fichas no valido");
-		}
-		else{
-		this.setProperty(FICHAS, fichas);}
+		
+		this.setProperty(FICHAS, fichas);
 	}
 
 	public JUGADA getJugadaSeleccionada() {

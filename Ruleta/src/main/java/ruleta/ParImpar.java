@@ -56,13 +56,9 @@ public class ParImpar extends Apuesta {
 	}
 
 	public void setFichas(int fichas) {
-		if(fichas > this.getJugador().getFichas())
-		{
-			throw new UserException("cantidad de fichas no valido");
-		}
-		else{
+		
 		this.setProperty(FICHAS, fichas);}
-	}
+	
 
 	public JUGADA getJugadaSeleccionada() {
 		return jugadaSeleccionada;

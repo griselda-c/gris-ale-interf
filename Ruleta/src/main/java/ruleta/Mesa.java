@@ -84,7 +84,6 @@ public class Mesa extends ObservableObject{
 	
 	
 	public void pagarApuestas(){
-		this.girarRuleta();
 		for(Apuesta a:apuestas){
 			if(a.ganaParaNumero(numeroGanador)){
 				int cantidadGanada = a.fichasGanadas();

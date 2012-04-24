@@ -64,7 +64,14 @@ public class Jugador extends ObservableObject{
 	}
 
 	public void restarFichas(int cantidad) {
-		this.setFichas(this.getFichas() - cantidad);
+		if(cantidad > this.getFichas())
+		{
+			throw new UserException("cantidad de fichas no valido");
+		}
+		else{
+		
+			this.setFichas(this.getFichas() - cantidad);
+		}
 	}
 
 	public int unirAMesa(Mesa mesa) {
