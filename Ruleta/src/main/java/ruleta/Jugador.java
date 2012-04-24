@@ -9,7 +9,7 @@ import org.uqbar.commons.model.UserException;
 public class Jugador extends ObservableObject{
 	
 	private int fichas;
-	int dinero;
+	Integer dinero;
 	int fichasMas;
 	private Mesa mesa;
 	String nombre;
@@ -30,7 +30,7 @@ public class Jugador extends ObservableObject{
 	}
 
 
-	public Jugador(int dineroT, String nombreT){
+	public Jugador(Integer dineroT, String nombreT){
 		this.setDinero(dineroT);
 		this.setNombre(nombreT);		
 		/*para comentar*/
@@ -127,11 +127,11 @@ public class Jugador extends ObservableObject{
 		this.mesa = mesa;
 	}
 	
-	public int getDinero() {
+	public Integer getDinero() {
 		return dinero;
 	}
 
-	public void setDinero(int dineroT) {
+	public void setDinero(Integer dineroT) {
 		this.setFieldValue(DINERO, dineroT);
 	}
 	

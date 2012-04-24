@@ -59,10 +59,6 @@ public class JugadorWindow extends Window<Jugador>{
 		
 		Label ask = new Label(datosOpciones);
 		ask.setText("¿Qué desea hacer?");		
-
-		Button retirarse = new Button(datosOpciones);
-		retirarse.setCaption("Retirarse");
-		retirarse.onClick(new MessageSend(this, "retirarse"));
 		
 		Button apostar = new Button(datosOpciones);
 		apostar.setCaption("Apostar");
@@ -89,29 +85,19 @@ public class JugadorWindow extends Window<Jugador>{
 		fichasColumn.bindContentsToProperty(Apuesta.FICHAS);
 		
 	}
-
-	public void retirarse(){
-		//((MesaWindow)this.getOwner()).retirarJugador(this.getModel());
-		this.close();
-	}
 	
 	public void apostar(){
 		new ElegirApuestaWindow(this, this.getModel()).open();
 	}
 	
-	public void cambioDeFichas(){
-	
-		new CambioFichasWindow(this, this.getModel()).open();
-		
+	public void cambioDeFichas(){	
+		new CambioFichasWindow(this, this.getModel()).open();		
 	}
 	
-	public void noVaMas(){
-		
+	public void noVaMas(){		
 		Mesa mesa = this.getModel().getMesa();
-		new RuletaW(this,mesa).open();
-		
-		//this.close();
-		
+		new RuletaW(this,mesa).open();		
+		//this.close();		
 	}
 	
 }

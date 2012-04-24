@@ -13,6 +13,7 @@ import org.uqbar.arena.widgets.tables.Column;
 import org.uqbar.arena.widgets.tables.Table;
 import org.uqbar.arena.windows.Window;
 import org.uqbar.arena.windows.WindowOwner;
+import org.uqbar.lacar.ui.model.Adapter;
 
 
 
@@ -41,7 +42,7 @@ public class MesaWindow extends Window<Mesa>{
 		
 		Table<Jugador> table = new Table<Jugador>(estadoMesa, Jugador.class);
 		table.bindContentsToProperty(this.getModel().JUGADORES);
-		//table.bindSelection(this.getModel().SELECTED);
+		table.bindSelection(this.getModel().SELECTED);
 		this.describeResultsGrid(table);
 		
 		Panel actionFrame = new Panel(estadoMesa);
@@ -73,12 +74,28 @@ public class MesaWindow extends Window<Mesa>{
 		nombreJugador.bindValueToProperty(Mesa.NOMBREJUGADOR);
 
 		Label dineroLabel = new Label(nombreDinero);
-		dineroLabel.setText("Dinero:");
+		dineroLabel.setText("Dinero:");		
+		
+		TextBox dineroJugador = new TextBox(nombreDinero);
+		dineroJugador.bindValueToProperty(Mesa.DINEROJUGADOR).setAdapter(new Adapter<Integer, String>() {
 
-		Panel fixDinero = new Panel(nombreDinero);
-		fixDinero.setLayout(new VerticalLayout());
-		TextBox dineroJugador = new TextBox(fixDinero);
-		dineroJugador.bindValueToProperty(Mesa.DINEROJUGADOR);		
+			public Integer viewToModel(String valueFromView) {
+				return Integer.valueOf(valueFromView);
+			}
+
+			public String modelToView(Integer valueFromModel) {
+				// TODO Auto-generated method stub
+				return String.valueOf(valueFromModel);
+			}
+
+			public Class<Integer> getModelType() {
+				return Integer.class;
+			}
+
+			public Class<String> getViewType() {
+				return String.class;
+			}
+		});
 
 		Button unirse = new Button(nuevoJugador);
 		unirse.setCaption("Unirse");

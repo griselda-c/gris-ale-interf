@@ -27,7 +27,7 @@ public class Testmesa {
 		Assert.assertTrue(jugador1.getDinero() == 2);
 		Assert.assertTrue(jugador1.getFichas() == 8);
 		ruleta.unirJugador(jugador2);
-		Assert.assertEquals(7, jugador2.getDinero());
+		Assert.assertEquals(Integer.valueOf(7), jugador2.getDinero());
 		Assert.assertTrue(jugador2.getFichas() == 26);		
 		
 	}
