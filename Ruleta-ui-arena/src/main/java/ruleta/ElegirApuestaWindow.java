@@ -71,14 +71,7 @@ public class ElegirApuestaWindow extends Window<Jugador> {
 	
 	//generaliza todos los tipos de apuesta
 	public void apostarGeneral(Apuesta apuesta){	
-		final Apuesta apuestaL = apuesta;
 		ApuestaWindow apuestaWindow = new ApuestaWindow(this, apuesta);
-		apuestaWindow.onAccept(new Action() {
-			public void execute() {
-				apuestaL.confirmar();	
-				
-			}
-		});
 		apuestaWindow.open();
 	}
 
