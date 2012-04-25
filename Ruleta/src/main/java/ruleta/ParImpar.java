@@ -3,9 +3,7 @@ package ruleta;
 import java.util.LinkedList;
 import java.util.List;
 
-
 public class ParImpar extends Apuesta {
-
 
 	public ParImpar(Jugador j) {
 		super(j);
@@ -13,15 +11,18 @@ public class ParImpar extends Apuesta {
 		this.jugadaSeleccionada = JUGADA.PAR;
 	}
 
-	boolean ganaParaNumero(int numero) {
-		
-		return ( ( (this.jugadaSeleccionada.getValor() - numero) % 2 ) == 0);
-		
+	boolean ganaParaNumero(int numero) {		
+		return ( ( (this.jugadaSeleccionada.getValor() - numero) % 2 ) == 0);		
 	}
-
 	
-	int fichasGanadas() {		
+	Integer fichasGanadas() {		
 		return (2 * this.fichas) + 1;
+	}
+	
+	public  List<JUGADA> getOpciones(){		
+		List<JUGADA> lista = new LinkedList<JUGADA>();
+		lista.add(JUGADA.PAR);lista.add(JUGADA.IMPAR);
+		return lista;		
 	}
 
 	//Re-escritura de superclase
@@ -30,17 +31,13 @@ public class ParImpar extends Apuesta {
 	public static final String FICHAS = "fichas";
 	public static final String JUGADASELECCIONADA = "jugadaSeleccionada";
 	public static final String TIPO = "tipoApuesta";
-	
+	public static final String FICHASSTRING = "fichasString";
+
+	public String fichasString = "";
 	public Jugador jugador;
-	public int fichas;
+	public Integer fichas;
 	public JUGADA jugadaSeleccionada;
 	public String tipoApuesta = "Paridad";
-	
-	public  List<JUGADA> getOpciones(){		
-		List<JUGADA> lista = new LinkedList<JUGADA>();
-		lista.add(JUGADA.PAR);lista.add(JUGADA.IMPAR);
-		return lista;		
-	}
 	
 	public Jugador getJugador() {
 		return jugador;
@@ -50,14 +47,13 @@ public class ParImpar extends Apuesta {
 		this.setFieldValue(JUGADOR, jugador);
 	}
 
-	public int getFichas() {
+	public Integer getFichas() {
 		return fichas;
 	}
 
-	public void setFichas(int fichas) {
-		
-		this.setFieldValue(FICHAS, fichas);}
-	
+	public void setFichas(Integer fichas) {	
+		this.setFieldValue(FICHAS, fichas);
+	}
 
 	public JUGADA getJugadaSeleccionada() {
 		return jugadaSeleccionada;
@@ -72,6 +68,16 @@ public class ParImpar extends Apuesta {
 	}
 
 	public void setTipoApuesta(String tipoApuesta) {
-		this.tipoApuesta = tipoApuesta;
+		this.setFieldValue(TIPO, jugadaSeleccionada);
 	}
+
+	public String getFichasString() {
+		return fichasString;
+	}
+
+	public void setFichasString(String fichasString) {
+		this.setFieldValue(FICHASSTRING, fichasString);
+		this.setFieldValue(FICHAS, Integer.valueOf(fichasString));		
+	}
+	
 }

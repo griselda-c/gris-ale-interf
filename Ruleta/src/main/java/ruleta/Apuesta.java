@@ -12,11 +12,13 @@ abstract class Apuesta extends ObservableObject{
 	public static final String FICHAS = "fichas";
 	public static final String JUGADASELECCIONADA = "jugadaSeleccionada";
 	public static final String TIPO = "tipoApuesta";
-	
+	public static final String FICHASSTRING = "fichasString";
+
+	public String fichasString = "";
 	public Jugador jugador;
-	public int fichas;
+	public Integer fichas;
 	public JUGADA jugadaSeleccionada;
-	public String tipoApuesta = "Apuesta";
+	public String tipoApuesta = "Apuesta"; //cambia en cada subclase
 	
 	public Apuesta(Jugador j) {
 		this.jugador = j;
@@ -24,7 +26,7 @@ abstract class Apuesta extends ObservableObject{
 	}
 
 	abstract boolean ganaParaNumero(int numero);
-	abstract int fichasGanadas();
+	abstract Integer fichasGanadas();
 
 	public void confirmar() {		
 		this.jugador.apostar(this);	
@@ -57,12 +59,11 @@ abstract class Apuesta extends ObservableObject{
 		this.setFieldValue(JUGADOR, jugador);
 	}
 
-	public int getFichas() {
+	public Integer getFichas() {
 		return fichas;
 	}
 
-	public void setFichas(int fichas) {
-		
+	public void setFichas(Integer fichas) {	
 		this.setFieldValue(FICHAS, fichas);
 	}
 
@@ -79,7 +80,16 @@ abstract class Apuesta extends ObservableObject{
 	}
 
 	public void setTipoApuesta(String tipoApuesta) {
-		this.tipoApuesta = tipoApuesta;
+		this.setFieldValue(TIPO, jugadaSeleccionada);
+	}
+
+	public String getFichasString() {
+		return fichasString;
+	}
+
+	public void setFichasString(String fichasString) {
+		this.setFieldValue(FICHASSTRING, fichasString);
+		this.setFieldValue(FICHAS, Integer.valueOf(fichasString));		
 	}
 	
 

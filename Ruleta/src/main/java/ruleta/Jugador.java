@@ -15,6 +15,7 @@ public class Jugador extends ObservableObject{
 	public Integer fichasMas;
 	public String nombre;
 	public List<Apuesta> apuestas = new LinkedList<Apuesta>();
+	public List<Apuesta> apuestasFake = new LinkedList<Apuesta>();
 	public Apuesta selected;
 
 
@@ -35,9 +36,12 @@ public class Jugador extends ObservableObject{
 		this.setFichas(0);
 		/*para comentar
 		this.mesa = new Mesa();
-		this.apuestas.add(new Pleno(this));
-		this.apuestas.add(new ParImpar(this));
-		this.apuestas.add(new Fila(this));*/
+		this.apuestasFake.add(new Fila(this));
+		this.apuestasFake.add(new Fila(this));
+		this.apuestasFake.add(new Fila(this));
+		this.apuestasFake.add(new Fila(this));
+		this.apuestasFake.add(new Fila(this));
+		this.apuestasFake.add(new Fila(this));*/
 	}
 
 	public void sumarFichas(Integer cantidad) {
@@ -91,7 +95,7 @@ public class Jugador extends ObservableObject{
 		this.firePropertyChange(APUESTAS, null, this.apuestas);
 	}	
 	
-	public void borrarApuestas(Apuesta apuesta){
+	public void borrarApuesta(Apuesta apuesta){
 	this.apuestas.remove(apuesta);
 	this.firePropertyChange(APUESTAS, null, this.apuestas);
 	}
@@ -162,13 +166,14 @@ public class Jugador extends ObservableObject{
 		this.setFieldValue(SELECTED, selected);
 	}	
 	
-	public int getFichasMas(){
+	public Integer getFichasMas(){
 		return this.fichasMas;
 	}
 	
-	public void setFichasMas(int cantidad){
-       this.setFieldValue(FICHASMAS, cantidad);
-		
+	public void setFichasMas(Integer fichasMas) {
+		this.setFieldValue(FICHASMAS, fichasMas);
 	}
+	
+	
 
 }

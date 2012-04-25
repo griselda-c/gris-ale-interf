@@ -20,7 +20,7 @@ public class Mesa extends ObservableObject{
 	public static final String GIRARRULETA   = "girarRuleta";
 	
 	Integer banca;
-	Integer numeroGanador;
+	Integer numeroGanador = 99;
 	String  dineroJugadorEntrante;
 	String  nombreJugadorEntrante;
 	Jugador jugadorActual;
@@ -60,7 +60,7 @@ public class Mesa extends ObservableObject{
 			throw new RuntimeException("La banca se quedo sin un mango");
 		}
 		else{
-			this.banca -= dinero;			
+			this.setBanca(this.getBanca() - dinero);			
 		}
 	}
 	
@@ -74,21 +74,22 @@ public class Mesa extends ObservableObject{
 	
 	public void girarRuleta(){
 		this.setNumeroGanador(this.ruleta.getNumeroGanador());
+		this.pagarApuestas();
+		this.firePropertyChange(JUGADORES, null, jugadores);		
 	}
-	
-	
+		
 	public void pagarApuestas(){
 		for(Apuesta a:apuestas){
 			if(a.ganaParaNumero(numeroGanador)){
+				System.out.println("gana apuesta" + a.getTipoApuesta() + "con numero" + a.getJugadaSeleccionada());
 				int cantidadGanada = a.fichasGanadas();
 				Jugador j = a.getJugador();
 				j.sumarFichas(cantidadGanada);
 				this.restarBanca(cantidadGanada);
-			}
-			
-			a.getJugador().borrarApuestas(a);
+			}			
+			a.getJugador().borrarApuesta(a);
 		}//fin del for
-		
+		this.apuestas.clear();
 	}
 	
 
@@ -141,8 +142,27 @@ public class Mesa extends ObservableObject{
 		return dineroJugadorEntrante;
 	}
 
-	public void setDineroJugadorEntrante(String dineroJugadorEntranteT) {		
+	public void setDineroJugadorEntrante(String dineroJugadorEntranteT) {
+		if (esDijito(dineroJugadorEntranteT)){
+			this.setFieldValue(DINEROJUGADOR, dineroJugadorEntranteT);
+		}
+			
 		this.setFieldValue(DINEROJUGADOR, dineroJugadorEntranteT);
+	}
+	
+	public static boolean esDijito(String dineroJugadorEntranteT) {
+		boolean res = true;
+		if (!dineroJugadorEntranteT.isEmpty()){
+			try {
+				Integer.valueOf(dineroJugadorEntranteT);
+			}
+			catch(NumberFormatException e){
+				res = false;
+
+				System.out.println("-"+ dineroJugadorEntranteT +"-No es dijito");
+			}	
+		}
+		return res;		
 	}
 	
 	public Jugador getJugadorActual() {		
@@ -159,7 +179,7 @@ public class Mesa extends ObservableObject{
 	}
 	
 	public void setJugadores(List<Jugador> jugadores) {
-		this.setFieldValue(JUGADORES, jugadores);
+		this.setFieldValue(JUGADORES, jugadores);		
 	}
 	
 	public List<Apuesta> getApuestas() {

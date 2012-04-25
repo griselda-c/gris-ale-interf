@@ -7,7 +7,7 @@ public class RuletaApplication extends Application{
 
 	@Override
 	protected Window<Mesa> createMainWindow() {
-		return new MesaWindow(this, new Mesa(1000));
+		return new MesaWindow(this, new Mesa(10000));
 	}
 
 	public static void main(String[] args)  {

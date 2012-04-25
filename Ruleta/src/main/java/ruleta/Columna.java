@@ -5,8 +5,6 @@ import java.util.List;
 
 public class Columna extends Apuesta{
 
-
-
 	public Columna(Jugador j) {
 		super(j);
 		this.jugador = j;
@@ -14,13 +12,17 @@ public class Columna extends Apuesta{
 	}
 
 	boolean ganaParaNumero(int numero) {
-		//return ((this.jugadaSeleccionada.getValor() % 3) == (numero % 3));
-		return this.jugadaSeleccionada.getValor() == (numero%3);
-		
+		return this.jugadaSeleccionada.getValor() == (numero%3 + 1);		
 	}
 	
-	int fichasGanadas() {
+	Integer fichasGanadas() {
 		return 3 * this.fichas;
+	}
+	
+	public  List<JUGADA> getOpciones(){		
+		List<JUGADA> lista = new LinkedList<JUGADA>();
+		lista.add(JUGADA.V1);lista.add(JUGADA.V2);lista.add(JUGADA.V3);
+		return lista;		
 	}
 
 	//Re-escritura de superclase
@@ -29,17 +31,13 @@ public class Columna extends Apuesta{
 	public static final String FICHAS = "fichas";
 	public static final String JUGADASELECCIONADA = "jugadaSeleccionada";
 	public static final String TIPO = "tipoApuesta";
-	
+	public static final String FICHASSTRING = "fichasString";
+
+	public String fichasString = "";
 	public Jugador jugador;
-	public int fichas;
+	public Integer fichas;
 	public JUGADA jugadaSeleccionada;
 	public String tipoApuesta = "Columna";
-	
-	public  List<JUGADA> getOpciones(){		
-		List<JUGADA> lista = new LinkedList<JUGADA>();
-		lista.add(JUGADA.V1);lista.add(JUGADA.V2);lista.add(JUGADA.V3);
-		return lista;		
-	}
 	
 	public Jugador getJugador() {
 		return jugador;
@@ -49,15 +47,13 @@ public class Columna extends Apuesta{
 		this.setFieldValue(JUGADOR, jugador);
 	}
 
-	public int getFichas() {
+	public Integer getFichas() {
 		return fichas;
 	}
 
-	public void setFichas(int fichas) {
-		
+	public void setFichas(Integer fichas) {	
 		this.setFieldValue(FICHAS, fichas);
-		}
-	
+	}
 
 	public JUGADA getJugadaSeleccionada() {
 		return jugadaSeleccionada;
@@ -72,17 +68,16 @@ public class Columna extends Apuesta{
 	}
 
 	public void setTipoApuesta(String tipoApuesta) {
-		this.tipoApuesta = tipoApuesta;
+		this.setFieldValue(TIPO, jugadaSeleccionada);
 	}
-	/*
-	public static void main(String[] args) {
-		Jugador j = new Jugador(200, "jorge");
-		Columna c = new Columna(j);
-		c.setFichas(3);
-		c.setJugadaSeleccionada(JUGADA.V2);
-		c.ganaParaNumero(5);
-		System.out.println(c.ganaParaNumero(7));
-		
+
+	public String getFichasString() {
+		return fichasString;
 	}
-	*/
+
+	public void setFichasString(String fichasString) {
+		this.setFieldValue(FICHASSTRING, fichasString);
+		this.setFieldValue(FICHAS, Integer.valueOf(fichasString));		
+	}
+	
 }

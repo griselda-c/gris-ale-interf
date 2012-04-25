@@ -4,8 +4,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Pleno extends Apuesta{
-	
-
 
 	public Pleno(Jugador j) {
 		super(j);
@@ -18,22 +16,10 @@ public class Pleno extends Apuesta{
 		return (this.jugadaSeleccionada.getValor() == numero);
 	}
 
-	public int fichasGanadas()
+	public Integer fichasGanadas()
 	{
 		return ((this.fichas * 36) + 1);		
 	}
-	
-	//Re-escritura de superclase
-	
-	public static final String JUGADOR = "jugador";
-	public static final String FICHAS = "fichas";
-	public static final String JUGADASELECCIONADA = "jugadaSeleccionada";
-	public static final String TIPO = "tipoApuesta";
-	
-	public Jugador jugador;
-	public int fichas;
-	public JUGADA jugadaSeleccionada;
-	public String tipoApuesta = "Pleno";
 	
 	public  List<JUGADA> getOpciones(){		
 		List<JUGADA> lista = new LinkedList<JUGADA>();
@@ -52,6 +38,19 @@ public class Pleno extends Apuesta{
 		lista.add(JUGADA.V36);
 		return lista;		
 	}
+	//Re-escritura de superclase
+	
+	public static final String JUGADOR = "jugador";
+	public static final String FICHAS = "fichas";
+	public static final String JUGADASELECCIONADA = "jugadaSeleccionada";
+	public static final String TIPO = "tipoApuesta";
+	public static final String FICHASSTRING = "fichasString";
+
+	public String fichasString = "";
+	public Jugador jugador;
+	public Integer fichas;
+	public JUGADA jugadaSeleccionada;
+	public String tipoApuesta = "Pleno";
 	
 	public Jugador getJugador() {
 		return jugador;
@@ -61,12 +60,11 @@ public class Pleno extends Apuesta{
 		this.setFieldValue(JUGADOR, jugador);
 	}
 
-	public int getFichas() {
+	public Integer getFichas() {
 		return fichas;
 	}
 
-	public void setFichas(int fichas) {
-		
+	public void setFichas(Integer fichas) {	
 		this.setFieldValue(FICHAS, fichas);
 	}
 
@@ -83,11 +81,16 @@ public class Pleno extends Apuesta{
 	}
 
 	public void setTipoApuesta(String tipoApuesta) {
-		this.tipoApuesta = tipoApuesta;
+		this.setFieldValue(TIPO, jugadaSeleccionada);
 	}
-	
-	
-	
-	
+
+	public String getFichasString() {
+		return fichasString;
+	}
+
+	public void setFichasString(String fichasString) {
+		this.setFieldValue(FICHASSTRING, fichasString);
+		this.setFieldValue(FICHAS, Integer.valueOf(fichasString));		
+	}
 
 }

@@ -17,6 +17,8 @@ import com.uqbar.commons.collections.Closure;
 
 
 public class JugadorWindow extends Window<Jugador>{
+	
+	public Table<Apuesta> table;
 
 	public JugadorWindow(WindowOwner owner, Jugador model) {
 		super(owner, model);
@@ -41,11 +43,23 @@ public class JugadorWindow extends Window<Jugador>{
 		Label sGrid = new Label(grid);
 		sGrid.setText("Mesa CIU");
 				
-		Table<Apuesta> table = new Table<Apuesta>(grid, Apuesta.class);
+		table = new Table<Apuesta>(grid, Apuesta.class);
 		table.bindContentsToProperty(this.getModel().APUESTAS);
 		table.bindSelection(this.getModel().SELECTED);
 
 		this.describeResultsGrid(table);
+		
+		Panel accionesApuesta = new Panel(grid);
+		accionesApuesta.setLayout(new ColumnLayout(2));
+
+		Button apostar = new Button(accionesApuesta);
+		apostar.setCaption("Apostar");
+		apostar.onClick(new MessageSend(this, "apostar"));
+		
+		Button concluido = new Button(accionesApuesta);
+		concluido.setCaption("Concluido");
+		concluido.onClick(new MessageSend(this, "close"));
+		
 		
 		Panel datosOpciones = new Panel(columnas);
 		datosOpciones.setLayout(new ColumnLayout(1));
@@ -64,18 +78,11 @@ public class JugadorWindow extends Window<Jugador>{
 		
 		Label ask = new Label(datosOpciones);
 		ask.setText("¿Qué desea hacer?");		
-		
-		Button apostar = new Button(datosOpciones);
-		apostar.setCaption("Apostar");
-		apostar.onClick(new MessageSend(this, "apostar"));
-		
+				
 		Button cambiar = new Button(datosOpciones);
 		cambiar.setCaption("Cambiar fichas");
-		cambiar.onClick(new MessageSend(this, "cambioDeFichas"));
-		
-		Button ruleta = new Button(grid);
-		ruleta.setCaption("No va mas");
-		ruleta.onClick(new MessageSend(this,"noVaMas"));				
+		cambiar.onClick(new MessageSend(this, "cambioDeFichas"));		
+					
 	}
 	
 	private void describeResultsGrid(Table<Apuesta> table) {
@@ -98,11 +105,9 @@ public class JugadorWindow extends Window<Jugador>{
 	public void cambioDeFichas(){	
 		new CambioFichasWindow(this, this.getModel()).open();		
 	}
-	
-	public void noVaMas(){		
-		Mesa mesa = this.getModel().getMesa();
-		new RuletaW(this,mesa).open();		
-		//this.close();		
+
+	public void clean() {
+		table.bindContentsToProperty(this.getModel().APUESTAS);		
 	}
 	
 }

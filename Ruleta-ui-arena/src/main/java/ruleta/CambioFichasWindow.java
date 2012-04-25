@@ -2,6 +2,7 @@ package ruleta;
 
 import org.uqbar.arena.actions.MessageSend;
 import org.uqbar.arena.layout.ColumnLayout;
+import org.uqbar.arena.layout.HorizontalLayout;
 import org.uqbar.arena.widgets.Button;
 import org.uqbar.arena.widgets.Label;
 import org.uqbar.arena.widgets.Panel;
@@ -23,10 +24,14 @@ public class CambioFichasWindow extends Dialog<Jugador> {
 		mainPanel.setLayout(new ColumnLayout(3));
 		
 		
-		new Label(mainPanel).setText("Cuenta con");
-		new Label(mainPanel).bindValueToProperty(Jugador.DINERO);
-		new Label(mainPanel).setText("$");
-		new Label(mainPanel).setText("cambiar");
+		
+		Panel fixPesos = new Panel(mainPanel);
+		fixPesos.setLayout(new HorizontalLayout());
+		
+		new Label(fixPesos).setText("Cuenta con");
+		new Label(fixPesos).setText("$");
+		new Label(fixPesos).bindValueToProperty(Jugador.DINERO);
+		new Label(mainPanel).setText("Cambiar");
 		new TextBox(mainPanel).bindValueToProperty(Jugador.FICHASMAS);
 		
 		Panel botonesPanel = new Panel(mainPanel);

@@ -4,6 +4,7 @@ package ruleta;
 
 import org.uqbar.arena.actions.MessageSend;
 import org.uqbar.arena.layout.ColumnLayout;
+import org.uqbar.arena.layout.HorizontalLayout;
 import org.uqbar.arena.layout.VerticalLayout;
 import org.uqbar.arena.widgets.Button;
 import org.uqbar.arena.widgets.Label;
@@ -32,12 +33,28 @@ public class MesaWindow extends Window<Mesa>{
 	public void createContents(Panel mainPanel) {
 		this.setTitle("Ruleta el Ocho");		
 		mainPanel.setLayout(new VerticalLayout());
-				
+						
 		Panel mainFrame = new Panel(mainPanel);
 		mainFrame.setLayout(new ColumnLayout(2));
 		
 		Panel estadoMesa = new Panel(mainFrame);
 		estadoMesa.setLayout(new VerticalLayout());
+		
+		Panel infoMesa = new Panel(estadoMesa);
+		estadoMesa.setLayout(new VerticalLayout());	
+		
+		Panel fixinfoMesa1 = new Panel(infoMesa);
+		fixinfoMesa1.setLayout(new HorizontalLayout());
+		
+		new Label(fixinfoMesa1).setText("Banca $ ");
+		new Label(fixinfoMesa1).bindValueToProperty(Mesa.BANCA);
+		
+		Panel fixinfoMesa2 = new Panel(infoMesa);
+		fixinfoMesa2.setLayout(new ColumnLayout(2));
+		
+		new Label(fixinfoMesa2).setText("Número ganador ");
+		new Label(fixinfoMesa2).bindValueToProperty(Mesa.NUMEROGANADOR);
+		
 		
 		Table<Jugador> table = new Table<Jugador>(estadoMesa, Jugador.class);
 		table.bindContentsToProperty(this.getModel().JUGADORES);
@@ -45,7 +62,7 @@ public class MesaWindow extends Window<Mesa>{
 		this.describeResultsGrid(table);
 		
 		Panel actionFrame = new Panel(estadoMesa);
-		actionFrame.setLayout(new ColumnLayout(2));
+		actionFrame.setLayout(new ColumnLayout(3));
 		
 		Button retirar = new Button(actionFrame);
 		retirar.setCaption("Retirar");
@@ -54,6 +71,10 @@ public class MesaWindow extends Window<Mesa>{
 		Button apostar = new Button(actionFrame);
 		apostar.setCaption("Apostar");
 		apostar.onClick(new MessageSend(this, "apostar"));
+		
+		Button ruleta = new Button(actionFrame);
+		ruleta.setCaption("No va mas");
+		ruleta.onClick(new MessageSend(this,"noVaMas"));	
 		
 		Panel nuevoJugador = new Panel(mainFrame);
 		nuevoJugador.setLayout(new ColumnLayout(1));
@@ -80,7 +101,8 @@ public class MesaWindow extends Window<Mesa>{
 
 		Button unirse = new Button(nuevoJugador);
 		unirse.setCaption("Unirse");
-		unirse.onClick(new MessageSend(this, "unirJugador"));	
+		unirse.onClick(new MessageSend(this, "unirJugador"));
+		
 	}
 	
 	
@@ -111,13 +133,15 @@ public class MesaWindow extends Window<Mesa>{
 		direccionColumn.setPreferredSize(200);
 		direccionColumn.bindContentsToProperty(Jugador.DIRECCION);*/
 	}
+	
+
+	
 
 
 	public void unirJugador() {
 		this.getModel().unirJugadorActual();
 		Jugador jugador = this.getModel().getJugadorActual();		
 		jugador.setMesa(this.getModel());
-		//new JugadorWindow(this, jugador).open();
 	}
 	
 	public void retirarJugador(){
@@ -133,8 +157,14 @@ public class MesaWindow extends Window<Mesa>{
 
 
 	private void mostrarConfirmacion(Jugador jugador) {
-		new RetirarseWindow(this,jugador).open();	
+		new RetirarseWindow(this, jugador).open();	
 		
+	}
+	
+	public void noVaMas(){		
+		this.getModel().girarRuleta();	
+		//new RuletaW(this,mesa).open();		
+		//this.close();		
 	}
 
 
