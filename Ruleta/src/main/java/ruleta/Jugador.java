@@ -173,6 +173,10 @@ public class Jugador extends ObservableObject{
 	public void setFichasMas(Integer fichasMas) {
 		this.setFieldValue(FICHASMAS, fichasMas);
 	}
+
+	public void sumarDinero(int dinero) {
+		this.setDinero(this.getDinero() + dinero);
+	}
 	
 	
 
