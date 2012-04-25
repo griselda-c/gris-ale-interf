@@ -75,7 +75,8 @@ public class ElegirApuestaWindow extends Window<Jugador> {
 		ApuestaWindow apuestaWindow = new ApuestaWindow(this, apuesta);
 		apuestaWindow.onAccept(new Action() {
 			public void execute() {
-				apuestaL.confirmar();				
+				apuestaL.confirmar();	
+				
 			}
 		});
 		apuestaWindow.open();

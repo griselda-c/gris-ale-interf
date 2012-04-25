@@ -66,6 +66,7 @@ public class ApuestaWindow extends Dialog<Apuesta> {
 		numero.bindValueToProperty(Apuesta.JUGADASELECCIONADA);
 				
 	}
+	
 
 
 	private static final long serialVersionUID = 1L;
