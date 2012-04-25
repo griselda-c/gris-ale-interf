@@ -7,8 +7,7 @@ public class Pleno extends Apuesta{
 
 	public Pleno(Jugador j) {
 		super(j);
-		this.jugador = j;
-		this.jugadaSeleccionada = JUGADA.V0;
+		this.jugadaSeleccionada =new  OpcionJugada("0",0);
 	}
 
 	public boolean ganaParaNumero(int numero)
@@ -21,76 +20,17 @@ public class Pleno extends Apuesta{
 		return ((this.fichas * 36) + 1);		
 	}
 	
-	public  List<JUGADA> getOpciones(){		
-		List<JUGADA> lista = new LinkedList<JUGADA>();
-		lista.add(JUGADA.V0);lista.add(JUGADA.V1);lista.add(JUGADA.V2);
-		lista.add(JUGADA.V3);lista.add(JUGADA.V4);lista.add(JUGADA.V5);
-		lista.add(JUGADA.V6);lista.add(JUGADA.V7);lista.add(JUGADA.V8);
-		lista.add(JUGADA.V9);lista.add(JUGADA.V10);lista.add(JUGADA.V11);
-		lista.add(JUGADA.V12);lista.add(JUGADA.V13);lista.add(JUGADA.V14);
-		lista.add(JUGADA.V15);lista.add(JUGADA.V16);lista.add(JUGADA.V17);
-		lista.add(JUGADA.V18);lista.add(JUGADA.V19);lista.add(JUGADA.V20);
-		lista.add(JUGADA.V21);lista.add(JUGADA.V22);lista.add(JUGADA.V23);
-		lista.add(JUGADA.V24);lista.add(JUGADA.V25);lista.add(JUGADA.V26);
-		lista.add(JUGADA.V27);lista.add(JUGADA.V28);lista.add(JUGADA.V29);
-		lista.add(JUGADA.V30);lista.add(JUGADA.V31);lista.add(JUGADA.V32);
-		lista.add(JUGADA.V33);lista.add(JUGADA.V34);lista.add(JUGADA.V35);
-		lista.add(JUGADA.V36);
+	public  List<OpcionJugada> getOpciones(){		
+		List<OpcionJugada> lista = new LinkedList<OpcionJugada>();
+		for (int i = 0; i <= 36; i++) {
+			lista.add(new OpcionJugada(String.valueOf(i),i));
+		}
 		return lista;		
 	}
-	//Re-escritura de superclase
 	
-	public static final String JUGADOR = "jugador";
-	public static final String FICHAS = "fichas";
-	public static final String JUGADASELECCIONADA = "jugadaSeleccionada";
-	public static final String TIPO = "tipoApuesta";
-	public static final String FICHASSTRING = "fichasString";
-
-	public String fichasString = "";
-	public Jugador jugador;
-	public Integer fichas;
-	public JUGADA jugadaSeleccionada;
-	public String tipoApuesta = "Pleno";
-	
-	public Jugador getJugador() {
-		return jugador;
-	}
-
-	public void setJugador(Jugador jugador) {
-		this.setFieldValue(JUGADOR, jugador);
-	}
-
-	public Integer getFichas() {
-		return fichas;
-	}
-
-	public void setFichas(Integer fichas) {	
-		this.setFieldValue(FICHAS, fichas);
-	}
-
-	public JUGADA getJugadaSeleccionada() {
-		return jugadaSeleccionada;
-	}
-
-	public void setJugadaSeleccionada(JUGADA jugadaSeleccionada) {
-		this.setFieldValue(JUGADASELECCIONADA, jugadaSeleccionada);
-	}
-
 	public String getTipoApuesta() {
-		return tipoApuesta;
+		return "Pleno";
 	}
 
-	public void setTipoApuesta(String tipoApuesta) {
-		this.setFieldValue(TIPO, jugadaSeleccionada);
-	}
-
-	public String getFichasString() {
-		return fichasString;
-	}
-
-	public void setFichasString(String fichasString) {
-		this.setFieldValue(FICHASSTRING, fichasString);
-		this.setFieldValue(FICHAS, Integer.valueOf(fichasString));		
-	}
 
 }
