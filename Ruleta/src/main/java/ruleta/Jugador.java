@@ -8,11 +8,12 @@ import org.uqbar.commons.model.UserException;
 
 public class Jugador extends ObservableObject{
 	
-	private int fichas;
-	Integer dinero;
-	int fichasMas;
-	private Mesa mesa;
-	String nombre;
+
+	public Mesa mesa;
+	public Integer fichas;
+	public Integer dinero;
+	public Integer fichasMas;
+	public String nombre;
 	public List<Apuesta> apuestas = new LinkedList<Apuesta>();
 	public Apuesta selected;
 
@@ -25,59 +26,49 @@ public class Jugador extends ObservableObject{
 	public static final String MONTOAPUESTA = "montoApuestaActual";
 	public static final String FICHASMAS = "fichasMas";
 	
-	public Mesa getMesa() {
-		return mesa;
-	}
+
 
 
 	public Jugador(Integer dineroT, String nombreT){
 		this.setDinero(dineroT);
-		this.setNombre(nombreT);		
-		/*para comentar*/
+		this.setNombre(nombreT);	
+		this.setFichas(0);
+		/*para comentar
 		this.mesa = new Mesa();
 		this.apuestas.add(new Pleno(this));
 		this.apuestas.add(new ParImpar(this));
-		this.apuestas.add(new Fila(this));
+		this.apuestas.add(new Fila(this));*/
 	}
 
-	public void sumarFichas(int cantidad) {
+	public void sumarFichas(Integer cantidad) {
 		this.setFichas(this.getFichas() + cantidad);
 	}
 	
 	public void sumarFichas(){
-		/* la cantidad de fichas que se suma
-		   no puede ser mayor a la cantidad de dinero
-		   del jugador
-		*/
-		
-		if(this.fichasMas > this.getDinero())
-		{
+		/* la cantidad de fichas que se suma no puede ser mayor a la cantidad de dinero del jugador */
+		if(this.fichasMas > this.getDinero())		{
 			throw new UserException("no tiene dinero suficiente para esa cantidad");
-		}
-		
-		else{
-		
-		this.sumarFichas(fichasMas);
-		this.dinero = (this.dinero - fichasMas) ;
+		}		
+		else{		
+			this.sumarFichas(fichasMas);
+			this.dinero = (this.dinero - fichasMas) ;
 		}
 	}
 
-	public void restarFichas(int cantidad) {
-		if(cantidad > this.getFichas())
-		{
+	public void restarFichas(Integer cantidad) {
+		if(cantidad > this.getFichas()){
 			throw new UserException("cantidad de fichas no valido");
 		}
-		else{
-		
+		else{		
 			this.setFichas(this.getFichas() - cantidad);
 		}
 	}
 
-	public int unirAMesa(Mesa mesa) {
+	public Integer unirAMesa(Mesa mesa) {
 		this.mesa = mesa;
-		int fichasTemp = dinero*80/100;
-		this.fichas += fichasTemp;
-		this.dinero -= fichasTemp;		
+		Integer fichasTemp = this.getDinero()*80/100;
+		this.setFichas(this.getFichas() + fichasTemp);
+		this.setDinero(this.getDinero() - fichasTemp);
 		return fichasTemp;
 	}
 
@@ -123,6 +114,10 @@ public class Jugador extends ObservableObject{
 	
 	//get & set
 	
+	public Mesa getMesa() {
+		return mesa;
+	}
+	
 	public void setMesa(Mesa mesa) {
 		this.mesa = mesa;
 	}
@@ -143,11 +138,11 @@ public class Jugador extends ObservableObject{
 		this.setFieldValue(NOMBRE, nombre);
 	}
 	
-	public void setFichas(int fichas) {
+	public void setFichas(Integer fichas) {
 		this.setFieldValue(FICHAS, fichas);
 	}
 
-	public int getFichas() {
+	public Integer getFichas() {
 		return fichas;
 	}
 

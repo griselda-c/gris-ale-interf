@@ -7,24 +7,22 @@ import org.uqbar.commons.model.ObservableObject;
 
 
 public class Mesa extends ObservableObject{
-	
-	public static final String BANCA = "banca";
-	public static final String NUMEROGANADOR = "numeroGanador";
-	public static final String GIRARRULETA = "girarRuleta";
 
-	public final String SELECTED = "jugadorActual";
-	public final String JUGADORES = "jugadores";
-	
+
+	public        final String SELECTED      = "jugadorActual";
+	public        final String JUGADORES     = "jugadores";	
 	public static final String NOMBREJUGADOR = "nombreJugadorEntrante";
 	public static final String DINEROJUGADOR = "dineroJugadorEntrante";
-	public static final String UNIRJUGADOR = "unirJugadorActual";
-	public static final String APUESTAS = "apuestas";
+	public static final String UNIRJUGADOR   = "unirJugadorActual";
+	public static final String APUESTAS      = "apuestas";	
+	public static final String BANCA         = "banca";
+	public static final String NUMEROGANADOR = "numeroGanador";
+	public static final String GIRARRULETA   = "girarRuleta";
 	
-	int banca;
-	int numeroGanador = 0;
-
-	int dineroJugadorEntrante;
-	String nombreJugadorEntrante;
+	Integer banca;
+	Integer numeroGanador;
+	String  dineroJugadorEntrante;
+	String  nombreJugadorEntrante;
 	Jugador jugadorActual;
 	
 	public Ruleta ruleta = new Ruleta();
@@ -39,19 +37,13 @@ public class Mesa extends ObservableObject{
 
 	public Mesa(int banca){
 		this.banca = banca;
-		
-		//comentar
-		this.jugadores.add(new Jugador(100, "Jose"));
-		this.jugadores.add(new Jugador(200, "Pepe"));
 	}
 	
-	public void unirJugadorActual() {
-		this.unirJugador(new Jugador(this.dineroJugadorEntrante, this.nombreJugadorEntrante));
-		this.setDineroJugadorEntrante(0); // limpia la pantalla
-		this.setNombreJugadorEntrante("");//limpia la pantalla*/
+	public void unirJugadorActual() {		
+		this.unirJugador(new Jugador((Integer.valueOf(this.dineroJugadorEntrante)), this.nombreJugadorEntrante));
+		this.setDineroJugadorEntrante("");  // limpia la pantalla
+		this.setNombreJugadorEntrante("");  //limpia la pantalla*/
 	}
-	
-	
 	
 	public void unirJugador(Jugador unJugador) {
 		this.setBanca(this.getBanca() + unJugador.unirAMesa(this));
@@ -63,7 +55,7 @@ public class Mesa extends ObservableObject{
 		System.out.println("juagdor" + jugadorActual.getNombre());
 	}
 
-	private void restarBanca(int dinero) {
+	private void restarBanca(Integer dinero) {
 		if(this.banca < dinero){
 			throw new RuntimeException("La banca se quedo sin un mango");
 		}
@@ -71,14 +63,15 @@ public class Mesa extends ObservableObject{
 			this.banca -= dinero;			
 		}
 	}
-	// convertir en void
+	
+
 	public void registrarJugada(Apuesta apuesta){
 		int cantidadApostada = apuesta.getFichas();
 		apuesta.getJugador().restarFichas(cantidadApostada);
 		this.apuestas.add(apuesta);
 		this.setBanca(this.getBanca() + cantidadApostada);
-		//return apuesta;
 	}
+	
 	public void girarRuleta(){
 		this.setNumeroGanador(this.ruleta.getNumeroGanador());
 	}
@@ -120,19 +113,19 @@ public class Mesa extends ObservableObject{
 	
 	//getters y setters
 
-	public int getBanca() {
+	public Integer getBanca() {
 		return banca;
 	}
 
-	public void setBanca(int banca) {
+	public void setBanca(Integer banca) {
 		this.setFieldValue(BANCA,banca );
 	}
 
-	public int getNumeroGanador() {
+	public Integer getNumeroGanador() {
 		return numeroGanador;
 	}
 
-	public void setNumeroGanador(int numeroGanador) {
+	public void setNumeroGanador(Integer numeroGanador) {
 		this.setFieldValue(NUMEROGANADOR, numeroGanador);
 	}
 
@@ -144,23 +137,21 @@ public class Mesa extends ObservableObject{
 		this.setFieldValue(NOMBREJUGADOR, nombreJugadorEntranteT);
 	}
 
-	public int getDineroJugadorEntrante() {
+	public String getDineroJugadorEntrante() {
 		return dineroJugadorEntrante;
 	}
 
-	public void setDineroJugadorEntrante(int dineroJugadorEntranteT) {
+	public void setDineroJugadorEntrante(String dineroJugadorEntranteT) {		
 		this.setFieldValue(DINEROJUGADOR, dineroJugadorEntranteT);
 	}
 	
-	public Jugador getJugadorActual() {
-		
-		return jugadorActual;
-		
+	public Jugador getJugadorActual() {		
+		return jugadorActual;		
 	}
 	
 	public void setJugadorActual(Jugador jugadorActual) {
 		this.setFieldValue(SELECTED, jugadorActual);
-		//System.out.println("Se setea a " + jugadorActual.getNombre());
+		System.out.println("Se setea a " + jugadorActual.getNombre());
 	}
 	
 	public List<Jugador> getJugadores() {

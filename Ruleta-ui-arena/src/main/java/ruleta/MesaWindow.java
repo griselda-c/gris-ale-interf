@@ -13,7 +13,6 @@ import org.uqbar.arena.widgets.tables.Column;
 import org.uqbar.arena.widgets.tables.Table;
 import org.uqbar.arena.windows.Window;
 import org.uqbar.arena.windows.WindowOwner;
-import org.uqbar.lacar.ui.model.Adapter;
 
 
 
@@ -77,25 +76,7 @@ public class MesaWindow extends Window<Mesa>{
 		dineroLabel.setText("Dinero:");		
 		
 		TextBox dineroJugador = new TextBox(nombreDinero);
-		dineroJugador.bindValueToProperty(Mesa.DINEROJUGADOR).setAdapter(new Adapter<Integer, String>() {
-
-			public Integer viewToModel(String valueFromView) {
-				return Integer.valueOf(valueFromView);
-			}
-
-			public String modelToView(Integer valueFromModel) {
-				// TODO Auto-generated method stub
-				return String.valueOf(valueFromModel);
-			}
-
-			public Class<Integer> getModelType() {
-				return Integer.class;
-			}
-
-			public Class<String> getViewType() {
-				return String.class;
-			}
-		});
+		dineroJugador.bindValueToProperty(Mesa.DINEROJUGADOR);
 
 		Button unirse = new Button(nuevoJugador);
 		unirse.setCaption("Unirse");

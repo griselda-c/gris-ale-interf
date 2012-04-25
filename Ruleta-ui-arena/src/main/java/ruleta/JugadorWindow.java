@@ -10,6 +10,10 @@ import org.uqbar.arena.widgets.tables.Column;
 import org.uqbar.arena.widgets.tables.Table;
 import org.uqbar.arena.windows.Window;
 import org.uqbar.arena.windows.WindowOwner;
+import org.uqbar.lacar.ui.model.ColumnBuilder;
+import org.uqbar.lacar.ui.model.ControlBuilder;
+
+import com.uqbar.commons.collections.Closure;
 
 
 public class JugadorWindow extends Window<Jugador>{
@@ -21,6 +25,7 @@ public class JugadorWindow extends Window<Jugador>{
 	private static final long serialVersionUID = 1L;
 
 	public void createContents(Panel mainPanel) {
+
 		
 		mainPanel.setLayout(new VerticalLayout());
 		
