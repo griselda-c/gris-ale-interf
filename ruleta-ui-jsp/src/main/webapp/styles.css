@@ -1,0 +1,13 @@
+
+body{
+	width: 800px;
+	margin: 0px auto;
+	background-color: #383;
+}
+
+#datos{
+	width: 400px;
+	margin: 0px auto;
+	padding: 20px;
+	background-color: red;
+}

@@ -15,30 +15,21 @@
 	// abro%><p>${error}</p><%
 	}%>
 
-<form method="post" action="adjuntarjugador" id="datos">
-	<p>Ingrese su nombre:<br/>
-	<input type="text" name="nombreJugador" value="<%
+
+	<p>Bienvenido:<%
 	if (request.getSession().getAttribute("jugador") != null) {
 	// abro%>${sessionScope.jugador.nombre}<%
-	}
-	else{
-	// abro%><%
-	}// cierro %>"/>
+	}%></p>
 	<br/><br/>
 	
-	Ingrese su dinero:<br/>
-	<input type="text" name="dineroJugador" value="<%
+	<p>Fichas:<%
 	if (request.getSession().getAttribute("jugador") != null) {
-	// abro%>${sessionScope.jugador.dinero}<%
-	}
-	else{
-	// abro%><%
-	}// cierro %>"/>
+	// abro%>${sessionScope.jugador.fichas}<%
+	}%>"</p>
 	<br/><br/>
-	</p>
 	
-	<input type="submit" value="Iniciar juego" />	
-</form>
+
+
 
 
 </body>
