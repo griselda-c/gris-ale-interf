@@ -1,0 +1,101 @@
+#tablero {
+    background-image: url(../images/bg_table.png);	
+	width: 820px;
+	height: 380px;
+	background-color: none;
+	margin: 20px auto 0px auto;
+	padding: 10px;
+	border: solid 2px black;	
+}
+
+.fila{
+	width: 820px;
+	height: 92px;
+	background-color: none;
+	margin: 0px auto 0px auto;	
+	overflow: hidden;
+}
+
+.rojo a, .negro a, .afila a, .acolumna a, .zero a{
+	width: 51px;
+	height: 76px;
+	float: left;
+	margin: 4px 0px 0px 4px;
+	padding: 0px;	
+	text-align: center;
+    font-weight: bold;
+	display: block;
+	text-decoration: none;
+}
+
+.rojo a:hover, .negro a:hover, .afila a:hover, .acolumna a:hover, .zero a:hover{	
+	color: white;
+	border: solid 4px white;
+}
+
+
+.zero a{
+	border: solid 4px #085;	
+	color: #040;
+}
+
+
+.afila  a{
+	border: solid 4px green;	
+	color: green;
+}
+
+.acolumna a{
+	border: solid 4px #800;	
+	color: black;
+}
+
+.negro a{
+	border: solid 4px black;
+	color: black;	
+}
+
+.rojo a{
+	border: solid 4px red;
+	color: black;
+}
+
+.zeroa, .zerob, .cla, .clb, .fla, .flb, .rojoa, .rojob, .negroa, .negrob{
+	font-family:arial, verdana, sans-serif;	
+}
+
+.zeroa, .cla, .fla, .rojoa, .negroa{
+	font-size:20px;
+	font-family:arial, verdana, sans-serif;	
+}
+.zerob, .clb, .flb{
+	font-size:10px;
+	font-family:arial, verdana, sans-serif;	
+	color: white;
+}
+
+.rojob, .negrob{
+	font-size:10px;
+	font-family:arial, verdana, sans-serif;	
+	color: grey;
+}
+
+.nap,.ap{
+	width: 34px;
+	height: 34px;
+	color: #0f0;
+	margin: auto;
+	line-height: 32px;
+	text-align: center;
+	font-size:12px;
+}
+
+.ap{
+    background-image: url(../images/chip.png);
+}
+
+.nap{
+}
+
+
+
