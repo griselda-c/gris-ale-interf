@@ -25,18 +25,14 @@ public class AdjuntarjugadorServlet extends HttpServlet {
 		
 		
 		if(!datosCorrectos(nombreJugadorS, dineroJugadorS)){
-			request.setAttribute("error", "Los datos ingresados son incorrectos, intentelo nuevamente");
+			request.setAttribute("errorJugador", "Los datos ingresados son incorrectos, intentelo nuevamente");
 			request.getRequestDispatcher("index.jsp").forward(request, response);			
 		}
 		else{
+			request.setAttribute("errorJugador", null);
 
-			// Adaptar lo que la vista nos da para que el negocio lo reciba
 			String nombreJugador = nombreJugadorS;
 			Integer dineroJugador = Integer.parseInt(dineroJugadorS);
-
-
-			// Manejar el estado --> usamos como contenedor el scope request
-			//request.setAttribute("resultado", resultado);
 		
 			if(getServletContext().getAttribute("mesa") == null){
 				getServletContext().setAttribute("mesa", new Mesa(1000));
@@ -49,36 +45,14 @@ public class AdjuntarjugadorServlet extends HttpServlet {
 			mesaGlobal.unirJugador(jugadorActual);
 
 			request.getSession().setAttribute("jugador", jugadorActual);
-			//request.setAttribute("jugador", new Jugador(dineroJugador, nombreJugador));
-			// Manejar la navegación, forwardeando el pedido al jsp con
-			// el resultado generado
+			
 			request //
-			.getRequestDispatcher("ruleta.jsp").forward(request, response);
+			.getRequestDispatcher("jugar.jsp").forward(request, response);
 		}
 	}
 
 	private boolean datosCorrectos(String nombreJugadorS, String dineroJugadorS) {
-		return (isText(nombreJugadorS) & isNumber(dineroJugadorS));
+		return (Validador.isText(nombreJugadorS) & Validador.isNumber(dineroJugadorS));
 	}
-
-	private boolean isNumber(String dineroJugadorS) {
-		try{
-			Integer.parseInt(dineroJugadorS);
-		} catch(NumberFormatException nfe) {
-			return false;
-		}
-			return true;
-	}
-
-	private boolean isText(String nombreJugadorS) {
-		for (int i = 0; i < nombreJugadorS.length(); i++) {
-			 if ((nombreJugadorS.charAt(i) < 'A') || (nombreJugadorS.charAt(i) > 'z') || ((nombreJugadorS.charAt(i) > 'Z')&(nombreJugadorS.charAt(i) < 'a'))){
-				 return false;}
-		}
-		return true;
-	}
-	
-	
-	
 
 }

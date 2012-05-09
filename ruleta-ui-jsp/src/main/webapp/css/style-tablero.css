@@ -40,24 +40,24 @@
 }
 
 
-.afila  a{
+.acolumna  a{
 	border: solid 4px green;	
 	color: green;
 }
 
-.acolumna a{
+.afila a{
 	border: solid 4px #800;	
 	color: black;
 }
 
 .negro a{
-	border: solid 4px black;
-	color: black;	
+	border: solid 4px #444;
+	color: grey;	
 }
 
 .rojo a{
 	border: solid 4px red;
-	color: black;
+	color: grey;
 }
 
 .zeroa, .zerob, .cla, .clb, .fla, .flb, .rojoa, .rojob, .negroa, .negrob{
@@ -95,6 +95,7 @@
 }
 
 .nap{
+	color: grey;
 }
 
 

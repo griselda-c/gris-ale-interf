@@ -38,12 +38,12 @@ else
 
  <form action="adjuntarjugador" method="post" id="form_log" name="form_log">
 		<p>Nombre de usuario:<br>
-		<input id="nombreJugador" name="nombreJugador" type="text" size="31" style="font-family: sans-serif; font-size: 16px; margin-top: 10px; border: 0px;" 
-           onKeyPress="return submitenter(this,event)">
+		<input id="nombreJugador" name="nombreJugador" type="text" size="25" style="font-family: sans-serif; font-size: 16px; margin-top: 10px; border: 0px;" 
+           onKeyPress="javascript:submitenter(this,event)">
 		</p>
-		<p>Contrase&ntilde;a:<br>
-		<input id="dineroJugador" name="dineroJugador" type="password" size="31" style="font-family: sans-serif; font-size: 16px; margin-top: 10px; border: 0px;"
-           onKeyPress="return submitenter(this,event)">
+		<p>Dinero:<br>
+		<input id="dineroJugador" name="dineroJugador" type="text" size="25" style="font-family: sans-serif; font-size: 16px; margin-top: 10px; border: 0px;"
+           onKeyPress="javascript:submitenter(this,event)">
 		</p>
 		<p class="button">
 		<a href="javascript:document.form_log.submit()">Enviar</a>

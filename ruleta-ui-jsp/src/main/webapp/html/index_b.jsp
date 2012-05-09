@@ -1,4 +1,7 @@
 
+<%@ page isELIgnored ="false" %>
+
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Ruleta</title>
 </head>
@@ -68,14 +71,34 @@
   
   
   <div id="menu-left">
-    <ul class="menu-left">
-      <!--  <li <?php if($actual == "upload")	    {echo "class=\"current-left\"><a href=\"#\"";}	else{echo "><a href=\"../site/upload.php\""; }    ?>	 title="Comparta sus archivos"><b>Almacenar</b></a></li>
-      <li <?php if($actual == "download")   {echo "class=\"current-left\"><a href=\"#\"";}	else{echo "><a href=\"../site/download.php\"";}   ?>	 title="Descargue archivos"><b>Descargar</b></a></li>
-      <li <?php if($actual == "self-files") {echo "class=\"current-left\"><a href=\"#\"";}	else{echo "><a href=\"../site/self-files.php\"";} ?>	 title="Administre sus archivos"><b>Mis archivos</b></a></li>
-      <li <?php if($actual == "count")	    {echo "class=\"current-left\"><a href=\"#\"";}	else{echo "><a href=\"../site/count.php\"";}      ?>	 title="Mi cuenta"><b>Mi cuenta</b></a></li>
-      <li <?php if($actual == "exit")         {echo "class=\"current-left\"><a href=\"#\"";}	else{echo "><a href=\"../site/exit.php\"";}   ?>	 title="Link # 2"><b>Exit</b></a></li>
-      <li <?php if($actual == "L3")         {echo "class=\"current-left\"><a href=\"#\"";}	else{echo "><a href=\"#\"";}                                 ?>	 title="Link # 3"><b>Link # 3</b></a></li>
-    --></ul>  <!-- cierra menu-left -->
+  
+  
+   
+   <div id="muestraapuestas">
+   <p>Fichas disponibles: ${sessionScope.jugador.fichas}</p>
+   
+   
+   <%
+	if (request.getSession().getAttribute("mostrarapuesta") != null) {
+	// abro%>
+	<p>Apuesta a mostrar: ${sessionScope.mostrarapuesta}</p>   
+	<%}
+	else{
+	// abro%>
+	<p>contenido si no</p>	
+    <%}%>
+    <form action="apostar" method="post" id="form_apuesta" name="form_apuesta">		
+		<p>Ingrese la cantidad de fichas que desea apostar:<br>
+		<input id="fichasapostar" name="fichasapostar" type="text" size="12" style="font-family: sans-serif; font-size: 16px; margin-top: 10px; border: 0px;">
+		</p>
+		<input type="hidden" name="apuesta" value="${sessionScope.mostrarapuesta}">
+		<input type="submit" value="Apostar" >
+    </form>	
+   
+   
+   </div > <!-- cierra muestraapuestas -->
+   
+   
   </div > <!-- cierra menu-left -->
 
   

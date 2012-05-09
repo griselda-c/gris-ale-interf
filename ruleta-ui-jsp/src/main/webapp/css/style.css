@@ -54,22 +54,7 @@ body {
 	border: 0px;	
 }
 
-#help{
-    background-image: url(../images/help-bg.png);
-	background-repeat: repeat;
-	height: auto;
-	margin: 0px 30px 15px 30px;
-	padding: 6px;
-	/*border-right: 2px solid #ddd;
-	border-left: 3px solid #888;
-	border-top: 2px solid #fff;
-	border-bottom: 4px solid #666;*/
-    clear: both;	
-}
 
-#help p{
-    color: white;
-}
 
 #header{
 	height: 180px;
@@ -93,7 +78,7 @@ body {
 
 #session{
 	height: 40px;
-	background-color: none;
+	background-color: red;
 	margin: 5px 0px 12px 0px;
 	padding: 0px;
 	border: 0px;	
@@ -185,107 +170,6 @@ body {
 	cursor:default;
 }
 
-#titles, #titles-left-a, #titles-left-b, #titles-left-c, #titles-center-a, #titles-center-b, #titles-center-c, #titles-right-a, #titles-right-b, #titles-right-c{
-	height: 40px;
-	margin: 0px;
-	padding: 0px;
-	border: 0px;
-}
-
-#titles{
-	margin: 0px;
-}
-
-
-  #titles-left-a{
-	background:url(../images/t1.png) no-repeat;
-    width: 14px;
-	background-color: none;
-	float: left;
-  }
-
-  #titles-left-b{
-	background:url(../images/t2.png) repeat-x;
-    width: 152px;
-	background-color: none;
-	float: left;
-  }
-
-  #titles-left-c{
-	background:url(../images/t3.png) no-repeat;
-    width: 14px;
-	background-color: none;
-	float: left;
-  }
-
-
-  #titles-center-a{
-	background:url(../images/t4.png) no-repeat;
-    width: 14px;
-	background-color: none;
-	float: left;
-  }
-
-  #titles-center-b{
-	background:url(../images/t5.png) repeat-x;
-	margin: 0 264px 0 184px ;
-	background-color: none;
-  }
-
-  #titles-center-c{
-	background:url(../images/t6.png) no-repeat;
-    width: 14px;
-	background-color: none;
-	float: right;
-  }
-
-  
-  #titles-right-a{
-	background:url(../images/t7.png) no-repeat;
-    width: 14px;
-	background-color: none;
-	float: right;
-  }
-
-  #titles-right-b{
-	background:url(../images/t8.png) repeat-x;
-    width: 232px;
-	background-color: none;
-	float: right;
-  }
-
-  #titles-right-c{
-	background:url(../images/t9.png) no-repeat;
-    width: 14px;
-	background-color: none;
-	float: right;
-  }
-
-.titles1, .titles2, .titles3{
-    font-weight: bold;
-    line-height:38px;
-	text-decoration:none;
-	font-family: arial, verdana, sans-serif;
-	font-size: 14px;
-	margin: 0px;
-	padding: 0px;
-	border: 0px;	
-	float: left;
-}
-
-.titles1{
-    text-indent: 44px;
-	color:#3f3;
-}
-
-.titles3{
-    text-indent: 20px;
-	color:#800;
-}
-
-.titles2{
-	color:#743;
-}
 
 #real-body{
 	background-color: none;
@@ -487,7 +371,19 @@ body {
 }
 
 
-
+#muestraapuestas{	
+	background-color: none;
+	height: auto;
+	width: 170px;
+	margin: 0px;
+	margin-top: 10px;
+	padding: 0px;
+	border: 0px;
+	color: white;
+	font-family:arial, verdana, sans-serif;
+	font-weight: bold;
+	font-size: 14px;
+}
 
 
 
