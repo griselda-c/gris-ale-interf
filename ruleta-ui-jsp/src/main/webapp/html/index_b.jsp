@@ -38,10 +38,7 @@
   
     <div id="session-center1">
     <p class="session1">Sesion iniciada por <span style="color: #ff4;">${sessionScope.jugador.nombre}</span></p>
-	
-	
-	
-	
+		
 	<%
 	}
 	else{
@@ -76,7 +73,7 @@
    
    <div id="muestraapuestas">
    <p>Fichas disponibles: ${sessionScope.jugador.fichas}</p>
-   
+   <br/><br/>
    
    <%
 	if (request.getSession().getAttribute("mostrarapuesta") != null) {
@@ -85,7 +82,7 @@
 	<%}
 	else{
 	// abro%>
-	<p>contenido si no</p>	
+	<p>Seleccione una jugada del paño para realizar la apuesta</p>	
     <%}%>
     <form action="apostar" method="post" id="form_apuesta" name="form_apuesta">		
 		<p>Ingrese la cantidad de fichas que desea apostar:<br>

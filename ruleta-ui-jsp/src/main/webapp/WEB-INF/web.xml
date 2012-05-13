@@ -798,6 +798,16 @@ standard deployment descriptor.
   </servlet>
   <servlet-mapping>
     <servlet-name>ApostarServlet</servlet-name>
-    <url-pattern>/ApostarServlet</url-pattern>
+    <url-pattern>/apostar</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <javaee:description></javaee:description>
+    <javaee:display-name>GetApuestasServlet</javaee:display-name>
+    <servlet-name>GetApuestasServlet</servlet-name>
+    <servlet-class>ruleta.control.GetApuestasServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetApuestasServlet</servlet-name>
+    <url-pattern>/getapuestas</url-pattern>
   </servlet-mapping>
 </web-app>

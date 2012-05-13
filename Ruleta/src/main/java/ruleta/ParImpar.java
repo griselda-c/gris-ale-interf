@@ -10,6 +10,10 @@ public class ParImpar extends Apuesta {
 		this.jugadaSeleccionada =new OpcionJugada("Par", 38);
 	}
 
+	public ParImpar() {
+		super();
+	}
+
 	boolean ganaParaNumero(int numero) {		
 		return ( ( (this.jugadaSeleccionada.getValor() - numero) % 2 ) == 0);		
 	}

@@ -10,6 +10,10 @@ public class Pleno extends Apuesta{
 		this.jugadaSeleccionada =new  OpcionJugada("0",0);
 	}
 
+	public Pleno() {
+		super();
+	}
+
 	public boolean ganaParaNumero(int numero)
 	{
 		return (this.jugadaSeleccionada.getValor() == numero);

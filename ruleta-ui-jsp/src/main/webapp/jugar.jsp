@@ -12,6 +12,7 @@
 
 <div class="fila">
 
+
 <div id="id0" class="zero" ><a href="#"><p class="zeroa">0</p><p class="zerob">Pleno</p><div class="ap">1</div></a></div><!-- cierra id0 -->
 <div id="col1" class="afila"><a href="#"><p class="cla">1</p><p class="clb">Fila</p><div class="ap">2</div></a></div><!-- cierra col1 -->
 <div id="col2" class="afila"><a href="#"><p class="cla">2</p><p class="clb">Fila</p><div class="nap">--</div></a></div><!-- cierra col2 -->

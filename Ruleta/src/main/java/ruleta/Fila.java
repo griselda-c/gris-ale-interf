@@ -10,6 +10,10 @@ public class Fila extends Apuesta{
 		this.jugadaSeleccionada = new OpcionJugada("1",1);
 	}		
 
+	public Fila() {
+		super();
+	}
+
 	@Override
 	boolean ganaParaNumero(int numero) {		
 		 return this.jugadaSeleccionada.getValor() == this.convertirEnFila(numero);

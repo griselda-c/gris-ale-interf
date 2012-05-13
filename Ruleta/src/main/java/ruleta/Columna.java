@@ -9,6 +9,10 @@ public class Columna extends Apuesta{
 		super(j);
 		this.jugadaSeleccionada = new OpcionJugada("1",1);
 	}
+	
+	public Columna() {
+		super();
+	}
 
 	boolean ganaParaNumero(int numero) {
 		return this.jugadaSeleccionada.getValor() == (numero%3 + 1);		

@@ -20,39 +20,48 @@ public class AdjuntarjugadorServlet extends HttpServlet {
 			HttpServletResponse response) //
 			throws ServletException, IOException {
 		
-		String nombreJugadorS = request.getParameter("nombreJugador");
-		String dineroJugadorS = request.getParameter("dineroJugador");
+		String nombreJugadorS = request.getParameter(RuletaWebModel.NOMBREJUGADOR);
+		String dineroJugadorS = request.getParameter(RuletaWebModel.DINEROJUGADOR);
 		
-		
+		//contemplo la recepcion de datos incorrectos
 		if(!datosCorrectos(nombreJugadorS, dineroJugadorS)){
-			request.setAttribute("errorJugador", "Los datos ingresados son incorrectos, intentelo nuevamente");
+			request.setAttribute(RuletaWebModel.ERRORJUGADOR, "Los datos ingresados son incorrectos, intentelo nuevamente");
 			request.getRequestDispatcher("index.jsp").forward(request, response);			
 		}
 		else{
-			request.setAttribute("errorJugador", null);
+			request.setAttribute(RuletaWebModel.ERRORJUGADOR, null);
 
+			//"formateo los argumentos recibidos"
 			String nombreJugador = nombreJugadorS;
 			Integer dineroJugador = Integer.parseInt(dineroJugadorS);
-		
-			if(getServletContext().getAttribute("mesa") == null){
-				getServletContext().setAttribute("mesa", new Mesa(1000));
+			
+			//singleTon de la mesa
+			if(getServletContext().getAttribute(RuletaWebModel.MESA) == null){
+				getServletContext().setAttribute(RuletaWebModel.MESA, new Mesa(1000));
 			}
-		
-			Mesa mesaGlobal = (Mesa) getServletContext().getAttribute("mesa");
-		
+			
+			//creo el jugador
 			Jugador jugadorActual = new Jugador(dineroJugador, nombreJugador);
-		
+			
+			//obtengo la mesa del servidor
+			Mesa mesaGlobal = (Mesa) getServletContext().getAttribute(RuletaWebModel.MESA);			
+			
+			//uno al jugador a la mesa
 			mesaGlobal.unirJugador(jugadorActual);
 
-			request.getSession().setAttribute("jugador", jugadorActual);
+			//seteo el jugador en la sesion 
+			request.getSession().setAttribute(RuletaWebModel.JUGADOR, jugadorActual);
 			
+			//seteo una instancia de RuletaWebModel a la session
+			request.getSession().setAttribute(RuletaWebModel.MODEL, new RuletaWebModel(mesaGlobal, jugadorActual));
+						
 			request //
 			.getRequestDispatcher("jugar.jsp").forward(request, response);
 		}
 	}
 
 	private boolean datosCorrectos(String nombreJugadorS, String dineroJugadorS) {
-		return (Validador.isText(nombreJugadorS) & Validador.isNumber(dineroJugadorS));
+		return (RuletaWebModel.isText(nombreJugadorS) & RuletaWebModel.isNumber(dineroJugadorS));
 	}
 
 }

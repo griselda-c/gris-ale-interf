@@ -1,6 +1,5 @@
 package ruleta;
 
-import java.util.LinkedList;
 import java.util.List;
 
 import org.uqbar.commons.model.ObservableObject;
@@ -23,13 +22,17 @@ public abstract class Apuesta extends ObservableObject{
 		this.jugador = j;
 		this.fichas = 0;
 	}
+	
+	public Apuesta() {
+		super();
+	}
 
 	abstract boolean ganaParaNumero(int numero);
 	abstract Integer fichasGanadas();
 
 	public void confirmar() {		
 		this.jugador.apostar(this);	
-		System.out.println("cantidad de apuestas" +this.jugador.apuestas.size());
+		//System.out.println("cantidad de apuestas" +this.jugador.apuestas.size());
 	}
 
 	public abstract  List<OpcionJugada> getOpciones();

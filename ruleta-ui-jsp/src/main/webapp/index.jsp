@@ -37,11 +37,11 @@ else
   <div id="log-bot">
 
  <form action="adjuntarjugador" method="post" id="form_log" name="form_log">
-		<p>Nombre de usuario:<br>
+		<p>Ingrese su nombre:<br>
 		<input id="nombreJugador" name="nombreJugador" type="text" size="25" style="font-family: sans-serif; font-size: 16px; margin-top: 10px; border: 0px;" 
            onKeyPress="javascript:submitenter(this,event)">
 		</p>
-		<p>Dinero:<br>
+		<p>Ingrese la cantidad de dinero:<br>
 		<input id="dineroJugador" name="dineroJugador" type="text" size="25" style="font-family: sans-serif; font-size: 16px; margin-top: 10px; border: 0px;"
            onKeyPress="javascript:submitenter(this,event)">
 		</p>
