@@ -25,7 +25,7 @@ public class AdjuntarjugadorServlet extends HttpServlet {
 		
 		//contemplo la recepcion de datos incorrectos
 		if(!datosCorrectos(nombreJugadorS, dineroJugadorS)){
-			request.setAttribute(RuletaWebModel.ERRORJUGADOR, "Los datos ingresados son incorrectos, intentelo nuevamente");
+			request.getSession().setAttribute(RuletaWebModel.ERRORJUGADOR, "Los datos ingresados son incorrectos, intentelo nuevamente");
 			request.getRequestDispatcher("index.jsp").forward(request, response);			
 		}
 		else{

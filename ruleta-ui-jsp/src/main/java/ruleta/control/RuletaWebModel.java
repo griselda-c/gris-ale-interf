@@ -1,5 +1,6 @@
 package ruleta.control;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -8,6 +9,7 @@ import ruleta.Apuesta;
 import ruleta.Jugador;
 import ruleta.Mesa;
 import ruleta.OpcionJugada;
+import ruleta.Pleno;
 import ruleta.Ruleta;
 
 public class RuletaWebModel {
@@ -29,10 +31,14 @@ public class RuletaWebModel {
 	public Jugador jugador;
 
 	public Mesa mesa;	
+	
+	public List<Apuesta> plenoColeccion;
 
 	public RuletaWebModel(Mesa mesa, Jugador jugador) {
 		this.jugador = jugador;
 		this.mesa = mesa;
+		plenoColeccion = new LinkedList<Apuesta>();
+		plenoColeccion.add(new Pleno());
 	}	
 	
 	public Jugador getJugador() {
@@ -51,7 +57,11 @@ public class RuletaWebModel {
 		this.mesa = mesa;
 	}
 
-	
+	public List<Apuesta> getPlenoColeccion() {
+		return plenoColeccion;
+	}
+
+
 
 
 
@@ -104,7 +114,7 @@ public class RuletaWebModel {
 
 	public static boolean esApuesta(String apuesta) {
 	    for(Apuesta apuestaTemp:staticApuestas){
-	    	if(apuestaTemp.getTipoApuesta() == apuesta){
+	    	if(apuestaTemp.getTipoApuesta().equals(apuesta)){
 	    		return true;
 	    	}
 	    }
@@ -113,7 +123,7 @@ public class RuletaWebModel {
 	
 	public static Apuesta getApuesta(String apuesta) throws RuletaException {
 	    for(Apuesta apuestaTemp:staticApuestas){
-	    	if(apuestaTemp.getTipoApuesta() == apuesta){
+	    	if(apuestaTemp.getTipoApuesta().equals(apuesta)){
 	    		return apuestaTemp;
 	    	}
 	    }
@@ -122,7 +132,7 @@ public class RuletaWebModel {
 
 	public static boolean esJugadaPosible(Apuesta apuestaTemp, String jugada) {
 		for(OpcionJugada opcionJugada : apuestaTemp.getOpciones())
-			if(opcionJugada.getNombre() == jugada){
+			if(opcionJugada.getNombre().equals(jugada)){
 				return true;
 			}
 		return false;
@@ -130,7 +140,7 @@ public class RuletaWebModel {
 
 	public static OpcionJugada getOpcionJugada(Apuesta apuestaTemp, String jugada)  throws RuletaException {
 		for(OpcionJugada opcionJugada : apuestaTemp.getOpciones())
-			if(opcionJugada.getNombre() == jugada){
+			if(opcionJugada.getNombre().equals(jugada)){
 				return opcionJugada;
 			}
 		throw new RuletaException("Se envio como parametro un valor de apuesta no existente [Apuesta = " + apuestaTemp.getTipoApuesta() + "], [Numero = " + jugada + "]");

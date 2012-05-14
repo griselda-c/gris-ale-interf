@@ -15,36 +15,6 @@ body {
 
 
 
-.menu-top {
-	background-color: none;
-	padding:0 0 0 0px;
-	margin:0px auto;
-	list-style:none;
-	height:35px;
-	width:1200px;
-	float: right;
-}
-
-.menu-top li {
-	float: right;
-	padding: 0px;
-}
-
-.menu-top li a {
-	display:block;
-	float:left;
-	height:35px;
-	line-height:33px;
-	color:#BCBDBD;
-	text-decoration:none;
-	font-family:arial, verdana, sans-serif;
-	text-align:center;
-	padding:0 0 0 14px;
-	cursor:pointer;
-	font-size:12px;
-	background:none;
-}
-
 #false-body{background-image: url(../images/false-body-bg.png);
 	background-repeat: repeat;	
 	height: auto;
@@ -259,88 +229,6 @@ body {
     margin-bottom: -30000px; 
 }
 
-#menu-left-boot{
-	background: url(../images/left-boot-bg.png) no-repeat;
-    margin: 0px;
-    padding: 0px;
-    height: 42px;
-	width: 180px;
-	clear: left;
-}
-
-#menu-left{
-	background-image: url(../images/green-bg.png);
-	background-repeat: repeat;
-	background-color: none;	
-	float: left;
-	height: auto;
-	width: 180px;
-	margin: 0px;
-	padding: 10px 0px 0px 0px;
-	border: 0px;
-}
-
-.menu-left {
-	background-color: none;
-	padding:0 0 0 0px;
-	margin:0 10px 0 10px;
-	list-style:none;
-	height:auto;
-	width:160px;
-	float: right;
-}
-
-.menu-left li {
-	background-color: none;
-	float: right;
-	padding: 0px;
-	margin: 5px 0;
-}
-
-.menu-left li a {
-	background: url(../images/menu-left-a.png) no-repeat;
-	display:block;
-	float:left;
-	height:36px;
-	width:160px;	
-	text-indent: 50px;
-	line-height:33px;
-	color:#BCBDBD;
-	text-decoration:none;
-	font-family:arial, verdana, sans-serif;
-	text-align: left;
-	cursor:pointer;
-	font-size:14px;
-	float:left;
-	display:block;
-}
-		
-.menu-left li a:hover {
-	color:#fff;
-    background: url(../images/menu-left-h.png) no-repeat;
-}
-
-.menu-left li a:active {
-	color:#f00;
-	background:url(../images/menu-left-c.png) no-repeat;
-}
-
-.menu-left li.current-left a {
-	background:url(../images/menu-left-c.png) no-repeat;
-	font-size:14px;
-	color:#EF7F1A;
-}
-
-.menu-left li.current-left  a:hover {
-	background:url(../images/menu-left-c.png) no-repeat;
-	cursor:default;
-	color:#EF7F1A;
-}
-
-.menu-left li.current-left  a:active {
-	color:#EF7F1A;
-	background:url(../images/menu-left-c.png) no-repeat;
-}
 
 #body-foot{
 	background-color: #224;

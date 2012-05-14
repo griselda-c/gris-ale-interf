@@ -51,6 +51,7 @@ public abstract class Apuesta extends ObservableObject{
 
 	public void setFichas(Integer fichas) {	
 		this.setFieldValue(FICHAS, fichas);
+		//System.out.println("se setea fichas en " + fichas);
 	}
 
 	public OpcionJugada getJugadaSeleccionada() {
