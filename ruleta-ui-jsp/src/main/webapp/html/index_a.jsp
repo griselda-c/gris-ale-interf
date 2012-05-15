@@ -4,5 +4,5 @@
 <head>
 <LINK rel="stylesheet" href="css/style.css" type="text/css" media="all">
 <link rel="icon" type="image/png" href="images/mifavicon.png" />
-<script src="../scripts/script.js" type="text/javascript"></script>
+<script src="scripts/script.js" type="text/javascript"></script>
 

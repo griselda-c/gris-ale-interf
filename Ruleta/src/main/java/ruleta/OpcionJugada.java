@@ -11,6 +11,9 @@ public class OpcionJugada {
 		this.valor = valor;
 	}
 	
+	public OpcionJugada() {
+	}
+
 	public int getValor() {
 		return this.valor;
 	}

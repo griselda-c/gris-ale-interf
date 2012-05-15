@@ -1,8 +1,4 @@
 <%@ page isELIgnored ="false" %>
-
 <% if (request.getSession().getAttribute("errorApuesta") != null) {
-	// abro%><br/> error <br/> ${sessionScope.errorApuesta} <%
-	}
-	else{
-	// abro%> nada aun <%
-	}%>
+	%>[1, "${sessionScope.errorApuesta}"]<%}
+	else{%>[1, "el error es mas grave de lo que se esperaba, no hay error"]<%}%>

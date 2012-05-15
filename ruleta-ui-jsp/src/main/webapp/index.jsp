@@ -9,22 +9,6 @@
 
 <SCRIPT TYPE="text/javascript">
 
-function submitenter(myfield,e)
-{
-var keycode;
-if (window.event) keycode = window.event.keyCode;
-else if (e) keycode = e.which;
-else return true;
-
-if (keycode == 13)
-   {
-   myfield.form.submit();
-   return false;
-   }
-else
-   return true;
-}
-
 </SCRIPT>
 
 <div id="log">
@@ -39,11 +23,11 @@ else
  <form action="adjuntarjugador" method="post" id="form_log" name="form_log">
 		<p>Ingrese su nombre:<br>
 		<input id="nombreJugador" name="nombreJugador" type="text" size="25" style="font-family: sans-serif; font-size: 16px; margin-top: 10px; border: 0px;" 
-           onKeyPress="javascript:submitenter(this,event)">
+           onKeyPress="javascript:submitEnter(this, "unafuncion", event)">
 		</p>
 		<p>Ingrese la cantidad de dinero:<br>
 		<input id="dineroJugador" name="dineroJugador" type="text" size="25" style="font-family: sans-serif; font-size: 16px; margin-top: 10px; border: 0px;"
-           onKeyPress="javascript:submitenter(this,event)">
+           onKeyPress="javascript:submitEnter(this, "unafuncion", event)">
 		</p>
 		<p class="button">
 		<a href="javascript:document.form_log.submit()">Enviar</a>

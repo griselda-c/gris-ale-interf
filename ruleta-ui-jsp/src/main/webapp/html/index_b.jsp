@@ -13,7 +13,7 @@
 
 
 <div id="logo">
-<IMG src="images/logo.png" alt="Ruleta" title="Ruleta" style="background: none; width: 600px; height: 133px; border: 0px; margin-top: 30px; padding: 0px;">
+<IMG src="images/logo.png" alt="Ruleta" title="Ruleta" style="background: none; width: 400px; height: 160px; border: 0px; margin-top: 30px; padding: 0px;">
 </div > <!-- cierra logo -->
 
 
@@ -27,11 +27,8 @@
   <div id="session-right">
   </div > <!-- cierra session-right -->
   <div id="session-center2">
-  
-  
-  <%
-	if (request.getSession().getAttribute("jugador") != null) {
-	// abro%>
+    
+    <%if (request.getSession().getAttribute("jugador") != null) {%>
 	
 	<p class="session2"><a href="../login/login-out.php" title="Abandonar la sesion actual"><b>Cerrar sesi&oacute;n</b></a></p>  
     </div > <!-- session-center2 -->
@@ -39,10 +36,7 @@
     <div id="session-center1">
     <p class="session1">Sesion iniciada por <span style="color: #ff4;">${sessionScope.jugador.nombre}</span></p>
 		
-	<%
-	}
-	else{
-	// abro%>
+	<%}else{%>
 	
 	<p class="session2-of"><a href="#" title="No hay sesion iniciada"><b>Cerrar sesi&oacute;n</b></a></p>
     </div > <!-- session-center2 -->
@@ -50,66 +44,62 @@
     <div id="session-center1">
     <p class="session1">No se ha iniciado sesi&oacute;n a&uacute;n</p>
 	
-	<%
-	}// cierro %>
-  
+	<%}%>  
  
   </div > <!-- session-center1 -->
-
   
 </div > <!-- cierra session -->
 
 
-
-
 <div id="real-body">
 
-  <div id="body-left">
+  <div id="body-left">  
   
-  
-  <div id="menu-left">
-  
-  
+  <div id="menu-left">   
    
    <div id="muestraapuestas">
-   <p>Fichas disponibles: ${sessionScope.jugador.fichas}</p>
-   <br/><br/>
    
-   <%
-	if (request.getSession().getAttribute("mostrarapuesta") != null) {
-	// abro%>
-	<p>Apuesta a mostrar: ${sessionScope.mostrarapuesta}</p>   
-	<%}
-	else{
-	// abro%>
-	<p>Seleccione una jugada del paño para realizar la apuesta</p>	
-    <%}%>
-    <form action="apostar" method="post" id="form_apuesta" name="form_apuesta">		
+    <%if (request.getSession().getAttribute("jugador") != null) {%>
+    
+    
+    <p>Fichas disponibles: ${sessionScope.jugador.fichas}</p><br/>	
+    
+    <div id="jugada">
+    <p>Seleccione una jugada del paño para realizar la apuesta</p>
+    </div > <!-- cierra jugada -->  
+    <br/>
+    
+	<form action="apostar" method="post" id="form_apuesta" name="form_apuesta">		
 		<p>Ingrese la cantidad de fichas que desea apostar:<br>
-		<input id="fichasapostar" name="fichasapostar" type="text" size="12" style="font-family: sans-serif; font-size: 16px; margin-top: 10px; border: 0px;">
+		<input id="apuestaFichas" name="apuestaFichas" type="text" size="12" style="font-family: sans-serif; font-size: 16px; margin-top: 10px; border: 0px;">
+		
+		<input type="button" id="apostar" value="Apostar" onclick="javascript:enviarApuesta();" style="font-family: sans-serif; font-size: 16px; margin-top: 10px; border: 0px;">
 		</p>
-		<input type="hidden" name="apuesta" value="${sessionScope.mostrarapuesta}">
-		<input type="submit" value="Apostar" >
+		<input type="hidden" id="apuestaTipo" value="">
+		<input type="hidden" id="opcionValor" value="">
     </form>	
-   
-   
-   </div > <!-- cierra muestraapuestas -->
-   
+	  
+	<%}else{%>
+	<p>Inicie sesión para realizar apuestas</p>
+		
+    <%}%>
+      
+    </div > <!-- cierra muestraapuestas -->   
    
   </div > <!-- cierra menu-left -->
-
   
     <div id="menu-left-boot">  
     </div > <!-- cierra menu-left-boot -->
 
   </div > <!-- cierra body-left -->
-  
-
-	
 	
   <div id="body-right">
-		
-  </div > <!-- cierra body-right -->
   
+  <jsp:include page="../getapuestas.jsp" />
+  
+  <div id="registrar">
+  </div> <!-- cierra registrar -->  
+		
+  </div > <!-- cierra body-right -->  
   
   <div id="body-center">

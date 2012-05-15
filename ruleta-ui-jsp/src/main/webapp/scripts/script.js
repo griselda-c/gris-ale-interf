@@ -1,0 +1,168 @@
+var enviando = false;
+var apustasrealizadas = new Array();
+var apustasGet = new Array();
+
+
+function ApuestaWeb(tipoP, jugadaP, fichasP){
+	  this.tipo = tipoP;
+	  this.jugada = jugadaP;
+	  this.fichas = fichasP;
+	}
+
+/***
+ * estructura del response de postar
+ * error:boolean true  -> descripcion-del-error:string
+ *               false -> dineroJugador
+ *                        [[apuestaTipo, opcionValor, apuestaFichas], [apuestaTipo, opcionValor, apuestaFichas]]
+ * 
+ */
+
+function enviarApuesta(){
+	if(!enviando){	
+	  bloquearEnvios();
+	  var tipo = document.getElementById('apuestaTipo').value;
+	  var jugada = document.getElementById('opcionValor').value;
+	  var fichas = document.getElementById('apuestaFichas').value;
+	  var ajax;
+	  ajax = new ajaxFunction();
+	  var catchError = setTimeout(function(){ajax.abort();mostrarError("Error en la coneccion, intentelo nuevamente");desbloquearEnvios();}, 10000);
+      ajax.onreadystatechange = function(){
+	    if(ajax.readyState == 4){	
+          if(ajax.status == 200){
+        	registrar(ajax.responseText);        	        	
+        	var respuestaServer = eval(ajax.responseText);
+        	if(respuestaServer[0] == 1){//hubo un error
+        		mostrarError(respuestaServer[1]);
+        	}
+        	else if(respuestaServer[0] == 2){
+        		loggear();
+        	}else{
+        		actualizarEstado(respuestaServer);
+        	}
+            desbloquearEnvios();
+            clearTimeout(catchError);
+          }
+        }
+	  }
+	  ajax.open("GET","apostar?apuesta=" + tipo + "&jugada=" + jugada + "&fichasapostar=" + fichas, true);
+	  ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+	  ajax.send(null);    
+	}
+}
+
+
+function loggear(){
+	alert("debe iniciar session para poder apostar");
+	header("location: index.jsp");
+}
+
+function actualizarEstado(arrayEstado){
+	alert(arrayEstado[1]);
+}
+
+function mostrarError(descripcionError){
+	alert(descripcionError);
+}
+
+function bloquearEnvios(){
+	enviando = true;
+	document.getElementById('apostar').disabled = true;
+}
+
+
+function desbloquearEnvios(){
+	enviando = false;
+	document.getElementById('apostar').disabled = false;
+}
+
+
+function mostrarJugadas(tipoApuesta, valorApuesta, nombreApuesta){
+	var tipoTexto = "<p>Apuesta seleccionada: " + tipoApuesta + "-" + nombreApuesta + "</p>";	
+	document.getElementById('apuestaTipo').value = tipoApuesta;
+	document.getElementById('opcionValor').value = valorApuesta;	
+	document.getElementById('jugada').innerHTML = tipoTexto;	
+}
+
+
+function submitEnterLogin(myfield,e){
+	var keycode;
+	if (window.event) keycode = window.event.keyCode;
+	else if (e) keycode = e.which;
+	else return true;
+
+	if (keycode == 13)
+	   {
+	   myfield.form.submit();
+	   }
+	}
+
+
+
+function init(){
+	loadAndFormat();
+}
+
+function loadAndFormat(){
+	
+}
+
+
+
+function ajaxFunction(){
+  var xmlHttp;
+  try{
+    // Firefox, Opera 8.0+, Safari
+    xmlHttp=new XMLHttpRequest();
+    return xmlHttp;
+    }
+  catch (e){
+    // Internet Explorer
+    try{
+      xmlHttp=new ActiveXObject("Msxml2.XMLHTTP");
+      return xmlHttp;
+      }
+    catch (e){
+      try{
+      xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");
+      return xmlHttp;
+      }
+      catch (e){
+        alert("Your browser does not support AJAX!");
+        return false;
+      }
+    }
+  }
+}
+
+function fixRGB(aleatorio){
+	  switch (aleatorio)
+	    {
+	    case 1:
+	      return "a";
+	      break;
+	    case 2:
+	      return "b";
+	      break;
+	    case 3:
+	      return "c";
+	      break;
+	    case 4:
+	      return "d";
+	      break;
+	    case 5:
+	      return "e";
+	      break;
+	    case 6:
+	      return "f";
+	      break;
+	    default:
+	      return aleatorio;
+	    }
+}
+
+
+function registrar(texto){
+	var rgb = "#" + fixRGB(Math.floor(Math.random()*10)) + fixRGB(Math.floor(Math.random()*10)) + fixRGB(Math.floor(Math.random()*10));
+	alert(rgb);
+	document.getElementById('registrar').innerHTML += "<p style=\"color:" + rgb +"\">" + texto + "</p>";
+}

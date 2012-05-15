@@ -14,7 +14,7 @@ public class ApostarServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -22,6 +22,8 @@ public class ApostarServlet extends HttpServlet {
 		String apuesta = request.getParameter("apuesta"); //Pleno Columna Paridad Fila
 		String jugada = request.getParameter("jugada"); //numero al que se apuesta
 		String fichas = request.getParameter("fichasapostar");
+		
+		//falta cotrolar que el usuario este loggeado
 		
 		if(!RuletaWebModel.isNumber(fichas)){
 			request.getSession().setAttribute(RuletaWebModel.ERRORAPUESTA, "Se ingreso un parametro incorrecto en fichas");
@@ -55,10 +57,10 @@ public class ApostarServlet extends HttpServlet {
 					apuestaTemp.setFichas(Integer.parseInt(fichas));
 					apuestaTemp.setJugadaSeleccionada(jugadaSeleccionada);
 					apuestaTemp.confirmar();
-					request.getSession().setAttribute(RuletaWebModel.ERRORAPUESTA, "Esta todo bien gil");
+					request.getSession().setAttribute(RuletaWebModel.ERRORAPUESTA, null);
 				
 					request //
-					.getRequestDispatcher("error.jsp").forward(request, response);
+					.getRequestDispatcher("getapuestas.jsp").forward(request, response);
 			
 				}
 			}

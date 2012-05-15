@@ -6,7 +6,8 @@
 
 body {
     min-width: 1100px;
-	background:url(../images/bg.jpg) no-repeat; background-position:top center;
+	background:url(../images/bg.jpg) no-repeat;
+	background-position: 50% -20px ;
     background-color: #470602;
     padding: 0px;
     border: 0px;
@@ -27,7 +28,7 @@ body {
 
 
 #header{
-	height: 180px;
+	height: 160px;
 	background-color: none;
 	margin: 0px 10px;
 	padding: 10px 0 0 20px;
@@ -155,7 +156,7 @@ body {
 	background-color: none;	
 	float: left;
 	height: auto;
-	width: 180px;
+	width: 300px;
 	margin: 0px;
 	padding: 0px;
 	border: 0px;
@@ -163,7 +164,7 @@ body {
     margin-bottom: -30000px; 
 }
 	
-#body-center, #body-center-bg1 {
+#body-center{
 	height: auto;
 	padding: 0px;
 	border: 0px;
@@ -172,53 +173,16 @@ body {
 }
 
 #body-center{
-	margin-left: 180px;
+	margin-left: 300px;
 	margin-right: 260px;
 	background-image: url(nada);
-	background-repeat: repeat;
 	background-color: none;	
 }
 
-#body-center-bg1 {
-	background-image: url(../images/black-bg.png);
-	border-right: 4px solid #611;
-	border-left: 4px solid #611;
-	background-repeat: repeat;
-	background-color: none;	
-	padding-top: 10px;
-	padding-left: 10px;
-	padding-right: 10px;
-}
 
-	
-#body-center-bg1 h1 {
-    font-family: 'Courier New', Courier, monospace;
-    font-weight: bold;
-    line-height: 40px;
-	font-size: 20px;
-	margin: 0px;
-	padding: 0px;
-	border: 0px;
-	color: #fff;
-	text-align: justify;
-}
-
-#body-center-bg1 p {
-    font-family: Georgia, Serif;
-    line-height:24px;
-	text-decoration:none;
-	font-size: 14px;
-	margin: 0px;
-	padding: 0px;
-	border: 0px;	
-	color: #fff;
-	text-align: justify;
-}
 
 
 #body-right{
-	/*background-image: url(../images/grey-bg.png);*/
-	background-repeat: repeat;
 	float: right;
 	height: auto;
 	width: 260px;
@@ -262,7 +226,8 @@ body {
 #muestraapuestas{	
 	background-color: none;
 	height: auto;
-	width: 170px;
+	width: 280px;
+	text-align:justify;
 	margin: 0px;
 	margin-top: 10px;
 	padding: 0px;

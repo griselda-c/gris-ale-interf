@@ -3,9 +3,9 @@
 	width: 650px;
 	height: auto;
 	background-color: green;
-	margin: 20px auto 0px auto;
+	margin: 0px auto 0px auto;
 	padding: 10px;
-	border: solid 2px black;	
+	border: solid 2px black;
 }
 
 .rojo a, .negro a, .fila a, .columna a, .zero a{
@@ -13,32 +13,39 @@
 }	
 
 .rojo a, .negro a, .fila a, .columna a, .zero a, .paridad a{
-	height: 100px;
+	height: 50px;
 	float: left;
 	margin: 4px 0px 0px 4px;
-	padding: 0px;	
+	padding: 0px;
 	text-align: center;
     font-weight: bold;
 	display: block;
 	text-decoration: none;
 	font-family:arial, verdana, sans-serif;
-    background-image: none;	
+    background-image: none;
 }
 
-.rojo a, .negro a, .fila a, .zero a, .paridad a{
-	font-size: 80px;
+.rojo a, .negro a, .fila a, .zero a{
+	font-size: 45px;
 }
 
-.rojo a .stitle, .negro a .stitle, .fila a .stitle, .columna a .stitle, .zero a .stitle, .paridad a .stitle{
+.rojo a .stitle, .negro a .stitle, .fila a .stitle, .zero a .stitle, .paridad a .stitle{
 	font-size: 18px;
 	margin-left:8px;
 }
+
+ .columna a .stitle{
+	font-size: 12px;
+	margin-left:6px;
+}
+ 
+
 
 .filas_frame{
 	width: 162px;
 	height: auto;
 	float:left;
-	background-color: blue;
+	background-color: none;
 	margin: 0px;	
 	overflow: hidden;
 }
@@ -47,7 +54,7 @@
 	width: 486px;
 	height: auto;
 	float:left;
-	background-color: grey;
+	background-color: none;
 	margin: 0px;	
 	overflow: hidden;
 }
@@ -58,26 +65,27 @@
 }
 
 .zero a{
-	border: solid 4px #085;	
-	color: #040;
+	border: solid 4px #9c7;	
+	color: #9c7;
 }
 
 .paridad a{
-	border: solid 4px black;	
-	color: black;
-	width: 300px;
+	border: solid 4px #030;	
+	color: #030;
+	width: 312px;
+	font-size: 40px;
 }
 
 .columna a{
-	border: solid 4px black;	
-	color: black;
-	font-size: 60px;
+	border: solid 4px #A9A9F3;	
+	color: #A9A9F3;
+	font-size: 40px;
 }
 
 
 .fila a{
-	border: solid 4px #800;
-	color: black;
+	border: solid 4px #8B008B;
+	color: #8B008B;
 }
 
 .negro a{
