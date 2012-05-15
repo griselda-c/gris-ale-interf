@@ -22,7 +22,9 @@
 	display: block;
 	text-decoration: none;
 	font-family:arial, verdana, sans-serif;
-    background-image: none;
+    background-image: none;    
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
 }
 
 .rojo a, .negro a, .fila a, .zero a{
@@ -34,7 +36,7 @@
 	margin-left:8px;
 }
 
- .columna a .stitle{
+.columna a .stitle{
 	font-size: 12px;
 	margin-left:6px;
 }
@@ -98,7 +100,7 @@
 	color: red;
 }
 
-.nap,.ap{
+.napx,.apx{
 	width: 34px;
 	height: 34px;
 	color: #0f0;
@@ -113,7 +115,7 @@
 }
 
 .nap{
-	color: grey;
+	background-image: none;
 }
 
 

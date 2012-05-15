@@ -7,9 +7,6 @@
 
 <jsp:include page="html/index_b.jsp" />
 
-<SCRIPT TYPE="text/javascript">
-
-</SCRIPT>
 
 <div id="log">
   <div id="log-top">
@@ -23,11 +20,11 @@
  <form action="adjuntarjugador" method="post" id="form_log" name="form_log">
 		<p>Ingrese su nombre:<br>
 		<input id="nombreJugador" name="nombreJugador" type="text" size="25" style="font-family: sans-serif; font-size: 16px; margin-top: 10px; border: 0px;" 
-           onKeyPress="javascript:submitEnter(this, "unafuncion", event)">
+           onKeyPress="javascript:submitEnterLogin(this, event)">
 		</p>
 		<p>Ingrese la cantidad de dinero:<br>
 		<input id="dineroJugador" name="dineroJugador" type="text" size="25" style="font-family: sans-serif; font-size: 16px; margin-top: 10px; border: 0px;"
-           onKeyPress="javascript:submitEnter(this, "unafuncion", event)">
+           onKeyPress="javascript:submitEnterLogin(this,  event)">
 		</p>
 		<p class="button">
 		<a href="javascript:document.form_log.submit()">Enviar</a>

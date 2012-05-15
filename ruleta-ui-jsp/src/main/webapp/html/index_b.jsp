@@ -2,8 +2,14 @@
 <%@ page isELIgnored ="false" %>
 
 
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Ruleta</title>
+
+<SCRIPT TYPE="text/javascript">
+
+</SCRIPT>
+
 </head>
 
 <body>
@@ -62,7 +68,7 @@
     <%if (request.getSession().getAttribute("jugador") != null) {%>
     
     
-    <p>Fichas disponibles: ${sessionScope.jugador.fichas}</p><br/>	
+    <p id="fichasVista">Fichas disponibles: ${sessionScope.jugador.fichas}</p><br/>	
     
     <div id="jugada">
     <p>Seleccione una jugada del paño para realizar la apuesta</p>
@@ -75,6 +81,7 @@
 		
 		<input type="button" id="apostar" value="Apostar" onclick="javascript:enviarApuesta();" style="font-family: sans-serif; font-size: 16px; margin-top: 10px; border: 0px;">
 		</p>
+		<input type="hidden" id="fichasHidden" value="">
 		<input type="hidden" id="apuestaTipo" value="">
 		<input type="hidden" id="opcionValor" value="">
     </form>	

@@ -1,12 +1,25 @@
 var enviando = false;
 var apustasrealizadas = new Array();
-var apustasGet = new Array();
+var apuestasServer;
 
 
 function ApuestaWeb(tipoP, jugadaP, fichasP){
 	  this.tipo = tipoP;
 	  this.jugada = jugadaP;
 	  this.fichas = fichasP;
+	  this.procesada = false;
+	  this.apostar = function() {
+		 document.getElementById(this.tipo + '-' + this.jugada).style.backgroundImage = "url('images/chip.png')";
+	  };
+	  this.desapostar = function() {
+		  document.getElementById(this.tipo + '-' + this.jugada).style.backgroundImage = "none";
+	  };
+	  this.procesar = function() {
+		  this.procesada = true;
+	  };
+	  this.equals = function(anotherAWeb) {
+		  return (anotherAWeb.tipo == this.tipo) && (anotherAWeb.jugada == this.jugada) && (anotherAWeb.fichas == this.fichas);
+	  };
 	}
 
 /***
@@ -29,7 +42,8 @@ function enviarApuesta(){
       ajax.onreadystatechange = function(){
 	    if(ajax.readyState == 4){	
           if(ajax.status == 200){
-        	registrar(ajax.responseText);        	        	
+            clearTimeout(catchError);
+        	registrar(ajax.responseText);
         	var respuestaServer = eval(ajax.responseText);
         	if(respuestaServer[0] == 1){//hubo un error
         		mostrarError(respuestaServer[1]);
@@ -40,13 +54,12 @@ function enviarApuesta(){
         		actualizarEstado(respuestaServer);
         	}
             desbloquearEnvios();
-            clearTimeout(catchError);
           }
         }
 	  }
 	  ajax.open("GET","apostar?apuesta=" + tipo + "&jugada=" + jugada + "&fichasapostar=" + fichas, true);
 	  ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-	  ajax.send(null);    
+	  ajax.send(null);
 	}
 }
 
@@ -57,8 +70,42 @@ function loggear(){
 }
 
 function actualizarEstado(arrayEstado){
-	alert(arrayEstado[1]);
-}
+	document.getElementById('fichasHidden').value = arrayEstado[1];
+	document.getElementById('fichasVista').innerHTML = "Fichas disponibles: " + arrayEstado[1];	
+		
+	apuestasServer = new Array();;
+	alert(apuestasServer.length);
+	for(var i = 0; i<arrayEstado[2].length; i++){
+		apuestasServer.push(new ApuestaWeb(arrayEstado[2][i][0], arrayEstado[2][i][1], arrayEstado[2][i][3]));
+	}
+	
+	//"procesar" las que estan ya apostadas
+	for(var i = 0; i<apustasrealizadas.length; i++){
+		var contador = 0;
+		var maximo = apuestasServer.length;
+		var encontrado = false;
+		
+		while((contador<maximo) && (!encontrado)){
+			if(apuestasServer[contador].equals(apustasrealizadas[i]) && !apuestasServer[contador].procesada){
+				apuestasServer[contador].procesar();
+				apustasrealizadas[i].desapostar;
+				encontrado = true;
+			}
+		}
+		
+	}
+	
+	for(var i = 0; i<apuestasServer.length; i++){
+		if(!apuestasServer[i].procesada){
+			apuestasServer[i].apostar();
+			apuestasServer[i].procesar();
+		}
+	}
+	
+	apustasrealizadas = apuestasServer;
+	//alert(arrayEstado[2][i][1]);
+	//alert(apuestasServer.length);
+	}
 
 function mostrarError(descripcionError){
 	alert(descripcionError);
@@ -79,7 +126,7 @@ function desbloquearEnvios(){
 function mostrarJugadas(tipoApuesta, valorApuesta, nombreApuesta){
 	var tipoTexto = "<p>Apuesta seleccionada: " + tipoApuesta + "-" + nombreApuesta + "</p>";	
 	document.getElementById('apuestaTipo').value = tipoApuesta;
-	document.getElementById('opcionValor').value = valorApuesta;	
+	document.getElementById('opcionValor').value = nombreApuesta;	
 	document.getElementById('jugada').innerHTML = tipoTexto;	
 }
 
@@ -163,6 +210,6 @@ function fixRGB(aleatorio){
 
 function registrar(texto){
 	var rgb = "#" + fixRGB(Math.floor(Math.random()*10)) + fixRGB(Math.floor(Math.random()*10)) + fixRGB(Math.floor(Math.random()*10));
-	alert(rgb);
+	//alert(rgb);
 	document.getElementById('registrar').innerHTML += "<p style=\"color:" + rgb +"\">" + texto + "</p>";
 }

@@ -24,6 +24,7 @@ public class ApostarServlet extends HttpServlet {
 		String fichas = request.getParameter("fichasapostar");
 		
 		//falta cotrolar que el usuario este loggeado
+		//y que pueda apostar la suma enviada
 		
 		if(!RuletaWebModel.isNumber(fichas)){
 			request.getSession().setAttribute(RuletaWebModel.ERRORAPUESTA, "Se ingreso un parametro incorrecto en fichas");
@@ -38,7 +39,7 @@ public class ApostarServlet extends HttpServlet {
 			
 				Apuesta apuestaTemp = RuletaWebModel.getApuesta(apuesta);
 				if(!RuletaWebModel.esJugadaPosible(apuestaTemp,  jugada)){
-					request.getSession().setAttribute(RuletaWebModel.ERRORAPUESTA, "Se ingreso un parametro incorrecto en tipo de apuesta");
+					request.getSession().setAttribute(RuletaWebModel.ERRORAPUESTA, "Se ingreso un parametro incorrecto en tipo de jugada [Apuesta: " + jugada  + "]");
 					request.getRequestDispatcher("error.jsp").forward(request, response);
 				}
 				else{
