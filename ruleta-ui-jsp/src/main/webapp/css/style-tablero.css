@@ -1,8 +1,8 @@
 #tablero {
-    background-image: url(../images/bg_tableDELETE.png);	
+    background-image: url(../images/bgTile2.png);	
 	width: 650px;
 	height: auto;
-	background-color: green;
+	background-color: none;
 	margin: 0px auto 0px auto;
 	padding: 10px;
 	border: solid 2px black;
