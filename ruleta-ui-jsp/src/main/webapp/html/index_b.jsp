@@ -12,7 +12,7 @@
 
 </head>
 
-<body>
+<body onload="javascript:actualizarTablero();">
 <div id="false-body">
 
 <div id="header">
@@ -83,7 +83,7 @@
 		</p>
 		<input type="hidden" id="fichasHidden" value="">
 		<input type="hidden" id="apuestaTipo" value="">
-		<input type="hidden" id="opcionValor" value="">
+		<input type="hidden" id="opcionNombre" value="">
     </form>	
 	  
 	<%}else{%>
@@ -101,8 +101,22 @@
   </div > <!-- cierra body-left -->
 	
   <div id="body-right">
+  <script type="text/javascript">
+  function actualizarTablero(){
+	  
+  var respuestaServer = eval(<jsp:include page="../getapuestas.jsp" />);
+  if(respuestaServer[0] == 1){//hubo un error
+		mostrarError(respuestaServer[1]);
+	}
+	else if(respuestaServer[0] == 2){
+		loggear();
+	}else{
+		actualizarEstado(respuestaServer);
+	}
+	  
+  }
   
-  <jsp:include page="../getapuestas.jsp" />
+  </script>
   
   <div id="registrar">
   </div> <!-- cierra registrar -->  

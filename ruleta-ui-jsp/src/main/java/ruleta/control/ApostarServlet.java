@@ -1,6 +1,7 @@
 package ruleta.control;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -53,11 +54,17 @@ public class ApostarServlet extends HttpServlet {
 				
 				
 					//seteo los atributos de la apuesta
-					apuestaTemp.setJugador(modeloWeb.getJugador());		
 					apuestaTemp.setJugador(modeloWeb.getJugador());											
 					apuestaTemp.setFichas(Integer.parseInt(fichas));
 					apuestaTemp.setJugadaSeleccionada(jugadaSeleccionada);
 					apuestaTemp.confirmar();
+					
+					RuletaWebModel modeloWebprueba = (RuletaWebModel) request.getSession().getAttribute("model");
+					List<Apuesta> apuestas = modeloWebprueba.jugador.apuestas;
+					System.out.println("Apuestas");
+					for(Apuesta ap:apuestas){
+						System.out.println("se apuesta" + ap.getTipoApuesta() + ap.jugadaSeleccionada.getNombre() + ap.getFichas());
+					}
 					request.getSession().setAttribute(RuletaWebModel.ERRORAPUESTA, null);
 				
 					request //

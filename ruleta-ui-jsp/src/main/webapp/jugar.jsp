@@ -36,7 +36,7 @@
 </div><!-- cierra .plenos_frame -->
 
 <c:forEach var="jugada" items="${sessionScope.model.paridad.opciones}">
-<div  class="paridad" > <a id="<c:out value="${sessionScope.model.paridad.tipoApuesta}"/>-<c:out value="${jugada.valor}"/>" href="Javascript:mostrarJugadas('<c:out value="${sessionScope.model.paridad.tipoApuesta}"/>', '<c:out value="${jugada.valor}"/>', '<c:out value="${jugada.nombre}"/>')"><c:out value="${jugada.nombre}"/></a> </div><!-- cierra Fila-n -->
+<div  class="paridad" > <a id="<c:out value="${sessionScope.model.paridad.tipoApuesta}"/>-<c:out value="${jugada.nombre}"/>" href="Javascript:mostrarJugadas('<c:out value="${sessionScope.model.paridad.tipoApuesta}"/>', '<c:out value="${jugada.valor}"/>', '<c:out value="${jugada.nombre}"/>')"><c:out value="${jugada.nombre}"/></a> </div><!-- cierra Fila-n -->
 </c:forEach>
 
 

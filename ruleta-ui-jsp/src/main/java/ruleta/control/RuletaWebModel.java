@@ -6,9 +6,12 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import ruleta.Apuesta;
+import ruleta.Columna;
+import ruleta.Fila;
 import ruleta.Jugador;
 import ruleta.Mesa;
 import ruleta.OpcionJugada;
+import ruleta.ParImpar;
 import ruleta.Pleno;
 import ruleta.Ruleta;
 
@@ -183,10 +186,71 @@ public class RuletaWebModel {
 
 
 
-	public static List<Apuesta> staticApuestas = Ruleta.getApuestas();
+	public static List<ApuestaWeb> staticApuestas = getApuestas();
 	
 	public static RuletaWebModel getModel(HttpServletRequest request) {
 		return (RuletaWebModel) request.getSession().getAttribute(RuletaWebModel.MODEL);
+	}
+
+	private static List<ApuestaWeb> getApuestas() {
+		List<ApuestaWeb> apuestas = new LinkedList<ApuestaWeb>();
+		apuestas.add(new ColumnaWeb());
+		apuestas.add(new FilaWeb());
+		apuestas.add(new PlenoWeb());
+		apuestas.add(new ParImparWeb());
+		return apuestas;
+	}
+	
+	public static abstract class ApuestaWeb{
+		public Apuesta apuesta = new Columna();
+		public String getTipoApuesta(){
+			return apuesta.getTipoApuesta();
+		}		
+		public abstract Apuesta create();
+	}
+	
+	public static class ColumnaWeb extends ApuestaWeb{
+		public Apuesta apuesta = new Columna();
+		public String getTipoApuesta(){
+			return apuesta.getTipoApuesta();
+		}
+		public Apuesta create(){
+			return new Columna();
+		}
+		
+	}
+	
+	public static class FilaWeb extends ApuestaWeb{
+		public Apuesta apuesta = new Fila();
+		public String getTipoApuesta(){
+			return apuesta.getTipoApuesta();
+		}
+		public Apuesta create(){
+			return new Fila();
+		}
+		
+	}
+	
+	public static class PlenoWeb extends ApuestaWeb{
+		public Apuesta apuesta = new Pleno();
+		public String getTipoApuesta(){
+			return apuesta.getTipoApuesta();
+		}
+		public Apuesta create(){
+			return new Pleno();
+		}
+		
+	}
+	
+	public static class ParImparWeb extends ApuestaWeb{
+		public Apuesta apuesta = new ParImpar();
+		public String getTipoApuesta(){
+			return apuesta.getTipoApuesta();
+		}
+		public Apuesta create(){
+			return new ParImpar();
+		}
+		
 	}
 
 	public static boolean isNumber(String dineroJugadorS) {
@@ -207,7 +271,7 @@ public class RuletaWebModel {
 	}
 
 	public static boolean esApuesta(String apuesta) {
-	    for(Apuesta apuestaTemp:staticApuestas){
+	    for(ApuestaWeb apuestaTemp: staticApuestas){
 	    	if(apuestaTemp.getTipoApuesta().equals(apuesta)){
 	    		return true;
 	    	}
@@ -216,9 +280,9 @@ public class RuletaWebModel {
 	}
 	
 	public static Apuesta getApuesta(String apuesta) throws RuletaException {
-	    for(Apuesta apuestaTemp:staticApuestas){
+	    for(ApuestaWeb apuestaTemp: staticApuestas){
 	    	if(apuestaTemp.getTipoApuesta().equals(apuesta)){
-	    		return apuestaTemp;
+	    		return apuestaTemp.create();
 	    	}
 	    }
 	    throw new RuletaException("Se envio como parametro un tipo de apuesta no existente [Apuesta = " + apuesta + "]");
