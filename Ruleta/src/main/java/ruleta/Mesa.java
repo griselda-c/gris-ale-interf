@@ -71,6 +71,7 @@ public class Mesa extends ObservableObject{
 		this.apuestas.add(apuesta);
 		//this.setBanca(this.getBanca() + cantidadApostada);
 		this.firePropertyChange(JUGADORES, null, jugadores);
+		System.out.println("se apuesta" + apuesta.getTipoApuesta() + apuesta.jugadaSeleccionada.getNombre() + apuesta.getFichas());
 	}
 	
 	public void girarRuleta(){
