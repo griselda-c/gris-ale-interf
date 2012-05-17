@@ -5,8 +5,25 @@
 
 <LINK rel="stylesheet" href="css/style-tablero.css" type="text/css" media="all">
 
+  
 <jsp:include page="html/index_b.jsp" />
 
+<script type="text/javascript">
+  function actualizarTablero(){
+	  
+  var respuestaServer = eval(<jsp:include page="getapuestas.jsp" />);
+  if(respuestaServer[0] == 1){//hubo un error
+		mostrarError(respuestaServer[1]);
+	}
+	else if(respuestaServer[0] == 2){
+		loggear();
+	}else{
+		actualizarEstado(respuestaServer);
+	}
+	  
+  }
+  
+</script>
 
 <div id="tablero">
 

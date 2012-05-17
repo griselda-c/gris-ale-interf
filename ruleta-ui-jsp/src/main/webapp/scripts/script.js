@@ -71,6 +71,7 @@ function enviarApuesta(){
 
 function loggear(){
 	alert("debe iniciar session para poder apostar");
+	location.href="index.jsp";
 	header("location: index.jsp");
 }
 
@@ -104,12 +105,14 @@ function mostrarError(descripcionError){
 function bloquearEnvios(){
 	enviando = true;
 	document.getElementById('apostar').disabled = true;
+	document.getElementById('girarRuleta').disabled = true;
 }
 
 
 function desbloquearEnvios(){
 	enviando = false;
 	document.getElementById('apostar').disabled = false;
+	document.getElementById('girarRuleta').disabled = false;
 }
 
 
@@ -203,4 +206,50 @@ function registrar(texto){
 	var rgb = "#" + fixRGB(Math.floor(Math.random()*10)) + fixRGB(Math.floor(Math.random()*10)) + fixRGB(Math.floor(Math.random()*10));
 	//alert(rgb);
 	document.getElementById('registrar').innerHTML += "<p style=\"color:" + rgb +"\">" + texto + "</p>";
+}
+
+function girarRuleta(){
+	if(!enviando){	
+	  bloquearEnvios();
+	  var ajax;
+	  ajax = new ajaxFunction();
+	  var catchError = setTimeout(function(){ajax.abort();mostrarError("Error en la conexion, intentelo nuevamente");desbloquearEnvios();}, 10000);
+      ajax.onreadystatechange = function(){
+	    if(ajax.readyState == 4){	
+          if(ajax.status == 200){
+            clearTimeout(catchError);
+        	registrar(ajax.responseText);
+        	var respuestaServer = eval(ajax.responseText);
+        	if(respuestaServer[0] == 1){//hubo un error
+        		mostrarError(respuestaServer[1]);
+        	}
+        	else if(respuestaServer[0] == 2){
+        		loggear();
+        	}else{
+        		actualizarEstado(respuestaServer);
+        		//alert()
+        		document.getElementById('numeroGanadorVista').innerHTML ="Salio el numero"+ respuestaServer[3];
+        	}
+            desbloquearEnvios();
+          }
+        }
+	  }
+      var envio = "getapuestas?girarruleta=true";
+      //alert(envio);
+	  ajax.open("GET", envio, true);
+	  ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+	  ajax.send(null);
+	}
+}
+
+function validarApostar(textfield){
+	var disponibles = document.getElementById('fichasHidden').value;
+	var quiereApostar = textfield.value;
+	
+	if(quiereApostar > disponibles){
+		document.getElementById('apostar').disabled = true;		
+	}
+	else{
+		document.getElementById('apostar').disabled = false;
+	}	
 }

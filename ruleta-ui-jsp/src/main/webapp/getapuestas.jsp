@@ -9,7 +9,7 @@
 	%>[0, ${sessionScope.model.jugador.fichas}, [
 	<c:forEach var="apuestaG" items="${sessionScope.model.jugador.apuestas}">
 	["<c:out value="${apuestaG.tipoApuesta}"/>", "<c:out value="${apuestaG.jugadaSeleccionada.nombre}"/>", <c:out value="${apuestaG.jugadaSeleccionada.valor}"/>, <c:out value="${apuestaG.fichas}"/>],
-	</c:forEach>]]
+	</c:forEach>],${sessionScope.model.mesa.numeroGanador}]
 	<%
   }
   else{

@@ -7,7 +7,17 @@
 
 <jsp:include page="html/index_b.jsp" />
 
-
+<script type="text/javascript">
+  function actualizarTablero(){	  
+    <%if (request.getSession().getAttribute("jugador") != null) {%>		
+    location.href="jugar.jsp";		
+    <%}else{%>
+    //alert("esta todo bien gil");
+    //comportamiento cuando inicia index sin jugador
+	<%}%>  
+  }
+  
+  </script>
 <div id="log">
   <div id="log-top">
   

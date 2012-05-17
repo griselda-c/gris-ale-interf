@@ -6,9 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Ruleta</title>
 
-<SCRIPT TYPE="text/javascript">
 
-</SCRIPT>
 
 </head>
 
@@ -75,17 +73,17 @@
     </div > <!-- cierra jugada -->  
     <br/>
     
-	<form action="apostar" method="post" id="form_apuesta" name="form_apuesta">		
+		
 		<p>Ingrese la cantidad de fichas que desea apostar:<br>
-		<input id="apuestaFichas" name="apuestaFichas" type="text" size="12" style="font-family: sans-serif; font-size: 16px; margin-top: 10px; border: 0px;">
+		<input id="apuestaFichas"  onkeyup="javascript:validarApostar(this);" name="apuestaFichas" type="text" size="12" style="font-family: sans-serif; font-size: 16px; margin-top: 10px; border: 0px;">
 		
 		<input type="button" id="apostar" value="Apostar" onclick="javascript:enviarApuesta();" style="font-family: sans-serif; font-size: 16px; margin-top: 10px; border: 0px;">
 		</p>
-		<input type="hidden" id="fichasHidden" value="">
+		<input type="hidden" id="fichasHidden" value="${sessionScope.jugador.fichas}">
 		<input type="hidden" id="apuestaTipo" value="">
 		<input type="hidden" id="opcionNombre" value="">
-    </form>	
-	  
+        <input type="button" id= "girarRuleta" value="Girar Ruleta" onclick="javascript:girarRuleta();" style="font-family: sans-serif; font-size: 16px; margin-top: 10px; border: 0px;" />
+	    <p id= "numeroGanadorVista"> </p>
 	<%}else{%>
 	<p>Inicie sesión para realizar apuestas</p>
 		
@@ -101,22 +99,7 @@
   </div > <!-- cierra body-left -->
 	
   <div id="body-right">
-  <script type="text/javascript">
-  function actualizarTablero(){
-	  
-  var respuestaServer = eval(<jsp:include page="../getapuestas.jsp" />);
-  if(respuestaServer[0] == 1){//hubo un error
-		mostrarError(respuestaServer[1]);
-	}
-	else if(respuestaServer[0] == 2){
-		loggear();
-	}else{
-		actualizarEstado(respuestaServer);
-	}
-	  
-  }
   
-  </script>
   
   <div id="registrar">
   </div> <!-- cierra registrar -->  

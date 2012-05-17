@@ -14,17 +14,18 @@ public class GetApuestasServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
   
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RuletaWebModel modeloWeb = (RuletaWebModel) request.getSession().getAttribute("model");
-		List<Apuesta> apuestas = modeloWeb.jugador.apuestas;
-		System.out.println("Apuestas");
-		for(Apuesta ap:apuestas){
-			System.out.println("se apuesta" + ap.getTipoApuesta() + ap.jugadaSeleccionada.getNombre() + ap.getFichas());
+		
+		
+		
+		
+		System.out.println("se invoco getApuestas");
+		String girarRuleta = request.getParameter("girarruleta");
+		if(girarRuleta.equals("true")){
+			RuletaWebModel modeloWeb = RuletaWebModel.getModel(request);
+			System.out.println("se giro ruleta");
+			modeloWeb.mesa.girarRuleta();
+			
 		}
-		
-		
-		
-		
-		System.out.println();
 		request //
 		.getRequestDispatcher("getapuestas.jsp").forward(request, response);
 	}
