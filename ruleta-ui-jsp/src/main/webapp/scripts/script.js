@@ -57,6 +57,7 @@ function enviarApuesta(){
         		actualizarEstado(respuestaServer);
         	}
             desbloquearEnvios();
+        	validarApostar();
           }
         }
 	  }
@@ -96,6 +97,7 @@ function actualizarEstado(arrayEstado){
 		registrar("apostada - " + apuestasServer[i].mostrar());
 	}	
 	apustasrealizadas = apuestasServer;
+	mostrarColeccionApuestas();
 	}
 
 function mostrarError(descripcionError){
@@ -117,13 +119,27 @@ function desbloquearEnvios(){
 
 
 function mostrarJugadas(tipoApuesta, valorApuesta, nombreApuesta){
-	var tipoTexto = "<p>Apuesta seleccionada: " + tipoApuesta + "-" + nombreApuesta + "</p>";	
-	document.getElementById('jugada').innerHTML = tipoTexto;
+	var apuestaTexto = "<p>Apuesta seleccionada: " + tipoApuesta + "-" + nombreApuesta + "</p>";	
+	document.getElementById('jugada').innerHTML = apuestaTexto;
+	
 	
 	document.getElementById('apuestaTipo').value = tipoApuesta;
 	document.getElementById('opcionNombre').value = nombreApuesta;	
+	mostrarColeccionApuestas();
 }
 
+function mostrarColeccionApuestas(){
+	tipoApuesta = document.getElementById('apuestaTipo').value;
+	nombreApuesta = document.getElementById('opcionNombre').value;	
+	var apuestasColeccion = "";	
+	for(var i = 0; i<apustasrealizadas.length; i++){
+		if(apustasrealizadas[i].tipo == tipoApuesta && apustasrealizadas[i].jugada == nombreApuesta){
+			apuestasColeccion += "<div class=\"jugadacollecion\"><p>" + tipoApuesta + "-" + nombreApuesta + " <img src=\"images/chip.png\"> " + apustasrealizadas[i].fichas + "</p></div>";			
+		}				
+	}	
+	document.getElementById('apuestasColeccion').innerHTML = apuestasColeccion;
+	
+}
 
 function submitEnterLogin(myfield,e){
 	var keycode;
@@ -228,7 +244,7 @@ function girarRuleta(){
         	}else{
         		actualizarEstado(respuestaServer);
         		//alert()
-        		document.getElementById('numeroGanadorVista').innerHTML ="Salio el numero"+ respuestaServer[3];
+        		document.getElementById('numeroGanadorVista').innerHTML ="Numero ganador: "+ respuestaServer[3];
         	}
             desbloquearEnvios();
           }
@@ -242,11 +258,11 @@ function girarRuleta(){
 	}
 }
 
-function validarApostar(textfield){
+function validarApostar(){
 	var disponibles = document.getElementById('fichasHidden').value;
-	var quiereApostar = textfield.value;
+	var quiereApostar = document.getElementById('apuestaFichas').value;
 	
-	if(quiereApostar > disponibles){
+	if(quiereApostar > disponibles || quiereApostar == ""){
 		document.getElementById('apostar').disabled = true;		
 	}
 	else{

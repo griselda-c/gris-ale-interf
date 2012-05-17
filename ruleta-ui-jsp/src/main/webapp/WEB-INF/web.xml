@@ -778,36 +778,46 @@ standard deployment descriptor.
     <servlet-name>adjuntarjugador</servlet-name>
     <servlet-class>ruleta.control.AdjuntarjugadorServlet</servlet-class>
   </servlet>
-  <servlet-mapping>
-    <servlet-name>adjuntarjugador</servlet-name>
-    <url-pattern>/adjuntarjugador</url-pattern>
-  </servlet-mapping>
   <servlet>
     <servlet-name>mostrarapuestas</servlet-name>
     <servlet-class>ruleta.control.MostrarapuestasServlet</servlet-class>
   </servlet>
+  <servlet>
+    <javaee:description></javaee:description>
+    <javaee:display-name>ApostarServlet</javaee:display-name>
+    <servlet-name>apostarservlet</servlet-name>
+    <servlet-class>ruleta.control.ApostarServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <javaee:description></javaee:description>
+    <javaee:display-name>GetApuestasServlet</javaee:display-name>
+    <servlet-name>getapuestasservlet</servlet-name>
+    <servlet-class>ruleta.control.GetApuestasServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <javaee:description></javaee:description>
+    <javaee:display-name>LoginOutServlet</javaee:display-name>
+    <servlet-name>loginoutservlet</servlet-name>
+    <servlet-class>ruleta.control.LoginOutServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>adjuntarjugador</servlet-name>
+    <url-pattern>/adjuntarjugador</url-pattern>
+  </servlet-mapping>
   <servlet-mapping>
     <servlet-name>mostrarapuestas</servlet-name>
     <url-pattern>/mostrarapuestas</url-pattern>
   </servlet-mapping>
-  <servlet>
-    <javaee:description></javaee:description>
-    <javaee:display-name>ApostarServlet</javaee:display-name>
-    <servlet-name>ApostarServlet</servlet-name>
-    <servlet-class>ruleta.control.ApostarServlet</servlet-class>
-  </servlet>
   <servlet-mapping>
-    <servlet-name>ApostarServlet</servlet-name>
+    <servlet-name>apostarservlet</servlet-name>
     <url-pattern>/apostar</url-pattern>
   </servlet-mapping>
-  <servlet>
-    <javaee:description></javaee:description>
-    <javaee:display-name>GetApuestasServlet</javaee:display-name>
-    <servlet-name>GetApuestasServlet</servlet-name>
-    <servlet-class>ruleta.control.GetApuestasServlet</servlet-class>
-  </servlet>
   <servlet-mapping>
-    <servlet-name>GetApuestasServlet</servlet-name>
+    <servlet-name>getapuestasservlet</servlet-name>
     <url-pattern>/getapuestas</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>loginoutservlet</servlet-name>
+    <url-pattern>/loginout</url-pattern>
   </servlet-mapping>
 </web-app>

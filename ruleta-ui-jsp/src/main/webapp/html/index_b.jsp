@@ -10,7 +10,7 @@
 
 </head>
 
-<body onload="javascript:actualizarTablero();">
+<body onload="javascript:actualizarTablero();validarApostar();">
 <div id="false-body">
 
 <div id="header">
@@ -34,7 +34,7 @@
     
     <%if (request.getSession().getAttribute("jugador") != null) {%>
 	
-	<p class="session2"><a href="../login/login-out.php" title="Abandonar la sesion actual"><b>Cerrar sesi&oacute;n</b></a></p>  
+	<p class="session2"><a href="loginout" title="Abandonar la sesion actual"><b>Cerrar sesi&oacute;n</b></a></p>  
     </div > <!-- session-center2 -->
   
     <div id="session-center1">
@@ -75,15 +75,23 @@
     
 		
 		<p>Ingrese la cantidad de fichas que desea apostar:<br>
-		<input id="apuestaFichas"  onkeyup="javascript:validarApostar(this);" name="apuestaFichas" type="text" size="12" style="font-family: sans-serif; font-size: 16px; margin-top: 10px; border: 0px;">
+		<input id="apuestaFichas"  onkeyup="javascript:validarApostar();" name="apuestaFichas" type="text" size="12" style="font-family: sans-serif; font-size: 16px; margin-top: 10px; border: 0px;">
 		
-		<input type="button" id="apostar" value="Apostar" onclick="javascript:enviarApuesta();" style="font-family: sans-serif; font-size: 16px; margin-top: 10px; border: 0px;">
+		<input type="button" id="apostar" value="Apostar" onclick="javascript:enviarApuesta();" >
 		</p>
 		<input type="hidden" id="fichasHidden" value="${sessionScope.jugador.fichas}">
 		<input type="hidden" id="apuestaTipo" value="">
 		<input type="hidden" id="opcionNombre" value="">
-        <input type="button" id= "girarRuleta" value="Girar Ruleta" onclick="javascript:girarRuleta();" style="font-family: sans-serif; font-size: 16px; margin-top: 10px; border: 0px;" />
+		<br/>
+        <input type="button" id= "girarRuleta" value="Girar Ruleta" onclick="javascript:girarRuleta();"  />
+	    <br/>
+	    <br/>
 	    <p id= "numeroGanadorVista"> </p>
+	    
+	    <br/>
+	    
+	    <div id="apuestasColeccion"></div>
+	    
 	<%}else{%>
 	<p>Inicie sesión para realizar apuestas</p>
 		
