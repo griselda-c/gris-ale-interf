@@ -88,13 +88,13 @@ function actualizarEstado(arrayEstado){
 	
 	for(var i = 0; i<apustasrealizadas.length; i++){
 		apustasrealizadas[i].desapostar();
-		registrar("des - " + apustasrealizadas[i].mostrar());
+		//registrar("des - " + apustasrealizadas[i].mostrar());
 				
 	}
 	
 	for(var i = 0; i<apuestasServer.length; i++){
 		apuestasServer[i].apostar();
-		registrar("apostada - " + apuestasServer[i].mostrar());
+		//registrar("apostada - " + apuestasServer[i].mostrar());
 	}	
 	apustasrealizadas = apuestasServer;
 	mostrarColeccionApuestas();

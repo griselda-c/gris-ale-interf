@@ -60,7 +60,7 @@
 
 
 
-<div id="fix-tablero" style="clear:both;"></div><!-- cierra fix-tablero -->
+<div id="fix-tablero" style="clear:left;"></div><!-- cierra fix-tablero -->
 
   
 </div><!-- cierra tablero -->
