@@ -110,13 +110,11 @@ function bloquearEnvios(){
 	document.getElementById('girarRuleta').disabled = true;
 }
 
-
 function desbloquearEnvios(){
 	enviando = false;
 	document.getElementById('apostar').disabled = false;
 	document.getElementById('girarRuleta').disabled = false;
 }
-
 
 function mostrarJugadas(tipoApuesta, valorApuesta, nombreApuesta){
 	var apuestaTexto = "<p>Apuesta seleccionada: " + tipoApuesta + "-" + nombreApuesta + "</p>";	
@@ -124,8 +122,10 @@ function mostrarJugadas(tipoApuesta, valorApuesta, nombreApuesta){
 	
 	
 	document.getElementById('apuestaTipo').value = tipoApuesta;
-	document.getElementById('opcionNombre').value = nombreApuesta;	
+	document.getElementById('opcionNombre').value = nombreApuesta;
+	validarApostar();
 	mostrarColeccionApuestas();
+	
 }
 
 function mostrarColeccionApuestas(){
@@ -147,23 +147,37 @@ function submitEnterLogin(myfield,e){
 	else if (e) keycode = e.which;
 	else return true;
 
-	if (keycode == 13)
-	   {
-	   myfield.form.submit();
-	   }
+    if (keycode == 13)
+	    {
+    	
+		validarYEnviar();
+	    //myfield.form.submit();
+	    }
 	}
 
-
-
-function init(){
-	loadAndFormat();
-}
-
-function loadAndFormat(){
+function validarYEnviar(){
+    
+	var formulario = document.getElementById('form_log');
+	var nombre = document.getElementById('nombreJugador');
+	var dinero = document.getElementById('dineroJugador');
+	var RegExNombre = /^[a-zA-Z]+$/;
+	var RegExDinero = /^[0-9]*[1-9]+[0-9]*$/;
+	if(nombre.value.match(RegExNombre)){
+		if(dinero.value.match(RegExDinero)){
+			formulario.submit();
+		}
+		else{
+			alert('Dinero incorrecto');
+			dinero.focus();
+			
+		}
+	}
+	else{
+		alert('Nombre incorrecto');
+		nombre.focus();
+	}
 	
 }
-
-
 
 function ajaxFunction(){
   var xmlHttp;
@@ -259,13 +273,29 @@ function girarRuleta(){
 }
 
 function validarApostar(){
+	//alert('validando');
 	var disponibles = document.getElementById('fichasHidden').value;
 	var quiereApostar = document.getElementById('apuestaFichas').value;
+	var tipoApuesta = document.getElementById('apuestaTipo').value;
 	
-	if(quiereApostar > disponibles || quiereApostar == ""){
-		document.getElementById('apostar').disabled = true;		
+	if(quiereApostar == ""){
+		document.getElementById('apostar').disabled = true;
+		registrar('input vacio');
+	}
+	else if(parseInt(quiereApostar) > parseInt(disponibles)){
+		document.getElementById('apostar').disabled = true;	
+		registrar('Apuesta mayor a cantidad de fichas');
+	}
+	else if(!quiereApostar.match(/^[0-9]*[1-9]+[0-9]*$/)){
+		document.getElementById('apostar').disabled = true;
+		registrar('No es un numero mayor a 0');
+	}
+	else if(tipoApuesta == ""){
+		document.getElementById('apostar').disabled = true;	
+		registrar('No se ha seleccionado apuesta');	
 	}
 	else{
 		document.getElementById('apostar').disabled = false;
+		registrar('validado Ok');	
 	}	
 }

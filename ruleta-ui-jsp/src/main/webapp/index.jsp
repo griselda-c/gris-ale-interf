@@ -34,10 +34,10 @@
 		</p>
 		<p>Ingrese la cantidad de dinero:<br>
 		<input id="dineroJugador" name="dineroJugador" type="text" size="25" style="font-family: sans-serif; font-size: 16px; margin-top: 10px; border: 0px;"
-           onKeyPress="javascript:submitEnterLogin(this,  event)">
+           onKeyPress="javascript:submitEnterLogin(this, event)">
 		</p>
 		<p class="button">
-		<a href="javascript:document.form_log.submit()">Enviar</a>
+		<a href="javascript:validarYEnviar();">Enviar</a>
 		<a href="javascript:document.form_log.reset()">Borrar</a>
 		</p>
     </form>	
