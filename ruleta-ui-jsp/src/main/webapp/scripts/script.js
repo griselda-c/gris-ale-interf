@@ -88,14 +88,13 @@ function actualizarEstado(arrayEstado){
 	
 	for(var i = 0; i<apustasrealizadas.length; i++){
 		apustasrealizadas[i].desapostar();
-		//registrar("des - " + apustasrealizadas[i].mostrar());
-				
+		//registrar("des - " + apustasrealizadas[i].mostrar());				
 	}
 	
 	for(var i = 0; i<apuestasServer.length; i++){
 		apuestasServer[i].apostar();
 		//registrar("apostada - " + apuestasServer[i].mostrar());
-	}	
+	}
 	apustasrealizadas = apuestasServer;
 	mostrarColeccionApuestas();
 	}
@@ -146,10 +145,8 @@ function submitEnterLogin(myfield,e){
 	if (window.event) keycode = window.event.keyCode;
 	else if (e) keycode = e.which;
 	else return true;
-
     if (keycode == 13)
-	    {
-    	
+	    {    	
 		validarYEnviar();
 	    //myfield.form.submit();
 	    }
@@ -168,8 +165,7 @@ function validarYEnviar(){
 		}
 		else{
 			alert('Dinero incorrecto');
-			dinero.focus();
-			
+			dinero.focus();			
 		}
 	}
 	else{

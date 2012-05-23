@@ -5,7 +5,7 @@
 *:focus  {  outline: none;  }
 
 body {
-    min-width: 1100px;
+    min-width: 1400px;
 	background:url(../images/bg.jpg) no-repeat;
 	background-position: 50% -40px ;
     background-color: #470602;

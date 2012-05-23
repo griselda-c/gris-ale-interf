@@ -28,7 +28,7 @@ public class ApostarServlet extends HttpServlet {
 		//y que pueda apostar la suma enviada
 		
 		if(!RuletaWebModel.isNumber(fichas)){
-			request.getSession().setAttribute(RuletaWebModel.ERRORAPUESTA, "Se ingreso un parametro incorrecto en fichas");
+			request.getSession().setAttribute(RuletaWebModel.ERRORAPUESTA, "Se ingreso un   incorrecto en fichas");
 			request.getRequestDispatcher("error.jsp").forward(request, response);
 		}		
 		else{
@@ -61,10 +61,6 @@ public class ApostarServlet extends HttpServlet {
 					
 					RuletaWebModel modeloWebprueba = (RuletaWebModel) request.getSession().getAttribute("model");
 					List<Apuesta> apuestas = modeloWebprueba.jugador.apuestas;
-					System.out.println("Apuestas");
-					for(Apuesta ap:apuestas){
-						System.out.println("se apuesta" + ap.getTipoApuesta() + ap.jugadaSeleccionada.getNombre() + ap.getFichas());
-					}
 					request.getSession().setAttribute(RuletaWebModel.ERRORAPUESTA, null);
 				
 					request //
