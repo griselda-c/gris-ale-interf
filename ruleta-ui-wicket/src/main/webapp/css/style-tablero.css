@@ -1,0 +1,142 @@
+#tablero {
+    background-image: url(../images/bgTile2.png);	
+	width: 650px;
+	height: auto;
+	background-color: none;
+	margin: 0px auto 0px auto;
+	padding: 10px;
+	border: solid 2px black;
+}
+
+.rojo a, .negro a, .fila a, .columna a, .zero a{
+	width: 150px;
+}	
+
+.rojo a, .negro a, .fila a, .columna a, .zero a, .paridad a{
+	height: 50px;
+	float: left;
+	margin: 4px 0px 0px 4px;
+	padding: 0px;
+	text-align: center;
+    font-weight: bold;
+	display: block;
+	text-decoration: none;
+	font-family:arial, verdana, sans-serif;
+    background-image: none;    
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+}
+
+.rojo a, .negro a, .fila a, .zero a{
+	font-size: 45px;
+}
+
+.rojo a .stitle, .negro a .stitle, .fila a .stitle, .zero a .stitle, .paridad a .stitle{
+	font-size: 18px;
+	margin-left:8px;
+}
+
+.columna a .stitle{
+	font-size: 12px;
+	margin-left:6px;
+}
+ 
+
+
+.filas_frame{
+	width: 162px;
+	height: auto;
+	float:left;
+	background-color: none;
+	margin: 0px;	
+	overflow: hidden;
+}
+
+.plenos_frame{
+	width: 486px;
+	height: auto;
+	float:left;
+	background-color: none;
+	margin: 0px;	
+	overflow: hidden;
+}
+
+.rojo a:hover, .negro a:hover, .fila a:hover, .columna a:hover, .zero a:hover, .paridad a:hover{	
+	color: white;
+	border: solid 4px white;
+}
+
+.zero a{
+	border: solid 4px #9c7;	
+	color: #9c7;
+}
+
+.paridad a{
+	border: solid 4px #030;	
+	color: #030;
+	width: 312px;
+	font-size: 40px;
+}
+
+.columna a{
+	border: solid 4px #A9A9F3;	
+	color: #A9A9F3;
+	font-size: 40px;
+}
+
+
+.fila a{
+	border: solid 4px #8B008B;
+	color: #8B008B;
+}
+
+.negro a{
+	border: solid 4px #000;
+	color: black;	
+}
+
+.rojo a{
+	border: solid 4px red;
+	color: red;
+}
+
+.napx,.apx{
+	width: 34px;
+	height: 34px;
+	color: #0f0;
+	margin: auto;
+	line-height: 32px;
+	text-align: center;
+	font-size:12px;
+}
+
+.ap{
+    background-image: url(../images/chip.png);
+}
+
+.nap{
+	background-image: none;
+}
+
+.jugadacollecion{	
+	width: 150px;
+	height: 30px;
+	margin: 4px 0px 0px 4px;
+	padding: 0px;
+	text-align: center;
+    font-weight: bold;
+	display: block;
+	text-decoration: none;
+	font-family:arial, verdana, sans-serif;
+	border: 2px solid white;	
+	background-color: black;
+	line-height: 30px;
+}
+	
+.jugadacollecion img {
+	margin: 4px 0px 0px 4px;
+	width: 20px;
+	height: 15px;	
+}
+
+
