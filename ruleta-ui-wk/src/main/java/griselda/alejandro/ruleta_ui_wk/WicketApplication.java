@@ -13,9 +13,9 @@ public class WicketApplication extends WebApplication
 	 * @see org.apache.wicket.Application#getHomePage()
 	 */
 	@Override
-	public Class<HomePage> getHomePage()
+	public Class<AdjuntarJugadorPage> getHomePage()
 	{
-		return HomePage.class;
+		return AdjuntarJugadorPage.class;
 	}
 
 	/**
