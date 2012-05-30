@@ -1,5 +1,7 @@
 package griselda.alejandro.ruleta_ui_wk;
 
+
+
 import java.io.Serializable;
 
 import ruleta.Jugador;
@@ -11,8 +13,8 @@ public class JugadorModel implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 
-private String nombre;
-private String dinero;
+private String nombre = "";
+private String dinero = "0";
 
 private Jugador jugador = new Jugador(Integer.parseInt(dinero),nombre);
 
@@ -35,7 +37,7 @@ public void setNombre(String nombre) {
 	this.nombre = nombre;
 }
 
-public String getDinero() {
+public Class<String> getDinero() {
 	return dinero;
 }
 
