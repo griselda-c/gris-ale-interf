@@ -14,9 +14,9 @@ public class JugadorModel implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 private String nombre = "";
-private String dinero = "0";
+private int dinero = 0;
 
-private Jugador jugador = new Jugador(Integer.parseInt(dinero),nombre);
+private Jugador jugador = new Jugador(dinero,nombre);
 
 public String getNombre() {
 	return nombre;
@@ -28,7 +28,7 @@ public JugadorModel(){
 }
 
 public void createJugador(){
-	this.jugador = new Jugador (Integer.parseInt(dinero),nombre);
+	this.jugador = new Jugador (dinero,nombre);
 	
 }
 
@@ -37,11 +37,11 @@ public void setNombre(String nombre) {
 	this.nombre = nombre;
 }
 
-public Class<String> getDinero() {
+public int getDinero() {
 	return dinero;
 }
 
-public void setDinero(String dinero) {
+public void setDinero(int dinero) {
 	this.dinero = dinero;
 }
 

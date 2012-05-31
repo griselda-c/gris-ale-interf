@@ -3,50 +3,44 @@ package griselda.alejandro.ruleta_ui_wk;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.Form;
+import org.apache.wicket.markup.html.form.RequiredTextField;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.PropertyModel;
+import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 
 import ruleta.Mesa;
 
 public class AdjuntarJugadorPage extends WebPage{
 	
-	public static final long serialVersionUID = 1L;
-	public Mesa mesa;
-	public JugadorModel jugador = new JugadorModel();
-	public FeedbackPanel feedbackPanel;
-	public String dineroJugador;
+	private static final long serialVersionUID = 1L;
+	private Mesa mesa;
+	private JugadorModel jugador = new JugadorModel();
+	private String jugadorDinero;
+	private String jugadorNombre;
+	private FeedbackPanel feedbackPanel;
 	
-	public String getDineroJugador() {
-		return dineroJugador;
-	}
-
-
-	public void setDineroJugador(String dineroJugador) {
-		this.dineroJugador = dineroJugador;
-	}
-
-
-	public AdjuntarJugadorPage() {
+	public AdjuntarJugadorPage(final PageParameters parameters) {
 		this.mesa = new Mesa(1000);
 		Form<JugadorModel> adjuntarForm = new Form<JugadorModel>("adjuntarJugadorForm", this.createModel());
 		this.generarCamposIngreso(adjuntarForm);
 		this.add(adjuntarForm);
-		addActions(adjuntarForm);
+		this.addActions(adjuntarForm);
+		
 		
 		
 		
 	}//adjuntar jugador
 
 	
-	public void generarCamposIngreso(Form<JugadorModel> parent) {
+	private void generarCamposIngreso(Form<JugadorModel> parent) {
 		
-		TextField<String>dinero = new TextField<String>("dinero",new PropertyModel<String>(this, "dineroJugador"));
+		TextField<String>dinero = new TextField<String>("dinero",new PropertyModel<String>(this, "jugadorDinero"));
 		parent.add(dinero);
-	    
-		TextField<String> nombre = new TextField<String>("nombre");
+		//,new PropertyModel<String>(this, "jugadorDinero")
+		TextField<String> nombre = new TextField<String>("nombre",new PropertyModel<String>(this, "jugadorNombre"));
 		parent.add(nombre);
 		
 		parent.add(this.feedbackPanel = new FeedbackPanel("feedbackPanel"));
@@ -55,16 +49,45 @@ public class AdjuntarJugadorPage extends WebPage{
 	    
 	}//generarCampos
 	
+	public JugadorModel getJugador() {
+		return jugador;
+	}
+
+
+	public void setJugador(JugadorModel jugador) {
+		this.jugador = jugador;
+	}
+
+
+	public String getJugadorDinero() {
+		return jugadorDinero;
+	}
+
+
+	public void setJugadorDinero(String jugadorDinero) {
+		this.jugadorDinero = jugadorDinero;
+	}
+
+
+	public FeedbackPanel getFeedbackPanel() {
+		return feedbackPanel;
+	}
+
+
+	public void setFeedbackPanel(FeedbackPanel feedbackPanel) {
+		this.feedbackPanel = feedbackPanel;
+	}
+
+
 	private void addActions(Form<JugadorModel> form) {
 		form.add(new Button("unirJugador") {
-			
-			private static final long serialVersionUID = 1L;
-
 			@Override
 			public void onSubmit() {
-				//jugador.createJugador();
-				//mesa.unirJugador(jugador.getJugador());
-				System.out.println("el nombre del jugador es: "+ dineroJugador);
+				jugador.setDinero(Integer.parseInt(jugadorDinero));
+				jugador.setNombre(jugadorNombre);
+				jugador.createJugador();
+				mesa.unirJugador(jugador.getJugador());
+				System.out.println("jugador" + jugador.getNombre());
 			}
 		});
 	}
