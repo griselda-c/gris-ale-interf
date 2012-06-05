@@ -12,12 +12,12 @@ import ruleta.Pleno;
 
 
 
+
 public class ApuestaModel implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
 	public static List<ApuestaWeb> staticApuestas = getApuestas();
-	public static List<String> tipoApuestas = getTipoApuestas();
 	
 	public ApuestaModel(){
 		
@@ -33,15 +33,8 @@ public class ApuestaModel implements Serializable {
 		return apuestas;
 	}
 	
-	private static List<String> getTipoApuestas(){
-		List<String> tipoApuestas = new LinkedList<String>();
-		for(ApuestaWeb aw: staticApuestas){
-			tipoApuestas.add(aw.getTipoApuesta());
-		}
-		return tipoApuestas;
-	}
 	
-	public static abstract class ApuestaWeb{
+	public static abstract class ApuestaWeb implements Serializable{
 		public Apuesta apuesta = new Columna();
 		public String tipo = apuesta.getTipoApuesta();
 		public String getTipoApuesta(){
@@ -98,7 +91,15 @@ public class ApuestaModel implements Serializable {
 		
 	}
 	
-	
+	public static Apuesta getApuesta(String apuesta) throws RuntimeException {
+	    for(ApuestaWeb apuestaTemp: staticApuestas){
+	    	if(apuestaTemp.getTipoApuesta().equals(apuesta)){
+	    		System.out.println(" se creo una apuesta "  +apuesta);
+	    		return apuestaTemp.create();
+	    	}
+	    }
+	    throw new RuntimeException("Se envio como parametro un tipo de apuesta no existente [Apuesta = " + apuesta + "]");
+	}
 	
 	
 
