@@ -1,12 +1,13 @@
 package ruleta;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 
 import org.uqbar.commons.model.ObservableObject;
 import org.uqbar.commons.model.UserException;
 
-public class Jugador extends ObservableObject{
+public class Jugador extends ObservableObject implements Serializable{
 	
 
 	public Mesa mesa;

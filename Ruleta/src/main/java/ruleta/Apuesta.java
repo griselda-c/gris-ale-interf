@@ -1,11 +1,12 @@
 package ruleta;
 
+import java.io.Serializable;
 import java.util.List;
 
 import org.uqbar.commons.model.ObservableObject;
 
 // quito todos los metodos observableObject
-public abstract class Apuesta extends ObservableObject{	
+public abstract class Apuesta extends ObservableObject implements Serializable{	
 	
 	public static final String JUGADOR = "jugador";
 	public static final String FICHAS = "fichas";

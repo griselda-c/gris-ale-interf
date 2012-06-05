@@ -1,12 +1,13 @@
 package ruleta;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 
 import org.uqbar.commons.model.ObservableObject;
 
 
-public class Mesa extends ObservableObject{
+public class Mesa extends ObservableObject implements Serializable{
 
 
 	public        final String SELECTED      = "jugadorActual";
