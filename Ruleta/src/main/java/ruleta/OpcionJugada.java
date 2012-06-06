@@ -1,6 +1,8 @@
 package ruleta;
 
-public class OpcionJugada {
+import java.io.Serializable;
+
+public class OpcionJugada implements Serializable{
 
 	
 	private String nombre;
