@@ -31,7 +31,7 @@
 
 
 
-#form_log {
+.form_log {
     background-image: none;	
 	width: auto;
 	height: auto;
@@ -42,7 +42,7 @@
 }
 
 
-#form_log p {
+.form_log p {
 	font-family:arial, verdana, sans-serif;
     color: #EDCAF7;
     font-size: 16px;
