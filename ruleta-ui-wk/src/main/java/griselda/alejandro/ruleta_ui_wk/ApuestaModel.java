@@ -7,6 +7,7 @@ import java.util.List;
 import ruleta.Apuesta;
 import ruleta.Columna;
 import ruleta.Fila;
+import ruleta.OpcionJugada;
 import ruleta.ParImpar;
 import ruleta.Pleno;
 
@@ -37,6 +38,7 @@ public class ApuestaModel implements Serializable {
 	public static abstract class ApuestaWeb implements Serializable{
 		public Apuesta apuesta = new Columna();
 		public String tipo = apuesta.getTipoApuesta();
+		public List<OpcionJugada> opciones = apuesta.getOpciones();
 		public String getTipoApuesta(){
 			return apuesta.getTipoApuesta();
 		}		
@@ -46,6 +48,7 @@ public class ApuestaModel implements Serializable {
 	public static class ColumnaWeb extends ApuestaWeb{
 		public Apuesta apuesta = new Columna();
 		public String tipo = apuesta.getTipoApuesta();
+		public List<OpcionJugada> opciones = apuesta.getOpciones();
 		public String getTipoApuesta(){
 			return apuesta.getTipoApuesta();
 		}
@@ -58,6 +61,7 @@ public class ApuestaModel implements Serializable {
 	public static class FilaWeb extends ApuestaWeb{
 		public Apuesta apuesta = new Fila();
 		public String tipo = apuesta.getTipoApuesta();
+		public List<OpcionJugada> opciones = apuesta.getOpciones();
 		public String getTipoApuesta(){
 			return apuesta.getTipoApuesta();
 		}
@@ -69,6 +73,7 @@ public class ApuestaModel implements Serializable {
 	
 	public static class PlenoWeb extends ApuestaWeb{
 		public Apuesta apuesta = new Pleno();
+		public List<OpcionJugada> opciones = apuesta.getOpciones();
 		public String tipo = apuesta.getTipoApuesta();
 		public String getTipoApuesta(){
 			return apuesta.getTipoApuesta();
@@ -82,6 +87,7 @@ public class ApuestaModel implements Serializable {
 	public static class ParImparWeb extends ApuestaWeb{
 		public Apuesta apuesta = new ParImpar();
 		public String tipo = apuesta.getTipoApuesta();
+		public List<OpcionJugada> opciones = apuesta.getOpciones();
 		public String getTipoApuesta(){
 			return apuesta.getTipoApuesta();
 		}

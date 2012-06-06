@@ -10,35 +10,17 @@
  <p align="center">Elija su apuesta
                      <br/>
                      </p> 
-
-
- 
              <form wicket:id="apuestaForm">
-           
-                   
-                     <p align="left"> Fichas:  </p> 
-                     
-                    
-                    <input wicket:id="fichas" type="text" name="fichas"/>
-                       <br/>
-                       
-                       <select wicket:id="tipoApuesta" value="elija un tipo de apuesta">
-                        
-                        </select>  
-                      
-                        <select wicket:id="jugada">
-                        
-                        </select>   
-                        
-                        <br/>
-                         <br/>
-                          <br/>
-                           <br/>
-                        
-                        <input  wicket:id="apostar" type= "submit" name="apostar " value =" Apostar "></input>
+               <p align="left"> Fichas:  </p> 
+               <input wicket:id="fichas" type="text" name="fichas"/><br/>
+               <p>elija un tipo de apuesta  </p> 
+               <select wicket:id="tipoApuesta" ></select>  
+               <select wicket:id="jugada"></select>   
+               <br/><br/><br/><br/>
+               <input  wicket:id="apostar" type= "submit" name="apostar " value =" Apostar "></input>
              
-                  <div wicket:id="feedbackPanel">
-                    	</div> 
-                  </form> 
+               <div wicket:id="feedbackPanel">
+               </div> 
+             </form> 
 </body>
 </html>

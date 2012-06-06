@@ -29,7 +29,8 @@ public class AdjuntarJugadorPage extends WebPage{
 	private String jugadorNombre;
 	private FeedbackPanel feedbackPanel;
 	private FormComponent[] componentes;
-	
+
+
 	
 	public AdjuntarJugadorPage(final PageParameters parameters) {
 		this.mesa = new Mesa(1000);
