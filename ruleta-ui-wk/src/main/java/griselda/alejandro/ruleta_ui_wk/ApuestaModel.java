@@ -20,10 +20,8 @@ public class ApuestaModel implements Serializable {
 	
 	public static List<ApuestaWeb> staticApuestas = getApuestas();
 	
-	public ApuestaModel(){
-		
-	}
-	
+    private Apuesta apuestaSeleccionada;
+    private OpcionJugada opcionJugada;
 	
 	private static List<ApuestaWeb> getApuestas() {
 		List<ApuestaWeb> apuestas = new LinkedList<ApuestaWeb>();
@@ -33,79 +31,24 @@ public class ApuestaModel implements Serializable {
 		apuestas.add(new ParImparWeb());
 		return apuestas;
 	}
-	
-	
-	public static abstract class ApuestaWeb implements Serializable{
-		public Apuesta apuesta = new Columna();
-		public String tipo = apuesta.getTipoApuesta();
-		public List<OpcionJugada> opciones = apuesta.getOpciones();
-		public String getTipoApuesta(){
-			return apuesta.getTipoApuesta();
-		}		
-		public abstract Apuesta create();
+
+	public Apuesta getApuestaSeleccionada() {
+		return apuestaSeleccionada;
+	}
+
+	public void setApuestaSeleccionada(Apuesta apuestaSeleccionada) {
+		this.apuestaSeleccionada = apuestaSeleccionada;
+	}
+
+	public OpcionJugada getOpcionJugada() {
+		return opcionJugada;
+	}
+
+	public void setOpcionJugada(OpcionJugada opcionJugada) {
+		this.opcionJugada = opcionJugada;
 	}
 	
-	public static class ColumnaWeb extends ApuestaWeb{
-		public Apuesta apuesta = new Columna();
-		public String tipo = apuesta.getTipoApuesta();
-		public List<OpcionJugada> opciones = apuesta.getOpciones();
-		public String getTipoApuesta(){
-			return apuesta.getTipoApuesta();
-		}
-		public Apuesta create(){
-			return new Columna();
-		}
-		
-	}
 	
-	public static class FilaWeb extends ApuestaWeb{
-		public Apuesta apuesta = new Fila();
-		public String tipo = apuesta.getTipoApuesta();
-		public List<OpcionJugada> opciones = apuesta.getOpciones();
-		public String getTipoApuesta(){
-			return apuesta.getTipoApuesta();
-		}
-		public Apuesta create(){
-			return new Fila();
-		}
-		
-	}
-	
-	public static class PlenoWeb extends ApuestaWeb{
-		public Apuesta apuesta = new Pleno();
-		public List<OpcionJugada> opciones = apuesta.getOpciones();
-		public String tipo = apuesta.getTipoApuesta();
-		public String getTipoApuesta(){
-			return apuesta.getTipoApuesta();
-		}
-		public Apuesta create(){
-			return new Pleno();
-		}
-		
-	}
-	
-	public static class ParImparWeb extends ApuestaWeb{
-		public Apuesta apuesta = new ParImpar();
-		public String tipo = apuesta.getTipoApuesta();
-		public List<OpcionJugada> opciones = apuesta.getOpciones();
-		public String getTipoApuesta(){
-			return apuesta.getTipoApuesta();
-		}
-		public Apuesta create(){
-			return new ParImpar();
-		}
-		
-	}
-	
-	public static Apuesta getApuesta(String apuesta) throws RuntimeException {
-	    for(ApuestaWeb apuestaTemp: staticApuestas){
-	    	if(apuestaTemp.getTipoApuesta().equals(apuesta)){
-	    		System.out.println(" se creo una apuesta "  +apuesta);
-	    		return apuestaTemp.create();
-	    	}
-	    }
-	    throw new RuntimeException("Se envio como parametro un tipo de apuesta no existente [Apuesta = " + apuesta + "]");
-	}
 	
 	
 

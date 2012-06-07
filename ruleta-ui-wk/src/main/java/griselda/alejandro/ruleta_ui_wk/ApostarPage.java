@@ -38,7 +38,8 @@ public class ApostarPage extends WebPage {
 	public ApostarPage(Jugador j, AdjuntarJugadorPage mainPage) {
 		paginaAnterior = mainPage;
 		jugador = j;
-		Form<ApuestaModel> apuestaForm = new Form<Apuesta>("apuestaForm", this.createModel());
+		CompoundPropertyModel<Apuesta> formModel = new CompoundPropertyModel<Apuesta>(this.getApuestaModel().getApuestaSeleccionada());
+		
 		this.comboJugadaw = this.getJugadas(apuestaForm);
 		this.add(apuestaForm);
 		this.addFields(apuestaForm);
@@ -46,18 +47,16 @@ public class ApostarPage extends WebPage {
 		this.addAction(apuestaForm);
 	}
 
-	public void addFields(Form<ApuestaModel> form) {
+	public void addFields(Form<Apuesta> form) {
 		form.add(new TextField<String>("fichas");
 		feedbackPanel = new FeedbackPanel("feedbackPanel");
 		feedbackPanel.setOutputMarkupId(true);
 		form.add(feedbackPanel);
 	}
 
-	public void getComboTipoApuesta(Form<ApuestaModel> form) {
+	public void getComboTipoApuesta(Form<Apuesta> form) {
 		ChoiceRenderer choiceRender = new ChoiceRenderer("tipo");
-		DropDownChoice comboApuesta = new DropDownChoice("tipoApuesta",
-				new PropertyModel(this, "apuestaNombre"),
-				apuestaM.staticApuestas, choiceRender);
+		DropDownChoice comboApuesta = new DropDownChoice("tipoApuesta",new PropertyModel(this, "apuestaNombre"),apuestaM.staticApuestas, choiceRender);
 		form.add(comboApuesta);
 		// Add Ajax Behaviour...
 		comboApuesta.add(new AjaxFormComponentUpdatingBehavior("onchange") {
@@ -72,7 +71,7 @@ public class ApostarPage extends WebPage {
 		// return comboApuesta;
 	}
 
-	public DropDownChoice getJugadas(Form<ApuestaModel> form) {
+	public DropDownChoice getJugadas(Form<Apuesta> form) {
 		List list = Collections.EMPTY_LIST;
 		if (apuestaNombre != null) {
 			// list = apuestaNombre.apuesta.getOpciones();
@@ -85,7 +84,7 @@ public class ApostarPage extends WebPage {
 		return comboJugada;
 	}
 
-	public void addAction(Form<ApuestaModel> form) {
+	public void addAction(Form<Apuesta> form) {
 		form.add(new Button("apostar") {
 			@Override
 			public void onSubmit() {
@@ -108,10 +107,18 @@ public class ApostarPage extends WebPage {
 
 	}
 
+	protected ApuestaModel getApuestaModel() {
+		return (ApuestaModel) this.getDefaultModelObject();
+	}
+
+	
+	
 	public CompoundPropertyModel<ApuestaModel> createModel() {
 
 		return new CompoundPropertyModel<ApuestaModel>(new ApuestaModel());
 	}
+	
+	
 
 	/*
 	 * public DropDownChoice getComboApuestaw() { return comboApuestaw; }
