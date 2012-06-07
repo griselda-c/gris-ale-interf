@@ -4,6 +4,8 @@ import org.apache.wicket.protocol.http.WebApplication;
 import org.apache.wicket.settings.IResourceSettings;
 import org.apache.wicket.util.resource.locator.IResourceStreamLocator;
 
+import ruleta.Mesa;
+
 
 /**
  * Application object for your web application. If you want to run this application without deploying, run the Start class.
@@ -11,12 +13,23 @@ import org.apache.wicket.util.resource.locator.IResourceStreamLocator;
  * @see griselda.alejandro.ruleta_ui_wicket.Start#main(String[])
  */
 public class WicketApplication extends WebApplication
-{    
+{   
 	
-	@Override
-	protected void init() {
-		super.init();
+	public Mesa mesaServidor;
+		
+	static public Mesa staticGetMesa(){
+		WicketApplication aplicacion = (WicketApplication) WebApplication.get();
+		return aplicacion.getMesa();
+	}
+	
+	public Mesa getMesa() {
+		return this.mesaServidor;
+	}
 
+	@Override
+	protected void init() {		
+		super.init();
+		this.mesaServidor = new Mesa(10000);
 		// the full path to your folder, relative to the context root
 		this.getResourceSettings().addResourceFolder("pages");
 

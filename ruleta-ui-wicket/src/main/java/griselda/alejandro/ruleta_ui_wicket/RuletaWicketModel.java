@@ -37,6 +37,7 @@ public class RuletaWicketModel {
 	public ApuestaWebAdapter fila;
 	public ApuestaWebAdapter columna;
 	public ApuestaWebAdapter zero;
+
 	
 	
 	
@@ -272,4 +273,7 @@ public class RuletaWicketModel {
 		throw new RuletaException("Se envio como parametro un valor de apuesta no existente [Apuesta = " + apuestaTemp.getTipoApuesta() + "], [Numero = " + jugada + "]");
 	}
 
+
+	
+	
 }

@@ -82,31 +82,32 @@
 <!-- termina index b -->
 
 <div id="log">
-
-  <div id="log-top">
-  
-  <p class="log-text">Ingrese sus datos<p/>
-  <p class="log-text">para iniciar sesion.<p/>
-  
+<form wicket:id="form_logw">
+  <div id="log-top">    
+      <div wicket:id="feedback1" class="log-text">Ingrese sus datos</div>
+      <div wicket:id="feedback2" class="log-text">para iniciar sesion.</div> 
   </div><!-- cierra log-top -->
   <div id="log-bot">
 
-     <form wicket:id="form_logw" id="form_log" class="form_log" name="form_log">
+     <div id="form_log" class="form_log" >
 		<p>Ingrese su nombre:<br>
-		<input wicket:id="nombreJugadorw" id="nombreJugador" name="nombreJugador" type="text" size="25" style="font-family: sans-serif; font-size: 16px; margin-top: 10px; border: 0px;" 
+		<input wicket:id="nombreloggin" id="nombreJugador" name="nombreJugador" type="text" size="25" style="font-family: sans-serif; font-size: 16px; margin-top: 10px; border: 0px;" 
            onKeyPress="javascript:submitForm(this, event)">
 		</p>
 		<p>Ingrese la cantidad de dinero:<br>
-		<input wicket:id="dineroJugadorw" id="dineroJugador" name="dineroJugador" type="text" size="25" style="font-family: sans-serif; font-size: 16px; margin-top: 10px; border: 0px;"
+		<input wicket:id="dinerologgin" id="dineroJugador" name="dineroJugador" type="text" size="25" style="font-family: sans-serif; font-size: 16px; margin-top: 10px; border: 0px;"
            onKeyPress="javascript:submitForm(this, event)">
 		</p>
+		<input type="hidden" id="fixSubmit">
 		<p class="button">
-		<a href="javascript:document.form_log.submit();">Enviar</a>
-		<a href="javascript:document.form_log.reset()">Borrar</a>
+		<a href="javascript:document.getElementById('fixSubmit').form.submit();">Enviar</a>
+		<a href="javascript:document.getElementById('fixSubmit').form.reset()">Borrar</a>
 		</p>
-    </form>	
+    </div>	<!-- cierra form_log -->
  
   </div><!-- cierra log-bot -->
+  
+</form><!-- cierra log -->
 </div><!-- cierra log -->
 
 <!-- empieza index c -->
