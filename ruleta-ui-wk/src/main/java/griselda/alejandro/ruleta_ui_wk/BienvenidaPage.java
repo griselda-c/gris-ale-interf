@@ -3,6 +3,7 @@ import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.Form;
+import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.PropertyModel;
 
@@ -23,19 +24,16 @@ public class BienvenidaPage extends WebPage{
 	     add (new Label ("cantFichas", "Usted tiene "));
 	     add (new Label ("fichas", new PropertyModel (jugador, "fichas")));
 	     add (new Label ("finFrase", "fichas"));
-	    	 
+	     add(new Link("linkApuesta")
+	     {
+	         public void onClick()
+	         {
+	        	 ApostarPage nextPage = (new ApostarPage(jugador));
+	     		this.setResponsePage(nextPage);
+	         }
+	     });
 	}
 	
-	public void agregarBoton(Form<Jugador> parent){
-		
-		parent.add( new Button("linkApostar")	{
-		@Override
-		public void onSubmit() {
-			this.ir
-		}
-	});
-	
-	}
 	
 	
 	
