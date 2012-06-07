@@ -30,14 +30,13 @@ public class ApostarPage extends WebPage{
 	private WebPage paginaAnterior;
 	private FeedbackPanel feedbackPanel;
 	
-	public ApostarPage(Jugador j,AdjuntarJugadorPage mainPage){
-	     paginaAnterior = mainPage;	
+	public ApostarPage(Jugador j){
 	     jugador = j;
 	    Form<ApuestaModel> apuestaForm = new Form<ApuestaModel>("apuestaForm",this.createModel());
 	    this.add(apuestaForm);
-	    comboJugada = this.getJugadas(apuestaForm);
+	   // comboJugada = this.getJugadas(apuestaForm);
 		this.addFields(apuestaForm);
-		this.getComboTipoApuesta(apuestaForm);
+		//this.getComboTipoApuesta(apuestaForm);
 		this.addAction(apuestaForm);
 		
 	}
@@ -51,7 +50,7 @@ public class ApostarPage extends WebPage{
 	
 	
 	
-
+/*
 	 private void getComboTipoApuesta( Form<ApuestaModel>form) {
 	        DropDownChoice comboApuesta = new DropDownChoice("apuestaSeleccionada",this.getApuestaModel().staticApuestas);
 	       form.add(comboApuesta);
@@ -75,7 +74,7 @@ public class ApostarPage extends WebPage{
 	        return comboJugada;
 	    }
 	
-	
+	*/
 	private void addAction(Form<ApuestaModel> form){
 	form.add(new Button("apostar") {
 		@Override
