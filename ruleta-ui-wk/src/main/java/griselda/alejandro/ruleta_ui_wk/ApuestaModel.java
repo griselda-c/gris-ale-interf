@@ -3,7 +3,6 @@ package griselda.alejandro.ruleta_ui_wk;
 import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
-
 import ruleta.Apuesta;
 import ruleta.Columna;
 import ruleta.Fila;
@@ -18,17 +17,24 @@ public class ApuestaModel implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
-	public static List<ApuestaWeb> staticApuestas = getApuestas();
+	public static List<Apuesta> staticApuestas = getApuestas();
 	
     private Apuesta apuestaSeleccionada;
     private OpcionJugada opcionJugada;
+    private int fichas = 0;
+    
+    
+    private  List<OpcionJugada>getOpciones(){
+    	return this.apuestaSeleccionada.getOpciones();
+    	
+    }
 	
-	private static List<ApuestaWeb> getApuestas() {
-		List<ApuestaWeb> apuestas = new LinkedList<ApuestaWeb>();
-		apuestas.add(new ColumnaWeb());
-		apuestas.add(new FilaWeb());
-		apuestas.add(new PlenoWeb());
-		apuestas.add(new ParImparWeb());
+	private static List<Apuesta> getApuestas() {
+		List<Apuesta> apuestas = new LinkedList<Apuesta>();
+		apuestas.add(new Columna());
+		apuestas.add(new Fila());
+		apuestas.add(new Pleno());
+		apuestas.add(new ParImpar());
 		return apuestas;
 	}
 
