@@ -35,14 +35,18 @@ public class Jugador extends ObservableObject implements Serializable{
 		this.setDinero(dineroT);
 		this.setNombre(nombreT);	
 		this.setFichas(0);
-		/*para comentar
+		//para comentar
 		this.mesa = new Mesa();
+		Fila fila = new Fila(this);
+		OpcionJugada opcion = new OpcionJugada("4", 4);
+		fila.setFichas(10);
+		fila.setJugadaSeleccionada(opcion);
+		this.apuestasFake.add(fila);
 		this.apuestasFake.add(new Fila(this));
 		this.apuestasFake.add(new Fila(this));
 		this.apuestasFake.add(new Fila(this));
 		this.apuestasFake.add(new Fila(this));
 		this.apuestasFake.add(new Fila(this));
-		this.apuestasFake.add(new Fila(this));*/
 	}
 
 	public void sumarFichas(Integer cantidad) {
