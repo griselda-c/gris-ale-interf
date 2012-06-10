@@ -34,10 +34,11 @@ public class ApostarPage extends WebPage{
 	     jugador = j;
 	    Form<ApuestaModel> apuestaForm = new Form<ApuestaModel>("apuestaForm",this.createModel());
 	    this.add(apuestaForm);
-	   // comboJugada = this.getJugadas(apuestaForm);
 		this.addFields(apuestaForm);
-		//this.getComboTipoApuesta(apuestaForm);
 		this.addAction(apuestaForm);
+		this.crearCombos(apuestaForm);
+		
+		
 		
 	}
 	
@@ -50,10 +51,31 @@ public class ApostarPage extends WebPage{
 	
 	
 	
+	private void crearCombos(Form<ApuestaModel> form){
+		
+	    comboApuesta = new DropDownChoice("apuestaSeleccionada",new PropertyModel(this.getApuestaModel(), "apuestaSeleccionada"),this.getApuestaModel().opciones);
+	    comboApuesta.setOutputMarkupId(true);
+	    form.add(comboApuesta);
+	    comboJugada =new DropDownChoice("opcionJugada",new PropertyModel(this.getApuestaModel(),"opcionesJugada"),this.getApuestaSeleccionada().getOpciones());
+	    comboJugada.setOutputMarkupId(true);
+	    form.add(comboJugada);
+	   
+	    comboApuesta.add(new AjaxFormComponentUpdatingBehavior("onchange") {
+            protected void onUpdate(AjaxRequestTarget target) {
+                target.add(comboJugada);
+            }
+        });
+		
+		
+		
+	}
+
+	
 /*
 	 private void getComboTipoApuesta( Form<ApuestaModel>form) {
 	        DropDownChoice comboApuesta = new DropDownChoice("apuestaSeleccionada",this.getApuestaModel().staticApuestas);
-	       form.add(comboApuesta);
+	        comboApuesta.setOutputMarkupId(true);
+	        form.add(comboApuesta);
 	        // Add Ajax Behaviour...
 	        comboApuesta.add(new AjaxFormComponentUpdatingBehavior("onchange") {
 	            protected void onUpdate(AjaxRequestTarget target) {
@@ -69,17 +91,22 @@ public class ApostarPage extends WebPage{
 	   	        	list = this.getApuestaSeleccionada().getOpciones();
 	        }
 	        DropDownChoice comboJugada = new DropDownChoice("opcionJugada",list);
-	        form.add(comboJugada);
 	        comboJugada.setOutputMarkupId(true);  // Needed for Ajax to update it
+	        form.add(comboJugada);
 	        return comboJugada;
 	    }
 	
-	*/
+*/
 	private void addAction(Form<ApuestaModel> form){
 	form.add(new Button("apostar") {
 		@Override
 		public void onSubmit() {
 			try{  
+				/*
+				ApuestaModel apuesta = getApuestaModel();
+				apuesta.setJugador(jugador);
+				apuesta.crearApuesta();
+				*/
 			}//try
 			catch (RuntimeException e)
 			{ApostarPage.this.feedbackPanel.error(e.getMessage());};

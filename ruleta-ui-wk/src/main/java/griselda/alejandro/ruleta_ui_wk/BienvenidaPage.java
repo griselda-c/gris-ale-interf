@@ -41,10 +41,20 @@ public class BienvenidaPage extends WebPage{
 	         }
 	     });
 	  
+	     
 	     List list = mesa.getJugadores();
 	     view = new ListView("jugadores", list) {
-	         protected void populateItem(ListItem item) {
-	             item.add(new Label("label", new PropertyModel(item.getModel(), "nombre")));
+	         protected void populateItem(final ListItem item) {
+	           final Label nombreJugador = new Label("label", new PropertyModel(item.getModel(), "nombre"));
+	           item.add(nombreJugador);
+	           item.add(new Link("verApuestas"){
+	        	   public void onClick() {
+	        		   
+	        		   Jugador j = (Jugador) item.getModelObject();
+	        		   BienvenidaPage.this.mostrarApuestas(j);
+	        	   };
+	        	   
+	           });
 	         }
 	     };
 	     add(view);
@@ -63,31 +73,13 @@ public class BienvenidaPage extends WebPage{
 	   
 	}
 	
+protected void mostrarApuestas(Jugador j){
 	
-public void crearTablaJugadores(){
-	final Mesa mesa = RuletaWicketApplication.getRuletaApplication().getMesa();
-	final List lista = mesa.getJugadores();
-	
-	   view = new ListView("jugadores", lista) {
-	    @Override
-	    protected void populateItem(ListItem item) {
-	        Label label = new Label("label", new PropertyModel(item.getModel(), "nombre"));
-	        label.setOutputMarkupId(true);
-	        item.add(label);
-	    }
-	};
-
-	IndicatingAjaxFallbackLink link;
-
-	link = new IndicatingAjaxFallbackLink("link") {
-	    @Override
-	    public void onClick(AjaxRequestTarget target) { 
-	        view.setList(mesa.getJugadores());
-	        target.addChildren(view, Label.class);
-	    }
-	};
-	
+	ApuestasJugadorPage apuestasJugador = new ApuestasJugadorPage(j,getPaginaActual());
+	this.setResponsePage(apuestasJugador);
 }
-
 	
+protected BienvenidaPage getPaginaActual(){
+	return this;
+}
 }
