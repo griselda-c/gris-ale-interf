@@ -1,5 +1,7 @@
 package griselda.alejandro.ruleta_ui_wk;
 
+import griselda.alejandro.ruleta_ui_wk.ApuestaModel.ApuestaWeb;
+
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -31,6 +33,7 @@ public class ApostarPage extends WebPage{
 	private FeedbackPanel feedbackPanel;
 	
 	public ApostarPage(Jugador j){
+		this.setDefaultModel(this.createModel());
 	     jugador = j;
 	    Form<ApuestaModel> apuestaForm = new Form<ApuestaModel>("apuestaForm",this.createModel());
 	    this.add(apuestaForm);
@@ -53,10 +56,11 @@ public class ApostarPage extends WebPage{
 	
 	private void crearCombos(Form<ApuestaModel> form){
 		
-	    comboApuesta = new DropDownChoice("apuestaSeleccionada",new PropertyModel(this.getApuestaModel(), "apuestaSeleccionada"),this.getApuestaModel().opciones);
+	    comboApuesta = new DropDownChoice("apuestaSeleccionada",new PropertyModel(this.getApuestaModel(), "apuestaSeleccionada"),this.getApuestaModel().getApuestas(),new ChoiceRenderer("tipoApuesta"));
 	    comboApuesta.setOutputMarkupId(true);
 	    form.add(comboApuesta);
-	    comboJugada =new DropDownChoice("opcionJugada",new PropertyModel(this.getApuestaModel(),"opcionesJugada"),this.getApuestaSeleccionada().getOpciones());
+	  
+	    comboJugada =new DropDownChoice("opcionJugada",new PropertyModel(this.getApuestaModel(),"opcionJugada"),new PropertyModel(this.getApuestaModel(),"opciones"),new ChoiceRenderer("nombre"));
 	    comboJugada.setOutputMarkupId(true);
 	    form.add(comboJugada);
 	   
@@ -126,7 +130,7 @@ public class ApostarPage extends WebPage{
 		return (ApuestaModel) this.getDefaultModelObject();
 	}
 	
-	protected Apuesta getApuestaSeleccionada(){
+	protected ApuestaWeb getApuestaSeleccionada(){
 		return this.getApuestaModel().getApuestaSeleccionada();
 		
 	}

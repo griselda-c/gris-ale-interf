@@ -18,55 +18,65 @@ public class ApuestaModel implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
-	public static List<Apuesta> staticApuestas = getApuestas();
+	public static List<ApuestaWeb> staticApuestas = getApuestas();
 	public  List<OpcionJugada> opciones = getOpciones();
 	private Jugador jugador;
-    private Apuesta apuestaSeleccionada;
-    private OpcionJugada opcionJugada;
+    private ApuestaWeb apuestaSeleccionada = null;
+    private OpcionJugada opcionJugada ;
     private int fichas = 0;
+    
+    
+   
+    public void setOpciones(List<OpcionJugada> opciones) {
+		this.opciones = opciones;
+	}
+
     
     
    public  List<OpcionJugada>getOpciones(){
     	if(apuestaSeleccionada!=null){
-    		return apuestaSeleccionada.getOpciones();
+    		opciones = apuestaSeleccionada.apuesta.getOpciones();
+    		
     	}
     	else{
-    		return null;
+    		List listaVacia =new LinkedList<OpcionJugada>();
+    		opciones = listaVacia;
     	}
-    	
+    	return opciones;
     }
 	
     public void crearApuesta(){
     	
-    	apuestaSeleccionada.setFichas(fichas);
-    	apuestaSeleccionada.setJugadaSeleccionada(opcionJugada);
-    	apuestaSeleccionada.setJugador(jugador);
-    	jugador.apostar(apuestaSeleccionada);
+    	Apuesta apuesta = apuestaSeleccionada.create();
+    	apuesta.setFichas(fichas);
+    	apuesta.setJugador(jugador);
+    	apuesta.setJugadaSeleccionada(opcionJugada);
     	
     }
-	public static List<Apuesta> getApuestas() {
-		List<Apuesta> apuestas = new LinkedList<Apuesta>();
-		apuestas.add(new Columna());
-		apuestas.add(new Fila());
-		apuestas.add(new Pleno());
-		apuestas.add(new ParImpar());
+    
+    
+	public static List<ApuestaWeb> getApuestas() {
+		List<ApuestaWeb> apuestas = new LinkedList<ApuestaWeb>();
+		apuestas.add(new ColumnaWeb());
+		apuestas.add(new FilaWeb());
+		apuestas.add(new PlenoWeb());
+		apuestas.add(new ParImparWeb());
 		return apuestas;
 	}
 
-	public Apuesta getApuestaSeleccionada() {
+	public ApuestaWeb getApuestaSeleccionada() {
 		return apuestaSeleccionada;
 	}
 
-	public void setApuestaSeleccionada(Apuesta apuestaSeleccionada) {
+	public void setApuestaSeleccionada(ApuestaWeb apuestaSeleccionada) {
 		this.apuestaSeleccionada = apuestaSeleccionada;
-		System.out.println(" se selecciono " +apuestaSeleccionada);
 	}
 
-	public static List<Apuesta> getStaticApuestas() {
+	public static List<ApuestaWeb> getStaticApuestas() {
 		return staticApuestas;
 	}
 
-	public static void setStaticApuestas(List<Apuesta> staticApuestas) {
+	public static void setStaticApuestas(List<ApuestaWeb> staticApuestas) {
 		ApuestaModel.staticApuestas = staticApuestas;
 	}
 
@@ -78,10 +88,7 @@ public class ApuestaModel implements Serializable {
 		this.fichas = fichas;
 	}
 
-	public void setOpciones(List<OpcionJugada> opciones) {
-		this.opciones = opciones;
-	}
-
+	
 	public OpcionJugada getOpcionJugada() {
 		return opcionJugada;
 	}
@@ -99,6 +106,61 @@ public class ApuestaModel implements Serializable {
 	}
 	
 	
+	public static abstract class ApuestaWeb implements Serializable{
+		public Apuesta apuesta = new Columna();
+		public String getTipoApuesta(){
+			return apuesta.getTipoApuesta();
+		}		
+		public abstract Apuesta create();
+	}
+	
+	public static class ColumnaWeb extends ApuestaWeb implements Serializable{
+		 
+		public String getTipoApuesta(){
+			apuesta = new Columna();
+			return apuesta.getTipoApuesta();
+		}
+		public Apuesta create(){
+			return new Columna();
+		}
+		
+	}
+	
+	public static class FilaWeb extends ApuestaWeb implements Serializable{
+		 
+		public String getTipoApuesta(){
+			apuesta = new Fila();
+			return apuesta.getTipoApuesta();
+		}
+		public Apuesta create(){
+			return new Fila();
+		}
+		
+	}
+	
+	public static class PlenoWeb extends ApuestaWeb implements Serializable{
+		 
+		public String getTipoApuesta(){
+			apuesta = new Pleno();
+			return apuesta.getTipoApuesta();
+		}
+		public Apuesta create(){
+			return new Pleno();
+		}
+		
+	}
+	
+	public static class ParImparWeb extends ApuestaWeb implements Serializable{
+		
+		public String getTipoApuesta(){
+			apuesta = new ParImpar();
+			return apuesta.getTipoApuesta();
+		}
+		public Apuesta create(){
+			return new ParImpar();
+		}
+		
+	}
 	
 	
 
