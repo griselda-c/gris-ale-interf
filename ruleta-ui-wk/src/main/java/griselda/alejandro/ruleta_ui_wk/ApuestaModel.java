@@ -21,7 +21,7 @@ public class ApuestaModel implements Serializable {
 	public static List<ApuestaWeb> staticApuestas = getApuestas();
 	public  List<OpcionJugada> opciones = getOpciones();
 	private Jugador jugador;
-    private ApuestaWeb apuestaSeleccionada = null;
+    private ApuestaWeb apuestaSeleccionada;
     private OpcionJugada opcionJugada ;
     private int fichas = 0;
     

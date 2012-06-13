@@ -17,10 +17,8 @@ import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.PropertyModel;
-
-import ruleta.Apuesta;
 import ruleta.Jugador;
-import ruleta.OpcionJugada;
+
 
 public class ApostarPage extends WebPage{
 
@@ -47,7 +45,7 @@ public class ApostarPage extends WebPage{
 	
 	private void addFields(Form<ApuestaModel> form) {
 		
-		form.add(new TextField<String>("fichas"));
+		form.add(new TextField<String>("fichas").setRequired(true));
 		form.add(new FeedbackPanel("feedbackPanel"));		
 		
 	}
@@ -56,16 +54,18 @@ public class ApostarPage extends WebPage{
 	
 	private void crearCombos(Form<ApuestaModel> form){
 		
-	    comboApuesta = new DropDownChoice("apuestaSeleccionada",new PropertyModel(this.getApuestaModel(), "apuestaSeleccionada"),this.getApuestaModel().getApuestas(),new ChoiceRenderer("tipoApuesta"));
+	    comboApuesta = new DropDownChoice("apuestaSeleccionada",new PropertyModel(this.getApuestaModel(), "apuestaSeleccionada"),this.getApuestaModel().staticApuestas,new ChoiceRenderer("tipoApuesta"));
 	    comboApuesta.setOutputMarkupId(true);
 	    form.add(comboApuesta);
 	  
 	    comboJugada =new DropDownChoice("opcionJugada",new PropertyModel(this.getApuestaModel(),"opcionJugada"),new PropertyModel(this.getApuestaModel(),"opciones"),new ChoiceRenderer("nombre"));
 	    comboJugada.setOutputMarkupId(true);
+	    comboJugada.setEnabled(false);
 	    form.add(comboJugada);
 	   
 	    comboApuesta.add(new AjaxFormComponentUpdatingBehavior("onchange") {
             protected void onUpdate(AjaxRequestTarget target) {
+            	comboJugada.setEnabled(true);
                 target.add(comboJugada);
             }
         });
@@ -106,11 +106,11 @@ public class ApostarPage extends WebPage{
 		@Override
 		public void onSubmit() {
 			try{  
-				/*
+				
 				ApuestaModel apuesta = getApuestaModel();
 				apuesta.setJugador(jugador);
 				apuesta.crearApuesta();
-				*/
+				
 			}//try
 			catch (RuntimeException e)
 			{ApostarPage.this.feedbackPanel.error(e.getMessage());};
@@ -123,7 +123,6 @@ public class ApostarPage extends WebPage{
 	
 	
 }
-	
 	
 	
 	protected ApuestaModel getApuestaModel() {
