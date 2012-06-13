@@ -32,90 +32,14 @@ public class RuletaWicketModel {
 
 	public Mesa mesa;
 	
-	public ApuestaWebAdapter pleno;
-	public ApuestaWebAdapter paridad;
-	public ApuestaWebAdapter fila;
-	public ApuestaWebAdapter columna;
-	public ApuestaWebAdapter zero;
-
 	
 	
 	
 	public RuletaWicketModel(Mesa mesa, Jugador jugador) {
 		this.jugador = jugador;
 		this.mesa = mesa;
-		this.pleno = new ApuestaWebAdapter(jugador.nuevaApuestaPleno(), false);
-		this.zero = new ApuestaWebAdapter(jugador.nuevaApuestaPleno(), true);
-		this.paridad = new ApuestaWebAdapter(jugador.nuevaApuestaParImpar());
-		this.fila = new ApuestaWebAdapter(jugador.nuevaApuestaFila());
-		this.columna = new ApuestaWebAdapter(jugador.nuevaApuestaColumna());
 	}
-	
-	public class ApuestaWebAdapter{
 		
-		public List<OpcionJugada> opciones;
-		public String tipoApuesta;
-		
-		public ApuestaWebAdapter(Apuesta apuesta){
-			this.opciones = apuesta.getOpciones();
-			this.tipoApuesta = apuesta.getTipoApuesta();
-		}
-		
-		public ApuestaWebAdapter(Apuesta apuesta, boolean zero){
-			if(zero){
-				this.opciones = new LinkedList<OpcionJugada>();
-				this.opciones.add(apuesta.getOpciones().get(0));
-			}
-			else{
-				List<OpcionJugada> opcionesTemp = new LinkedList<OpcionJugada>();
-				for(OpcionJugada opAp : apuesta.getOpciones()){
-					opcionesTemp.add(new OpcionJugadawebAdapter(opAp));
-				}
-				opcionesTemp.remove(0);			
-				this.opciones = opcionesTemp;
-			}
-			
-			this.tipoApuesta = apuesta.getTipoApuesta();
-		}
-		
-		public class OpcionJugadawebAdapter extends OpcionJugada{
-			OpcionJugada jugada;
-			
-			public OpcionJugadawebAdapter(OpcionJugada jugada){				
-				super();
-				this.jugada = jugada;
-			}
-
-			public int getValor() {
-				return this.jugada.getValor();
-			}
-			
-			public String getNombre() {
-				return this.jugada.getNombre();
-			}
-			
-			public String getClase() {
-				Integer vl = this.jugada.getValor();				
-				if((((vl>11 & vl<19) | vl>29) & (vl%2 == 0)) | ((vl<10 | (vl>18 & vl<28)) & (vl%2 != 0))){
-					return "rojo";
-				}				
-				return "negro";
-			}
-			
-			
-		}
-
-		public List<OpcionJugada> getOpciones() {
-			return opciones;
-		}
-
-		public String getTipoApuesta() {
-			return tipoApuesta;
-		}	
-	}
-	
-	
-	
 	
 	
 	
@@ -135,26 +59,6 @@ public class RuletaWicketModel {
 		this.mesa = mesa;
 	}
 
-	public ApuestaWebAdapter getPleno() {
-		return pleno;
-	}
-
-	public ApuestaWebAdapter getParidad() {
-		return paridad;
-	}
-
-	public ApuestaWebAdapter getFila() {
-		return fila;
-	}
-
-	public ApuestaWebAdapter getColumna() {
-		return columna;
-	}
-	
-	public ApuestaWebAdapter getZero() {
-		return zero;
-	}
-
 
 
 
@@ -171,7 +75,7 @@ public class RuletaWicketModel {
 	}
 	
 	public static abstract class ApuestaWeb{
-		public Apuesta apuesta = new Columna();
+		public Apuesta apuesta;
 		public String getTipoApuesta(){
 			return apuesta.getTipoApuesta();
 		}		

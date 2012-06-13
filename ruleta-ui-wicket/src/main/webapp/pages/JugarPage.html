@@ -63,7 +63,7 @@
    
    <div id="muestraapuestas">
      
-    <p id="fichasVista">Fichas disponibles: 12345</p><br/>	
+    <p id="fichasVista">Fichas disponibles: <span wicket:id="fichas">12345</span></p><br/>	
     
     <div id="jugada">
     <p>Seleccione una jugada para realizar la apuesta</p>
@@ -71,14 +71,12 @@
     
     
     <!-- Empieza el form wicket -->
-    <form class="">
+    <form wicket:id="form_apuesta" class="">
       
-      <select style="width:200px">
-        <option>Uno</option>
+      <select wicket:id="selectApuesta" style="width:200px">
       </select><br/><br/> 
       
-	  <select style="width: 200px;"  disabled="disabled">
-        <option>Uno</option>
+	  <select  style="width: 200px;">
       </select><br/><br/> 
       
 	  <p>Ingrese la cantidad de fichas que desea apostar:<br>

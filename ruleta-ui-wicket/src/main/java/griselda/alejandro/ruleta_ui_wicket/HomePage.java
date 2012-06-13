@@ -1,18 +1,14 @@
 package griselda.alejandro.ruleta_ui_wicket;
 
 import org.apache.wicket.PageParameters;
-import org.apache.wicket.ajax.AjaxRequestTarget;
-import org.apache.wicket.ajax.markup.html.AjaxLink;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Form;
-import org.apache.wicket.markup.html.form.FormComponent;
 import org.apache.wicket.markup.html.form.TextField;
-import org.apache.wicket.markup.html.form.validation.IFormValidator;
-import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.model.CompoundPropertyModel;
-import org.apache.wicket.validation.IValidatable;
-import org.apache.wicket.validation.IValidator;
+
+import ruleta.Jugador;
+import ruleta.Mesa;
 
 public class HomePage extends WebPage {
 
@@ -24,9 +20,12 @@ public class HomePage extends WebPage {
 	
     public HomePage(final PageParameters parameters) {
 		form = new Form<WebPage>("form_logw", new CompoundPropertyModel<WebPage>(this)){
+			private static final long serialVersionUID = 1L;
+
 			@Override
 			protected void onSubmit() {
-				this.setResponsePage(new JugarPage());
+				Mesa mesa = WicketApplication.staticGetMesa();
+				this.setResponsePage(new JugarPage(new RuletaWicketModel(mesa, new Jugador(1250, "Juan carlos"))));
 			}
 		};
 		this.addFields(form);
@@ -35,27 +34,11 @@ public class HomePage extends WebPage {
     }
     
 	private void addActions(Form<WebPage> form) {
-		form.add(new IFormValidator() {
-			
-			public void validate(Form<?> arg0) {
-				arg0.error("sdfgsdfg");
-			}
-			
-			public FormComponent<?>[] getDependentFormComponents() {
-				return null;
-			}
-		});
-				
+						
 	}
 
 	private void addFields(Form<WebPage> formP) {	
 		TextField<String> nombre = new TextField<String>("nombreloggin");
-		nombre.add(new IValidator<String>() {			
-			public void validate(IValidatable<String> validatable) {
-				System.out.println("nada");
-			    form.error("");
-			}
-		});
 		formP.add(nombre);
 		formP.add(new TextField<String>("dinerologgin"));
 		feedback1 = new Label("feedback1", "Ingrese sus datos");
@@ -64,6 +47,15 @@ public class HomePage extends WebPage {
 		formP.add(feedback2);
 		
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	public String getNombreloggin() {
 		return nombreloggin;
