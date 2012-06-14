@@ -24,6 +24,7 @@ public class HomePage extends WebPage {
 
 			@Override
 			protected void onSubmit() {
+				if(nombreloggin == null){}
 				Mesa mesa = WicketApplication.staticGetMesa();
 				this.setResponsePage(new JugarPage(new RuletaWicketModel(mesa, new Jugador(1250, "Juan carlos"))));
 			}

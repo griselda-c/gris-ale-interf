@@ -80,10 +80,22 @@ public class RuletaWicketModel {
 			return apuesta.getTipoApuesta();
 		}		
 		public abstract Apuesta create();
+		
+		public List<OpcionJugada> getOpciones(){
+			if(this.apuesta == null){
+				throw new RuntimeException("Ahora si me voy a casa");
+			}
+			return this.apuesta.getOpciones();
+		}
 	}
 	
 	public static class ColumnaWeb extends ApuestaWeb{
-		public Apuesta apuesta = new Columna();
+		
+		public ColumnaWeb(){
+			super();
+			apuesta = new Columna();
+		}
+		
 		public String getTipoApuesta(){
 			return apuesta.getTipoApuesta();
 		}
@@ -94,7 +106,12 @@ public class RuletaWicketModel {
 	}
 	
 	public static class FilaWeb extends ApuestaWeb{
-		public Apuesta apuesta = new Fila();
+		
+		public FilaWeb(){
+			super();
+			apuesta = new Fila();
+		}
+		
 		public String getTipoApuesta(){
 			return apuesta.getTipoApuesta();
 		}
@@ -104,8 +121,13 @@ public class RuletaWicketModel {
 		
 	}
 	
-	public static class PlenoWeb extends ApuestaWeb{
-		public Apuesta apuesta = new Pleno();
+	public static class PlenoWeb extends ApuestaWeb{		
+
+		public PlenoWeb(){
+			super();
+			apuesta = new Pleno();
+		}
+		
 		public String getTipoApuesta(){
 			return apuesta.getTipoApuesta();
 		}
@@ -116,7 +138,12 @@ public class RuletaWicketModel {
 	}
 	
 	public static class ParImparWeb extends ApuestaWeb{
-		public Apuesta apuesta = new ParImpar();
+		
+		public ParImparWeb(){
+			super();
+			apuesta = new ParImpar();
+		}
+		
 		public String getTipoApuesta(){
 			return apuesta.getTipoApuesta();
 		}
