@@ -23,7 +23,7 @@ public class ApuestaModel implements Serializable {
 	private Jugador jugador;
     private ApuestaWeb apuestaSeleccionada;
     private OpcionJugada opcionJugada ;
-    private int fichas = 0;
+    private int fichas =0;
     
     
    
@@ -49,8 +49,10 @@ public class ApuestaModel implements Serializable {
     	
     	Apuesta apuesta = apuestaSeleccionada.create();
     	apuesta.setFichas(fichas);
+    	System.out.println("#########################-"+fichas);
     	apuesta.setJugador(jugador);
     	apuesta.setJugadaSeleccionada(opcionJugada);
+    	jugador.apostar(apuesta);
     	
     }
     

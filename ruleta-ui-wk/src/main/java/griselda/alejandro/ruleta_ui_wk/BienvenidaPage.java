@@ -36,7 +36,7 @@ public class BienvenidaPage extends WebPage{
 	     {
 	         public void onClick()
 	         {
-	        	 ApostarPage nextPage = (new ApostarPage(jugador));
+	        	 ApostarPage nextPage = (new ApostarPage(jugador,getPaginaActual()));
 	     		this.setResponsePage(nextPage);
 	         }
 	     });

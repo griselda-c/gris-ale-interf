@@ -31,7 +31,7 @@ public class ApuestasJugadorPage extends WebPage{
 	
 	
 private void generarGrillaApuestas(){
-	  List list = jugador.apuestasFake;
+	  List list = jugador.getApuestas();
 	     listaApuestas = new ListView("apuestas", list) {
 	         protected void populateItem(final ListItem item) {
 	           final Label tipoApuesta = new Label("tipoApuesta", new PropertyModel(item.getModel(), "tipoApuesta"));
