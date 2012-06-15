@@ -1,9 +1,9 @@
 package griselda.alejandro.ruleta_ui_wk;
 
-import griselda.alejandro.ruleta_ui_wk.ApuestaModel.ApuestaWeb;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.form.AjaxFormComponentUpdatingBehavior;
 import org.apache.wicket.markup.html.WebPage;
+import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.ChoiceRenderer;
 import org.apache.wicket.markup.html.form.DropDownChoice;
@@ -12,7 +12,6 @@ import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.CompoundPropertyModel;
-import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.PropertyModel;
 import ruleta.Jugador;
 
@@ -36,7 +35,8 @@ public class ApostarPage extends WebPage{
 		this.addFields(apuestaForm);
 		this.addAction(apuestaForm);
 		this.crearCombos(apuestaForm);
-		this.agregarLink();		
+		this.agregarLink();	
+		this.agregarLabelFichasJugador();
 	}
 	
 	
@@ -46,7 +46,12 @@ public class ApostarPage extends WebPage{
 		form.add(new FeedbackPanel("feedbackPanel"));			
 	}
 	
-	
+	private void agregarLabelFichasJugador(){
+		Label labelFrase = new Label("nombreJugador",jugador.nombre +" tiene disponible ");
+		Label labelFichasDisponibles = new Label("fichasJugador",new PropertyModel (jugador, "fichas"));
+		add(labelFrase);
+		add(labelFichasDisponibles);
+	}
 	
 	private void crearCombos(Form<ApuestaModel> form){
 		

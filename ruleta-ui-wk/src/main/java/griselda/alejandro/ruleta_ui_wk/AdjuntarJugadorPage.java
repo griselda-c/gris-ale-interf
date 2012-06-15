@@ -57,12 +57,6 @@ public class AdjuntarJugadorPage extends WebPage {
 		Mesa mesa = RuletaWicketApplication.getRuletaApplication().getMesa();
 		return new CompoundPropertyModel<UnirJugadorModel>(new UnirJugadorModel(mesa));
 	}
-/*
-	protected void irAApostarPage(UnirJugadorModel unirJugadorModel) {
-		ApostarPage nextPage = new ApostarPage(unirJugadorModel.getJugador(), this);
-		this.setResponsePage(nextPage);
-	}
-*/
 	
 	protected void irABienvenidaPage(UnirJugadorModel unirJugadorModel) {
 		BienvenidaPage nextPage = new BienvenidaPage(unirJugadorModel.getJugador(), this);
