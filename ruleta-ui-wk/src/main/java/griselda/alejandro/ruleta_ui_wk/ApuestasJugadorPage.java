@@ -31,8 +31,8 @@ public class ApuestasJugadorPage extends WebPage{
 	
 	
 private void generarGrillaApuestas(){
-	  List list = jugador.getApuestas();
-	     listaApuestas = new ListView("apuestas", list) {
+	  //List list = jugador.getApuestas();
+	     listaApuestas = new ListView("apuestas", new PropertyModel(jugador, "apuestas")) {
 	         protected void populateItem(final ListItem item) {
 	           final Label tipoApuesta = new Label("tipoApuesta", new PropertyModel(item.getModel(), "tipoApuesta"));
 	           final Label opcionJugada = new Label("opcion",new PropertyModel(item.getModelObject(), "opcionNombre"));
@@ -44,7 +44,7 @@ private void generarGrillaApuestas(){
 	     };
 	     add(listaApuestas);
 	     
-	    
+	    /*
 	     IndicatingAjaxFallbackLink link;
 
 	 	link = new IndicatingAjaxFallbackLink("link") {
@@ -55,7 +55,7 @@ private void generarGrillaApuestas(){
 	 	        target.add(listaApuestas);
 	 	    }
 	 	};
-	   
+	   */
 	}
 
 private void volverPaginaAnterior(){

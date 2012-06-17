@@ -10,6 +10,8 @@ import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.link.Link;
+import org.apache.wicket.markup.html.list.ListItem;
+import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.PropertyModel;
@@ -26,6 +28,7 @@ public class ApostarPage extends WebPage{
 	private WebPage paginaAnterior;
 	private FeedbackPanel feedbackPanel;
 	private ApuestaModel apuestaModelo = new ApuestaModel();
+	private ListView listaApuestas;
 	
 	public ApostarPage(Jugador j,WebPage page){
 	     jugador = j;
@@ -37,6 +40,7 @@ public class ApostarPage extends WebPage{
 		this.crearCombos(apuestaForm);
 		this.agregarLink();	
 		this.agregarLabelFichasJugador();
+		this.generarGrillaApuestas();
 	}
 	
 	
@@ -86,6 +90,7 @@ public class ApostarPage extends WebPage{
 				apuesta.setJugador(jugador);
 				apuesta.crearApuesta();
 				
+				
 			}
 			catch (RuntimeException e)
 			{ApostarPage.this.feedbackPanel.error(e.getMessage());};
@@ -98,6 +103,23 @@ public class ApostarPage extends WebPage{
 	
 }
 
+	
+	
+	private void generarGrillaApuestas(){
+		
+		listaApuestas = new ListView("apuestas", new PropertyModel(jugador, "apuestas")) {
+	         protected void populateItem(final ListItem item) {
+	           final Label tipoApuesta = new Label("tipoApuesta", new PropertyModel(item.getModel(), "tipoApuesta"));
+	           final Label opcionJugada = new Label("opcion",new PropertyModel(item.getModelObject(), "opcionNombre"));
+	           final Label fichas = new Label("fichas",new PropertyModel(item.getModelObject(), "fichas"));
+	           item.add(tipoApuesta);
+	           item.add(opcionJugada);
+	           item.add(fichas);
+	         }
+	     };
+	     add(listaApuestas);
+		
+	}
 	private void volverPaginaAnterior(){
 		this.setResponsePage(paginaAnterior);
 		
@@ -117,16 +139,6 @@ public class ApostarPage extends WebPage{
 		
 	}
 	
-/*	
-	protected ApuestaModel getApuestaModel() {
-		return (ApuestaModel) this.getDefaultModelObject();
-	}
-	
-	protected ApuestaWeb getApuestaSeleccionada(){
-		return this.getApuestaModel().getApuestaSeleccionada();
-		
-	}
-	
-*/
+
 	
 }

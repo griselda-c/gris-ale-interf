@@ -42,8 +42,8 @@ public class BienvenidaPage extends WebPage{
 	     });
 	  
 	     
-	     List list = mesa.getJugadores();
-	     view = new ListView("jugadores", list) {
+	    // List list = mesa.getJugadores();
+	     view = new ListView("jugadores", new PropertyModel(mesa, "jugadores")) {
 	         protected void populateItem(final ListItem item) {
 	           final Label nombreJugador = new Label("label", new PropertyModel(item.getModel(), "nombre"));
 	           item.add(nombreJugador);
@@ -59,7 +59,7 @@ public class BienvenidaPage extends WebPage{
 	     };
 	     add(view);
 	     
-	    
+	    /*
 	     IndicatingAjaxFallbackLink link;
 
 	 	link = new IndicatingAjaxFallbackLink("link") {
@@ -70,7 +70,7 @@ public class BienvenidaPage extends WebPage{
 	 	        target.add(view);
 	 	    }
 	 	};
-	   
+	*/   
 	}
 	
 protected void mostrarApuestas(Jugador j){
