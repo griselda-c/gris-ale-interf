@@ -1,7 +1,7 @@
 package griselda.alejandro.ruleta_ui_wicket;
 
+import org.apache.wicket.core.util.resource.locator.ResourceStreamLocator;
 import org.apache.wicket.util.resource.IResourceStream;
-import org.apache.wicket.util.resource.locator.ResourceStreamLocator;
 
 /**
  * Sacado de la interne'

@@ -238,7 +238,15 @@ body {
 	font-size: 14px;
 }
 
-
+.selectApuesta{	
+	text-align: center;
+	color: white;
+	padding: 10px 0px;
+	font-family: arial, verdana, sans-serif;
+    font-weight: bold;
+    line-height: 16px;
+	font-size: 14px;
+}
 
 
 

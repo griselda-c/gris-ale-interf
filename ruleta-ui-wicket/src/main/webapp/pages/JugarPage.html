@@ -47,7 +47,7 @@
     </div > <!-- session-center2 -->
   
     <div id="session-center1">
-    <p id="siNoJugadorB" class="session1">Sesion iniciada por <span style="color: #ff4;">Un usuario</span></p>
+    <p id="siNoJugadorB" class="session1">Sesion iniciada por <span wicket:id="nombreJugador" style="color: #ff4;"></span></p>
 
  
   </div > <!-- session-center1 -->
@@ -63,7 +63,7 @@
    
    <div id="muestraapuestas">
      
-    <p id="fichasVista">Fichas disponibles: <span wicket:id="fichasJugador" ></span></p><br/>	
+    <p id="fichasVista">Fichas disponibles: <span wicket:id="fichasJugador"  ></span></p><br/>	
     
     <div id="jugada">
     <p>Seleccione una jugada para realizar la apuesta</p>
@@ -73,20 +73,20 @@
     <!-- Empieza el form wicket -->
     <form wicket:id="form_apuesta" class="">
       
-      <select wicket:id="selectApuesta" style="width:200px">
+      <select wicket:id="selectApuesta" style="width:300px">
       </select><br/><br/> 
       
-	  <select  wicket:id="selectJugada" style="width: 200px;">
+	  <select  wicket:id="selectJugada" style="width:300px;">
       </select><br/><br/> 
       
-	  <p>Ingrese la cantidad de fichas que desea apostar:<br>
+	  <p><span wicket:id="feedBackApuesta"  >Ingrese la cantidad de fichas que desea apostar:</span><br>
 	  
 	  <input wicket:id="fichasApostadas"  name="apuestaFichas" type="text" size="12" style="font-family: sans-serif; font-size: 16px; margin-top: 10px; border: 0px;">
 	  <input type="button" wicket:id="apostar" value="Apostar">
 	  
 	  </p><br/>
       
-      <input type="button" id= "girarRuleta" value="Girar Ruleta"/><br/><br/>
+      <input type="button" wicket:id="girarRuleta" id= "girarRuleta" value="Girar Ruleta"/><br/><br/>
       
       <p id="numeroGanadorVista"> </p><br/>    
     	
@@ -106,16 +106,53 @@
 	
   <div id="body-right">
   
+  <table wicket:id="jugadoresContainer" style="width: 250px; background-color: red; font-size: 12px; text-aling: center; color: white; border: 1px solid green;">
+    <tr>
+      <th>Jugador</th><th>Fichas</th><th>Apuestas</th>
+    </tr>
+    <tr wicket:id="jugadores" style="background-color: #f33; text-align: center;">
+      <td><span wicket:id="nombreJugadorList"></span></td>
+      <td><span wicket:id="fichasJugadorList"></span></td>
+      <td><span wicket:id="apuestasJugadorList"></span></td>
+    </tr>
+  </table>
   
-  <div id="registrar">
-  </div> <!-- cierra registrar -->  
-		
+  <form wicket:id="formApuestaVista" style="width:250px; padding: 15px 0px; text-align: justify;">
+  <p class="selectApuesta">Seleccione una jugada para<br/>ver las apuestas</p>
+  <select  wicket:id="selectApuestaVista" style="width:250px;">
+  </select><br/><br/>
+  </form>
+  
+  <p class="selectApuesta">Apuestas de la partida anterior</p>
+  
+  <table wicket:id="partidaAnteriorContainer" style="width: 250px; background-color: red; font-size: 12px; text-aling: center; color: white; border: 1px solid green;">
+    <tr>
+      <th>Jugador</th><th>Fichas</th><th>Apuestas</th>
+    </tr>
+    <tr wicket:id="apuestasAnteriores" style="background-color: #f33; text-align: center;">
+      <td><span wicket:id="tipoApuesta"></span><span wicket:id="jugadaApuesta"></span></td>
+      <td><span wicket:id="fichasApuesta"></span></td>
+      <td><span wicket:id="pagaApuesta"></span></td>
+    </tr>
+  </table>
+
   </div > <!-- cierra body-right -->  
   
   <div id="body-center">
 <!-- termina index b -->
 
-
+<table wicket:id="apuestasContainer" style="background-color: red; font-size: 18px; text-aling: center; color: white; border: 1px solid green; margin: 30px auto;">
+    <tr  style="background-color: #822;">
+      <th style="width: 200px;">Apuesta</th><th style="width: 200px;">Fichas</th><th style="width: 200px;">Jugador</th>
+    </tr>
+    <tr  wicket:id="apuestas" style="background-color: #f33; text-align: center;">
+      
+      <td><span wicket:id="tipoApuestaList" >10</span></td>
+      <td><span wicket:id="fichasApuestaList" >100</span></td>
+      <td><span wicket:id="jugadorApuestaList" >Pleno</span></td>
+      
+    </tr>
+  </table>
 
 
 
