@@ -1,5 +1,6 @@
 package griselda.alejandro.ruleta_ui_wk;
 
+
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.form.AjaxFormComponentUpdatingBehavior;
 import org.apache.wicket.markup.html.WebPage;
@@ -16,6 +17,7 @@ import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.PropertyModel;
 import ruleta.Jugador;
+import ruleta.Mesa;
 
 
 public class ApostarPage extends WebPage{
@@ -30,6 +32,7 @@ public class ApostarPage extends WebPage{
 	private ApuestaModel apuestaModelo = new ApuestaModel();
 	private ListView listaApuestas;
 	
+	
 	public ApostarPage(Jugador j,WebPage page){
 	     jugador = j;
 	     paginaAnterior = page;
@@ -41,6 +44,20 @@ public class ApostarPage extends WebPage{
 		this.agregarLink();	
 		this.agregarLabelFichasJugador();
 		this.generarGrillaApuestas();
+		add(new Link("girarRuleta"){
+			@Override
+			public void onClick() {
+				try{  
+					 
+	            	RuletaWicketApplication.getRuletaApplication().girarRuleta();
+					
+				}
+				catch (BusinessException e)
+				{feedbackPanel.error(e.getMessage());};
+				
+			}
+			
+		});
 	}
 	
 	
@@ -101,6 +118,7 @@ public class ApostarPage extends WebPage{
 	});
 	
 	
+	
 }
 
 	
@@ -127,7 +145,9 @@ public class ApostarPage extends WebPage{
 
 
 	private void agregarLink(){
-		add(new Link("volver"){
+		add(new Link<Object>("volver"){
+
+			private static final long serialVersionUID = 1L;
 
 			@Override
 			public void onClick() {
@@ -138,6 +158,8 @@ public class ApostarPage extends WebPage{
 		});
 		
 	}
+	
+	
 	
 
 	

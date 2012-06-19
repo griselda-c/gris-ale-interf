@@ -12,6 +12,7 @@ import ruleta.Mesa;
  */
 public class RuletaWicketApplication extends WebApplication {
 	private Mesa mesa;
+	private boolean giraronRuleta;
 
 	/**
 	 * @see org.apache.wicket.Application#getHomePage()
@@ -36,6 +37,15 @@ public class RuletaWicketApplication extends WebApplication {
 	
 	public static RuletaWicketApplication getRuletaApplication() {
 		return (RuletaWicketApplication) WebApplication.get();
+	}
+	
+	public void girarRuleta(){
+		if(giraronRuleta){
+			throw new BusinessException("La ruleta ya fue girada");
+		}
+		giraronRuleta = true;
+		mesa.girarRuleta();
+		
 	}
 	
 }

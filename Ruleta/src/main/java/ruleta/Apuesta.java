@@ -13,11 +13,13 @@ public abstract class Apuesta extends ObservableObject implements Serializable{
 	public static final String JUGADASELECCIONADA = "jugadaSeleccionada";
 	public static final String TIPO = "tipoApuesta";
 	public static final String FICHASSTRING = "fichasString";
+	public static final String JUGADORNOMBRE =	"jugadorNombre";
 
 	public String fichasString = "";
 	public Jugador jugador;
 	public Integer fichas;
 	public OpcionJugada jugadaSeleccionada;
+	public String jugadorNombre;
 	public String opcionNombre;
 	
 	public Apuesta(Jugador j) {
@@ -37,6 +39,9 @@ public abstract class Apuesta extends ObservableObject implements Serializable{
 		super();
 	}
 
+	public String getJugadorNombre(){
+	    return jugador.getNombre();
+	}
 	abstract boolean ganaParaNumero(int numero);
 	abstract Integer fichasGanadas();
 

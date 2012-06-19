@@ -22,7 +22,10 @@ public class UnirJugadorModel implements Serializable {
 
 	public void unir() {
 		if (!puedeRecibirJugador(jugador)) {
-			throw new BusinessException("No se pudo unir al jugador");
+			throw new BusinessException("La mesa esta llena intente mas tarde");
+		}
+		if(this.yaExisteJugador(jugador)){
+		   throw new BusinessException("El pseudonimo ya existe");
 		}
 		mesa.unirJugador(jugador);
 	}
@@ -30,7 +33,7 @@ public class UnirJugadorModel implements Serializable {
 	private boolean yaExisteJugador(Jugador jugador) {
 		boolean existe = false;
 		for (Jugador j : mesa.getJugadores()) {
-			if (j.getNombre() == jugador.getNombre()) {
+			if (j.getNombre().equals(jugador.getNombre())) {
 				existe = true;
 			}
 
@@ -40,7 +43,7 @@ public class UnirJugadorModel implements Serializable {
 
 	public boolean puedeRecibirJugador(Jugador j) {
 		boolean puede = true;
-		if (mesa.getJugadores().size() > this.maxJugadores || yaExisteJugador(j)) {
+		if (mesa.getJugadores().size() >= this.maxJugadores) {
 			puede = false;
 		}
 		return puede;
