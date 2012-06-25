@@ -49,4 +49,20 @@ public class UnirJugadorModel implements Serializable {
 		return puede;
 	}
 
+	public int getMaxJugadores() {
+		return maxJugadores;
+	}
+
+	public void setMaxJugadores(int maxJugadores) {
+		this.maxJugadores = maxJugadores;
+	}
+
+	public Mesa getMesa() {
+		return mesa;
+	}
+
+	public void setJugador(Jugador jugador) {
+		this.jugador = jugador;
+	}
+
 }

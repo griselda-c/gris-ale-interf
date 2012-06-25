@@ -1,6 +1,8 @@
 package griselda.alejandro.ruleta_ui_wk;
 
 
+import griselda.alejandro.ruleta_ui_wk.ApuestaModel.ApuestaWeb;
+
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.form.AjaxFormComponentUpdatingBehavior;
 import org.apache.wicket.markup.html.WebPage;
@@ -16,25 +18,31 @@ import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.PropertyModel;
+
+import ruleta.Apuesta;
 import ruleta.Jugador;
 import ruleta.Mesa;
+import ruleta.OpcionJugada;
 
 
 public class ApostarPage extends WebPage{
 
 	private static final long serialVersionUID = 1L;
 
-	private DropDownChoice comboApuesta;
-	private DropDownChoice comboJugada;
+	private DropDownChoice<ApuestaWeb> comboApuesta;
+	private DropDownChoice<OpcionJugada> comboJugada;
 	private Jugador jugador;
 	private WebPage paginaAnterior;
 	private FeedbackPanel feedbackPanel;
 	private ApuestaModel apuestaModelo = new ApuestaModel();
-	private ListView listaApuestas;
+	private ListView<Apuesta> listaApuestas;
+	protected Label labelMensaje= new Label ("numero","");
+	protected Mesa mesa;
 	
 	
 	public ApostarPage(Jugador j,WebPage page){
 	     jugador = j;
+	     mesa = jugador.getMesa();
 	     paginaAnterior = page;
 	    Form<ApuestaModel> apuestaForm = new Form<ApuestaModel>("apuestaForm", new CompoundPropertyModel<ApuestaModel>(apuestaModelo));
 	    this.add(apuestaForm);
@@ -44,12 +52,19 @@ public class ApostarPage extends WebPage{
 		this.agregarLink();	
 		this.agregarLabelFichasJugador();
 		this.generarGrillaApuestas();
-		add(new Link("girarRuleta"){
+		add(labelMensaje);
+		add(new Link<Object>("girarRuleta"){
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
 			@Override
 			public void onClick() {
 				try{  
 					 
 	            	RuletaWicketApplication.getRuletaApplication().girarRuleta();
+	            	 getPaginaActual().labelMensaje.setDefaultModelObject(mesa.getNumeroGanador());
 					
 				}
 				catch (BusinessException e)
@@ -63,30 +78,42 @@ public class ApostarPage extends WebPage{
 	
 
 	private void addFields(Form<ApuestaModel> form) {		
-		form.add(new TextField<String>("fichas"));
-		form.add(new FeedbackPanel("feedbackPanel"));			
+	    TextField<String> textfieldFichas = new TextField<String>("fichas");
+		textfieldFichas.setOutputMarkupId(true);
+	    form.add(textfieldFichas);
+	    FeedbackPanel feedbackPanel = new FeedbackPanel("feedbackPanel");
+		form.add(feedbackPanel);			
 	}
 	
 	private void agregarLabelFichasJugador(){
 		Label labelFrase = new Label("nombreJugador",jugador.nombre +" tiene disponible ");
-		Label labelFichasDisponibles = new Label("fichasJugador",new PropertyModel (jugador, "fichas"));
+		Label labelFichasDisponibles = new Label("fichasJugador",new PropertyModel<String> (jugador, "fichas"));
 		add(labelFrase);
 		add(labelFichasDisponibles);
 	}
 	
+	protected ApostarPage getPaginaActual(){
+		return this;
+	}
+	
 	private void crearCombos(Form<ApuestaModel> form){
 		
-	    comboApuesta = new DropDownChoice("apuestaSeleccionada",new PropertyModel(apuestaModelo, "apuestaSeleccionada"),apuestaModelo.staticApuestas,new ChoiceRenderer("tipoApuesta"));
+	    comboApuesta = new DropDownChoice<ApuestaWeb>("apuestaSeleccionada",new PropertyModel<ApuestaWeb>(apuestaModelo, "apuestaSeleccionada"),ApuestaModel.getApuestas(),new ChoiceRenderer<ApuestaWeb>("tipoApuesta"));
 	    comboApuesta.setOutputMarkupId(true);
 	    form.add(comboApuesta);
 	  
-	    comboJugada =new DropDownChoice("opcionJugada",new PropertyModel(apuestaModelo,"opcionJugada"),new PropertyModel(apuestaModelo,"opciones"),new ChoiceRenderer("nombre"));
+	    comboJugada =new DropDownChoice<OpcionJugada>("opcionJugada",new PropertyModel<OpcionJugada>(apuestaModelo,"opcionJugada"),new PropertyModel(apuestaModelo,"opciones"),new ChoiceRenderer<Object>("nombre"));
 	    comboJugada.setOutputMarkupId(true);
 	    comboJugada.setEnabled(false);
 	    form.add(comboJugada);
 	   
 	    comboApuesta.add(new AjaxFormComponentUpdatingBehavior("onchange") {
-            protected void onUpdate(AjaxRequestTarget target) {
+            /**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
+			protected void onUpdate(AjaxRequestTarget target) {
             	comboJugada.setEnabled(true);
                 target.add(comboJugada);
             }
@@ -99,6 +126,11 @@ public class ApostarPage extends WebPage{
 	
 	private void addAction(Form<ApuestaModel> form){
 	form.add(new Button("apostar") {
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
 		@Override
 		public void onSubmit() {
 			try{  
@@ -125,11 +157,14 @@ public class ApostarPage extends WebPage{
 	
 	private void generarGrillaApuestas(){
 		
-		listaApuestas = new ListView("apuestas", new PropertyModel(jugador, "apuestas")) {
-	         protected void populateItem(final ListItem item) {
-	           final Label tipoApuesta = new Label("tipoApuesta", new PropertyModel(item.getModel(), "tipoApuesta"));
-	           final Label opcionJugada = new Label("opcion",new PropertyModel(item.getModelObject(), "opcionNombre"));
-	           final Label fichas = new Label("fichas",new PropertyModel(item.getModelObject(), "fichas"));
+		listaApuestas = new ListView<Apuesta>("apuestas",new PropertyModel(jugador, "apuestas")) {
+	      
+			private static final long serialVersionUID = 1L;
+
+			protected void populateItem(final ListItem item) {
+	           final Label tipoApuesta = new Label("tipoApuesta", new PropertyModel<String>(item.getModel(), "tipoApuesta"));
+	           final Label opcionJugada = new Label("opcion",new PropertyModel<String>(item.getModelObject(), "opcionNombre"));
+	           final Label fichas = new Label("fichas",new PropertyModel<String>(item.getModelObject(), "fichas"));
 	           item.add(tipoApuesta);
 	           item.add(opcionJugada);
 	           item.add(fichas);

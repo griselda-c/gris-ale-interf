@@ -1,5 +1,7 @@
 package griselda.alejandro.ruleta_ui_wk;
 
+import java.util.List;
+
 import org.apache.wicket.protocol.http.WebApplication;
 
 import ruleta.Mesa;
@@ -13,13 +15,13 @@ import ruleta.Mesa;
 public class RuletaWicketApplication extends WebApplication {
 	private Mesa mesa;
 	private boolean giraronRuleta;
-
+   
 	/**
 	 * @see org.apache.wicket.Application#getHomePage()
 	 */
 	@Override
-	public Class<AdjuntarJugadorPage> getHomePage() {
-		return AdjuntarJugadorPage.class;
+	public Class<HomePage> getHomePage() {
+		return HomePage.class;
 	}
 
 	/**

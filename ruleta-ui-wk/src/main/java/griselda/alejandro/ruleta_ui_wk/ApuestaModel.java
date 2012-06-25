@@ -3,6 +3,10 @@ package griselda.alejandro.ruleta_ui_wk;
 import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
+
+import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.markup.html.WebPage;
+
 import ruleta.Apuesta;
 import ruleta.Columna;
 import ruleta.Fila;
@@ -115,6 +119,10 @@ public class ApuestaModel implements Serializable {
 	
 	
 	public static abstract class ApuestaWeb implements Serializable{
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
 		public Apuesta apuesta = new Columna();
 		public String getTipoApuesta(){
 			return apuesta.getTipoApuesta();
@@ -124,6 +132,10 @@ public class ApuestaModel implements Serializable {
 	
 	public static class ColumnaWeb extends ApuestaWeb implements Serializable{
 		 
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
 		public String getTipoApuesta(){
 			apuesta = new Columna();
 			return apuesta.getTipoApuesta();
@@ -136,6 +148,10 @@ public class ApuestaModel implements Serializable {
 	
 	public static class FilaWeb extends ApuestaWeb implements Serializable{
 		 
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
 		public String getTipoApuesta(){
 			apuesta = new Fila();
 			return apuesta.getTipoApuesta();
@@ -148,6 +164,10 @@ public class ApuestaModel implements Serializable {
 	
 	public static class PlenoWeb extends ApuestaWeb implements Serializable{
 		 
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
 		public String getTipoApuesta(){
 			apuesta = new Pleno();
 			return apuesta.getTipoApuesta();
@@ -160,6 +180,10 @@ public class ApuestaModel implements Serializable {
 	
 	public static class ParImparWeb extends ApuestaWeb implements Serializable{
 		
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
 		public String getTipoApuesta(){
 			apuesta = new ParImpar();
 			return apuesta.getTipoApuesta();
