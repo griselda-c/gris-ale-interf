@@ -14,11 +14,11 @@ public class ParImpar extends Apuesta {
 		super();
 	}
 
-	boolean ganaParaNumero(int numero) {		
+	public boolean ganaParaNumero(int numero) {		
 		return ( ( (this.jugadaSeleccionada.getValor() - numero) % 2 ) == 0);		
 	}
 	
-	Integer fichasGanadas() {		
+	public Integer fichasGanadas() {		
 		return (2 * this.fichas) + 1;
 	}
 	

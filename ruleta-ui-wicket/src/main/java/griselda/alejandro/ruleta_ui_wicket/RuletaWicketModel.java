@@ -14,34 +14,15 @@ import ruleta.Pleno;
 
 public class RuletaWicketModel {
 	
-	public static final String MESA = "mesa";
-
-	public static final String ERRORJUGADOR = "errorJugador";
-
-	public static final String NOMBREJUGADOR = "nombreJugador";
-
-	public static final String DINEROJUGADOR = "dineroJugador";
-
-	public static final String JUGADOR = "jugador";
-
-	public static final String MODEL = "model";
-
-	public static final String ERRORAPUESTA = "errorApuesta";
-
 	public Jugador jugador;
 
-	public Mesa mesa;
-	
-	
+	public Mesa mesa;	
 	
 	
 	public RuletaWicketModel(Mesa mesa, Jugador jugador) {
 		this.jugador = jugador;
 		this.mesa = mesa;
-	}
-		
-	
-	
+	}	
 	
 	public Jugador getJugador() {
 		return jugador;

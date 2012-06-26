@@ -25,7 +25,7 @@ public class WicketApplication extends WebApplication
 		public SlotApuestas(){
 			this.apuestasSlot = new LinkedList<Apuesta>();
 		}
-	}	
+	}
 
 	public SlotApuestas apuestasActuales[];
 	
@@ -34,6 +34,7 @@ public class WicketApplication extends WebApplication
 	public Integer resultadoPartidaAnterior;
 	
 	public List<JugadorModel> jugadoresModel;
+	
 	public Mesa mesaServidor;
 		
 	static public Mesa staticGetMesa(){
@@ -51,7 +52,13 @@ public class WicketApplication extends WebApplication
 		aplicacion.setJugadoresModel(jugadores);
 	}
 	
-	
+	static public void actualizarApuestas(){
+		WicketApplication aplicacion = (WicketApplication) WebApplication.get();
+		aplicacion.apuestasPartidaAnterior = aplicacion.apuestasActuales;
+		aplicacion.apuestasActuales = new SlotApuestas[39];
+		aplicacion.inicializarSlots(aplicacion.apuestasActuales);
+		aplicacion.resultadoPartidaAnterior = aplicacion.getMesa().getNumeroGanador();
+	}
 	
 	public List<JugadorModel> getJugadoresModel() {
 		return jugadoresModel;
@@ -91,18 +98,11 @@ public class WicketApplication extends WebApplication
 	}
     
     
-
-	/**
-     * Constructor
-     */
 	public WicketApplication()
 	{
 		
 	}
 	
-	/**
-	 * @see org.apache.wicket.Application#getHomePage()
-	 */
 	public Class<HomePage> getHomePage()
 	{
 		return HomePage.class;
@@ -114,6 +114,16 @@ public class WicketApplication extends WebApplication
 			nuevaLista.add(new JugadorModel(jugador));
 		}		
 		staticSetJugadores(nuevaLista);
+	}
+	
+	
+	public static boolean isNumber(String dineroJugadorS) {
+		try{
+			Integer.parseInt(dineroJugadorS);
+		} catch(NumberFormatException nfe) {
+			return false;
+		}
+			return true;
 	}
 
 }

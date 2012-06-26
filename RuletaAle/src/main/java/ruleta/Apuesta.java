@@ -27,8 +27,8 @@ public abstract class Apuesta extends ObservableObject{
 		super();
 	}
 
-	abstract boolean ganaParaNumero(int numero);
-	abstract Integer fichasGanadas();
+	public abstract boolean ganaParaNumero(int numero);
+	public abstract Integer fichasGanadas();
 
 	public void confirmar() {		
 		this.jugador.apostar(this);	

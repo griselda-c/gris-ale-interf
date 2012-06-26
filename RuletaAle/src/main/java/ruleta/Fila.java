@@ -15,6 +15,7 @@ public class Fila extends Apuesta{
 	}
 
 	@Override
+	public
 	boolean ganaParaNumero(int numero) {		
 		 return this.jugadaSeleccionada.getValor() == this.convertirEnFila(numero);
 	}

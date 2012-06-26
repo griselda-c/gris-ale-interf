@@ -5,7 +5,7 @@ import ruleta.Mesa;
 
 public class HomeApplicationModel {
 
-	public static Integer cantidadMaximaDeJugadores = 1;
+	public static Integer cantidadMaximaDeJugadores = 3;
 	public String nombreloggin = "";
 	public String dinerologgin = "";
 	public String feedback1 = "Ingrese sus datos";
@@ -24,7 +24,7 @@ public class HomeApplicationModel {
 			this.setFeedback1("Formato de nombre incorrecto");
 			this.setFeedback2("Intentelo nuevamente");
 			this.homePage.setResponsePage(this.homePage);	
-		}else if(!HomeApplicationModel.isNumber(dinerologgin)){
+		}else if(!WicketApplication.isNumber(dinerologgin)){
 			homePage.setErrorFeedback();
 			this.setFeedback1("Formato de dinero incorrecto");
 			this.setFeedback2("Intentelo nuevamente");
@@ -51,15 +51,6 @@ public class HomeApplicationModel {
 	
 	private static boolean hayLugar() {
 		return WicketApplication.staticGetMesa().jugadores.size() < cantidadMaximaDeJugadores;
-	}
-
-	public static boolean isNumber(String dineroJugadorS) {
-		try{
-			Integer.parseInt(dineroJugadorS);
-		} catch(NumberFormatException nfe) {
-			return false;
-		}
-			return true;
 	}
 
 	public static boolean isText(String nombreJugadorS) {

@@ -20,6 +20,7 @@
 </head>
 
 <body>
+
 <div id="false-body">
 
 <div id="header">
@@ -117,20 +118,24 @@
     </tr>
   </table>
   
-  <form wicket:id="formApuestaVista" style="width:250px; padding: 15px 0px; text-align: justify;">
-  <p class="selectApuesta">Seleccione una jugada para<br/>ver las apuestas</p>
+  <form wicket:id="formApuestaVista" style="width:250px; padding: 15px 0px 0px 0px; text-align: justify;">
+  <p class="selectApuesta">Seleccione una jugada para ver<br/>las apuestas realizadas</p>
   <select  wicket:id="selectApuestaVista" style="width:250px;">
   </select><br/><br/>
   </form>
   
-  <p class="selectApuesta">Apuestas de la partida anterior</p>
+  <p class="selectApuesta">&Uacute;ltimo numero ganador</p>
+  
+  <div class="nueroGanador"><span  wicket:id="numeroGanador"></span></div>
+  
+  <p class="selectApuesta" style="padding-top: 20px;">Apuestas de la partida anterior</p>
   
   <table wicket:id="partidaAnteriorContainer" style="width: 250px; background-color: red; font-size: 12px; text-aling: center; color: white; border: 1px solid green;">
     <tr>
-      <th>Jugador</th><th>Fichas</th><th>Apuestas</th>
+      <th>Jugada</th><th>Apostadas</th><th>Ganadas</th>
     </tr>
     <tr wicket:id="apuestasAnteriores" style="background-color: #f33; text-align: center;">
-      <td><span wicket:id="tipoApuesta"></span><span wicket:id="jugadaApuesta"></span></td>
+      <td><span wicket:id="tipoApuesta"></span> - <span wicket:id="jugadaApuesta"></span></td>
       <td><span wicket:id="fichasApuesta"></span></td>
       <td><span wicket:id="pagaApuesta"></span></td>
     </tr>

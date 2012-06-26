@@ -241,7 +241,7 @@ body {
 .selectApuesta{	
 	text-align: center;
 	color: white;
-	padding: 10px 0px;
+	padding: 0px 0px 10px 0px;
 	font-family: arial, verdana, sans-serif;
     font-weight: bold;
     line-height: 16px;
@@ -249,7 +249,19 @@ body {
 }
 
 
-
+.nueroGanador{
+	background-color: #a0a;
+	border: 1px solid white;
+	color: white;
+	margin: 0px auto;
+	height: 40px;
+	width: 40px;	
+    font-weight: bold;
+    text-align: center;
+    line-height: 40px;
+	font-size: 20px;
+	padding: 0px;
+}
 
 
 

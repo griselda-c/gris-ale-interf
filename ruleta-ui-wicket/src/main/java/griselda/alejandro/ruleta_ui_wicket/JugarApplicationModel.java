@@ -22,7 +22,7 @@ public class JugarApplicationModel {
 	public Mesa mesa;	
 	public JugarPage jugarPage;
 	
-	public Integer  fichasApostadas;
+	public String  fichasApostadas;
 	public ApuestaWeb apuestaSeleccionada;
 	public OpcionJugada jugadaSeleccionada;
 	public OpcionJugada apuestaVista;
@@ -33,7 +33,7 @@ public class JugarApplicationModel {
 		this.jugador = jugador;
 		this.mesa = mesa;
 		this.jugarPage = jugarPage;	
-		this.fichasApostadas = 0;
+		this.fichasApostadas = "";
 	}	
 	
 	public List<Apuesta> getApuestasPartida(){
@@ -44,7 +44,25 @@ public class JugarApplicationModel {
 		if(aplicacion.apuestasActuales[apuestaVista.getValor()].apuestasSlot == null){
 			throw new RuntimeException("error al intentar obtener las apuestas del valor " + apuestaVista.getValor());
 		}
-		return aplicacion.apuestasActuales[apuestaVista.getValor()].apuestasSlot;
+		return aplicacion.apuestasActuales[apuestaVista.getValor()].apuestasSlot;		
+	}
+	
+	public List<ApuestaAnteriorModel> getApuestasPartidaAnterior(){		
+		List<ApuestaAnteriorModel> apuestasDeJugador = new LinkedList<ApuestaAnteriorModel>();		
+		
+		WicketApplication aplicacion = (WicketApplication) WebApplication.get();
+		
+		Integer numeroGanadorAnterior = aplicacion.resultadoPartidaAnterior;
+		
+		for (int i = 0; i < aplicacion.apuestasPartidaAnterior.length; i++) {
+			for (Apuesta apuesta : aplicacion.apuestasPartidaAnterior[i].apuestasSlot) {
+				if(apuesta.jugador.equals(this.jugador)){
+					apuestasDeJugador.add(new ApuestaAnteriorModel(apuesta, numeroGanadorAnterior));
+				}
+			}			
+		}	
+		
+		return apuestasDeJugador;
 		
 	}
 
@@ -59,20 +77,51 @@ public class JugarApplicationModel {
 		
 	public void apostar(AjaxRequestTarget target){
 		
-		Apuesta nuevaApuesta = apuestaSeleccionada.create();
-		nuevaApuesta.setFichas(fichasApostadas);
-		nuevaApuesta.setJugadaSeleccionada(jugadaSeleccionada);
-		nuevaApuesta.setJugador(this.jugador);
-		nuevaApuesta.confirmar();
+		if(fichasApostadas.equals("0")){
+			feedbackApuesta = "Debe ingresar una suma mayor a cero";
+			jugarPage.setErrorFeedback();
+		}else if(!WicketApplication.isNumber(fichasApostadas)){
+			feedbackApuesta = "Debe ingresar una suma entera";
+			jugarPage.setErrorFeedback();
+		}
+		else{
+			jugarPage.setOkFeedback();
+			feedbackApuesta = "Ingrese la cantidad de fichas que desea apostar:";
+			
+			Apuesta nuevaApuesta = apuestaSeleccionada.create();
+			nuevaApuesta.setFichas(Integer.valueOf(fichasApostadas));
+			nuevaApuesta.setJugadaSeleccionada(jugadaSeleccionada);
+			nuevaApuesta.setJugador(this.jugador);
+			nuevaApuesta.confirmar();
+			
+			WicketApplication aplicacion = (WicketApplication) WebApplication.get();
+			aplicacion.apuestasActuales[jugadaSeleccionada.getValor()].apuestasSlot.add(nuevaApuesta);
+			
+			apuestaSeleccionada = null;
+			jugadaSeleccionada = null;
+			fichasApostadas = "";
+			jugarPage.selectJugadaComponente.setEnabled(false);
+			jugarPage.apostarComponente.setEnabled(false);
+			
+			target.add(jugarPage.fichasApostadasComponente);
+			target.add(jugarPage.selectJugadaComponente);
+			target.add(jugarPage.selectApuestaTipoComponente);
+			target.add(jugarPage.fichasJugadorComponente);
+			target.add(jugarPage.apostarComponente);
+			target.add(jugarPage.apuestasContainer);
+			target.add(jugarPage.selectApuestaVistaComponete);
+			target.add(jugarPage.jugadoresContainer);
+		}
+		target.add(jugarPage.feedbackApuestaComponente);
+	}
+
+	public void girarRuleta(AjaxRequestTarget target){
 		
-		WicketApplication aplicacion = (WicketApplication) WebApplication.get();
-		aplicacion.apuestasActuales[jugadaSeleccionada.getValor()].apuestasSlot.add(nuevaApuesta);
 		
-		apuestaSeleccionada = null;
-		jugadaSeleccionada = null;
-		fichasApostadas = 0;
-		jugarPage.selectJugadaComponente.setEnabled(false);
-		jugarPage.apostarComponente.setEnabled(false);
+		this.mesa.girarRuleta();
+		
+		//WicketApplication aplicacion = (WicketApplication) WebApplication.get();
+		WicketApplication.actualizarApuestas();
 		
 		target.add(jugarPage.fichasApostadasComponente);
 		target.add(jugarPage.selectJugadaComponente);
@@ -80,9 +129,11 @@ public class JugarApplicationModel {
 		target.add(jugarPage.fichasJugadorComponente);
 		target.add(jugarPage.apostarComponente);
 		target.add(jugarPage.apuestasContainer);
-				
+		target.add(jugarPage.partidaAnteriorContainer);
+		target.add(jugarPage.numeroGanadorComponente);
+		target.add(jugarPage.selectApuestaVistaComponete);
 	}
-
+	
 	public static List<ApuestaWeb> staticApuestas = getApuestas();
 
 
@@ -96,7 +147,7 @@ public class JugarApplicationModel {
 	}
 	
 	public List<JugadorModel> jugadores(){
-		return WicketApplication.staticGetJugadores();		
+		return WicketApplication.staticGetJugadores();
 	}
 	
 	public static abstract class ApuestaWeb{
@@ -201,12 +252,12 @@ public class JugarApplicationModel {
 	}
 
 
-	public Integer getFichasApostadas() {
+	public String getFichasApostadas() {
 		return fichasApostadas;
 	}
 
 
-	public void setFichasApostadas(Integer fichasApostadas) {
+	public void setFichasApostadas(String fichasApostadas) {
 		this.fichasApostadas = fichasApostadas;
 	}
 
@@ -228,11 +279,22 @@ public class JugarApplicationModel {
 		this.apuestaVista = apuestaVista;
 	}
 
-	public List<? extends OpcionJugada> getJugadasPosibles() {
+	public List<? extends OpcionJugada> getJuagadasActivas() {
 		List<OpcionJugada> jugadas = new LinkedList<OpcionJugada>();
 		jugadas.addAll(new ParImpar().getOpciones());
 		jugadas.addAll(new Pleno().getOpciones());
-		return jugadas;
+		
+		List<OpcionJugada> jugadasEnCurso = new LinkedList<OpcionJugada>();
+		
+		WicketApplication aplicacion = (WicketApplication) WebApplication.get();
+		for (OpcionJugada opcionJugada : jugadas) {
+			if(!aplicacion.apuestasActuales[opcionJugada.getValor()].apuestasSlot.isEmpty()){
+				jugadasEnCurso.add(opcionJugada);
+			}
+		}		
+		
+		return jugadasEnCurso;
+		
 	}
 
 	public String getFeedbackApuesta() {
