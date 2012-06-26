@@ -20,7 +20,6 @@ public class ApuestasJugadorPage extends WebPage{
 	 */
 	private static final long serialVersionUID = 1L;
 	private Jugador jugador;
-	private Mesa mesa = RuletaWicketApplication.getRuletaApplication().getMesa();
 	private ListView<Apuesta> listaApuestas;
 	private WebPage paginaAnterior;
 	private WebMarkupContainer listContainer;
@@ -34,6 +33,9 @@ public class ApuestasJugadorPage extends WebPage{
 		 this.agregarLink();
 	}
 	
+	protected Mesa getMesa(){
+		return  RuletaWicketApplication.getRuletaApplication().getMesa();
+	}
 	
 @SuppressWarnings("unchecked")
 private void generarGrillaApuestas(){

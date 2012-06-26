@@ -16,12 +16,15 @@
 <body>
 
  
-       
-        <table border="2" wicket:id="theContainer">
+    <div class="left">
+        <table border="1">
+        <tr><th>Apuestas Actuales</th></tr>
+         <tr>
          <th>Jugador</th>
          <th>Apuestas</th>
          <th>Jugada</th>
           <th>Fichas</th>
+         </tr>
          <tr wicket:id="apuestas">
          <td ><span wicket:id="jugador"></span></td>
          <td ><span wicket:id="tipoApuesta"></span></td>
@@ -29,6 +32,27 @@
          <td ><span wicket:id="fichas"></span></td>
          </tr>
 </table>
+</div>
+      
+     <div class="right">
+        <table border="1" >
+        <tr><th align="center">Apuestas Anteriores</th></tr>
+         <tr>
+         <th>Jugador</th>
+         <th>Apuestas</th>
+         <th>Jugada</th>
+          <th>Fichas</th>
+         </tr>
+         <tr wicket:id="apuestasA">
+         <td ><span wicket:id="jugadorA"></span></td>
+         <td ><span wicket:id="tipoApuestaA"></span></td>
+         <td ><span wicket:id="opcionA"></span></td>
+         <td ><span wicket:id="fichasA"></span></td>
+         </tr>
+</table>
+</div>
+      
+      
         <br/><br/><br/><br/>
       <a href="#" wicket:id="volver"> Volver </a>
                    

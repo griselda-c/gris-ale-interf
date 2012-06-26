@@ -37,12 +37,11 @@ public class ApostarPage extends WebPage{
 	private ApuestaModel apuestaModelo = new ApuestaModel();
 	private ListView<Apuesta> listaApuestas;
 	protected Label labelMensaje= new Label ("numero","");
-	protected Mesa mesa;
+	protected Label labelRuletaMensaje = new Label("mensajeRuleta","");
 	
 	
 	public ApostarPage(Jugador j,WebPage page){
 	     jugador = j;
-	     mesa = jugador.getMesa();
 	     paginaAnterior = page;
 	    Form<ApuestaModel> apuestaForm = new Form<ApuestaModel>("apuestaForm", new CompoundPropertyModel<ApuestaModel>(apuestaModelo));
 	    this.add(apuestaForm);
@@ -53,6 +52,7 @@ public class ApostarPage extends WebPage{
 		this.agregarLabelFichasJugador();
 		this.generarGrillaApuestas();
 		add(labelMensaje);
+		add(labelRuletaMensaje);
 		add(new Link<Object>("girarRuleta"){
 			/**
 			 * 
@@ -62,10 +62,10 @@ public class ApostarPage extends WebPage{
 			@Override
 			public void onClick() {
 				try{  
-					 
-	            	RuletaWicketApplication.getRuletaApplication().girarRuleta();
-	            	 getPaginaActual().labelMensaje.setDefaultModelObject(mesa.getNumeroGanador());
-					
+	            	            	 
+	            	 RuletaWicketApplication.getRuletaApplication().girarRuleta();
+	            	 getPaginaActual().labelRuletaMensaje.setDefaultModelObject("El numero ganador es:");
+	            	 getPaginaActual().labelMensaje.setDefaultModelObject(getMesa().getNumeroGanador());
 				}
 				catch (BusinessException e)
 				{feedbackPanel.error(e.getMessage());};
@@ -76,9 +76,13 @@ public class ApostarPage extends WebPage{
 	}
 	
 	
-
+	protected Mesa getMesa(){
+		return  RuletaWicketApplication.getRuletaApplication().getMesa();
+	}
+	
 	private void addFields(Form<ApuestaModel> form) {		
 	    TextField<String> textfieldFichas = new TextField<String>("fichas");
+	    textfieldFichas.setRequired(true);
 		textfieldFichas.setOutputMarkupId(true);
 	    form.add(textfieldFichas);
 	    FeedbackPanel feedbackPanel = new FeedbackPanel("feedbackPanel");
@@ -100,11 +104,13 @@ public class ApostarPage extends WebPage{
 		
 	    comboApuesta = new DropDownChoice<ApuestaWeb>("apuestaSeleccionada",new PropertyModel<ApuestaWeb>(apuestaModelo, "apuestaSeleccionada"),ApuestaModel.getApuestas(),new ChoiceRenderer<ApuestaWeb>("tipoApuesta"));
 	    comboApuesta.setOutputMarkupId(true);
+	    comboApuesta.setRequired(true);
 	    form.add(comboApuesta);
 	  
 	    comboJugada =new DropDownChoice<OpcionJugada>("opcionJugada",new PropertyModel<OpcionJugada>(apuestaModelo,"opcionJugada"),new PropertyModel(apuestaModelo,"opciones"),new ChoiceRenderer<Object>("nombre"));
 	    comboJugada.setOutputMarkupId(true);
 	    comboJugada.setEnabled(false);
+	    comboJugada.setRequired(true);
 	    form.add(comboJugada);
 	   
 	    comboApuesta.add(new AjaxFormComponentUpdatingBehavior("onchange") {

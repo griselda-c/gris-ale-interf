@@ -1,7 +1,5 @@
 package griselda.alejandro.ruleta_ui_wk;
 
-import java.util.List;
-
 import org.apache.wicket.protocol.http.WebApplication;
 
 import ruleta.Mesa;
@@ -13,8 +11,9 @@ import ruleta.Mesa;
  * @see griselda.alejandro.ruleta_ui_wk.Start#main(String[])
  */
 public class RuletaWicketApplication extends WebApplication {
-	private Mesa mesa;
+	private Mesa mesa=null;
 	private boolean giraronRuleta;
+    private int numeroAnterior;
    
 	/**
 	 * @see org.apache.wicket.Application#getHomePage()
@@ -29,11 +28,16 @@ public class RuletaWicketApplication extends WebApplication {
 	 */
 	@Override
 	public void init() {
-		super.init();
-		this.mesa = new Mesa(65000);
+	 	super.init();
+	 	getMesa();
+		//this.mesa = new Mesa(65000);
+	
 	}
 	
 	public Mesa getMesa() {
+		if(mesa==null){
+			mesa = new Mesa(65000);
+		}
 		return mesa;
 	}
 	
@@ -41,13 +45,20 @@ public class RuletaWicketApplication extends WebApplication {
 		return (RuletaWicketApplication) WebApplication.get();
 	}
 	
+	
 	public void girarRuleta(){
 		if(giraronRuleta){
 			throw new BusinessException("La ruleta ya fue girada");
 		}
 		giraronRuleta = true;
-		mesa.girarRuleta();
+		numeroAnterior = getMesa().getNumeroGanador();
+		getMesa().girarRuleta();
 		
+	}
+	
+	
+	public int getNumeroGanadorAnterior(){
+		return numeroAnterior;
 	}
 	
 }

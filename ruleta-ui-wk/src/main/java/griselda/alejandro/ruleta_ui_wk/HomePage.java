@@ -13,7 +13,12 @@ public class HomePage extends WebPage {
 		//add(new Label("version", getApplication().getFrameworkSettings().getVersion()));
         // TODO Add your page's components here
     	add(new Label("ruleta","Bienvenido a la Ruleta del ocho"));
-    	add(new Link("registrarse"){
+    	add(new Link<Object>("registrarse"){
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
 			@Override
 			public void onClick() {
 				// TODO Auto-generated method stub

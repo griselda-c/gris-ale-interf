@@ -24,7 +24,6 @@ public class AdjuntarJugadorPage extends WebPage {
 	private FeedbackPanel feedbackPanel;
 	private UnirJugadorModel jugador;
 	private ListView<Jugador> view;
-	private Mesa mesa = RuletaWicketApplication.getRuletaApplication().getMesa();
 	private WebMarkupContainer listContainer;
 	private Label labelNombre = new Label ("nombre","");
 	private Label cantFichas = new Label ("cantFichas","");
@@ -56,6 +55,9 @@ public class AdjuntarJugadorPage extends WebPage {
 		//view.setOutputMarkupId(true); 
 		
 	}
+	
+	
+	
 
 	private void generarCamposIngreso(Form<Jugador> parent) {
 		final TextField<String> dinero = new TextField<String>("dinero");
@@ -87,7 +89,7 @@ public class AdjuntarJugadorPage extends WebPage {
 					 getPaginaActual().cantFichas.setDefaultModelObject( "Usted tiene ");				 
 					 getPaginaActual().fichas.setDefaultModelObject(jugador.getJugador().fichas);
 					 getPaginaActual().finFrase.setDefaultModelObject("fichas");
-							//irABienvenidaPage(unirJugadorModel);
+							
 					
 				}
 				catch (BusinessException e) {
@@ -108,7 +110,7 @@ public class AdjuntarJugadorPage extends WebPage {
 	
 	protected void generarGrillaJugadores(){
 	   
-		view = new ListView<Jugador>("jugadores",new PropertyModel(mesa, "jugadores")) {
+		view = new ListView<Jugador>("jugadores",new PropertyModel(getMesa(), "jugadores")) {
 	         /**
 			 * 
 			 */
@@ -134,7 +136,7 @@ public class AdjuntarJugadorPage extends WebPage {
 	     };
 	 	
 	     add(view);
-	   /*
+	     /*
 	     listContainer = new WebMarkupContainer("theContainer");
 	     listContainer.setOutputMarkupId(true);
 	     listContainer.add(new AjaxSelfUpdatingTimerBehavior(Duration.seconds(1)));
