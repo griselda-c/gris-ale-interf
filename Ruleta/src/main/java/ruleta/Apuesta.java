@@ -21,6 +21,7 @@ public abstract class Apuesta extends ObservableObject implements Serializable{
 	public OpcionJugada jugadaSeleccionada;
 	public String jugadorNombre;
 	public String opcionNombre;
+	public String gano;
 	
 	public Apuesta(Jugador j) {
 		this.jugador = j;
@@ -91,6 +92,14 @@ public abstract class Apuesta extends ObservableObject implements Serializable{
 	public void setFichasString(String fichasString) {
 		this.setFieldValue(FICHASSTRING, fichasString);
 		this.setFieldValue(FICHAS, Integer.valueOf(fichasString));		
+	}
+
+	public String getGano() {
+		return gano;
+	}
+
+	public void setGano(String gano) {
+		this.gano = gano;
 	}
 	
 

@@ -10,6 +10,10 @@ import org.uqbar.commons.model.ObservableObject;
 public class Mesa extends ObservableObject implements Serializable{
 
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public        final String SELECTED      = "jugadorActual";
 	public        final String JUGADORES     = "jugadores";	
 	public static final String NOMBREJUGADOR = "nombreJugadorEntrante";

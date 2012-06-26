@@ -14,7 +14,7 @@ public class Columna extends Apuesta{
 		super();
 	}
 
-	boolean ganaParaNumero(int numero) {
+	public boolean ganaParaNumero(int numero) {
 		return this.jugadaSeleccionada.getValor() == (numero%3 + 1);		
 	}
 	

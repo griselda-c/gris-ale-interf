@@ -10,6 +10,10 @@ import org.uqbar.commons.model.UserException;
 public class Jugador extends ObservableObject implements Serializable{
 	
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public Mesa mesa;
 	public Integer fichas;
 	public Integer dinero;
