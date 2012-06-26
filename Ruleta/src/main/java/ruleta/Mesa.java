@@ -35,6 +35,7 @@ public class Mesa extends ObservableObject implements Serializable{
 	public List<Jugador> jugadores = new LinkedList<Jugador>();
 
 	public List<Apuesta> apuestas = new LinkedList<Apuesta>();
+	public  List<Apuesta> apuestasAnteriores = new LinkedList<Apuesta>();
 	
 	public Mesa(){
 		super();
@@ -81,6 +82,8 @@ public class Mesa extends ObservableObject implements Serializable{
 	
 	public void girarRuleta(){
 		this.setNumeroGanador(this.ruleta.getNumeroGanador());
+	    setApuestasAnteriores(apuestas);
+	    System.out.println(apuestasAnteriores);
 		this.pagarApuestas();
 		this.firePropertyChange(JUGADORES, null, jugadores);		
 	}
@@ -196,6 +199,14 @@ public class Mesa extends ObservableObject implements Serializable{
 	
 	public void setApuestas(List<Apuesta> apuestas) {
 		this.setFieldValue(APUESTAS, apuestas);
+	}
+
+	public List<Apuesta> getApuestasAnteriores() {
+		return apuestasAnteriores;
+	}
+
+	public void setApuestasAnteriores(List<Apuesta> apuestasAnteriores) {
+		this.apuestasAnteriores = apuestasAnteriores;
 	}
 	
 }
