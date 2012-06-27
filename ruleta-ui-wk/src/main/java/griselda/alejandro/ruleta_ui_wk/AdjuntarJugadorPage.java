@@ -52,7 +52,7 @@ public class AdjuntarJugadorPage extends WebPage {
 		
 		
 		
-		//view.setOutputMarkupId(true); 
+		
 		
 	}
 	
@@ -109,9 +109,10 @@ public class AdjuntarJugadorPage extends WebPage {
 	
 	
 	protected void generarGrillaJugadores(){
-	   
+		
 		view = new ListView<Jugador>("jugadores",new PropertyModel(getMesa(), "jugadores")) {
-	         /**
+		
+			/**
 			 * 
 			 */
 			private static final long serialVersionUID = 1L;
@@ -134,15 +135,15 @@ public class AdjuntarJugadorPage extends WebPage {
 	           });
 	         }
 	     };
-	 	
+	     view.setOutputMarkupId(true); 
 	     add(view);
-	     /*
+	    
 	     listContainer = new WebMarkupContainer("theContainer");
 	     listContainer.setOutputMarkupId(true);
 	     listContainer.add(new AjaxSelfUpdatingTimerBehavior(Duration.seconds(1)));
 	     listContainer.add(view);
 	     add(listContainer);
-		*/
+		
 	}
 	
 	protected void mostrarApuestas(Jugador j){
@@ -180,8 +181,13 @@ public class AdjuntarJugadorPage extends WebPage {
 
 			public void onClick()
 	         {
+				if(jugador.getJugador().dinero<=0 || jugador.getJugador().nombre.equals("")){
+					feedbackPanel.error("debe registrarse");
+				}
+				else{
 	        	 ApostarPage nextPage = new ApostarPage(jugador.getJugador(),getPaginaActual());
 	     		this.setResponsePage(nextPage);
+				}
 	         }
 	     });
 		

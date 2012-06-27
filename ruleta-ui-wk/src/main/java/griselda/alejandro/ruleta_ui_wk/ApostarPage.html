@@ -32,7 +32,7 @@
                <select wicket:id="opcionJugada" ></select>   
                <br/><br/><br/><br/>
                <input  wicket:id="apostar" type= "submit" name="apostar " value =" Apostar "></input>
-               
+              
              
                <div wicket:id="feedbackPanel">
                </div> 
@@ -55,17 +55,21 @@
          </tr>
 </table>
         <br/><br/><br/><br/>
-       <a href="#" wicket:id="girarRuleta">Girar Ruleta</a>
+       
        <a href="#" wicket:id="volver"> Volver </a>
       
        </div>
                    
  
  <br/><br/><br/><br/> <br/><br/><br/><br/> <br/><br/><br/><br/> <br/><br/>
+
+
+<form wicket:id="ruletaForm">
+<input  wicket:id="girarRuleta" type= "submit" name="girar " value =" Girar ruleta "></input>
 <span wicket:id="mensajeRuleta"></span>
 <span wicket:id="numero"></span>
  
-
+</form>
 
 </body>
 </html>

@@ -14,6 +14,7 @@ public class UnirJugadorModel implements Serializable {
 	public UnirJugadorModel(Mesa mesa) {
 		this.mesa = mesa;
 		this.jugador = new Jugador(0, "");
+		
 	}
 
 	public Jugador getJugador() {

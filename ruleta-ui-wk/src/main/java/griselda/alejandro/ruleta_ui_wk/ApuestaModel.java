@@ -43,7 +43,7 @@ public class ApuestaModel implements Serializable {
     		
     	}
     	else{
-    		List listaVacia =new LinkedList<OpcionJugada>();
+    		List<OpcionJugada>listaVacia =new LinkedList<OpcionJugada>();
     		opciones = listaVacia;
     	}
     	return opciones;
@@ -52,14 +52,13 @@ public class ApuestaModel implements Serializable {
     public void crearApuesta(){
     	
     	Apuesta apuesta = apuestaSeleccionada.create();
-    	if(apuestaSeleccionada == null || opcionJugada == null){
-    		new BusinessException("debe elegir un tipo de apuesta y un valor");
-    	}
     	apuesta.setJugador(jugador);
     	apuesta.setJugadaSeleccionada(opcionJugada);
+    	/*
     	if(fichas > jugador.getFichas() || fichas <= 0 ){
     		new BusinessException(" no tiene las fichas suficientes");
     	}
+    	*/
     	apuesta.setFichas(fichas);
     	
     	jugador.apostar(apuesta);

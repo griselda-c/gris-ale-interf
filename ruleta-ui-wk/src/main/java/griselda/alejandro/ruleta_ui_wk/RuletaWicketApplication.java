@@ -12,7 +12,7 @@ import ruleta.Mesa;
  */
 public class RuletaWicketApplication extends WebApplication {
 	private Mesa mesa=null;
-	private boolean giraronRuleta;
+	private boolean giraronRuleta=false;
     private int numeroAnterior;
    
 	/**
@@ -45,6 +45,9 @@ public class RuletaWicketApplication extends WebApplication {
 		return (RuletaWicketApplication) WebApplication.get();
 	}
 	
+	public boolean mesaEstaAbierta(){
+		return !(giraronRuleta);
+	}
 	
 	public void girarRuleta(){
 		if(giraronRuleta){

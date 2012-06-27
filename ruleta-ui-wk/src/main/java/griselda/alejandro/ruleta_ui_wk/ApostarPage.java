@@ -5,6 +5,8 @@ import griselda.alejandro.ruleta_ui_wk.ApuestaModel.ApuestaWeb;
 
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.form.AjaxFormComponentUpdatingBehavior;
+import org.apache.wicket.ajax.markup.html.form.AjaxButton;
+import org.apache.wicket.extensions.ajax.markup.html.modal.ModalWindow;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Button;
@@ -38,41 +40,30 @@ public class ApostarPage extends WebPage{
 	private ListView<Apuesta> listaApuestas;
 	protected Label labelMensaje= new Label ("numero","");
 	protected Label labelRuletaMensaje = new Label("mensajeRuleta","");
+	protected TextField<String> textfieldFichas;
 	
 	
 	public ApostarPage(Jugador j,WebPage page){
 	     jugador = j;
 	     paginaAnterior = page;
 	    Form<ApuestaModel> apuestaForm = new Form<ApuestaModel>("apuestaForm", new CompoundPropertyModel<ApuestaModel>(apuestaModelo));
+	    Form<Mesa> ruletaForm = new Form<Mesa>("ruletaForm", new CompoundPropertyModel<Mesa>(getMesa()));
+	    ruletaForm.add(labelRuletaMensaje);
+	    ruletaForm.add(labelMensaje);
+	    apuestaForm.setOutputMarkupId(true);
 	    this.add(apuestaForm);
+	    this.add(ruletaForm);
 		this.addFields(apuestaForm);
 		this.addAction(apuestaForm);
 		this.crearCombos(apuestaForm);
 		this.agregarLink();	
 		this.agregarLabelFichasJugador();
 		this.generarGrillaApuestas();
+		this.botonGirarRuleta(ruletaForm);
+	    /*
 		add(labelMensaje);
 		add(labelRuletaMensaje);
-		add(new Link<Object>("girarRuleta"){
-			/**
-			 * 
-			 */
-			private static final long serialVersionUID = 1L;
-
-			@Override
-			public void onClick() {
-				try{  
-	            	            	 
-	            	 RuletaWicketApplication.getRuletaApplication().girarRuleta();
-	            	 getPaginaActual().labelRuletaMensaje.setDefaultModelObject("El numero ganador es:");
-	            	 getPaginaActual().labelMensaje.setDefaultModelObject(getMesa().getNumeroGanador());
-				}
-				catch (BusinessException e)
-				{feedbackPanel.error(e.getMessage());};
-				
-			}
-			
-		});
+		*/
 	}
 	
 	
@@ -80,12 +71,57 @@ public class ApostarPage extends WebPage{
 		return  RuletaWicketApplication.getRuletaApplication().getMesa();
 	}
 	
+	
+	private void botonGirarRuleta(Form<Mesa> form){
+		form.add(new AjaxButton("girarRuleta"){
+
+			@Override
+			protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
+				try{  
+	            	 
+					 RuletaWicketApplication.getRuletaApplication().girarRuleta();
+					//getMesa().girarRuleta();
+	            	 labelRuletaMensaje.setDefaultModelObject("El numero ganador es:");
+	            	 labelMensaje.setDefaultModelObject(getMesa().getNumeroGanador());
+	            	 labelRuletaMensaje.setOutputMarkupId(true);
+	            	 labelMensaje.setOutputMarkupId(true);
+	            	 form.setOutputMarkupId(true);
+	            	
+	            	 target.add(form);
+	            	 target.add(labelRuletaMensaje);
+	            	 target.add(labelMensaje);
+	                 
+	            	 
+	            	 /*
+	            	 ModalWindow modal =new ModalWindowApuesta("apuestaM", getDefaultModel());
+	            	 add(modal);
+	            	 modal.show(target);
+	            	 */
+				}
+				catch (BusinessException e)
+				{feedbackPanel.error(e.getMessage());};
+				
+				
+			}
+
+			@Override
+			protected void onError(AjaxRequestTarget target, Form<?> form) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
+		
+		
+	}
+	
 	private void addFields(Form<ApuestaModel> form) {		
-	    TextField<String> textfieldFichas = new TextField<String>("fichas");
+	    textfieldFichas = new TextField<String>("fichas");
 	    textfieldFichas.setRequired(true);
 		textfieldFichas.setOutputMarkupId(true);
 	    form.add(textfieldFichas);
-	    FeedbackPanel feedbackPanel = new FeedbackPanel("feedbackPanel");
+	    feedbackPanel = new FeedbackPanel("feedbackPanel");
+	    feedbackPanel.setOutputMarkupId(true);
 		form.add(feedbackPanel);			
 	}
 	
@@ -136,28 +172,68 @@ public class ApostarPage extends WebPage{
 		 * 
 		 */
 		private static final long serialVersionUID = 1L;
-
+    
 		@Override
 		public void onSubmit() {
 			try{  
 				
+				if(mesaEstaAbierta()){
+				
 				ApuestaModel apuesta = apuestaModelo;
 				apuesta.setJugador(jugador);
 				apuesta.crearApuesta();
+				}
+				else{
+					feedbackPanel.error("la mesa no recibe mas apuestas");
+				}
 				
 				
 			}
-			catch (RuntimeException e)
-			{ApostarPage.this.feedbackPanel.error(e.getMessage());};
+			catch (BusinessException e)
+			{feedbackPanel.error(e.getMessage());};
 			
 			
 			
+			};
+	});
+
+	/*
+		@Override
+		protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
+            try{  
+				
+				ApuestaModel apuesta = apuestaModelo;
+				apuesta.setJugador(jugador);
+				apuesta.crearApuesta();
+				target.add(form);
+				target.add(comboApuesta);
+			    target.add(comboJugada);
+			    target.add(textfieldFichas);
+			    target.add(feedbackPanel);
+			
+				
+				
 			}
+			catch (BusinessException e)
+			{feedbackPanel.error(e.getMessage());};
+			
+			
+		}
+
+		@Override
+		protected void onError(AjaxRequestTarget target, Form<?> form) {
+			
+			
+			
+		}
 	});
 	
 	
-	
+	*/
 }
+	public boolean mesaEstaAbierta(){
+		return RuletaWicketApplication.getRuletaApplication().mesaEstaAbierta();
+	}
 
 	
 	
