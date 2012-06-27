@@ -1,13 +1,10 @@
 package griselda.alejandro.ruleta_ui_wicket;
 
-import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextField;
-import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.CompoundPropertyModel;
-import org.apache.wicket.model.IModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 public class HomePage extends WebPage {
@@ -19,17 +16,14 @@ public class HomePage extends WebPage {
 	
 	
 	
-    public HomePage(final PageParameters parameters) {
-    	
-    	this.pageModel = new HomeApplicationModel(this);
-    	    	
+    public HomePage(final PageParameters parameters) {    	
+    	this.pageModel = new HomeApplicationModel(this);    	    	
 		formComponent = new Form<HomeApplicationModel>("form_logw", new CompoundPropertyModel<HomeApplicationModel>(this.pageModel)){
 			@Override
 			protected void onSubmit() {				
 				pageModel.validarJugador();
 			}			
-		};
-		
+		};		
 		this.addFields(formComponent);      
 		this.add(formComponent);
     }
@@ -44,19 +38,8 @@ public class HomePage extends WebPage {
 	}
 	
     public void setErrorFeedback(){
-    	feedback1component.add(new AttributeModifier("style", setRedColor()));
+    	Styler.setErrorFeedback(feedback1component);
     }
-
-	public IModel<String> setRedColor() {
-		IModel<String> colorModel = new AbstractReadOnlyModel<String>() {
-		    public String getObject() {
-		        return "color: red;";
-		    }
-		};
-		return colorModel;
-	}
-  
 	
-		
 	
 }

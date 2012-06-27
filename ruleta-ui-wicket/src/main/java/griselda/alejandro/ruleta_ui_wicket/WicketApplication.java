@@ -18,54 +18,15 @@ import ruleta.Mesa;
  * @see griselda.alejandro.ruleta_ui_wicket.Start#main(String[])
  */
 public class WicketApplication extends WebApplication
-{   
-	
-	public class SlotApuestas {		
-		public List<Apuesta> apuestasSlot;
-		public SlotApuestas(){
-			this.apuestasSlot = new LinkedList<Apuesta>();
-		}
-	}
-
-	public SlotApuestas apuestasActuales[];
-	
-	public SlotApuestas apuestasPartidaAnterior[]; 
-	
-	public Integer resultadoPartidaAnterior;
-	
-	public List<JugadorModel> jugadoresModel;
-	
+{   	
 	public Mesa mesaServidor;
-		
-	static public Mesa staticGetMesa(){
-		WicketApplication aplicacion = (WicketApplication) WebApplication.get();
-		return aplicacion.getMesa();
-	}
 	
-	static public List<JugadorModel> staticGetJugadores(){
-		WicketApplication aplicacion = (WicketApplication) WebApplication.get();
-		return aplicacion.getJugadoresModel();
-	}
+	public Partida partidaActual;
+	public Partida partidaAnterior;		
 	
-	static public void staticSetJugadores(List<JugadorModel> jugadores){
-		WicketApplication aplicacion = (WicketApplication) WebApplication.get();
-		aplicacion.setJugadoresModel(jugadores);
-	}
-	
-	static public void actualizarApuestas(){
-		WicketApplication aplicacion = (WicketApplication) WebApplication.get();
-		aplicacion.apuestasPartidaAnterior = aplicacion.apuestasActuales;
-		aplicacion.apuestasActuales = new SlotApuestas[39];
-		aplicacion.inicializarSlots(aplicacion.apuestasActuales);
-		aplicacion.resultadoPartidaAnterior = aplicacion.getMesa().getNumeroGanador();
-	}
-	
-	public List<JugadorModel> getJugadoresModel() {
-		return jugadoresModel;
-	}
 
-	public void setJugadoresModel(List<JugadorModel> jugadoresModel) {
-		this.jugadoresModel = jugadoresModel;
+	public List<JugadorModel> getJugadoresModel() {
+		return this.partidaActual.jugadoresModel;
 	}
 
 	public Mesa getMesa() {
@@ -75,28 +36,16 @@ public class WicketApplication extends WebApplication
 	@Override
 	protected void init() {		
 		super.init();
-		this.mesaServidor = new Mesa(10000);
+		this.mesaServidor = new Mesa(10000);		
+		this.partidaActual  = new Partida();
+		this.partidaAnterior  = new Partida();
+		this.partidaAnterior.resultadoPartida = mesaServidor.getNumeroGanador();
 		// the full path to your folder, relative to the context root
 		this.getResourceSettings().addResourceFolder("pages");
-
 		IResourceSettings resourceSettings = getResourceSettings();
 		resourceSettings.addResourceFolder("pages");
-		resourceSettings.setResourceStreamLocator((IResourceStreamLocator) new PathStripperLocator());
-		
-		//inicializar las listas del array slot
-		apuestasActuales = new SlotApuestas[39];
-		inicializarSlots(apuestasActuales);
-		apuestasPartidaAnterior = new SlotApuestas[39];
-		inicializarSlots(apuestasPartidaAnterior);
-		
-	}
-	
-    public void inicializarSlots(SlotApuestas[] slotArray) {
-		for (int i = 0; i < slotArray.length; i++) {
-			slotArray[i] = new SlotApuestas();
-		}		
-	}
-    
+		resourceSettings.setResourceStreamLocator((IResourceStreamLocator) new PathStripperLocator());				
+	}	    
     
 	public WicketApplication()
 	{
@@ -107,14 +56,6 @@ public class WicketApplication extends WebApplication
 	{
 		return HomePage.class;
 	}
-
-	public static void actualizarJugadoresModel() {
-		List<JugadorModel> nuevaLista = new LinkedList<JugadorModel>();
-		for (Jugador jugador : staticGetMesa().jugadores) {
-			nuevaLista.add(new JugadorModel(jugador));
-		}		
-		staticSetJugadores(nuevaLista);
-	}
 	
 	
 	public static boolean isNumber(String dineroJugadorS) {
@@ -124,6 +65,18 @@ public class WicketApplication extends WebApplication
 			return false;
 		}
 			return true;
+	}
+
+	public void girarRuleta() {
+		this.mesaServidor.girarRuleta();
+		this.actualizarPartida();
+	}
+
+	public void actualizarPartida(){
+		this.partidaAnterior = this.partidaActual;
+		this.partidaActual = new Partida();
+		partidaActual.resultadoPartida = this.getMesa().getNumeroGanador();
+		partidaAnterior.resultadoPartida = this.getMesa().getNumeroGanador();
 	}
 
 }

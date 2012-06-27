@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Ruleta</title>
+<LINK rel="stylesheet" href="css/modal.css" type="text/css" media="all">
+</head>
+<body>
+<div style="margin: auto; width: 400px;">
+<IMG src="images/logo.png" alt="Ruleta" title="Ruleta" style="background: none; width: 400px; height: 140px; border: 0px; margin-top: 30px; padding: 0px;">
+</div > <!-- cierra logo -->
+
+<p>Otro jugador ha hecho girar la ruleta</p>
+<p>Resultados de la ultima partida</p>
+
+<table id="partidaAnteriorContainer" style="width: 500px; background-color: red; font-size: 12px; text-aling: center; color: white; border: 1px solid green; margin: auto">
+    <tr>
+      <th>Jugada</th><th>Apostadas</th><th>Ganadas</th>
+    </tr>
+    <tr id="apuestasAnteriores" style="background-color: #f33; text-align: center;">
+      <td><span id="tipoApuesta"></span> - <span id="jugadaApuesta"></span></td>
+      <td><span id="fichasApuesta"></span></td>
+      <td><span id="pagaApuesta"></span></td>
+    </tr>
+</table>
+
+</body>
+</html>
