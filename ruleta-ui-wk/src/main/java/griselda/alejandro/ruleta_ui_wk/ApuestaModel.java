@@ -54,11 +54,6 @@ public class ApuestaModel implements Serializable {
     	Apuesta apuesta = apuestaSeleccionada.create();
     	apuesta.setJugador(jugador);
     	apuesta.setJugadaSeleccionada(opcionJugada);
-    	/*
-    	if(fichas > jugador.getFichas() || fichas <= 0 ){
-    		new BusinessException(" no tiene las fichas suficientes");
-    	}
-    	*/
     	apuesta.setFichas(fichas);
     	
     	jugador.apostar(apuesta);

@@ -60,10 +60,7 @@ public class ApostarPage extends WebPage{
 		this.agregarLabelFichasJugador();
 		this.generarGrillaApuestas();
 		this.botonGirarRuleta(ruletaForm);
-	    /*
-		add(labelMensaje);
-		add(labelRuletaMensaje);
-		*/
+	   
 	}
 	
 	
@@ -80,7 +77,7 @@ public class ApostarPage extends WebPage{
 				try{  
 	            	 
 					 RuletaWicketApplication.getRuletaApplication().girarRuleta();
-					//getMesa().girarRuleta();
+		
 	            	 labelRuletaMensaje.setDefaultModelObject("El numero ganador es:");
 	            	 labelMensaje.setDefaultModelObject(getMesa().getNumeroGanador());
 	            	 labelRuletaMensaje.setOutputMarkupId(true);

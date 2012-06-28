@@ -30,7 +30,6 @@ public class RuletaWicketApplication extends WebApplication {
 	public void init() {
 	 	super.init();
 	 	getMesa();
-		//this.mesa = new Mesa(65000);
 	
 	}
 	

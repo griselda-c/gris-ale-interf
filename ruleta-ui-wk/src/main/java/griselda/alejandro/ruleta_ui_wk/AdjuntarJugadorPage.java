@@ -80,9 +80,7 @@ public class AdjuntarJugadorPage extends WebPage {
 
 			public void onSubmit() {
 				try {
-					//UnirJugadorModel unirJugadorModel = getUnirJugadorModel();
-					UnirJugadorModel unirJugadorModel = jugador;
-					unirJugadorModel.unir();
+					jugador.unir();
 					
 					 getPaginaActual().labelMensaje.setDefaultModelObject("Bienvenido");
 					 getPaginaActual().labelNombre.setDefaultModelObject(jugador.getJugador().getNombre());

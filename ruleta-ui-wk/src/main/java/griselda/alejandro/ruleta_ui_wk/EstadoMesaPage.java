@@ -12,6 +12,7 @@ import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.util.time.Duration;
 
 import ruleta.Apuesta;
+import ruleta.Jugador;
 import ruleta.Mesa;
 
 
@@ -28,7 +29,7 @@ public class EstadoMesaPage extends WebPage{
 	public EstadoMesaPage(WebPage paginaAnterior) {
 		this.paginaAnterior = paginaAnterior;
 		this.generarGrillaApuestas();
-		this.generarGrillaApuestasAnteriores();
+		//this.generarGrillaApuestasAnteriores();
 		this.agregarLink();
 	}
 
@@ -48,10 +49,9 @@ protected void generarGrillaApuestas(){
 			private static final long serialVersionUID = 1L;
 
 			protected void populateItem(final ListItem<Apuesta>item) {
-	    
-			
-	           
-	           final Label jugador = new Label("jugador", new PropertyModel<Apuesta>(item.getModelObject(), "jugadorNombre"));
+	           Jugador j = item.getModelObject().jugador;
+	           String nombre  = j.getNombre();
+	           final Label jugador = new Label("jugador",nombre);
 	           final Label tipoApuesta = new Label("tipoApuesta", new PropertyModel<Apuesta>(item.getModel(), "tipoApuesta"));
 	           final Label opcionJugada = new Label("opcion",new PropertyModel<Apuesta>(item.getModelObject(), "opcionNombre"));
 	           final Label fichas = new Label("fichas",new PropertyModel<Apuesta>(item.getModelObject(), "fichas"));
@@ -62,23 +62,21 @@ protected void generarGrillaApuestas(){
 	         }
 	     };
 	     add(listaApuestas);
-	     /*
+	     
 	     listaApuestas.setOutputMarkupId(true);
 	     listContainer = new WebMarkupContainer("theContainer");
 	     listContainer.setOutputMarkupId(true);
 	     listContainer.add(new AjaxSelfUpdatingTimerBehavior(Duration.seconds(1)));
 	     listContainer.add(listaApuestas);
 	     add(listContainer);
-		*/
+		
 	}
 
+/*
 protected void generarGrillaApuestasAnteriores(){
 	
 	listaApuestasAnteriores = new ListView<Apuesta>("apuestasA", new PropertyModel(getMesa(), "apuestasAnteriores")) {
-         /**
-		 * 
-		 */
-	
+        
 		private static final long serialVersionUID = 1L;
 
 		protected void populateItem(final ListItem<Apuesta>item) {
@@ -98,6 +96,7 @@ protected void generarGrillaApuestasAnteriores(){
      add(listaApuestasAnteriores);
 
 }
+*/
 
  public void agregarLink(){
 	 add(new Link<Object>("volver"){
