@@ -14,6 +14,7 @@ import org.apache.wicket.util.time.Duration;
 import ruleta.Apuesta;
 import ruleta.Jugador;
 import ruleta.Mesa;
+import ruleta.RuletaApplication;
 
 
 public class EstadoMesaPage extends WebPage{
@@ -25,23 +26,25 @@ public class EstadoMesaPage extends WebPage{
 	private ListView<Apuesta> listaApuestas;
 	private ListView<Apuesta> listaApuestasAnteriores;
     private WebMarkupContainer listContainer;
+	private Jugador jugador;
 	
-	public EstadoMesaPage(WebPage paginaAnterior) {
+	public EstadoMesaPage(WebPage paginaAnterior,Jugador j) {
+		this.jugador = j;
 		this.paginaAnterior = paginaAnterior;
 		this.generarGrillaApuestas();
 		//this.generarGrillaApuestasAnteriores();
 		this.agregarLink();
 	}
 
-protected Mesa getMesa(){
-	return  RuletaWicketApplication.getRuletaApplication().getMesa();
+
+	protected RuletaApplication getRuletaApplication(){
+		return  RuletaWicketApplication.getRuletaWicketApplication().getRuletaApplication();
 	}
-
-
 
 protected void generarGrillaApuestas(){
 		
-		listaApuestas = new ListView<Apuesta>("apuestas",new PropertyModel(getMesa(), "apuestas")) {
+	    Mesa mesa = getRuletaApplication().getMesa(jugador);
+		listaApuestas = new ListView<Apuesta>("apuestas",new PropertyModel(mesa, "apuestas")) {
 	         /**
 			 * 
 			 */
@@ -113,5 +116,11 @@ protected void generarGrillaApuestasAnteriores(){
 		}
 		 
 	 });
+	 
+	 
+	 
+	 
  }
+ 
+ 
 }

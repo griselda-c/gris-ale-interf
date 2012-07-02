@@ -33,9 +33,6 @@ public class ApuestasJugadorPage extends WebPage{
 		 this.agregarLink();
 	}
 	
-	protected Mesa getMesa(){
-		return  RuletaWicketApplication.getRuletaApplication().getMesa();
-	}
 	
 @SuppressWarnings("unchecked")
 private void generarGrillaApuestas(){

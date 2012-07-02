@@ -25,6 +25,7 @@ import ruleta.Apuesta;
 import ruleta.Jugador;
 import ruleta.Mesa;
 import ruleta.OpcionJugada;
+import ruleta.RuletaApplication;
 
 
 public class ApostarPage extends WebPage{
@@ -36,6 +37,7 @@ public class ApostarPage extends WebPage{
 	private Jugador jugador;
 	private WebPage paginaAnterior;
 	private FeedbackPanel feedbackPanel;
+	private FeedbackPanel feedbackPanelRuleta;
 	private ApuestaModel apuestaModelo = new ApuestaModel();
 	private ListView<Apuesta> listaApuestas;
 	protected Label labelMensaje= new Label ("numero","");
@@ -47,10 +49,13 @@ public class ApostarPage extends WebPage{
 	     jugador = j;
 	     paginaAnterior = page;
 	    Form<ApuestaModel> apuestaForm = new Form<ApuestaModel>("apuestaForm", new CompoundPropertyModel<ApuestaModel>(apuestaModelo));
-	    Form<Mesa> ruletaForm = new Form<Mesa>("ruletaForm", new CompoundPropertyModel<Mesa>(getMesa()));
+	    Form<Mesa> ruletaForm = new Form<Mesa>("ruletaForm", new CompoundPropertyModel<Mesa>(getRuletaApplication().getMesa(jugador)));
 	    ruletaForm.add(labelRuletaMensaje);
 	    ruletaForm.add(labelMensaje);
 	    apuestaForm.setOutputMarkupId(true);
+	    feedbackPanelRuleta = new FeedbackPanel("feedbackPanelRuleta");
+	    feedbackPanelRuleta.setOutputMarkupId(true);
+	    ruletaForm.add(feedbackPanelRuleta);	
 	    this.add(apuestaForm);
 	    this.add(ruletaForm);
 		this.addFields(apuestaForm);
@@ -64,10 +69,9 @@ public class ApostarPage extends WebPage{
 	}
 	
 	
-	protected Mesa getMesa(){
-		return  RuletaWicketApplication.getRuletaApplication().getMesa();
+	protected RuletaApplication getRuletaApplication(){
+		return  RuletaWicketApplication.getRuletaWicketApplication().getRuletaApplication();
 	}
-	
 	
 	private void botonGirarRuleta(Form<Mesa> form){
 		form.add(new AjaxButton("girarRuleta"){
@@ -75,11 +79,13 @@ public class ApostarPage extends WebPage{
 			@Override
 			protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
 				try{  
-	            	 
-					 RuletaWicketApplication.getRuletaApplication().girarRuleta();
+					System.out.println("Fichas" +jugador.fichas);
+	                Mesa mesa = getRuletaApplication().getMesa(jugador);
+					mesa.girarRuleta();
+					System.out.println("Fichas" +jugador.fichas);
 		
 	            	 labelRuletaMensaje.setDefaultModelObject("El numero ganador es:");
-	            	 labelMensaje.setDefaultModelObject(getMesa().getNumeroGanador());
+	            	 labelMensaje.setDefaultModelObject(mesa.getNumeroGanador());
 	            	 labelRuletaMensaje.setOutputMarkupId(true);
 	            	 labelMensaje.setOutputMarkupId(true);
 	            	 form.setOutputMarkupId(true);
@@ -87,6 +93,7 @@ public class ApostarPage extends WebPage{
 	            	 target.add(form);
 	            	 target.add(labelRuletaMensaje);
 	            	 target.add(labelMensaje);
+	            	 irAPaginaResultado();
 	                 
 	            	 
 	            	 /*
@@ -96,7 +103,7 @@ public class ApostarPage extends WebPage{
 	            	 */
 				}
 				catch (BusinessException e)
-				{feedbackPanel.error(e.getMessage());};
+				{feedbackPanelRuleta.error(e.getMessage());};
 				
 				
 			}
@@ -173,20 +180,15 @@ public class ApostarPage extends WebPage{
 		@Override
 		public void onSubmit() {
 			try{  
+				Mesa mesa = getRuletaApplication().getMesa(jugador);
+				System.out.println("mesa "+ mesa);
+				apuestaModelo.setJugador(jugador);
+				Apuesta apuesta = apuestaModelo.crearApuesta(); 
+				mesa.registrarJugada(apuesta);
 				
-				if(mesaEstaAbierta()){
-				
-				ApuestaModel apuesta = apuestaModelo;
-				apuesta.setJugador(jugador);
-				apuesta.crearApuesta();
 				}
-				else{
-					feedbackPanel.error("la mesa no recibe mas apuestas");
-				}
-				
-				
-			}
-			catch (BusinessException e)
+					
+			catch (RuntimeException e)
 			{feedbackPanel.error(e.getMessage());};
 			
 			
@@ -228,9 +230,7 @@ public class ApostarPage extends WebPage{
 	
 	*/
 }
-	public boolean mesaEstaAbierta(){
-		return RuletaWicketApplication.getRuletaApplication().mesaEstaAbierta();
-	}
+	
 
 	
 	
@@ -273,7 +273,12 @@ public class ApostarPage extends WebPage{
 		
 	}
 	
-	
+	public void irAPaginaResultado(){
+		
+		ResultadosPage resultados = new ResultadosPage(jugador);
+		this.setResponsePage(resultados);
+		
+	}
 	
 
 	

@@ -49,15 +49,15 @@ public class ApuestaModel implements Serializable {
     	return opciones;
     }
 	
-    public void crearApuesta(){
+    public Apuesta crearApuesta(){
     	
     	Apuesta apuesta = apuestaSeleccionada.create();
     	apuesta.setJugador(jugador);
     	apuesta.setJugadaSeleccionada(opcionJugada);
     	apuesta.setFichas(fichas);
     	
-    	jugador.apostar(apuesta);
-    	
+    	//jugador.apostar(apuesta);
+    	return apuesta;
     }
     
     

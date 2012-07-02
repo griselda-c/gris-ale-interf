@@ -3,6 +3,7 @@ package griselda.alejandro.ruleta_ui_wk;
 import org.apache.wicket.protocol.http.WebApplication;
 
 import ruleta.Mesa;
+import ruleta.RuletaApplication;
 
 /**
  * Application object for your web application. If you want to run this
@@ -11,10 +12,15 @@ import ruleta.Mesa;
  * @see griselda.alejandro.ruleta_ui_wk.Start#main(String[])
  */
 public class RuletaWicketApplication extends WebApplication {
+	/*
 	private Mesa mesa=null;
 	private boolean giraronRuleta=false;
     private int numeroAnterior;
-   
+   */
+	
+	private RuletaApplication ruletaApplication = null;
+	
+	
 	/**
 	 * @see org.apache.wicket.Application#getHomePage()
 	 */
@@ -29,21 +35,21 @@ public class RuletaWicketApplication extends WebApplication {
 	@Override
 	public void init() {
 	 	super.init();
-	 	getMesa();
+	 	
 	
 	}
 	
-	public Mesa getMesa() {
-		if(mesa==null){
-			mesa = new Mesa(65000);
+	public RuletaApplication getRuletaApplication() {
+		if(ruletaApplication==null){
+			ruletaApplication = new RuletaApplication();
 		}
-		return mesa;
+		return ruletaApplication;
 	}
 	
-	public static RuletaWicketApplication getRuletaApplication() {
+	public static RuletaWicketApplication getRuletaWicketApplication() {
 		return (RuletaWicketApplication) WebApplication.get();
 	}
-	
+	/*
 	public boolean mesaEstaAbierta(){
 		return !(giraronRuleta);
 	}
@@ -62,5 +68,5 @@ public class RuletaWicketApplication extends WebApplication {
 	public int getNumeroGanadorAnterior(){
 		return numeroAnterior;
 	}
-	
+	*/
 }

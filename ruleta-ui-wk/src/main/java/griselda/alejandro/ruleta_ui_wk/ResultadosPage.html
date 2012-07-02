@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns:wicket="http://wicket.apache.org">
+<!--  
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Apostar</title>
+<link href="estilos.css" rel="stylesheet" type="text/css">
+</head>
+-->
+<wicket:head>
+  <wicket:link>
+    <link rel="stylesheet" type="text/css" href="estilos.css"/>
+  </wicket:link>
+</wicket:head>
+
+
+<body>
+<span wicket:id="mensaje"></span>
+<span wicket:id="numeroGanador"></span>
+<span wicket:id="fichas"></span>
+<span wicket:id="cantFichas"></span>
+<span wicket:id="finFrase"></span>
+
+
+<form wicket:id="ruletaForm">
+<input  wicket:id="seguirJugando" type= "submit" name="seguir" value =" Seguir Jugando "></input>
+<input  wicket:id="retirarse" type= "submit" name="retirarse" value =" Retirarse "></input>
+</form>
+<div class="right">
+ <table border="2">
+        <tr>
+        <th>Apuestas</th>
+         <th>Jugada</th>
+          <th>Fichas</th>
+          <th>Fichas ganadas</th>
+        </tr>
+         <tr wicket:id="apuestas">
+         <td ><span wicket:id="tipoApuesta"></span></td>
+         <td ><span wicket:id="opcion"></span></td>
+         <td ><span wicket:id="fichas"></span></td>
+          <td ><span wicket:id="fichasGanadas"></span></td>
+         </tr>
+</table>
+</div>
+
+</body>
+</html>
