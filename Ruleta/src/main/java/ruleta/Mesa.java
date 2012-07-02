@@ -1,5 +1,7 @@
 package ruleta;
 
+
+
 import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
@@ -29,13 +31,18 @@ public class Mesa extends ObservableObject implements Serializable{
 	String  dineroJugadorEntrante;
 	String  nombreJugadorEntrante;
 	Jugador jugadorActual;
+	Integer numeroGanadorAnterior=0;
+	Boolean mesaCerrada = false;
 	
-	public Ruleta ruleta = new Ruleta();
+	
+
+	public Ruleta ruleta;
 	
 	public List<Jugador> jugadores = new LinkedList<Jugador>();
 
 	public List<Apuesta> apuestas = new LinkedList<Apuesta>();
 	public  List<Apuesta> apuestasAnteriores = new LinkedList<Apuesta>();
+	private int maxJugadores;
 	
 	public Mesa(){
 		super();
@@ -43,6 +50,8 @@ public class Mesa extends ObservableObject implements Serializable{
 
 	public Mesa(int banca){
 		this.banca = banca;
+		maxJugadores = 10;
+		ruleta = new Ruleta();
 	}
 	
 	public void unirJugadorActual() {		
@@ -51,8 +60,20 @@ public class Mesa extends ObservableObject implements Serializable{
 		this.setNombreJugadorEntrante("");  //limpia la pantalla*/
 	}
 	
-	public void unirJugador(Jugador unJugador) {
-		this.setBanca(this.getBanca() + unJugador.unirAMesa(this));
+	public void unir(Jugador jugador) {
+		if (!puedeRecibirJugador(jugador)) {
+			throw new RuntimeException("La mesa esta llena intente mas tarde");
+		}
+		if(this.yaExisteJugador(jugador)){
+		   throw new RuntimeException("El pseudonimo ya existe");
+		}
+		this.unirJugador(jugador);
+		System.out.println(this.jugadores+"%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+	}
+	
+	
+	private void unirJugador(Jugador unJugador) {
+		this.setBanca(this.getBanca() + unJugador.unirAMesa());
 		this.jugadores.add(unJugador);
 		System.out.println("se agrega jugador");
 		this.firePropertyChange(JUGADORES, null, this.jugadores);
@@ -70,22 +91,52 @@ public class Mesa extends ObservableObject implements Serializable{
 		}
 	}
 	
+	private boolean yaExisteJugador(Jugador jugador) {
+		boolean existe = false;
+		for (Jugador j : jugadores ) {
+			if (j.getNombre().equals(jugador.getNombre())) {
+				existe = true;
+			}
+
+		}
+		return existe;
+	}
+	
+	public boolean puedeRecibirJugador(Jugador j) {
+		boolean puede = true;
+		if (jugadores.size() >= this.maxJugadores) {
+			puede = false;
+		}
+		return puede;
+	}
+	
+	
 
 	public void registrarJugada(Apuesta apuesta){
+		if(mesaCerrada){
+			throw new RuntimeException("la mesa no recibe mas apuestas");
+		}
+		else{
 		int cantidadApostada = apuesta.getFichas();
 		apuesta.getJugador().restarFichas(cantidadApostada);
+		apuesta.getJugador().apuestas.add(apuesta);
 		this.apuestas.add(apuesta);
 		//this.setBanca(this.getBanca() + cantidadApostada);
 		this.firePropertyChange(JUGADORES, null, jugadores);
 		System.out.println("se apuesta" + apuesta.getTipoApuesta() + apuesta.jugadaSeleccionada.getNombre() + apuesta.getFichas());
+		}
 	}
 	
-	public void girarRuleta(){
-		this.setNumeroGanador(this.ruleta.getNumeroGanador());
-	    setApuestasAnteriores(apuestas);
-	    System.out.println(apuestasAnteriores);
-		this.pagarApuestas();
-		this.firePropertyChange(JUGADORES, null, jugadores);		
+	public synchronized void girarRuleta(){
+		if(!mesaCerrada){
+			this.mesaCerrada = true;
+			this.setNumeroGanador(this.ruleta.getNumeroGanador());
+		    //setApuestasAnteriores(apuestas);
+		    //System.out.println(apuestasAnteriores);
+			this.pagarApuestas();
+			this.firePropertyChange(JUGADORES, null, jugadores);
+		}
+		
 	}
 		
 	public void pagarApuestas(){
@@ -96,10 +147,11 @@ public class Mesa extends ObservableObject implements Serializable{
 				Jugador j = a.getJugador();
 				j.sumarFichas(cantidadGanada);
 				this.restarBanca(cantidadGanada);
+				a.setFichasGanadas(a.fichasGanadas());
 			}			
-			a.getJugador().borrarApuesta(a);
+			//a.getJugador().borrarApuesta(a);
 		}//fin del for
-		this.apuestas.clear();
+		//this.apuestas.clear();
 	}
 	
 
@@ -208,5 +260,22 @@ public class Mesa extends ObservableObject implements Serializable{
 	public void setApuestasAnteriores(List<Apuesta> apuestasAnteriores) {
 		this.apuestasAnteriores = apuestasAnteriores;
 	}
+	
+	public Integer getNumeroGanadorAnterior() {
+		return numeroGanadorAnterior;
+	}
+
+	public void setNumeroGanadorAnterior(Integer numeroGanadorAnterior) {
+		this.numeroGanadorAnterior = numeroGanadorAnterior;
+	}
+
+	public Boolean getMesaCerrada() {
+		return mesaCerrada;
+	}
+
+	public void setMesaCerrada(Boolean mesaCerrada) {
+		this.mesaCerrada = mesaCerrada;
+	}
+	
 	
 }

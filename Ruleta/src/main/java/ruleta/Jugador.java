@@ -14,7 +14,7 @@ public class Jugador extends ObservableObject implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	public Mesa mesa;
+	//public Mesa mesa;
 	public Integer fichas;
 	public Integer dinero;
 	public Integer fichasMas;
@@ -22,6 +22,7 @@ public class Jugador extends ObservableObject implements Serializable{
 	public List<Apuesta> apuestas = new LinkedList<Apuesta>();
 	public List<Apuesta> apuestasFake = new LinkedList<Apuesta>();
 	public Apuesta selected;
+	RuletaApplication ruletaApplication;
 
 
 	public final String SELECTED = "selected";
@@ -33,14 +34,36 @@ public class Jugador extends ObservableObject implements Serializable{
 	public static final String FICHASMAS = "fichasMas";
 	
 
-
-
 	public Jugador(Integer dineroT, String nombreT){
 		this.setDinero(dineroT);
 		this.setNombre(nombreT);	
 		this.setFichas(0);
 		//para comentar
-		this.mesa = new Mesa();
+		//this.mesa = new Mesa();
+		Fila fila = new Fila(this);
+		OpcionJugada opcion = new OpcionJugada("4", 4);
+		fila.setFichas(10);
+		fila.setJugadaSeleccionada(opcion);
+		this.apuestasFake.add(fila);
+		this.apuestasFake.add(new Fila(this));
+		this.apuestasFake.add(new Fila(this));
+		this.apuestasFake.add(new Fila(this));
+		this.apuestasFake.add(new Fila(this));
+		this.apuestasFake.add(new Fila(this));
+	}
+
+	
+	
+	
+	
+	public Jugador(Integer dineroT, String nombreT,RuletaApplication ruletaApplication){
+		this.setDinero(dineroT);
+		this.setNombre(nombreT);	
+		this.setFichas(0);
+		//para comentar
+		//this.mesa = new Mesa();
+		this.ruletaApplication = ruletaApplication;
+		this.ruletaApplication.getMesa(this);
 		Fila fila = new Fila(this);
 		OpcionJugada opcion = new OpcionJugada("4", 4);
 		fila.setFichas(10);
@@ -77,8 +100,8 @@ public class Jugador extends ObservableObject implements Serializable{
 		}
 	}
 
-	public Integer unirAMesa(Mesa mesa) {
-		this.mesa = mesa;
+	public Integer unirAMesa() {
+		//this.getMesa();
 		Integer fichasTemp = this.getDinero()*80/100;
 		this.setFichas(this.getFichas() + fichasTemp);
 		this.setDinero(this.getDinero() - fichasTemp);
@@ -98,15 +121,24 @@ public class Jugador extends ObservableObject implements Serializable{
 		return new Columna(this);
 	}
 
-	public void apostar(Apuesta apuesta) {		
-		this.getMesa().registrarJugada(apuesta);
-		this.apuestas.add(apuesta);	
+	public Mesa getMesa(){
+		return ruletaApplication.getInstance().getMesa(this);
+	}
+	
+	public void apostar(Apuesta apuesta) {	
+
+		ruletaApplication.getMesa(this).registrarJugada(apuesta);
+		//this.apuestas.add(apuesta);	
 		this.firePropertyChange(APUESTAS, null, this.apuestas);
 	}	
 	
 	public void borrarApuesta(Apuesta apuesta){
 	this.apuestas.remove(apuesta);
 	this.firePropertyChange(APUESTAS, null, this.apuestas);
+	}
+	
+	public void borrarApuestas(){
+		this.apuestas = new LinkedList<Apuesta>();
 	}
 	
 	
@@ -127,13 +159,7 @@ public class Jugador extends ObservableObject implements Serializable{
 	
 	//get & set
 	
-	public Mesa getMesa() {
-		return mesa;
-	}
 	
-	public void setMesa(Mesa mesa) {
-		this.mesa = mesa;
-	}
 	
 	public Integer getDinero() {
 		return dinero;

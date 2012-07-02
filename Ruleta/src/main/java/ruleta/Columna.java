@@ -15,7 +15,7 @@ public class Columna extends Apuesta{
 	}
 
 	public boolean ganaParaNumero(int numero) {
-		return this.jugadaSeleccionada.getValor() == (numero%3 + 1);		
+		return this.jugadaSeleccionada.getValor() == ((numero%3 )+ 1);		
 	}
 	
 	Integer fichasGanadas() {
