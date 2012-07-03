@@ -61,9 +61,8 @@ public class AdjuntarJugadorPage extends WebPage {
 
 			public void onSubmit() {
 				try {
-					//jugador.unirAMesa();
+					
 				    Mesa mesa = getRuletaApplication().getMesa(jugador);
-				    System.out.println(" Mesa " +mesa);
 				    mesa.unir(jugador);
 					irAPaginaBienvenida();
 					 
@@ -105,11 +104,7 @@ public void irAPaginaBienvenida(){
 	
 	
 	
-	/*
-	protected UnirJugadorModel getUnirJugadorModel() {
-		return (UnirJugadorModel) this.getDefaultModelObject();
-	}
-	*/
+	
 	
 
 }

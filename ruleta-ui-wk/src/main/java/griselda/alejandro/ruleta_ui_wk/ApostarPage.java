@@ -95,12 +95,6 @@ public class ApostarPage extends WebPage{
 	            	 target.add(labelMensaje);
 	            	 irAPaginaResultado();
 	                 
-	            	 
-	            	 /*
-	            	 ModalWindow modal =new ModalWindowApuesta("apuestaM", getDefaultModel());
-	            	 add(modal);
-	            	 modal.show(target);
-	            	 */
 				}
 				catch (BusinessException e)
 				{feedbackPanelRuleta.error(e.getMessage());};
@@ -195,40 +189,6 @@ public class ApostarPage extends WebPage{
 			
 			};
 	});
-
-	/*
-		@Override
-		protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
-            try{  
-				
-				ApuestaModel apuesta = apuestaModelo;
-				apuesta.setJugador(jugador);
-				apuesta.crearApuesta();
-				target.add(form);
-				target.add(comboApuesta);
-			    target.add(comboJugada);
-			    target.add(textfieldFichas);
-			    target.add(feedbackPanel);
-			
-				
-				
-			}
-			catch (BusinessException e)
-			{feedbackPanel.error(e.getMessage());};
-			
-			
-		}
-
-		@Override
-		protected void onError(AjaxRequestTarget target, Form<?> form) {
-			
-			
-			
-		}
-	});
-	
-	
-	*/
 }
 	
 

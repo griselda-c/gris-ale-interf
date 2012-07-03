@@ -121,13 +121,9 @@ protected void mostrarApuestas(Jugador j){
 
 			public void onClick()
 	         {
-				if(jugador.dinero<=0 || jugador.nombre.equals("")){
-					feedbackPanel.error("debe registrarse");
-				}
-				else{
-	        	 ApostarPage nextPage = new ApostarPage(jugador,getPaginaActual());
+	        	ApostarPage nextPage = new ApostarPage(jugador,getPaginaActual());
 	     		this.setResponsePage(nextPage);
-				}
+				
 	         }
 	     });
 		

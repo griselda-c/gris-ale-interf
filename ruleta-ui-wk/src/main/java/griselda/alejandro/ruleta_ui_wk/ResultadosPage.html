@@ -15,17 +15,22 @@
 
 
 <body>
-<span wicket:id="mensaje"></span>
-<span wicket:id="numeroGanador"></span>
-<span wicket:id="fichas"></span>
-<span wicket:id="cantFichas"></span>
-<span wicket:id="finFrase"></span>
+<p align="center">
+<span wicket:id="mensaje" style = "align:center;width:200 px"></span>
+<span wicket:id="numeroGanador" style = "align:center;width:200 px"></span>
+<span wicket:id="fichas" style = "align:center;width:200 px"></span>
+<span wicket:id="cantFichas" style = "align:center;width:200 px"></span>
+<span wicket:id="finFrase" style = "align:center;width:200 px"></span>
+</p>
+<br/><br/><br/><br/>
 
-
+<div class="left">
 <form wicket:id="ruletaForm">
+
 <input  wicket:id="seguirJugando" type= "submit" name="seguir" value =" Seguir Jugando "></input>
 <input  wicket:id="retirarse" type= "submit" name="retirarse" value =" Retirarse "></input>
 </form>
+</div>
 <div class="right">
  <table border="2">
         <tr>
