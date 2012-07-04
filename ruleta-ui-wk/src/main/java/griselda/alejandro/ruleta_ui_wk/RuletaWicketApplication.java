@@ -12,15 +12,6 @@ import ruleta.RuletaApplication;
  * @see griselda.alejandro.ruleta_ui_wk.Start#main(String[])
  */
 public class RuletaWicketApplication extends WebApplication {
-	/*
-	private Mesa mesa=null;
-	private boolean giraronRuleta=false;
-    private int numeroAnterior;
-   */
-	
-	private RuletaApplication ruletaApplication = null;
-	
-	
 	/**
 	 * @see org.apache.wicket.Application#getHomePage()
 	 */
@@ -35,15 +26,10 @@ public class RuletaWicketApplication extends WebApplication {
 	@Override
 	public void init() {
 	 	super.init();
-	 	
-	
 	}
 	
 	public RuletaApplication getRuletaApplication() {
-		if(ruletaApplication==null){
-			ruletaApplication = new RuletaApplication();
-		}
-		return ruletaApplication;
+		return RuletaApplication.getInstance();
 	}
 	
 	public static RuletaWicketApplication getRuletaWicketApplication() {

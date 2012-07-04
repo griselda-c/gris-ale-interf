@@ -11,9 +11,11 @@ import ruleta.Apuesta;
 import ruleta.Columna;
 import ruleta.Fila;
 import ruleta.Jugador;
+import ruleta.Mesa;
 import ruleta.OpcionJugada;
 import ruleta.ParImpar;
 import ruleta.Pleno;
+import ruleta.RuletaApplication;
 
 
 
@@ -31,7 +33,13 @@ public class ApuestaModel implements Serializable {
     
     
    
-    public void setOpciones(List<OpcionJugada> opciones) {
+    public ApuestaModel(Jugador j) {
+    	this.jugador = j;
+	}
+
+
+
+	public void setOpciones(List<OpcionJugada> opciones) {
 		this.opciones = opciones;
 	}
 
@@ -50,13 +58,14 @@ public class ApuestaModel implements Serializable {
     }
 	
     public Apuesta crearApuesta(){
-    	
+    	Mesa mesa = RuletaApplication.getInstance().getMesa(jugador);
+		
     	Apuesta apuesta = apuestaSeleccionada.create();
     	apuesta.setJugador(jugador);
     	apuesta.setJugadaSeleccionada(opcionJugada);
     	apuesta.setFichas(fichas);
     	
-    	//jugador.apostar(apuesta);
+		mesa.registrarJugada(apuesta);
     	return apuesta;
     }
     

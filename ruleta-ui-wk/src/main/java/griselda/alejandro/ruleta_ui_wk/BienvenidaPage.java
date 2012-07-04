@@ -24,7 +24,6 @@ public class BienvenidaPage extends WebPage {
 	private static final long serialVersionUID = 1L;
 	private ListView<Jugador> view;
 	private WebMarkupContainer listContainer;
-	private FeedbackPanel feedbackPanel;
 	
 	
 	private Jugador jugador;

@@ -38,7 +38,7 @@ public class ApostarPage extends WebPage{
 	private WebPage paginaAnterior;
 	private FeedbackPanel feedbackPanel;
 	private FeedbackPanel feedbackPanelRuleta;
-	private ApuestaModel apuestaModelo = new ApuestaModel();
+	private ApuestaModel apuestaModelo;
 	private ListView<Apuesta> listaApuestas;
 	protected Label labelMensaje= new Label ("numero","");
 	protected Label labelRuletaMensaje = new Label("mensajeRuleta","");
@@ -48,24 +48,37 @@ public class ApostarPage extends WebPage{
 	public ApostarPage(Jugador j,WebPage page){
 	     jugador = j;
 	     paginaAnterior = page;
-	    Form<ApuestaModel> apuestaForm = new Form<ApuestaModel>("apuestaForm", new CompoundPropertyModel<ApuestaModel>(apuestaModelo));
-	    Form<Mesa> ruletaForm = new Form<Mesa>("ruletaForm", new CompoundPropertyModel<Mesa>(getRuletaApplication().getMesa(jugador)));
-	    ruletaForm.add(labelRuletaMensaje);
-	    ruletaForm.add(labelMensaje);
-	    apuestaForm.setOutputMarkupId(true);
-	    feedbackPanelRuleta = new FeedbackPanel("feedbackPanelRuleta");
-	    feedbackPanelRuleta.setOutputMarkupId(true);
-	    ruletaForm.add(feedbackPanelRuleta);	
-	    this.add(apuestaForm);
-	    this.add(ruletaForm);
-		this.addFields(apuestaForm);
-		this.addAction(apuestaForm);
-		this.crearCombos(apuestaForm);
+	     this.apuestaModelo = new ApuestaModel(j);
+	    
+	    this.addGirarForm();
+	    this.addApostarForm();
+		
 		this.agregarLink();	
 		this.agregarLabelFichasJugador();
 		this.generarGrillaApuestas();
-		this.botonGirarRuleta(ruletaForm);
-	   
+	}
+
+
+	protected void addApostarForm() {
+		Form<ApuestaModel> apuestaForm = new Form<ApuestaModel>("apuestaForm", new CompoundPropertyModel<ApuestaModel>(apuestaModelo));
+	    apuestaForm.setOutputMarkupId(true);
+	    this.add(apuestaForm);
+		this.addFields(apuestaForm);
+		this.crearCombos(apuestaForm);
+		this.addAction(apuestaForm);
+	}
+
+
+	protected Form<Mesa> addGirarForm() {
+		Form<Mesa> ruletaForm = new Form<Mesa>("ruletaForm", new CompoundPropertyModel<Mesa>(getRuletaApplication().getMesa(jugador)));
+	    ruletaForm.add(labelRuletaMensaje);
+	    ruletaForm.add(labelMensaje);
+	    feedbackPanelRuleta = new FeedbackPanel("feedbackPanelRuleta");
+	    feedbackPanelRuleta.setOutputMarkupId(true);
+	    ruletaForm.add(feedbackPanelRuleta);
+	    this.add(ruletaForm);
+	    this.botonGirarRuleta(ruletaForm);
+		return ruletaForm;
 	}
 	
 	
@@ -79,10 +92,8 @@ public class ApostarPage extends WebPage{
 			@Override
 			protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
 				try{  
-					System.out.println("Fichas" +jugador.fichas);
 	                Mesa mesa = getRuletaApplication().getMesa(jugador);
 					mesa.girarRuleta();
-					System.out.println("Fichas" +jugador.fichas);
 		
 	            	 labelRuletaMensaje.setDefaultModelObject("El numero ganador es:");
 	            	 labelMensaje.setDefaultModelObject(mesa.getNumeroGanador());
@@ -164,32 +175,19 @@ public class ApostarPage extends WebPage{
 	}
 
 	
-	private void addAction(Form<ApuestaModel> form){
-	form.add(new Button("apostar") {
-		/**
-		 * 
-		 */
-		private static final long serialVersionUID = 1L;
-    
-		@Override
-		public void onSubmit() {
-			try{  
-				Mesa mesa = getRuletaApplication().getMesa(jugador);
-				System.out.println("mesa "+ mesa);
-				apuestaModelo.setJugador(jugador);
-				Apuesta apuesta = apuestaModelo.crearApuesta(); 
-				mesa.registrarJugada(apuesta);
-				
+	private void addAction(Form<ApuestaModel> form) {
+		form.add(new Button("apostar") {
+			private static final long serialVersionUID = 1L;
+			@Override
+			public void onSubmit() {
+				try {
+					apuestaModelo.crearApuesta();
+				} catch (RuntimeException e) {
+					feedbackPanel.error(e.getMessage());
 				}
-					
-			catch (RuntimeException e)
-			{feedbackPanel.error(e.getMessage());};
-			
-			
-			
 			};
-	});
-}
+		});
+	}
 	
 
 	
