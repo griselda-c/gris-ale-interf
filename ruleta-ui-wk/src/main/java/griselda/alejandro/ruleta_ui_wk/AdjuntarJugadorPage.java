@@ -27,7 +27,6 @@ public class AdjuntarJugadorPage extends WebPage {
 		CompoundPropertyModel<Jugador> formModel = new CompoundPropertyModel<Jugador>(jugador);
 		Form<Jugador> adjuntarForm = new Form<Jugador>("adjuntarJugadorForm", formModel);
 		this.add(adjuntarForm);
-		
 		this.generarCamposIngreso(adjuntarForm);
 		this.addActions(adjuntarForm);	
 		
@@ -63,6 +62,7 @@ public class AdjuntarJugadorPage extends WebPage {
 				try {
 					
 				    Mesa mesa = getRuletaApplication().getMesa(jugador);
+				   // System.out.println("mesa jugador " +jugador.getNombre() +mesa);
 				    mesa.unir(jugador);
 					irAPaginaBienvenida();
 					 

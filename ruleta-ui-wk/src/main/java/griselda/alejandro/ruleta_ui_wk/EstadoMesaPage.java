@@ -24,7 +24,6 @@ public class EstadoMesaPage extends WebPage{
 	private static final long serialVersionUID = 1L;
 	private WebPage paginaAnterior;
 	private ListView<Apuesta> listaApuestas;
-	private ListView<Apuesta> listaApuestasAnteriores;
     private WebMarkupContainer listContainer;
 	private Jugador jugador;
 	
@@ -32,7 +31,6 @@ public class EstadoMesaPage extends WebPage{
 		this.jugador = j;
 		this.paginaAnterior = paginaAnterior;
 		this.generarGrillaApuestas();
-		//this.generarGrillaApuestasAnteriores();
 		this.agregarLink();
 	}
 
@@ -75,31 +73,7 @@ protected void generarGrillaApuestas(){
 		
 	}
 
-/*
-protected void generarGrillaApuestasAnteriores(){
-	
-	listaApuestasAnteriores = new ListView<Apuesta>("apuestasA", new PropertyModel(getMesa(), "apuestasAnteriores")) {
-        
-		private static final long serialVersionUID = 1L;
 
-		protected void populateItem(final ListItem<Apuesta>item) {
-    
-		
-           
-           final Label jugador = new Label("jugadorA", new PropertyModel<Apuesta>(item.getModelObject(), "jugadorNombre"));
-           final Label tipoApuesta = new Label("tipoApuestaA", new PropertyModel<Apuesta>(item.getModel(), "tipoApuesta"));
-           final Label opcionJugada = new Label("opcionA",new PropertyModel<Apuesta>(item.getModelObject(), "opcionNombre"));
-           final Label fichas = new Label("fichasA",new PropertyModel<Apuesta>(item.getModelObject(), "fichas"));
-           item.add(jugador);
-           item.add(tipoApuesta);
-           item.add(opcionJugada);
-           item.add(fichas);
-         }
-     };
-     add(listaApuestasAnteriores);
-
-}
-*/
 
  public void agregarLink(){
 	 add(new Link<Object>("volver"){
