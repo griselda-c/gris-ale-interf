@@ -51,6 +51,7 @@ private Mesa getMesaJugador(Jugador j){
 	for(JugadorPartida jugador:jugadores){
 		if(jugador.getJugador()==j){
 			res = jugador.getMesa();
+			System.out.println("mesa jugador " +jugador.getJugador().getNombre() + jugador.getMesa());
 		}
    }
 	return res;
