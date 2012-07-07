@@ -1,4 +1,4 @@
-package giselda.alejandro.persistibles;
+package griselda.alejandro.persistibles;
 
 import griselda.alejandro.BaseDeDatos;
 import griselda.alejandro.Persistible;

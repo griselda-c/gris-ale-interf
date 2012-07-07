@@ -1,7 +1,7 @@
 package griselda.alejandro.nopersistibles;
 
-import giselda.alejandro.persistibles.Equipo;
 import griselda.alejandro.Persistible;
+import griselda.alejandro.persistibles.Equipo;
 
 /**
  * TODO: description

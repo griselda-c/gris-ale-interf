@@ -1,9 +1,9 @@
 package griselda.alejandro.nopersistibles;
 
-import giselda.alejandro.persistibles.Equipo;
-import giselda.alejandro.persistibles.Formacion;
-import giselda.alejandro.persistibles.Jugador;
-import giselda.alejandro.persistibles.Titular;
+import griselda.alejandro.persistibles.Equipo;
+import griselda.alejandro.persistibles.Formacion;
+import griselda.alejandro.persistibles.Jugador;
+import griselda.alejandro.persistibles.Titular;
 
 import java.util.LinkedList;
 import java.util.List;
