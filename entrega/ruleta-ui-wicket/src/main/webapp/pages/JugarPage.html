@@ -116,10 +116,18 @@
     </tr>
   </table>
   
-  <div id="wicket_formApuestaVista" style="width:250px; padding: 15px 0px 0px 0px; text-align: justify;">
+  <div  style="width:250px; padding: 15px 0px 0px 0px; text-align: justify;">
   <p class="selectApuesta">Seleccione una jugada para ver<br/>las apuestas realizadas</p>
-  <select  id="wicket_selectApuestaVista" style="width:250px;">
-  </select><br/><br/>
+    
+    <div wicket:id="columnaListModel.container" class="cargarApuestas">
+	    <div wicket:id="columnaListModel.listado">
+	      <a>
+	        <span  wicket:id="columnaListModel.tipoApuestaCorto"></span><br/>
+	        <span  wicket:id="columnaListModel.jugadaString"></span>
+	      </a>
+	    </div>
+    </div>
+
   </div>
   
   <div class="botonesvista">
@@ -151,7 +159,7 @@
 <!-- termina index b -->
 
 <div class="partidaTerminada" wicket:id="adjuntarJugadorContainer">
-	<p> <span wicket:id="estadoruleta"></span> </p><br/>       
+	<p> <span wicket:id="estadoruleta"></span> </p><br/> 
 	<a wicket:id="adjuntarPartida" >Unirse a nueva partida</a>  
 </div>
 

@@ -43,6 +43,7 @@ public abstract class Apuesta  implements Serializable{
 	public abstract boolean ganaParaNumero(Integer numero);
 	public abstract Integer fichasGanadas();
 	public abstract String getTipoApuesta();
+	public abstract String getTipoApuestaCorto();
 	public abstract List<OpcionJugada> getOpciones();
 	public abstract Apuesta create();
 	

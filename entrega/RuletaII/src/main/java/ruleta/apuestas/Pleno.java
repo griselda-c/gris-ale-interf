@@ -40,6 +40,10 @@ public class Pleno extends Apuesta{
 	public String getTipoApuesta() {
 		return "Pleno";
 	}
+	
+	public String getTipoApuestaCorto() {
+		return "Pleno";
+	}
 
 
 }

@@ -2,6 +2,7 @@ package griselda.alejandro.ruleta_ui_wicket;
 
 import griselda.alejandro.ruleta_ui_wicket.componentes.FormularioApuesta;
 import griselda.alejandro.ruleta_ui_wicket.componentes.ListadoGeneral;
+import griselda.alejandro.ruleta_ui_wicket.componentes.ListadoGeneralSelected;
 import griselda.alejandro.ruleta_ui_wicket.models.JugarApplicationModel;
 
 import org.apache.wicket.MarkupContainer;
@@ -30,6 +31,8 @@ public class JugarPage extends WebPage {
 	private Label numeroGanadorComponente;
 	private Label fichasJugadorComponente;
 	private MarkupContainer adjuntarContainer;
+
+	private ListadoGeneralSelected listadoColumnaListModel;
 	
 
 	public JugarPage(Jugador jugadorModel) {
@@ -56,6 +59,9 @@ public class JugarPage extends WebPage {
 		listadoVistaPrincipal = new ListadoGeneral<Apuesta>("apuestasVistaPrincipal", this.model, idsListadoArrayV);
 		this.add(listadoVistaPrincipal);
 		
+		String idsListadoArrayM[] = {"tipoApuestaCorto","jugadaString"};
+		listadoColumnaListModel = new ListadoGeneralSelected("columnaListModel", this.model, idsListadoArrayM);
+		this.add(listadoColumnaListModel);
 
 		configurarContainerAdjuntarJugador();
 

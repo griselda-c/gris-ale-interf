@@ -39,5 +39,8 @@ public class ParImpar extends Apuesta {
 		return "Paridad";
 	}
 
+	public String getTipoApuestaCorto() {
+		return "Paridad";
+	}
 
 }

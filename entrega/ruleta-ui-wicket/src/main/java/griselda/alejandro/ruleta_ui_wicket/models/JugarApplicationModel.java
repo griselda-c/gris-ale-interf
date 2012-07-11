@@ -4,6 +4,7 @@ import griselda.alejandro.ruleta_ui_wicket.JugarPage;
 
 import java.io.Serializable;
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.apache.wicket.ajax.AjaxRequestTarget;
@@ -11,6 +12,7 @@ import org.apache.wicket.ajax.AjaxRequestTarget;
 import ruleta.Jugador;
 import ruleta.Mesa;
 import ruleta.apuestas.Apuesta;
+import ruleta.apuestas.Columna;
 import ruleta.apuestas.OpcionJugada;
 import ruleta.exceptions.RuletaException;
 import ruleta.exceptions.TerminoPartidaException;
@@ -96,8 +98,18 @@ public class JugarApplicationModel implements Serializable{
 	/**####################### ACCESS ###############################**/	
 	//access	
 	
+	public List<Apuesta> getColumnaListModel(){
+		List<Apuesta> columnaList = new LinkedList<Apuesta>();
+		for (OpcionJugada opcion : new Columna().getOpciones()) {
+			Columna columna = new Columna();
+			columna.setJugadaSeleccionada(opcion);
+			columnaList.add(columna);
+		}
+		return columnaList;
+	}
+	
 
-	public List<Apuesta>getApuestasVistaPrincipal(){
+	public List<Apuesta> getApuestasVistaPrincipal(){
 		if(cambioPartida()){
 			return Collections.emptyList();
 		}

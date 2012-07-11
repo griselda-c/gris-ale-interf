@@ -51,5 +51,9 @@ public class Fila extends Apuesta{
 	public String getTipoApuesta() {
 		return "Fila";
 	}
+	
+	public String getTipoApuestaCorto() {
+		return "Fila";
+	}
 
 }

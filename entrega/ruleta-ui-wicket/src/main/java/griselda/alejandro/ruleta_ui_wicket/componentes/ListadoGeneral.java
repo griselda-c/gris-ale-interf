@@ -12,12 +12,12 @@ import org.apache.wicket.model.PropertyModel;
 
 
 public class ListadoGeneral<T> extends WebMarkupContainer {
-
-	private static final long serialVersionUID = 1L;
-	private JugarApplicationModel aplicationModel;
-	private ListView<T> jugadoresComponente;
-	private String idListado;
-	private String[] idsListadoArray;
+	private static final long serialVersionUID = 7083293494368766267L;
+	
+	protected JugarApplicationModel aplicationModel;
+	protected ListView<T> listadoComponente;
+	protected String idListado;
+	protected String[] idsListadoArray;
 
 	/*
 	 * generalizacion de los listview 
@@ -34,8 +34,8 @@ public class ListadoGeneral<T> extends WebMarkupContainer {
 		this.setOutputMarkupId(true);
 	}
 
-	private void agregarComponentes(){
-		jugadoresComponente = new ListView<T>((idListado+".listado"), new PropertyModel<List<T>>(this.aplicationModel, idListado)) {
+	protected void agregarComponentes(){
+		listadoComponente = new ListView<T>((idListado+".listado"), new PropertyModel<List<T>>(this.aplicationModel, idListado)) {
 			private static final long serialVersionUID = -564745215807518014L;
 			protected void populateItem(ListItem<T> item) {
 				for (int i = 0; i < idsListadoArray.length; i++) {					
@@ -43,8 +43,8 @@ public class ListadoGeneral<T> extends WebMarkupContainer {
 				}
 			}
 		};
-		jugadoresComponente.setOutputMarkupId(true);
-		this.add(jugadoresComponente);
+		listadoComponente.setOutputMarkupId(true);
+		this.add(listadoComponente);
 	}
 	
 	//item.add(new Label("jugadoresPartidaActual.nombre", new PropertyModel<String>(item.getModel(), "nombre")));

@@ -266,12 +266,13 @@ body {
 
 .botonesvista{
 	background-color: none;
-	float:right;
+	float: right;
 	height: auto;
 	width: 280px;
 	text-align:justify;
 	margin: 0px;
-	margin-bottom: 10px;	
+	margin-bottom: 10px;
+	clear: right;	
 }
 
 .botonesvista a{
@@ -334,9 +335,31 @@ body {
     background-color: red;
 }
 
+.cargarApuestas a{
+	float: left;
+	margin: 2px;
+	width: 40px;
+	padding: 0px;
+	text-align: center;
+    font-weight: bold;
+	display: block;
+	text-decoration: none;
+	font-family:arial, verdana, sans-serif;
+    background-color: #f33;
+	border: solid 1px #F99;
+	color: #FFF;	
+}
 
+.cargarApuestas a:hover{
+    background-color: red;
+}
 
-
+.cargarApuestas{   
+	width: 190px;	 
+	float: left;
+	padding: 0px 30px 20px 30px;
+}
+	
 
 
 

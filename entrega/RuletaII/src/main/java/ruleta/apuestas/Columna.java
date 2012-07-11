@@ -44,4 +44,8 @@ public class Columna extends Apuesta{
 		return "Columna";
 	}
 	
+	public String getTipoApuestaCorto() {
+		return "Col";
+	}
+	
 }
