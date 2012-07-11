@@ -1,0 +1,357 @@
+*{
+	margin: 0px;
+}
+
+*:focus  {  outline: none;  }
+
+body {
+    min-width: 1400px;
+	background:url(../images/bg.jpg) no-repeat;
+	background-position: 50% -40px ;
+    background-color: #470602;
+    padding: 0px;
+    border: 0px;
+    margin: 0px;
+}
+
+
+
+#false-body{background-image: url(../images/false-body-bg.png);
+	background-repeat: repeat;	
+	height: auto;
+	background-color: none;
+	margin: 0px 30px;
+	padding: 0px;
+	border: 0px;	
+}
+
+
+
+#header{
+	height: 160px;
+	background-color: none;
+	margin: 0px 10px;
+	padding: 10px 0 0 20px;
+	border: 0px;	
+}
+
+#logo{
+    background-image: url(nada);
+	background-repeat: repeat;	
+	height: 170px;
+	background-color: none;
+	margin: 0px;
+	padding: 0px;
+	border: 0px;	
+	margin: 0px 20px;
+	text-align: center; 
+}
+
+#session{
+	height: 40px;
+	background-color: red;
+	margin: 5px 0px 12px 0px;
+	padding: 0px;
+	border: 0px;	
+}
+
+#session-left{background-image: url(../images/session-bg-left.png);
+	background-repeat: repeat-x;	
+	float: left;
+	width: 14px;
+	height: 40px;
+	background-color: none;
+	margin: 0px;
+	padding: 0px;
+	border: 0px;	
+}
+
+#session-center1{background-image: url(../images/session-bg.png);
+	background-repeat: repeat-x;
+	height: 40px;
+	background-color: none;
+	margin: 0px 204px 0px 14px;
+	padding: 0px;
+	border: 0px;	
+}
+
+#session-center2{background-image: url(../images/session-bg.png);
+	background-repeat: repeat-x;	
+	float: right;
+	width: 200px;
+	height: 40px;
+	background-color: none;
+	margin: 0px;
+	padding: 0px;
+	border: 0px;	
+}
+
+#session-right{background-image: url(../images/session-bg-right.png);
+	background-repeat: repeat-x;
+	float: right;	
+	width: 14px;
+	height: 40px;
+	background-color: none;
+	margin: 0px;
+	padding: 0px;
+	border: 0px;	
+}
+
+.session1, .session2, .session2-of {
+    font-weight: bold;
+    line-height:38px;
+	color:#fff;
+	text-decoration:none;
+	font-family: arial, verdana, sans-serif;
+	font-size: 14px;
+	margin: 0px;
+	padding: 0px;
+	border: 0px;	
+}
+
+.session1{
+	float: left;
+}
+
+.session2{
+	float: right;
+}
+
+.session2 a, .session2-of a{
+	text-decoration:none;
+	font-family: arial, verdana, sans-serif;
+	float: right;	
+	font-size: 14px;
+	margin: 0px;
+	margin-left: 20px;
+	padding: 0px;
+	border: 0px;	
+}
+
+.session2 a {
+	color:#aaf;	
+}
+
+.session2 a:hover {
+	color:#fff;	
+}
+
+.session2-of a {
+	color:#aaa;	
+	cursor:default;
+}
+
+
+#real-body{
+	background-color: none;
+	clear: both;
+	height: auto;
+	margin: 0px 0px 10px 0px;
+	padding: 0px;
+	border: 0px;
+	overflow: hidden;
+}
+
+#body-left{
+	background-color: none;	
+	float: left;
+	height: auto;
+	width: 300px;
+	margin: 0px;
+	padding: 0px;
+	border: 0px;
+	padding-bottom: 30000px;
+    margin-bottom: -30000px; 
+}
+	
+#body-center{
+	height: auto;
+	padding: 0px;
+	border: 0px;
+	padding-bottom: 30000px;
+    margin-bottom: -30000px; 
+}
+
+#body-center{
+	margin-left: 300px;
+	margin-right: 260px;
+	background-image: url(nada);
+	background-color: none;	
+}
+
+
+
+
+#body-right{
+	float: right;
+	height: auto;
+	width: 260px;
+	margin: none;
+	padding: none;
+	border: none;
+	padding-bottom: 30000px;
+    margin-bottom: -30000px; 
+}
+
+
+#body-foot{
+	background-color: #224;
+	height: auto;
+	margin: 0px;
+	padding: 0px;
+	border: 0px;
+	margin-left: 30px;
+	margin-right: 30px;
+	clear: both;
+}
+
+
+#table1{
+    width: 700px;
+	height: auto;
+	background-color: none;
+	margin: 10px auto 0px auto;
+	padding: 10px;
+	padding-left: 130px; 
+	border: 0px;
+	color: white;
+    font-weight: bold;
+}
+
+.table1{
+	margin-bottom: 15px;
+}
+
+
+#muestraapuestas{	
+	background-color: none;
+	height: auto;
+	width: 280px;
+	text-align:justify;
+	margin: 0px;
+	margin-top: 10px;
+	padding: 0px;
+	border: 0px;
+	color: white;
+	font-family:arial, verdana, sans-serif;
+	font-weight: bold;
+	font-size: 14px;
+}
+
+.selectApuesta{	
+	text-align: center;
+	color: white;
+	padding: 0px 0px 10px 0px;
+	font-family: arial, verdana, sans-serif;
+    font-weight: bold;
+    line-height: 16px;
+	font-size: 14px;
+}
+
+
+.nueroGanador{
+	background-color: #a0a;
+	border: 1px solid white;
+	color: white;
+	margin: 0px auto;
+	height: 40px;
+	width: 40px;	
+    font-weight: bold;
+    text-align: center;
+    line-height: 40px;
+	font-size: 20px;
+	padding: 0px;
+}
+
+
+.botonesvista{
+	background-color: none;
+	float:right;
+	height: auto;
+	width: 280px;
+	text-align:justify;
+	margin: 0px;
+	margin-bottom: 10px;	
+}
+
+.botonesvista a{
+	float: right;
+	margin: 0px 24px 0px 0px;
+	padding: 0px 20px;
+	text-align: center;
+    font-weight: bold;
+	display: block;
+	text-decoration: none;
+	font-family:arial, verdana, sans-serif;
+    background-color: #f33;
+	border: solid 1px #F99;
+	color: #FFF;
+	
+}
+
+.botonesvista a:hover{
+    background-color: red;
+}
+	
+
+
+
+
+
+.partidaTerminada{
+	background-color: red;
+	height: auto;
+	width: 300px;
+	text-align:justify;
+	margin: 0px auto;
+	padding: 20px 20px;;
+	border: solid 1px #F99;	
+}
+
+.partidaTerminada p{
+	margin-left: 20px;
+    color: white;
+	font-family:arial, verdana, sans-serif;
+    font-weight: bold;
+}
+
+
+.partidaTerminada a{
+	margin: 0px 20px;
+	padding: 0px 20px;
+	text-align: center;
+    font-weight: bold;
+	display: block;
+	text-decoration: none;
+	font-family:arial, verdana, sans-serif;
+    background-color: #f33;
+	border: solid 1px #F99;
+	color: #FFF;
+	
+}
+
+.partidaTerminada a:hover{
+    background-color: red;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

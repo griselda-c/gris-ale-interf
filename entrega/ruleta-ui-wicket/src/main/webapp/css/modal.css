@@ -1,0 +1,26 @@
+*{
+	margin: 0px;
+}
+
+*:focus  {  outline: none;  }
+
+body {
+	background-position: 50% 0px ;
+    background-color: #470602;
+    padding: 0px;
+    
+    border: 0px;
+    margin: 0px;
+}
+
+p{	
+	text-align: center;
+	text-decoration: none;
+	font-family: arial, verdana, sans-serif;
+	font-size: 20px;
+	color: white;
+	font-weight: bold;
+	margin: 0px 0px 20px 0px;
+	padding: 0px;
+	border: 0px;	
+}

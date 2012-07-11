@@ -1,0 +1,89 @@
+#log {
+    background-image: url(../images/log-bg.png);
+	background-repeat: repeat;	
+	width: 400px;
+	height: 300px;
+	background-color: none;
+	margin: 70px auto;
+	padding: 0px;
+	border: 0px;	
+}
+
+#log-top {
+    background-image: none;	
+	width: 350px;
+	height: 50px;
+	background-color: none;
+	margin: 0px;
+	padding: 20px 0 0 50px;
+	border: 0px;	
+}
+
+#log-bot {
+    background-image: none;	
+	width: 400px;
+	height: 230px;
+	background-color: none;
+	margin: 0px;
+	padding: 0px;
+	border: 0px;	
+}
+
+
+
+.form_log {
+    background-image: none;	
+	width: auto;
+	height: auto;
+	background-color: none;
+	margin: 0px 0 0 50px;
+	padding: 0px;
+	border: 0px;	
+}
+
+
+.form_log p {
+	font-family:arial, verdana, sans-serif;
+    color: #EDCAF7;
+    font-size: 16px;
+    font-weight: bold;	
+	margin: 26px 0 22px 0;
+	padding: 0px;
+	border: 0px;	
+	
+}
+
+.log-text{
+	font-family:arial, verdana, sans-serif;
+    color: #EDCAF7;
+    font-size: 18px;
+    font-weight: bold;	
+	margin: 0px 0 10px 0;
+	padding: 0px;
+	border: 0px;	
+	
+}
+
+.button a{
+    font-weight: bold;
+	background: url(../images/submit-log-a.png) no-repeat;
+	display: block;
+	float: left;
+	height: 29px;
+	width: 129px;	
+	line-height: 28px;
+	color: #BCBDBD;
+	text-decoration: none;
+	font-family: arial, verdana, sans-serif;
+	text-align: center;
+	cursor: pointer;
+	font-size: 14px;
+	margin: 0 30px 0 0;
+	padding: 0px;
+	border: 0px;	
+}
+
+.button a:hover{
+	background: url(../images/submit-log.png) no-repeat;
+	color:#fff;
+}

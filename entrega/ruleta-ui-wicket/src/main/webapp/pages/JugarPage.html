@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org">
+	
+<!-- empieza index a -->
+<head>
+<LINK rel="stylesheet" href="css/style.css" type="text/css" media="all">
+<link rel="icon" type="image/png" href="images/mifavicon.png" />
+<script src="scripts/scriptw.js" type="text/javascript"></script>
+<!-- termina index a -->
+
+
+<LINK rel="stylesheet" href="css/style-index.css" type="text/css" media="all">
+
+
+<!-- empieza index b --><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Ruleta</title>
+
+
+
+</head>
+
+<body>
+<div id="wicket_modalRuleta"></div>
+<div id="false-body">
+
+<div id="header">
+
+
+<div id="logo">
+<IMG src="images/logo.png" alt="Ruleta" title="Ruleta" style="background: none; width: 400px; height: 160px; border: 0px; margin-top: 30px; padding: 0px;">
+</div > <!-- cierra logo -->
+
+
+</div > <!-- cierra header -->
+
+<div id="session">
+
+  <div id="session-left">
+  </div > <!-- cierra session-left -->
+  
+  <div id="session-right">
+  </div > <!-- cierra session-right -->
+  <div id="session-center2">
+    
+   
+	
+	<p id="siJugadorA" class="session2"><a href="loginout" title="Abandonar la sesion actual"><b>Cerrar sesi&oacute;n</b></a></p>  
+    </div > <!-- session-center2 -->
+  
+    <div id="session-center1">
+    <p id="siNoJugadorB" class="session1">Sesion iniciada por <span wicket:id="model.jugador.nombre" style="color: #ff4;"></span></p>
+
+ 
+  </div > <!-- session-center1 -->
+  
+</div > <!-- cierra session -->
+
+
+<div id="real-body">
+
+  <div id="body-left">  
+  
+  <div id="menu-left">   
+   
+   <div id="muestraapuestas">
+     
+    <p id="fichasVista">Fichas disponibles: <span wicket:id="model.jugador.fichas"  ></span></p><br/>	
+    
+    <div id="jugada">
+    <p>Seleccione una jugada para realizar la apuesta</p>
+    </div > <!-- cierra jugada --><br/> 
+    
+    
+    <!-- Empieza el form wicket -->
+    <form wicket:id="formularioapuesta" class="">
+      
+      <select wicket:id="formularioapuesta.seleccionar.apuesta" style="width:300px">
+      </select><br/><br/> 
+      
+	  <select  wicket:id="formularioapuesta.seleccionar.jugada" style="width:300px;">
+      </select><br/><br/> 
+      
+	  <p><span wicket:id="formularioapuesta.feedbackApuesta"  >Ingrese la cantidad de fichas que desea apostar:</span><br>
+	  
+	  <input wicket:id="formularioapuesta.fichas.apostadas"  name="apuestaFichas" type="text" size="12" style="font-family: sans-serif; font-size: 16px; margin-top: 10px; border: 0px;">
+	  <input type="button" wicket:id="formularioapuesta.apostar" value="Apostar">
+	  
+	  </p><br/>
+      
+      <input type="button" wicket:id="formularioapuesta.girarruleta"  value="Girar Ruleta"/><br/><br/>
+       
+    </form>
+    
+    <!-- Termina el form wicket -->
+    
+    
+    </div > <!-- cierra muestraapuestas -->   
+    
+  </div > <!-- cierra menu-left -->
+  
+    <div id="menu-left-boot">  
+    </div > <!-- cierra menu-left-boot -->
+
+  </div > <!-- cierra body-left -->
+	
+  <div id="body-right">
+  
+  <table wicket:id="jugadoresPartidaActual.container" style="width: 250px; background-color: red; font-size: 12px; text-aling: center; color: white; border: 1px solid green;">
+    <tr>
+      <th>Jugador</th><th>Fichas</th><th>Apuestas</th>
+    </tr>
+    <tr wicket:id="jugadoresPartidaActual.listado" style="background-color: #f33; text-align: center;">
+      <td><span wicket:id="jugadoresPartidaActual.nombre"></span></td>
+      <td><span wicket:id="jugadoresPartidaActual.fichas"></span></td>
+      <td><span wicket:id="jugadoresPartidaActual.cantidadApuestas"></span></td>
+    </tr>
+  </table>
+  
+  <div id="wicket_formApuestaVista" style="width:250px; padding: 15px 0px 0px 0px; text-align: justify;">
+  <p class="selectApuesta">Seleccione una jugada para ver<br/>las apuestas realizadas</p>
+  <select  id="wicket_selectApuestaVista" style="width:250px;">
+  </select><br/><br/>
+  </div>
+  
+  <div class="botonesvista">
+  <a wicket:id="mostrarApuestasPropias">Propias</a>
+  <a wicket:id="mostrarApuestasTodos">Todas</a>
+  </div>
+  
+  
+  <p class="selectApuesta">&Uacute;ltimo numero ganador</p>
+  
+  <div class="nueroGanador"><span  wicket:id="apuestaanterior.numeroganador"></span></div>
+  
+  <p class="selectApuesta" style="padding-top: 20px;">Apuestas de la partida anterior</p>
+  
+  <table wicket:id="apuestasPartidaAnterior.container" style="width: 250px; background-color: red; font-size: 12px; text-aling: center; color: white; border: 1px solid green;">
+    <tr>
+      <th>Jugada</th><th>Apostadas</th><th>Ganadas</th>
+    </tr>
+    <tr wicket:id="apuestasPartidaAnterior.listado" style="background-color: #f33; text-align: center;">
+      <td><span wicket:id="apuestasPartidaAnterior.tipoApuesta"></span> - <span wicket:id="apuestasPartidaAnterior.jugadaString"></span></td>
+      <td><span wicket:id="apuestasPartidaAnterior.fichasString"></span></td>
+      <td><span wicket:id="apuestasPartidaAnterior.ganadasString"></span></td>
+    </tr>
+  </table>
+
+  </div > <!-- cierra body-right -->  
+  
+  <div id="body-center">
+<!-- termina index b -->
+
+<div class="partidaTerminada" wicket:id="adjuntarJugadorContainer">
+	<p> <span wicket:id="estadoruleta"></span> </p><br/>       
+	<a wicket:id="adjuntarPartida" >Unirse a nueva partida</a>  
+</div>
+
+<table wicket:id="apuestasVistaPrincipal.container" style="background-color: red; font-size: 18px; text-aling: center; color: white; border: 1px solid green; margin: 30px auto;">
+    <tr  style="background-color: #822;">
+      <th style="width: 200px;">Apuesta</th><th style="width: 200px;">Fichas</th><th style="width: 200px;">Jugador</th>
+    </tr>
+    <tr  wicket:id="apuestasVistaPrincipal.listado" style="background-color: #f33; text-align: center;">
+      
+      <td><span wicket:id="apuestasVistaPrincipal.tipoApuesta"></span> - <span wicket:id="apuestasVistaPrincipal.jugadaString"></span></td>
+      <td><span wicket:id="apuestasVistaPrincipal.fichasString"></span></td>
+      <td><span wicket:id="apuestasVistaPrincipal.jugador.nombre"></span></td>
+    
+    </tr>
+  </table>
+
+
+
+<!-- empieza index c -->
+  </div > <!-- cierra body-center -->
+  
+</div > <!-- cierra real-body -->
+</div > <!-- cierra false-body -->
+
+<div id="body-foot">
+</div > <!-- cierra body-foot -->
+
+
+
+</body>
+<!-- termina index c -->
+</html>
