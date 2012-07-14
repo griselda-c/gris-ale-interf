@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:wicket="http://wicket.apache.org">
-	<head>
-	<!--  
-		<meta charset="utf-8" />
-		<title>Apache Wicket Quickstart</title>
-		<link href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:regular,bold' rel='stylesheet' type='text/css' />
-		<link rel="stylesheet" href="style.css" type="text/css" media="screen" title="Stylesheet" />
-	-->
-	</head>
+
+<wicket:head>
+  <wicket:link>
+    <link rel="stylesheet" type="text/css" href="estilos.css"/>
+  </wicket:link>
+  <title>Home</title>
+</wicket:head>
 	<body>
 	<!-- 
 		<div id="hd">
@@ -63,9 +62,8 @@
 		<div id="ft">
 		</div>
 		-->
-		<p align="center">
-		<span wicket:id="ruleta" style = "align:center;width:200 px">Bienvenido a Ruleta del ocho</span>
-		</p>
+		<p align="center">Bienvenido a Ruleta del ocho</p>
+		
 		<br/><br/><br/>
 		<a href="#" wicket:id="registrarse"> Registrarse</a>
 	</body>

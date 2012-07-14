@@ -24,11 +24,8 @@ public class ResultadosPage extends WebPage{
 	public ResultadosPage(Jugador j){
 		jugador = j;
 	    mesa = getRuletaApplication().getMesa(jugador);
-		add(new Label ("mensaje","El numero ganador es "));
 		add(new Label ("numeroGanador",new PropertyModel<Mesa>(mesa,"numeroGanador")));
-		add(new Label ("fichas"," usted tiene "));
 		add(new Label ("cantFichas",new PropertyModel<Jugador>(jugador, "fichas")));
-		add(new Label ("finFrase"," fichas "));
 		Form<Mesa> ruletaForm = new Form<Mesa>("ruletaForm", new CompoundPropertyModel<Mesa>(getRuletaApplication().getMesa(jugador)));
 		add(ruletaForm);
 		this.generarGrillaApuestas();

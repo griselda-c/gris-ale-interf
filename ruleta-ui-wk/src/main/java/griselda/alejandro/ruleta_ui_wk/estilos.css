@@ -4,9 +4,4 @@ float:left;
 div.right {
 float:right;
 }
-<style>
-body{
-	background:#FFCCOO;
-	}
-</style>
-<body>
+body {background-color:#FF7256;background-image:url(griselda.alejandro.ruleta_ui_wk/fondo.png);}  

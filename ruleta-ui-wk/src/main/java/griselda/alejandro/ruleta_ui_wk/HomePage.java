@@ -10,7 +10,6 @@ public class HomePage extends WebPage {
 	
     public HomePage() {
 		
-    	add(new Label("ruleta", "Bienvenido a la Ruleta del ocho"));
     	add(new Link<Object>("registrarse"){
 			/**
 			 * 
